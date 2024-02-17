@@ -47,7 +47,7 @@ int main() {
   Network::ILayer *sloj3 = new Sigmoid();
   Network mreza(context, device_id, { sloj1, sloj2, sloj3 });
 
-  float host_ptr[] = { 2, 1.0, 2.5, 1.2, 1.5, 1.7, 1.8, 3.8, 4.8, 6.4 };
+  float host_ptr[] = { 2, 1.0, 2.5, 10.2, 1.5, 1.7, 1.8, 3.8, 4.8, 6.4 };
   cl_mem input_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * 5*2, host_ptr, &__err);
   checkError(__err);
 

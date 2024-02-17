@@ -16,8 +16,6 @@ Sigmoid::~Sigmoid() {
   #ifdef DEBUG
   std::cout << "[DEBUG]: pozvan destruktor za Sigmoid!" << std::endl;
   #endif
-  if(this->last_output.data != nullptr)
-    checkError(clReleaseMemObject(this->last_output.data));
   if(this->forward_kernel != nullptr)
     checkError(clReleaseKernel(this->forward_kernel));
   if(this->backward_kernel != nullptr)
@@ -49,7 +47,9 @@ Matrix Sigmoid::forward(Network &network, Matrix &input_matrix) {
     checkError(clReleaseMemObject(this->last_output.data));
   }
 
-  this->last_output.data = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, input_matrix.N * input_matrix.M, nullptr, &_err);
+  this->last_output.data = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, input_matrix.N * input_matrix.M * sizeof(float), nullptr, &_err);
+  this->last_output.N = input_matrix.N;
+  this->last_output.M = input_matrix.M;
   checkError(_err);
 
   checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix.data));

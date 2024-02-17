@@ -40,6 +40,8 @@ Matrix ReLU::forward(Network &network, Matrix &input_matrix) {
     checkError(clReleaseMemObject(this->last_output.data));
   }
   this->last_output.data = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, input_matrix.N * input_matrix.M * sizeof(float), nullptr, &_err);
+  this->last_output.N = input_matrix.N;
+  this->last_output.M = input_matrix.M;
   checkError(_err);
 
   checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix.data));
@@ -50,8 +52,10 @@ Matrix ReLU::forward(Network &network, Matrix &input_matrix) {
   cl_event user_event = clCreateUserEvent(getContext(network), &_err);
   checkError(_err);
   checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, &user_event));
+  checkError(clWaitForEvents(1, &user_event));
+  checkError(clReleaseEvent(user_event));
   
-  return { this->last_output.data, input_matrix.N, input_matrix.M };
+  return this->last_output;
 }
 
 Matrix ReLU::backward(Network &network, Matrix &output_grad) {

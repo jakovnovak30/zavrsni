@@ -6,7 +6,7 @@ STRINGIFY(
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 
-    input[ty * m + tx] = fmax(0, input[ty * m + tx]);
+    output[ty * m + tx] = fmax(0, input[ty * m + tx]);
   }
 
   // na ulaz dolaze matrice NxM
