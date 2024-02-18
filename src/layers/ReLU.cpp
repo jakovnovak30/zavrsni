@@ -49,11 +49,8 @@ Matrix ReLU::forward(Network &network, Matrix &input_matrix) {
   checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(const int), &input_matrix.M));
 
   const size_t global_work_size[] = { input_matrix.N, input_matrix.M };
-  cl_event user_event = clCreateUserEvent(getContext(network), &_err);
   checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, &user_event));
-  checkError(clWaitForEvents(1, &user_event));
-  checkError(clReleaseEvent(user_event));
+  checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
   
   return this->last_output;
 }
@@ -81,11 +78,8 @@ Matrix ReLU::backward(Network &network, Matrix &output_grad) {
   checkError(clSetKernelArg(this->backward_kernel, 3, sizeof(const int), &output_grad.M));
 
   const size_t global_work_size[] = { output_grad.N, output_grad.M };
-  cl_event user_event = clCreateUserEvent(getContext(network), &_err);
   checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->backward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, &user_event));
-  checkError(clWaitForEvents(1, &user_event));
-  checkError(clReleaseEvent(user_event));
+  checkError(clEnqueueNDRangeKernel(getQueue(network), this->backward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return { output_buffer, output_grad.N, output_grad.M };
 }

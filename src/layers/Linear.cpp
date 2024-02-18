@@ -41,7 +41,7 @@ Linear::Linear(cl_context context, const size_t in_features, const size_t out_fe
 
   if(bias) {
     float *host_ptr = new float[out_features];
-    for(int i=0;i < out_features;i++)
+    for(size_t i=0;i < out_features;i++)
       host_ptr[i] = gen_uniform(1.0f / in_features);
     this->biases = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, out_features * sizeof(float), host_ptr, &_err);
     checkError(_err);
@@ -114,11 +114,9 @@ Matrix Linear::forward(Network &network, Matrix &input_matrix) {
   checkError(clSetKernelArg(this->forward_kernel, 4, sizeof(const int), &this->in_features));
   checkError(clSetKernelArg(this->forward_kernel, 5, sizeof(const int), &this->out_features));
 
-  cl_event finish_event = clCreateUserEvent(getContext(network), &_err);
   checkError(_err);
   size_t global_work_size[] = { N, this->out_features };
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, &global_work_size[0], nullptr, 0, nullptr, &finish_event));
-  checkError(clWaitForEvents(1, &finish_event));
+  checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   if(this->biases != nullptr) {
     if(this->bias_kernel == nullptr) {
@@ -130,11 +128,9 @@ Matrix Linear::forward(Network &network, Matrix &input_matrix) {
     checkError(clSetKernelArg(this->bias_kernel, 1, sizeof(float *), &this->biases));
     checkError(clSetKernelArg(this->bias_kernel, 2, sizeof(const int), &this->out_features));
     size_t global_work_size[] = { N, this->out_features };
-    checkError(clEnqueueNDRangeKernel(getQueue(network), this->bias_kernel, 2, nullptr, &global_work_size[0], nullptr, 0, nullptr, &finish_event));
-    checkError(clWaitForEvents(1, &finish_event));
+    checkError(clEnqueueNDRangeKernel(getQueue(network), this->bias_kernel, 2, nullptr, &global_work_size[0], nullptr, 0, nullptr, nullptr));
   }
 
-  checkError(clReleaseEvent(finish_event));
   return { output_buffer, N, this->out_features };
 }
 

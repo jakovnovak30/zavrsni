@@ -35,7 +35,7 @@ class Network {
     cl_mem forward(cl_mem input_buffer, const size_t N, const size_t M);
     cl_mem forward(void *input_buffer, const size_t N, const size_t M);
 
-    // TODO: prouci backprop implementacije i algoritme
+    // TODO: backprop za linearni sloj + bar jedna IOptimizer implementacija
     void backward(ILossFunc *loss_func, IOptimizer *optim);
 
   private:

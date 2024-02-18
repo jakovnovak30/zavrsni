@@ -4,22 +4,15 @@
 #include <cstring>
 #include <stdexcept>
 
-CrossEntropyLoss::CrossEntropyLoss() {
-  this->program = nullptr;
-  this->loss_kernel = nullptr;
-  this->grad_kernel = nullptr;
-}
+CrossEntropyLoss::CrossEntropyLoss() : program{ nullptr }, loss_kernel { nullptr }, grad_kernel { nullptr } { }
 
 CrossEntropyLoss::~CrossEntropyLoss() {
-  if(this->loss_kernel != nullptr) {
+  if(this->loss_kernel != nullptr)
     checkError(clReleaseKernel(this->loss_kernel));
-  }
-  if(this->grad_kernel != nullptr) {
+  if(this->grad_kernel != nullptr)
     checkError(clReleaseKernel(this->grad_kernel));
-  }
-  if(this->program != nullptr) {
+  if(this->program != nullptr)
     checkError(clReleaseProgram(this->program));
-  }
 }
 
 static const char *code[] =
@@ -53,12 +46,7 @@ Matrix CrossEntropyLoss::calculate_loss(Network &network, Matrix &input, Matrix 
   checkError(clSetKernelArg(this->loss_kernel, 3, sizeof(const int), &input.M));
 
   const size_t global_work_size[] = { input.N };
-
-  cl_event user_event = clCreateUserEvent(getContext(network), &_err);
-  checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->loss_kernel, 1, nullptr, global_work_size, nullptr, 0, nullptr, &user_event));
-  checkError(clWaitForEvents(1, &user_event));
-  checkError(clReleaseEvent(user_event));
+  checkError(clEnqueueNDRangeKernel(getQueue(network), this->loss_kernel, 1, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return { output_buffer, input.N, 1 };
 }
@@ -87,11 +75,7 @@ Matrix CrossEntropyLoss::calculate_gradient(Network &network, Matrix &input, Mat
 
   const size_t global_work_size[] = { input.N, input.M };
 
-  cl_event user_event = clCreateUserEvent(getContext(network), &_err);
-  checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->loss_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, &user_event));
-  checkError(clWaitForEvents(1, &user_event));
-  checkError(clReleaseEvent(user_event));
+  checkError(clEnqueueNDRangeKernel(getQueue(network), this->loss_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return { output_buffer, input.N, input.M };
 }
