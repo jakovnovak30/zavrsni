@@ -49,14 +49,17 @@ cl_mem Network::forward(Matrix input_matrix) {
   return current_matrix.data;
 }
 
-void Network::backward(ILossFunc *loss_func, IOptimizer *optim) {
-  Matrix input, expected;
-  Matrix output_grad = loss_func->calculate_gradient(*this, input, expected);
+void Network::backward(Matrix &probs, Matrix &expected, ILossFunc *loss_func, IOptimizer *optim) {
+  Matrix output_grad = loss_func->calculate_gradient(*this, probs, expected);
 
+  // izracunaj gradijente
   for(auto it=this->layers.rbegin();it != this->layers.rend();it++) {
     output_grad = (*it)->backward(*this, output_grad);
-    // TODO: pozovi optimizatora da obradi izracunate gradijente
-    // ...
+  }
+
+  // pozivi optimizatora
+  for(const ILayer *layer : this->layers) {
+    //optim->optimize(layer->params, layer->gradients);
   }
 }
 

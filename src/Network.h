@@ -36,7 +36,9 @@ class Network {
     cl_mem forward(void *input_buffer, const size_t N, const size_t M);
 
     // TODO: backprop za linearni sloj + bar jedna IOptimizer implementacija
-    void backward(ILossFunc *loss_func, IOptimizer *optim);
+    // predaju se vjerojatnosti izlaznih razreda koje je mreža izračunala + očekivani rezultati (one-hot notacija)
+    // zajedno s funkcijom gubitka i optimizatorom
+    void backward(Matrix &probs, Matrix &expected, ILossFunc *loss_func, IOptimizer *optim);
 
   private:
     cl_command_queue queue;

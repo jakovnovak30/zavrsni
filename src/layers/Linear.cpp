@@ -51,10 +51,17 @@ Linear::Linear(cl_context context, const size_t in_features, const size_t out_fe
     this->biases = nullptr;
   }
 
+  // za sad nemamo izracunate gradijente
+  this->weight_grad = nullptr;
+  this->bias_grad = nullptr;
+  this->last_input = { nullptr, 0, 0 };
+
   // kompajlira se u trenutku poziva
   this->program = nullptr;
   this->forward_kernel = nullptr;
-  this->backward_kernel = nullptr;
+  this->bias_grad_kernel = nullptr;
+  this->weight_grad_kernel = nullptr;
+  this->input_grad_kernel = nullptr;
   this->bias_kernel = nullptr;
 }
 
@@ -65,12 +72,20 @@ Linear::~Linear() {
 
   checkError(clReleaseMemObject(this->parameters));
 
+  if(this->bias_grad != nullptr)
+    checkError(clReleaseMemObject(this->bias_grad));
+  if(this->weight_grad != nullptr)
+    checkError(clReleaseMemObject(this->weight_grad));
   if(this->biases != nullptr)
     checkError(clReleaseMemObject(this->biases));
   if(this->forward_kernel != nullptr)
     checkError(clReleaseKernel(this->forward_kernel));
-  if(this->backward_kernel != nullptr)
-    checkError(clReleaseKernel(this->backward_kernel));
+  if(this->bias_grad_kernel)
+    checkError(clReleaseKernel(this->bias_grad_kernel));
+  if(this->weight_grad_kernel != nullptr)
+    checkError(clReleaseKernel(this->weight_grad_kernel));
+  if(this->input_grad_kernel != nullptr)
+    checkError(clReleaseKernel(this->input_grad_kernel));
   if(this->bias_kernel != nullptr)
     checkError(clReleaseKernel(this->bias_kernel));
   if(this->program != nullptr)
@@ -88,8 +103,10 @@ Matrix Linear::forward(Network &network, Matrix &input_matrix) {
   if(input_matrix.M != this->in_features) {
     throw std::logic_error("Ne valja oblik ulaza u potpuno povezani sloj!");
   }
-  int _err;
+  // zapamti zadnji ulaz (za backprop)
+  this->last_input = { input_matrix.data, input_matrix.N, input_matrix.M };
 
+  int _err;
   if(this->program == nullptr) {
     this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
     checkError(_err);
@@ -135,6 +152,71 @@ Matrix Linear::forward(Network &network, Matrix &input_matrix) {
 }
 
 Matrix Linear::backward(Network &network, Matrix &output_grad) {
-  // TODO
-  return {};
+  if(output_grad.N != this->last_input.N || output_grad.M != this->out_features)
+    throw std::logic_error("Dimenzije matrice ne odgovaraju!");
+  if(this->last_input.data == nullptr)
+    throw std::logic_error("Preskočili ste forward metodu!");
+
+  int _err;
+  if(this->program == nullptr) {
+    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
+    checkError(_err);
+    cl_device_id device = getDevice(network);
+    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
+  }
+
+  if(this->input_grad_kernel == nullptr) {
+    this->input_grad_kernel = clCreateKernel(this->program, "inputGrad", &_err);
+    checkError(_err);
+  }
+  if(this->weight_grad_kernel == nullptr) {
+    this->weight_grad_kernel = clCreateKernel(this->program, "avgWeightGrad", &_err);
+    checkError(_err);
+  }
+  if(this->bias_grad_kernel && this->biases != nullptr) {
+    this->bias_grad_kernel = clCreateKernel(this->program, "avgBiasGrad", &_err);
+  }
+
+  if(this->weight_grad == nullptr) {
+    this->weight_grad = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, this->in_features * this->out_features * sizeof(float), nullptr, &_err);
+    checkError(_err);
+  }
+  if(this->bias_grad == nullptr) {
+    this->bias_grad = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, this->out_features * sizeof(float), nullptr, &_err);
+    checkError(_err);
+  }
+
+  cl_mem input_grad_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, output_grad.N * this->in_features * sizeof(float), nullptr, &_err);
+  checkError(_err);
+
+  checkError(clSetKernelArg(this->input_grad_kernel, 0, sizeof(float *), &output_grad.data));
+  checkError(clSetKernelArg(this->input_grad_kernel, 1, sizeof(float *), &this->last_input.data));
+  checkError(clSetKernelArg(this->input_grad_kernel, 2, sizeof(float *), &input_grad_buffer));
+  checkError(clSetKernelArg(this->input_grad_kernel, 3, sizeof(const int), &this->in_features));
+  checkError(clSetKernelArg(this->input_grad_kernel, 4, sizeof(const int), &this->out_features));
+
+  checkError(clSetKernelArg(this->weight_grad_kernel, 0, sizeof(float *), &output_grad.data));
+  checkError(clSetKernelArg(this->weight_grad_kernel, 1, sizeof(float *), &this->weight_grad));
+  checkError(clSetKernelArg(this->weight_grad_kernel, 2, sizeof(float *), &this->last_input.data));
+  checkError(clSetKernelArg(this->weight_grad_kernel, 3, sizeof(const int), &this->in_features));
+  checkError(clSetKernelArg(this->weight_grad_kernel, 4, sizeof(const int), &this->out_features));
+  checkError(clSetKernelArg(this->weight_grad_kernel, 5, sizeof(const int), &output_grad.N));
+  
+  const size_t input_work_size[] = { output_grad.N, this->in_features };
+  checkError(clEnqueueNDRangeKernel(getQueue(network), this->input_grad_kernel, 2, nullptr, input_work_size, nullptr, 0, nullptr, nullptr));
+
+  const size_t weight_work_size[] = { this->in_features, this->out_features };
+  checkError(clEnqueueNDRangeKernel(getQueue(network), this->weight_grad_kernel, 2, nullptr, weight_work_size, nullptr, 0, nullptr, nullptr));
+
+  if(this->biases != nullptr) {
+    checkError(clSetKernelArg(this->bias_grad_kernel, 0, sizeof(float *), &output_grad.data));
+    checkError(clSetKernelArg(this->bias_grad_kernel, 1, sizeof(float *), &this->bias_grad));
+    checkError(clSetKernelArg(this->bias_grad_kernel, 2, sizeof(const int), &output_grad.N));
+    checkError(clSetKernelArg(this->bias_grad_kernel, 3, sizeof(const int), &this->out_features));
+
+    const size_t bias_work_size[] = { this->out_features };
+    checkError(clEnqueueNDRangeKernel(getQueue(network), this->bias_grad_kernel, 1, nullptr, bias_work_size, nullptr, 0, nullptr, nullptr));
+  }
+
+  return { input_grad_buffer, output_grad.N, this->in_features };
 }
