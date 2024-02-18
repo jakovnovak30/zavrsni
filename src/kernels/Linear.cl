@@ -65,7 +65,7 @@ STRINGIFY(
   // ulaz: NxOUT matrica izlaznog gradijenta
   // izlaz: biasGrad (matrica OUTx1)
   // racuna se delta(gubitak) / delta(bias) koji je jednak izlaznom gradijentu, ali ga svejedno moramo prekopirati
-  __kernel void avgGradBias(__global float *outputGrad, __global float *biasGrad, const int N, const int out) {
+  __kernel void avgBiasGrad(__global float *outputGrad, __global float *biasGrad, const int N, const int out) {
     const size_t t_out = get_global_id(0); // od 0 do OUT
 
     float grad_total = 0.0f;

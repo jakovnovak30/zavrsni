@@ -67,6 +67,10 @@ Matrix Sigmoid::backward(Network &network, Matrix &output_grad) {
   if(output_grad.N != this->last_output.N || output_grad.M != this->last_output.M)
     throw std::logic_error("Dimenzije matrica ne odgovaraju!");
 
+  #ifdef DEBUG
+  std::cout << "[DEBUG]: radim backprop u Sigmoid sloju!" << std::endl;
+  #endif
+
   int _err;
   if(this->program == nullptr) {
     this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
@@ -85,7 +89,7 @@ Matrix Sigmoid::backward(Network &network, Matrix &output_grad) {
   checkError(clSetKernelArg(this->backward_kernel, 0, sizeof(float *), &output_grad.data));
   checkError(clSetKernelArg(this->backward_kernel, 1, sizeof(float *), &this->last_output.data));
   checkError(clSetKernelArg(this->backward_kernel, 2, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->backward_kernel, 3, sizeof(float *), &output_grad.M));
+  checkError(clSetKernelArg(this->backward_kernel, 3, sizeof(const int), &output_grad.M));
 
   const size_t global_work_size[] = { output_grad.N, output_grad.M };
   checkError(_err);

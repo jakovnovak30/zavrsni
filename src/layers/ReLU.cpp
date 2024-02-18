@@ -3,6 +3,10 @@
 #include <CL/cl.h>
 #include <cstring>
 
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 ReLU::ReLU() : program{ nullptr }, forward_kernel{ nullptr }, backward_kernel{ nullptr } {
   this->last_output = { nullptr, 0, 0 };
 }
@@ -57,6 +61,10 @@ Matrix ReLU::forward(Network &network, Matrix &input_matrix) {
 
 Matrix ReLU::backward(Network &network, Matrix &output_grad) {
   int _err;
+
+  #ifdef DEBUG
+  std::cout << "[DEBUG]: radim backprop na ReLU sloju!" << std::endl;
+  #endif
 
   if(this->program == nullptr) {
     this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);

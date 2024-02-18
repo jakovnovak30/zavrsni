@@ -104,6 +104,9 @@ Matrix Linear::forward(Network &network, Matrix &input_matrix) {
     throw std::logic_error("Ne valja oblik ulaza u potpuno povezani sloj!");
   }
   // zapamti zadnji ulaz (za backprop)
+  if(this->last_input.data != nullptr) {
+    checkError(clReleaseMemObject(this->last_input.data));
+  }
   this->last_input = { input_matrix.data, input_matrix.N, input_matrix.M };
 
   int _err;
@@ -157,6 +160,10 @@ Matrix Linear::backward(Network &network, Matrix &output_grad) {
   if(this->last_input.data == nullptr)
     throw std::logic_error("Preskočili ste forward metodu!");
 
+  #ifdef DEBUG
+  std::cout << "[DEBUG]: radim backprop u Linear sloju!" << std::endl;
+  #endif
+
   int _err;
   if(this->program == nullptr) {
     this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
@@ -173,8 +180,9 @@ Matrix Linear::backward(Network &network, Matrix &output_grad) {
     this->weight_grad_kernel = clCreateKernel(this->program, "avgWeightGrad", &_err);
     checkError(_err);
   }
-  if(this->bias_grad_kernel && this->biases != nullptr) {
+  if(this->bias_grad_kernel == nullptr && this->biases != nullptr) {
     this->bias_grad_kernel = clCreateKernel(this->program, "avgBiasGrad", &_err);
+    checkError(_err);
   }
 
   if(this->weight_grad == nullptr) {

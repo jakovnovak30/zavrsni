@@ -22,7 +22,7 @@ Network::~Network() {
   checkError(clReleaseCommandQueue(queue));
 }
 
-cl_mem Network::forward(void *input_buffer, const size_t N, const size_t M) {
+Matrix Network::forward(void *input_buffer, const size_t N, const size_t M) {
   cl_mem device_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY, N * M, nullptr, &_err);
   checkError(_err);
 
@@ -31,11 +31,11 @@ cl_mem Network::forward(void *input_buffer, const size_t N, const size_t M) {
   return this->forward({ device_buffer, N, M });
 }
 
-cl_mem Network::forward(cl_mem input_buffer, const size_t N, const size_t M) {
+Matrix Network::forward(cl_mem input_buffer, const size_t N, const size_t M) {
   return this->forward({ input_buffer, N, M });
 }
 
-cl_mem Network::forward(Matrix input_matrix) {
+Matrix Network::forward(Matrix input_matrix) {
   Matrix current_matrix = input_matrix;
 
   for(ILayer *layer : this->layers) {
@@ -46,7 +46,7 @@ cl_mem Network::forward(Matrix input_matrix) {
   #ifdef DEBUG
   std::cout << "[DEBUG]: dimenzije izlaznog sloja: " << current_matrix.N << "x" << current_matrix.M << std::endl;
   #endif
-  return current_matrix.data;
+  return { current_matrix.data, current_matrix.N, current_matrix.M };
 }
 
 void Network::backward(Matrix &probs, Matrix &expected, ILossFunc *loss_func, IOptimizer *optim) {
@@ -54,8 +54,13 @@ void Network::backward(Matrix &probs, Matrix &expected, ILossFunc *loss_func, IO
 
   // izracunaj gradijente
   for(auto it=this->layers.rbegin();it != this->layers.rend();it++) {
-    output_grad = (*it)->backward(*this, output_grad);
+    Matrix next_grad = (*it)->backward(*this, output_grad);
+    checkError(clReleaseMemObject(output_grad.data)); // obrisi vrijednosti koje ne trebamo vise
+    output_grad.data = next_grad.data;
+    output_grad.N = next_grad.N;
+    output_grad.M = next_grad.M;
   }
+  checkError(clReleaseMemObject(output_grad.data));
 
   // pozivi optimizatora
   for(const ILayer *layer : this->layers) {

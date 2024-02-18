@@ -31,9 +31,9 @@ class Network {
     ~Network();
     
     // na ulaz ide matrica oblika NxM gdje M mora biti jednak ulaznim parametrima prvog sloja
-    cl_mem forward(Matrix input_matrix);
-    cl_mem forward(cl_mem input_buffer, const size_t N, const size_t M);
-    cl_mem forward(void *input_buffer, const size_t N, const size_t M);
+    Matrix forward(Matrix input_matrix);
+    Matrix forward(cl_mem input_buffer, const size_t N, const size_t M);
+    Matrix forward(void *input_buffer, const size_t N, const size_t M);
 
     // TODO: backprop za linearni sloj + bar jedna IOptimizer implementacija
     // predaju se vjerojatnosti izlaznih razreda koje je mreža izračunala + očekivani rezultati (one-hot notacija)
