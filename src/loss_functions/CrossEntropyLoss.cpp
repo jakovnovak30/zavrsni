@@ -4,6 +4,8 @@
 #include <cstring>
 #include <stdexcept>
 
+#include <iostream>
+
 CrossEntropyLoss::CrossEntropyLoss() : program{ nullptr }, loss_kernel { nullptr }, grad_kernel { nullptr } { }
 
 CrossEntropyLoss::~CrossEntropyLoss() {
@@ -27,7 +29,7 @@ Matrix CrossEntropyLoss::calculate_loss(Network &network, Matrix &input, Matrix 
 
   int _err;
   if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(nullptr, 1, code, lengths, &_err);
+    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
     checkError(_err);
     cl_device_id device = getDevice(network);
     checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));

@@ -104,9 +104,9 @@ Matrix Linear::forward(Network &network, Matrix &input_matrix) {
     throw std::logic_error("Ne valja oblik ulaza u potpuno povezani sloj!");
   }
   // zapamti zadnji ulaz (za backprop)
-  if(this->last_input.data != nullptr) {
-    checkError(clReleaseMemObject(this->last_input.data));
-  }
+  // if(this->last_input.data != nullptr) {
+  //   checkError(clReleaseMemObject(this->last_input.data));
+  // }
   this->last_input = { input_matrix.data, input_matrix.N, input_matrix.M };
 
   int _err;

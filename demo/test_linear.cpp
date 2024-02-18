@@ -1,7 +1,10 @@
 #include <CL/cl.h>
 #include <CL/opencl.hpp>
+#include <algorithm>
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
+#include <random>
 #include <stdexcept>
 
 #include "../src/layers/Layers.h"
@@ -9,6 +12,74 @@
 #include "../src/Network.h"
 #include "../src/Util.h"
 #include "../src/optimizers/Optimizers.h"
+
+static cl_context context;
+static std::default_random_engine generator = std::default_random_engine{};
+
+class Random2DGaussian {
+  private:
+    float min_x, min_y;
+    float max_x, max_y;
+    std::normal_distribution<float> dist_x, dist_y;
+
+  public:
+  Random2DGaussian() {
+    this->min_x = 0, this->min_y = 0;
+    this->max_y = 10, this->max_y = 10;
+    int delta_x = max_x - min_x;
+    int delta_y = max_y - min_y;
+    
+    float mean_x = (float) rand() / RAND_MAX * delta_x + min_x;
+    float mean_y = (float) rand() / RAND_MAX * delta_y + min_y;
+
+    float stddev_x = (float) rand() / RAND_MAX * delta_x / 5;
+    float stddev_y = (float) rand() / RAND_MAX * delta_y / 5;
+
+    this->dist_x = std::normal_distribution<float>(mean_x, stddev_x);
+    this->dist_y = std::normal_distribution<float>(mean_y, stddev_y);
+  }
+
+  std::pair<int, int> get_sample() {
+    return { this->dist_x(generator), this->dist_y(generator) };
+  }
+};
+
+// napravi C razlicitih distribucija i N uzoraka iz svake
+// vraca par matrice Nx2 s tockama i polje s tocnim labelama klase
+std::pair<Matrix, size_t *> get_samples(const size_t C, const size_t N) {
+  std::vector<std::pair<std::pair<float, float>, int>> uzorci = {};
+
+  for(size_t i=0;i < C;i++) {
+    Random2DGaussian *rand_gen = new Random2DGaussian();
+    for(size_t j=0;j < N;j++) {
+      uzorci.push_back({ rand_gen->get_sample(), i }); // oznaci uzorak i klasu usput
+    }
+    delete rand_gen;
+  }
+
+  // promijesaj dataset
+  auto rng = std::default_random_engine{};
+  std::shuffle(uzorci.begin(), uzorci.end(), generator);
+
+  float *host_ptr = new float[N * C * 2];
+  size_t *labele = new size_t[N * C];
+  size_t counter = 0;
+  for(auto &pair : uzorci) {
+    host_ptr[counter * 2 + 0] = pair.first.first;
+    host_ptr[counter * 2 + 1] = pair.first.second;
+    labele[counter] = pair.second;
+    counter++;
+  }
+
+  int _err;
+  cl_mem out_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * N * 2, host_ptr, &_err);
+  checkError(_err);
+  delete[] host_ptr;
+
+  Matrix out_matrix = { out_buffer, N, 2 };
+
+  return { out_matrix, labele };
+}
 
 void pfn_notify(const char *errinfo, const void *private_info, size_t cb, void *user_data) {
   std::cerr << "OpenCL Error (via pfn_notify): " << errinfo << std::endl;
@@ -41,60 +112,64 @@ int main() {
   }
   
   cl_int _err;
-  cl_context context = clCreateContext(NULL, 1, &device_id, pfn_notify, NULL, &_err);
+  context = clCreateContext(NULL, 1, &device_id, pfn_notify, NULL, &_err);
   checkError(_err);
-
-  Network::ILayer *sloj1 = new Linear(context, 2, 2);
-  Network::ILayer *sloj2 = new Linear(context, 2, 3);
-  Network::ILayer *sloj3 = new Sigmoid();
-  Network mreza(context, device_id, { sloj1, sloj2, sloj3 });
-
-  float host_ptr[] = { 2, 1.0,
-                      2.5, 10.2,
-                      1.5, 1.7,
-                      1.8, 3.8,
-                      4.8, 6.4 };
-  cl_mem input_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * 5*2, host_ptr, &_err);
-  checkError(_err);
-
-  Matrix izlaz = mreza.forward(input_buffer, 5, 2);
   cl_command_queue kju = clCreateCommandQueueWithProperties(context, device_id, nullptr, &_err);
   checkError(_err);
 
-  cl_event user_event = clCreateUserEvent(context, &_err);
-  checkError(_err);
-  float *dobiveno = new float[5*3];
-  checkError(clEnqueueReadBuffer(kju, izlaz.data, CL_TRUE, 0, 5*3*sizeof(float), dobiveno, 0, nullptr, &user_event));
-  clWaitForEvents(1, &user_event);
-  clReleaseEvent(user_event);
+  const size_t br_klasa = 2;
+  const size_t N = 100;
+  Network mreza(context, device_id, { new Linear(context, 2, br_klasa), new Sigmoid() });
+  std::pair<Matrix, size_t *> uzorci = get_samples(br_klasa, N);
 
-  // ispis rezultata
-  std::cout << "host_ptr nakon dva potpuno povezana sloja:" << std::endl;
-  float *ocekivano = new float[5*3];
-  for(int i=0;i < 5;i++) {
-    for(int j=0;j < 3;j++) {
-      std::cout << dobiveno[i*3 + j] << ' ';
-      ocekivano[i*3 + j] = float(rand() % 2) + dobiveno[i*3 + 1];
+  // logistička regresija
+  ILossFunc *loss_func = new CrossEntropyLoss();
+  float *dobiveno = new float[N * br_klasa];
+  float *ocekivano = new float[N * br_klasa];
+  for(int epoch=0;epoch < 1000;epoch++) {
+    Matrix izlaz = mreza.forward(uzorci.first);
+    checkError(clEnqueueReadBuffer(kju, izlaz.data, CL_TRUE, 0, N*br_klasa*sizeof(float), dobiveno, 0, nullptr, nullptr));
+
+    // obrada rezultata
+    for(int i=0;i < N;i++) {
+      for(int j=0;j < br_klasa;j++) {
+        if(j == uzorci.second[i])
+          ocekivano[i*br_klasa + j] = 1;
+        else
+          ocekivano[i*br_klasa + j] = 0;
+      }
     }
-    std::cout << std::endl;
-  }
-  cl_mem ocekivano_cl = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, 5*3*sizeof(float), ocekivano, &_err);
-  checkError(_err);
 
+    if(epoch == 999) {
+      for(int i=0;i < N;i++) {
+        float suma_exp = 0;
+        for(int j=0;j < br_klasa;j++) {
+          suma_exp += exp(dobiveno[i*br_klasa + j]);
+        }
+        std::cout << "relativne tocnosti: ";
+        for(int j=0;j < br_klasa;j++) {
+          std::cout << exp(dobiveno[i*br_klasa + j]) / suma_exp << " ";
+        }
+        std::cout << "očekivani razred: " << uzorci.second[i] << std::endl;
+      }
+    }
+
+    cl_mem ocekivano_cl = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, N*br_klasa * sizeof(float), ocekivano, &_err);
+    checkError(_err);
+
+    Matrix probs = { izlaz.data, N, br_klasa };
+    Matrix expected = { ocekivano_cl, N, br_klasa };
+    mreza.backward(probs, expected, loss_func, new SGD(0.4f));
+    
+    if(epoch % 10 == 0) {
+      Matrix ocekivano_matrix = { ocekivano_cl, N, br_klasa };
+      float avg_loss = loss_func->calculate_avg_loss(mreza, izlaz, ocekivano_matrix);
+      std::cout << "epoch_no: " << epoch << " loss: " << avg_loss << std::endl;
+    }
+  }
   delete[] dobiveno;
   delete[] ocekivano;
-
-  Matrix probs = { izlaz.data, 5, 3 };
-  Matrix expected = { ocekivano_cl, 5, 3 };
-  ILossFunc *loss_func = new CrossEntropyLoss();
-  mreza.backward(probs, expected, loss_func, new SGD(0.05f));
-
-  // for(int i=0;i < 100000;i++) {
-  //   input_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, 5*2*sizeof(float), host_ptr, &_err);
-  //   checkError(_err);
-  //   Matrix izlaz = mreza.forward({ input_buffer, 5, 2 });
-  //   mreza.backward(izlaz, expected, loss_func, nullptr);
-  // }
+  delete loss_func;
 
   clReleaseCommandQueue(kju);
   clReleaseDevice(device_id);

@@ -25,8 +25,8 @@ STRINGIFY(
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do C
 
-    // formula za racunanje parcijalne derivacije i-tog elementa vektora gubitka je: -dobiveno_i / ocekivano_i
-    output[ty * C + tx] = - input[ty * C + tx] / expected[ty * C + tx];
+    // formula za racunanje parcijalne derivacije i-tog elementa vektora gubitka je: -ocekivano_i / dobiveno_i
+    output[ty * C + tx] = - expected[ty * C + tx] / input[ty * C + tx] + (1 - expected[ty * C + tx]) / (1 - input[ty * C + tx]);
   }
 
 )
