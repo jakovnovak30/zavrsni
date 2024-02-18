@@ -20,5 +20,5 @@ class Linear : public Network::ILayer {
     ~Linear();
     
     Matrix forward(Network &network, Matrix &input_matrix) override final;
-    Matrix backward(Network &network, Matrix &output_grad) override final;
+    Matrix backward(Network &network, Matrix &output_grad, IOptimizer *optim) override final;
 };

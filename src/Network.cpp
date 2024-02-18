@@ -52,20 +52,17 @@ Matrix Network::forward(Matrix input_matrix) {
 void Network::backward(Matrix &probs, Matrix &expected, ILossFunc *loss_func, IOptimizer *optim) {
   Matrix output_grad = loss_func->calculate_gradient(*this, probs, expected);
 
-  // izracunaj gradijente
+  // izracunaj gradijente i usput azuriraj parametre (unutar Network::ILayer::backward)
   for(auto it=this->layers.rbegin();it != this->layers.rend();it++) {
-    Matrix next_grad = (*it)->backward(*this, output_grad);
-    checkError(clReleaseMemObject(output_grad.data)); // obrisi vrijednosti koje ne trebamo vise
+    Matrix next_grad = (*it)->backward(*this, output_grad, optim);
+    // checkError(clReleaseMemObject(output_grad.data)); // obrisi vrijednosti koje ne trebamo vise
     output_grad.data = next_grad.data;
     output_grad.N = next_grad.N;
     output_grad.M = next_grad.M;
   }
-  checkError(clReleaseMemObject(output_grad.data));
+  // checkError(clReleaseMemObject(output_grad.data));
 
-  // pozivi optimizatora
-  for(const ILayer *layer : this->layers) {
-    //optim->optimize(layer->params, layer->gradients);
-  }
+  return;
 }
 
 // ILayer utility functions

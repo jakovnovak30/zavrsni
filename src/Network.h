@@ -1,5 +1,6 @@
 #pragma once
 
+class Network;
 #include "IOptimizer.h"
 #include "ILossFunc.h"
 #include "Matrix.h"
@@ -9,6 +10,7 @@
 
 class Network {
   friend class ILossFunc;
+  friend class IOptimizer;
 
   public:
     class ILayer {
@@ -21,8 +23,8 @@ class Network {
         // calculate the result of forward propagation for the current layer
         // returns a handle to the memory used for the result, waits internally for the calculation
         virtual Matrix forward(Network &network, Matrix &input_matrix) = 0;
-        // ulaz: gradijenti prijasnjeg sloja (delta(gubitak) / delta(izlaz))
-        virtual Matrix backward(Network &network, Matrix &prev_grad) = 0;
+        // ulaz: gradijenti prijasnjeg sloja (delta(gubitak) / delta(izlaz)) i optimizator
+        virtual Matrix backward(Network &network, Matrix &prev_grad, IOptimizer *optim) = 0;
     };
 
     // potreban je trenutni opencl kontekst i opencl uredaj te lista pokazivaca na objekte koji predstavljaju slojeve (moraju biti dinamicki alocirani)
@@ -35,7 +37,6 @@ class Network {
     Matrix forward(cl_mem input_buffer, const size_t N, const size_t M);
     Matrix forward(void *input_buffer, const size_t N, const size_t M);
 
-    // TODO: backprop za linearni sloj + bar jedna IOptimizer implementacija
     // predaju se vjerojatnosti izlaznih razreda koje je mreža izračunala + očekivani rezultati (one-hot notacija)
     // zajedno s funkcijom gubitka i optimizatorom
     void backward(Matrix &probs, Matrix &expected, ILossFunc *loss_func, IOptimizer *optim);

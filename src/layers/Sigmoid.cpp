@@ -63,7 +63,7 @@ Matrix Sigmoid::forward(Network &network, Matrix &input_matrix) {
   return this->last_output;
 }
 
-Matrix Sigmoid::backward(Network &network, Matrix &output_grad) {
+Matrix Sigmoid::backward(Network &network, Matrix &output_grad, IOptimizer *optim) {
   if(output_grad.N != this->last_output.N || output_grad.M != this->last_output.M)
     throw std::logic_error("Dimenzije matrica ne odgovaraju!");
 

@@ -154,7 +154,7 @@ Matrix Linear::forward(Network &network, Matrix &input_matrix) {
   return { output_buffer, N, this->out_features };
 }
 
-Matrix Linear::backward(Network &network, Matrix &output_grad) {
+Matrix Linear::backward(Network &network, Matrix &output_grad, IOptimizer *optim) {
   if(output_grad.N != this->last_input.N || output_grad.M != this->out_features)
     throw std::logic_error("Dimenzije matrice ne odgovaraju!");
   if(this->last_input.data == nullptr)
@@ -225,6 +225,12 @@ Matrix Linear::backward(Network &network, Matrix &output_grad) {
     const size_t bias_work_size[] = { this->out_features };
     checkError(clEnqueueNDRangeKernel(getQueue(network), this->bias_grad_kernel, 1, nullptr, bias_work_size, nullptr, 0, nullptr, nullptr));
   }
+
+  // pozovi optimizatora!
+  optim->optimize(network, { this->parameters, this->out_features, this->in_features },
+                           { this->weight_grad, this->out_features, this->in_features });
+  if(this->biases != nullptr)
+    optim->optimize(network, { this->biases, 1, this->out_features }, { this->bias_grad, 1, this->out_features });
 
   return { input_grad_buffer, output_grad.N, this->in_features };
 }

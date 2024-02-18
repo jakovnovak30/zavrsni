@@ -8,6 +8,7 @@
 #include "../src/loss_functions/LossFunctions.h"
 #include "../src/Network.h"
 #include "../src/Util.h"
+#include "../src/optimizers/Optimizers.h"
 
 void pfn_notify(const char *errinfo, const void *private_info, size_t cb, void *user_data) {
   std::cerr << "OpenCL Error (via pfn_notify): " << errinfo << std::endl;
@@ -86,14 +87,14 @@ int main() {
   Matrix probs = { izlaz.data, 5, 3 };
   Matrix expected = { ocekivano_cl, 5, 3 };
   ILossFunc *loss_func = new CrossEntropyLoss();
-  mreza.backward(probs, expected, loss_func, nullptr);
+  mreza.backward(probs, expected, loss_func, new SGD(0.05f));
 
-  for(int i=0;i < 100000;i++) {
-    input_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, 5*2*sizeof(float), host_ptr, &_err);
-    checkError(_err);
-    Matrix izlaz = mreza.forward({ input_buffer, 5, 2 });
-    mreza.backward(izlaz, expected, loss_func, nullptr);
-  }
+  // for(int i=0;i < 100000;i++) {
+  //   input_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, 5*2*sizeof(float), host_ptr, &_err);
+  //   checkError(_err);
+  //   Matrix izlaz = mreza.forward({ input_buffer, 5, 2 });
+  //   mreza.backward(izlaz, expected, loss_func, nullptr);
+  // }
 
   clReleaseCommandQueue(kju);
   clReleaseDevice(device_id);

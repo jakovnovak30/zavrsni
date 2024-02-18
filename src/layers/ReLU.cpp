@@ -59,7 +59,7 @@ Matrix ReLU::forward(Network &network, Matrix &input_matrix) {
   return this->last_output;
 }
 
-Matrix ReLU::backward(Network &network, Matrix &output_grad) {
+Matrix ReLU::backward(Network &network, Matrix &output_grad, IOptimizer *optim) {
   int _err;
 
   #ifdef DEBUG
