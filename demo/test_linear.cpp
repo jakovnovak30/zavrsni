@@ -119,14 +119,14 @@ int main() {
 
   const size_t br_klasa = 2;
   const size_t N = 100;
-  Network mreza(context, device_id, { new Linear(context, 2, br_klasa), new Sigmoid() });
+  Network mreza(context, device_id, { new Linear(context, 2, 10), new Sigmoid(), new Linear(context, 10, br_klasa), new Sigmoid() });
   std::pair<Matrix, size_t *> uzorci = get_samples(br_klasa, N);
 
   // logistička regresija
   ILossFunc *loss_func = new CrossEntropyLoss();
   float *dobiveno = new float[N * br_klasa];
   float *ocekivano = new float[N * br_klasa];
-  for(int epoch=0;epoch < 1000;epoch++) {
+  for(int epoch=0;epoch < 200;epoch++) {
     Matrix izlaz = mreza.forward(uzorci.first);
     checkError(clEnqueueReadBuffer(kju, izlaz.data, CL_TRUE, 0, N*br_klasa*sizeof(float), dobiveno, 0, nullptr, nullptr));
 
@@ -140,7 +140,7 @@ int main() {
       }
     }
 
-    if(epoch == 999) {
+    if(epoch == 199) {
       for(int i=0;i < N;i++) {
         float suma_exp = 0;
         for(int j=0;j < br_klasa;j++) {
@@ -159,7 +159,7 @@ int main() {
 
     Matrix probs = { izlaz.data, N, br_klasa };
     Matrix expected = { ocekivano_cl, N, br_klasa };
-    mreza.backward(probs, expected, loss_func, new SGD(0.4f));
+    mreza.backward(probs, expected, loss_func, new SGD(0.5f));
     
     if(epoch % 10 == 0) {
       Matrix ocekivano_matrix = { ocekivano_cl, N, br_klasa };
