@@ -116,7 +116,7 @@ std::shared_ptr<Matrix> Linear::forward(Network &network, std::shared_ptr<Matrix
 
   cl_mem input_buffer = input_matrix->data;
   checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_buffer));
-  checkError(clSetKernelArg(this->forward_kernel, 1, sizeof(float *), &this->parameters));
+  checkError(clSetKernelArg(this->forward_kernel, 1, sizeof(float *), &this->parameters->data));
   // izlaz je oblika NxOut
   cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, input_matrix->N * out_features * sizeof(float), nullptr, &_err);
   checkError(_err);
@@ -137,7 +137,7 @@ std::shared_ptr<Matrix> Linear::forward(Network &network, std::shared_ptr<Matrix
     }
 
     checkError(clSetKernelArg(this->bias_kernel, 0, sizeof(float *), &output_buffer));
-    checkError(clSetKernelArg(this->bias_kernel, 1, sizeof(float *), &this->biases));
+    checkError(clSetKernelArg(this->bias_kernel, 1, sizeof(float *), &this->biases->data));
     checkError(clSetKernelArg(this->bias_kernel, 2, sizeof(const int), &this->out_features));
     size_t global_work_size[] = { input_matrix->N, this->out_features };
     checkError(clEnqueueNDRangeKernel(getQueue(network), this->bias_kernel, 2, nullptr, &global_work_size[0], nullptr, 0, nullptr, nullptr));
@@ -198,7 +198,7 @@ std::shared_ptr<Matrix> Linear::backward(Network &network, std::shared_ptr<Matri
   checkError(clSetKernelArg(this->input_grad_kernel, 4, sizeof(const int), &this->out_features));
 
   checkError(clSetKernelArg(this->weight_grad_kernel, 0, sizeof(float *), &output_grad->data));
-  checkError(clSetKernelArg(this->weight_grad_kernel, 1, sizeof(float *), &this->weight_grad));
+  checkError(clSetKernelArg(this->weight_grad_kernel, 1, sizeof(float *), &this->weight_grad->data));
   checkError(clSetKernelArg(this->weight_grad_kernel, 2, sizeof(float *), &this->last_input->data));
   checkError(clSetKernelArg(this->weight_grad_kernel, 3, sizeof(const int), &this->in_features));
   checkError(clSetKernelArg(this->weight_grad_kernel, 4, sizeof(const int), &this->out_features));
@@ -212,7 +212,7 @@ std::shared_ptr<Matrix> Linear::backward(Network &network, std::shared_ptr<Matri
 
   if(this->biases != nullptr) {
     checkError(clSetKernelArg(this->bias_grad_kernel, 0, sizeof(float *), &output_grad->data));
-    checkError(clSetKernelArg(this->bias_grad_kernel, 1, sizeof(float *), &this->bias_grad));
+    checkError(clSetKernelArg(this->bias_grad_kernel, 1, sizeof(float *), &this->bias_grad->data));
     checkError(clSetKernelArg(this->bias_grad_kernel, 2, sizeof(const int), &output_grad->N));
     checkError(clSetKernelArg(this->bias_grad_kernel, 3, sizeof(const int), &this->out_features));
 

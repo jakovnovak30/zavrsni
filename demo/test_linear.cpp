@@ -139,12 +139,12 @@ int main() {
   delete[] ocekivano;
   // logistička regresija
   float *dobiveno = new float[N * br_klasa];
-  for(int epoch=0;epoch < 200;epoch++) {
+  for(int epoch=0;epoch < 2000;epoch++) {
     std::shared_ptr<Matrix> izlaz = mreza.forward(uzorci.first);
     checkError(clEnqueueReadBuffer(kju, izlaz->data, CL_TRUE, 0, N*br_klasa*sizeof(float), dobiveno, 0, nullptr, nullptr));
 
 
-    if(epoch == 199) {
+    if(epoch == 1999) {
       for(int i=0;i < N;i++) {
         float suma_exp = 0;
         for(int j=0;j < br_klasa;j++) {
@@ -165,7 +165,6 @@ int main() {
     }
   }
   delete[] dobiveno;
-  delete[] ocekivano;
 
   clReleaseCommandQueue(kju);
   clReleaseDevice(device_id);

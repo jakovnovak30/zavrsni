@@ -58,13 +58,8 @@ void Network::backward(std::shared_ptr<Matrix> probs, std::shared_ptr<Matrix> ex
 
   // izracunaj gradijente i usput azuriraj parametre (unutar Network::ILayer::backward)
   for(auto it=this->layers.rbegin();it != this->layers.rend();it++) {
-    std::shared_ptr<Matrix> next_grad = (*it)->backward(*this, output_grad, optim);
-    // checkError(clReleaseMemObject(output_grad.data)); // obrisi vrijednosti koje ne trebamo vise
-    output_grad->data = next_grad->data;
-    output_grad->N = next_grad->N;
-    output_grad->M = next_grad->M;
+    output_grad = (*it)->backward(*this, output_grad, optim);
   }
-  // checkError(clReleaseMemObject(output_grad.data));
 
   return;
 }
