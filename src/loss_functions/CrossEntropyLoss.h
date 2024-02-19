@@ -9,6 +9,6 @@ class CrossEntropyLoss : public ILossFunc {
     CrossEntropyLoss();
     ~CrossEntropyLoss();
 
-    Matrix calculate_loss(Network &network, Matrix &input, Matrix &expected) override final;
-    Matrix calculate_gradient(Network &network, Matrix &input, Matrix &expected) override final;
+    std::shared_ptr<Matrix> calculate_loss(Network &network, std::shared_ptr<Matrix> input, std::shared_ptr<Matrix> expected) override final;
+    std::shared_ptr<Matrix> calculate_gradient(Network &network, std::shared_ptr<Matrix> input, std::shared_ptr<Matrix> expected) override final;
 };

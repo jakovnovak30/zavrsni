@@ -22,9 +22,9 @@ class Network {
         virtual ~ILayer() = default;
         // calculate the result of forward propagation for the current layer
         // returns a handle to the memory used for the result, waits internally for the calculation
-        virtual Matrix forward(Network &network, Matrix &input_matrix) = 0;
+        virtual std::shared_ptr<Matrix> forward(Network &network, std::shared_ptr<Matrix> input_matrix) = 0;
         // ulaz: gradijenti prijasnjeg sloja (delta(gubitak) / delta(izlaz)) i optimizator
-        virtual Matrix backward(Network &network, Matrix &prev_grad, IOptimizer *optim) = 0;
+        virtual std::shared_ptr<Matrix> backward(Network &network, std::shared_ptr<Matrix> prev_grad, std::weak_ptr<IOptimizer> optim) = 0;
     };
 
     // potreban je trenutni opencl kontekst i opencl uredaj te lista pokazivaca na objekte koji predstavljaju slojeve (moraju biti dinamicki alocirani)
@@ -33,13 +33,13 @@ class Network {
     ~Network();
     
     // na ulaz ide matrica oblika NxM gdje M mora biti jednak ulaznim parametrima prvog sloja
-    Matrix forward(Matrix input_matrix);
-    Matrix forward(cl_mem input_buffer, const size_t N, const size_t M);
-    Matrix forward(void *input_buffer, const size_t N, const size_t M);
+    std::shared_ptr<Matrix> forward(std::shared_ptr<Matrix> input_matrix);
+    std::shared_ptr<Matrix> forward(cl_mem input_buffer, const size_t N, const size_t M);
+    std::shared_ptr<Matrix> forward(void *input_buffer, const size_t N, const size_t M);
 
     // predaju se vjerojatnosti izlaznih razreda koje je mreža izračunala + očekivani rezultati (one-hot notacija)
     // zajedno s funkcijom gubitka i optimizatorom
-    void backward(Matrix &probs, Matrix &expected, ILossFunc *loss_func, IOptimizer *optim);
+    void backward(std::shared_ptr<Matrix> probs, std::shared_ptr<Matrix> expected, std::weak_ptr<ILossFunc> loss_func, std::weak_ptr<IOptimizer> optim);
 
   private:
     cl_command_queue queue;

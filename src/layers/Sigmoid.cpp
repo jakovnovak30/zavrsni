@@ -8,9 +8,7 @@
 #include <iostream>
 #endif
 
-Sigmoid::Sigmoid() : program{ nullptr }, forward_kernel{ nullptr }, backward_kernel{ nullptr } {
-  this->last_output = { nullptr, 0, 0 };
-}
+Sigmoid::Sigmoid() : program{ nullptr }, forward_kernel{ nullptr }, backward_kernel{ nullptr }, last_output{ nullptr } { }
 
 Sigmoid::~Sigmoid() {
   #ifdef DEBUG
@@ -30,7 +28,7 @@ static const char *code[] =
             };
 static const size_t lengths[] = { strlen(code[0]) };
 
-Matrix Sigmoid::forward(Network &network, Matrix &input_matrix) {
+std::shared_ptr<Matrix> Sigmoid::forward(Network &network, std::shared_ptr<Matrix> input_matrix) {
   int _err;
   if(this->program == nullptr) {
     this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
@@ -43,28 +41,23 @@ Matrix Sigmoid::forward(Network &network, Matrix &input_matrix) {
     checkError(_err);
   }
 
-  if(this->last_output.data != nullptr) {
-    checkError(clReleaseMemObject(this->last_output.data));
-  }
-
-  this->last_output.data = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, input_matrix.N * input_matrix.M * sizeof(float), nullptr, &_err);
-  this->last_output.N = input_matrix.N;
-  this->last_output.M = input_matrix.M;
+  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, input_matrix->N * input_matrix->M * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix.data));
-  checkError(clSetKernelArg(this->forward_kernel, 1, sizeof(float *), &this->last_output.data));
-  checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(const int), &input_matrix.M));
+  checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix->data));
+  checkError(clSetKernelArg(this->forward_kernel, 1, sizeof(float *), &output_buffer));
+  checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(const int), &input_matrix->M));
 
-  const size_t global_work_size[] = { input_matrix.N, input_matrix.M };
+  const size_t global_work_size[] = { input_matrix->N, input_matrix->M };
   checkError(_err);
   checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
+  this->last_output = std::make_shared<Matrix>(output_buffer, input_matrix->N, input_matrix->M);
   return this->last_output;
 }
 
-Matrix Sigmoid::backward(Network &network, Matrix &output_grad, IOptimizer *optim) {
-  if(output_grad.N != this->last_output.N || output_grad.M != this->last_output.M)
+std::shared_ptr<Matrix> Sigmoid::backward(Network &network, std::shared_ptr<Matrix> output_grad, std::weak_ptr<IOptimizer> optim) {
+  if(output_grad->N != this->last_output->N || output_grad->M != this->last_output->M)
     throw std::logic_error("Dimenzije matrica ne odgovaraju!");
 
   #ifdef DEBUG
@@ -83,17 +76,17 @@ Matrix Sigmoid::backward(Network &network, Matrix &output_grad, IOptimizer *opti
     checkError(_err);
   }
 
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, output_grad.N * output_grad.M * sizeof(float), nullptr, &_err);
+  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, output_grad->N * output_grad->M * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  checkError(clSetKernelArg(this->backward_kernel, 0, sizeof(float *), &output_grad.data));
-  checkError(clSetKernelArg(this->backward_kernel, 1, sizeof(float *), &this->last_output.data));
+  checkError(clSetKernelArg(this->backward_kernel, 0, sizeof(float *), &output_grad->data));
+  checkError(clSetKernelArg(this->backward_kernel, 1, sizeof(float *), &this->last_output->data));
   checkError(clSetKernelArg(this->backward_kernel, 2, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->backward_kernel, 3, sizeof(const int), &output_grad.M));
+  checkError(clSetKernelArg(this->backward_kernel, 3, sizeof(const int), &output_grad->M));
 
-  const size_t global_work_size[] = { output_grad.N, output_grad.M };
+  const size_t global_work_size[] = { output_grad->N, output_grad->M };
   checkError(_err);
   checkError(clEnqueueNDRangeKernel(getQueue(network), this->backward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
-  return { output_buffer, output_grad.N, output_grad.M };
+  return std::make_shared<Matrix>(output_buffer, output_grad->N, output_grad->M);
 }

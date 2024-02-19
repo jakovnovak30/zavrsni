@@ -20,8 +20,8 @@ static const char *code[] =
                         };
 static size_t lengths[] = { strlen(code[0]) };
 
-void SGD::optimize(Network &network, Matrix parameters, Matrix gradients) {
-  if(parameters.N != gradients.N || parameters.M != gradients.M)
+void SGD::optimize(Network &network, std::shared_ptr<Matrix> parameters, std::shared_ptr<Matrix> gradients) {
+  if(parameters->N != gradients->N || parameters->M != gradients->M)
     throw std::logic_error("Krive dimenzije matrica parametara i gradijenata!");
 
   int _err;
@@ -36,12 +36,12 @@ void SGD::optimize(Network &network, Matrix parameters, Matrix gradients) {
     checkError(_err);
   }
 
-  checkError(clSetKernelArg(this->optimize_kernel, 0, sizeof(float *), &parameters.data));
-  checkError(clSetKernelArg(this->optimize_kernel, 1, sizeof(float *), &gradients.data));
+  checkError(clSetKernelArg(this->optimize_kernel, 0, sizeof(float *), &parameters->data));
+  checkError(clSetKernelArg(this->optimize_kernel, 1, sizeof(float *), &gradients->data));
   checkError(clSetKernelArg(this->optimize_kernel, 2, sizeof(const float), &this->learning_rate));
-  checkError(clSetKernelArg(this->optimize_kernel, 3, sizeof(const int), &parameters.M));
+  checkError(clSetKernelArg(this->optimize_kernel, 3, sizeof(const int), &parameters->M));
 
-  const size_t global_work_size[] = { parameters.N, parameters.M };
+  const size_t global_work_size[] = { parameters->N, parameters->M };
   checkError(clEnqueueNDRangeKernel(getQueue(network), this->optimize_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return;

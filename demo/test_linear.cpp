@@ -46,7 +46,7 @@ class Random2DGaussian {
 
 // napravi C razlicitih distribucija i N uzoraka iz svake
 // vraca par matrice Nx2 s tockama i polje s tocnim labelama klase
-std::pair<Matrix, size_t *> get_samples(const size_t C, const size_t N) {
+std::pair<std::shared_ptr<Matrix>, size_t *> get_samples(const size_t C, const size_t N) {
   std::vector<std::pair<std::pair<float, float>, int>> uzorci = {};
 
   for(size_t i=0;i < C;i++) {
@@ -76,7 +76,7 @@ std::pair<Matrix, size_t *> get_samples(const size_t C, const size_t N) {
   checkError(_err);
   delete[] host_ptr;
 
-  Matrix out_matrix = { out_buffer, N, 2 };
+  std::shared_ptr<Matrix> out_matrix = std::make_shared<Matrix>(out_buffer, N, 2);
 
   return { out_matrix, labele };
 }
@@ -120,25 +120,29 @@ int main() {
   const size_t br_klasa = 2;
   const size_t N = 100;
   Network mreza(context, device_id, { new Linear(context, 2, 10), new Sigmoid(), new Linear(context, 10, br_klasa), new Sigmoid() });
-  std::pair<Matrix, size_t *> uzorci = get_samples(br_klasa, N);
+  std::pair<std::shared_ptr<Matrix>, size_t *> uzorci = get_samples(br_klasa, N);
 
-  // logistička regresija
-  ILossFunc *loss_func = new CrossEntropyLoss();
-  float *dobiveno = new float[N * br_klasa];
+  std::shared_ptr<ILossFunc> loss_func = std::make_shared<CrossEntropyLoss>();
+  // one-hot notacija za ocekivane vrijednosti
   float *ocekivano = new float[N * br_klasa];
-  for(int epoch=0;epoch < 200;epoch++) {
-    Matrix izlaz = mreza.forward(uzorci.first);
-    checkError(clEnqueueReadBuffer(kju, izlaz.data, CL_TRUE, 0, N*br_klasa*sizeof(float), dobiveno, 0, nullptr, nullptr));
-
-    // obrada rezultata
-    for(int i=0;i < N;i++) {
-      for(int j=0;j < br_klasa;j++) {
-        if(j == uzorci.second[i])
-          ocekivano[i*br_klasa + j] = 1;
-        else
-          ocekivano[i*br_klasa + j] = 0;
-      }
+  for(int i=0;i < N;i++) {
+    for(int j=0;j < br_klasa;j++) {
+      if(j == uzorci.second[i])
+        ocekivano[i*br_klasa + j] = 1;
+      else
+        ocekivano[i*br_klasa + j] = 0;
     }
+  }
+  cl_mem ocekivano_cl = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, N*br_klasa * sizeof(float), ocekivano, &_err);
+  checkError(_err);
+  std::shared_ptr<Matrix> expected = std::make_shared<Matrix>(ocekivano_cl, N, br_klasa);
+  delete[] ocekivano;
+  // logistička regresija
+  float *dobiveno = new float[N * br_klasa];
+  for(int epoch=0;epoch < 200;epoch++) {
+    std::shared_ptr<Matrix> izlaz = mreza.forward(uzorci.first);
+    checkError(clEnqueueReadBuffer(kju, izlaz->data, CL_TRUE, 0, N*br_klasa*sizeof(float), dobiveno, 0, nullptr, nullptr));
+
 
     if(epoch == 199) {
       for(int i=0;i < N;i++) {
@@ -153,23 +157,15 @@ int main() {
         std::cout << "očekivani razred: " << uzorci.second[i] << std::endl;
       }
     }
-
-    cl_mem ocekivano_cl = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, N*br_klasa * sizeof(float), ocekivano, &_err);
-    checkError(_err);
-
-    Matrix probs = { izlaz.data, N, br_klasa };
-    Matrix expected = { ocekivano_cl, N, br_klasa };
-    mreza.backward(probs, expected, loss_func, new SGD(0.5f));
+    mreza.backward(izlaz, expected, loss_func, std::make_shared<SGD>(0.5f));
     
     if(epoch % 10 == 0) {
-      Matrix ocekivano_matrix = { ocekivano_cl, N, br_klasa };
-      float avg_loss = loss_func->calculate_avg_loss(mreza, izlaz, ocekivano_matrix);
+      float avg_loss = loss_func->calculate_avg_loss(mreza, izlaz, expected);
       std::cout << "epoch_no: " << epoch << " loss: " << avg_loss << std::endl;
     }
   }
   delete[] dobiveno;
   delete[] ocekivano;
-  delete loss_func;
 
   clReleaseCommandQueue(kju);
   clReleaseDevice(device_id);

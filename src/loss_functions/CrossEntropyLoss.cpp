@@ -4,8 +4,6 @@
 #include <cstring>
 #include <stdexcept>
 
-#include <iostream>
-
 CrossEntropyLoss::CrossEntropyLoss() : program{ nullptr }, loss_kernel { nullptr }, grad_kernel { nullptr } { }
 
 CrossEntropyLoss::~CrossEntropyLoss() {
@@ -23,8 +21,8 @@ static const char *code[] =
                         };
 static const size_t lengths[] = { strlen(code[0]) };
 
-Matrix CrossEntropyLoss::calculate_loss(Network &network, Matrix &input, Matrix &expected) {
-  if(input.N != expected.N || input.M != expected.M)
+std::shared_ptr<Matrix> CrossEntropyLoss::calculate_loss(Network &network, std::shared_ptr<Matrix> input, std::shared_ptr<Matrix> expected) {
+  if(input->N != expected->N || input->M != expected->M)
     throw std::logic_error("Dimenzije matrica se ne poklapaju!");
 
   int _err;
@@ -39,21 +37,21 @@ Matrix CrossEntropyLoss::calculate_loss(Network &network, Matrix &input, Matrix 
     checkError(_err);
   }
 
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, input.N * sizeof(float), nullptr, &_err);
+  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, input->N * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  checkError(clSetKernelArg(this->loss_kernel, 0, sizeof(float *), &input.data));
-  checkError(clSetKernelArg(this->loss_kernel, 1, sizeof(float *), &expected.data));
+  checkError(clSetKernelArg(this->loss_kernel, 0, sizeof(float *), &input->data));
+  checkError(clSetKernelArg(this->loss_kernel, 1, sizeof(float *), &expected->data));
   checkError(clSetKernelArg(this->loss_kernel, 2, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->loss_kernel, 3, sizeof(const int), &input.M));
+  checkError(clSetKernelArg(this->loss_kernel, 3, sizeof(const int), &input->M));
 
-  const size_t global_work_size[] = { input.N };
+  const size_t global_work_size[] = { input->N };
   checkError(clEnqueueNDRangeKernel(getQueue(network), this->loss_kernel, 1, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
-  return { output_buffer, input.N, 1 };
+  return std::make_shared<Matrix>(output_buffer, input->N, 1);
 }
 
-Matrix CrossEntropyLoss::calculate_gradient(Network &network, Matrix &input, Matrix &expected) {
+std::shared_ptr<Matrix> CrossEntropyLoss::calculate_gradient(Network &network, std::shared_ptr<Matrix> input, std::shared_ptr<Matrix> expected) {
   int _err;
   if(this->program == nullptr) {
     this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
@@ -67,17 +65,17 @@ Matrix CrossEntropyLoss::calculate_gradient(Network &network, Matrix &input, Mat
   }
 
   // izlaz ima dimenzije NxC
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, input.N * input.M * sizeof(float), nullptr, &_err);
+  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, input->N * input->M * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  checkError(clSetKernelArg(this->loss_kernel, 0, sizeof(float *), &input.data));
-  checkError(clSetKernelArg(this->loss_kernel, 1, sizeof(float *), &expected.data));
+  checkError(clSetKernelArg(this->loss_kernel, 0, sizeof(float *), &input->data));
+  checkError(clSetKernelArg(this->loss_kernel, 1, sizeof(float *), &expected->data));
   checkError(clSetKernelArg(this->loss_kernel, 2, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->loss_kernel, 3, sizeof(const int), &input.M));
+  checkError(clSetKernelArg(this->loss_kernel, 3, sizeof(const int), &input->M));
 
-  const size_t global_work_size[] = { input.N, input.M };
+  const size_t global_work_size[] = { input->N, input->M };
 
   checkError(clEnqueueNDRangeKernel(getQueue(network), this->loss_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
-  return { output_buffer, input.N, input.M };
+  return std::make_shared<Matrix>(output_buffer, input->N, input->M);
 }

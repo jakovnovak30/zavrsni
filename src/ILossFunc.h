@@ -14,11 +14,11 @@ protected:
 public:
   virtual ~ILossFunc() = default;
   // izracunaj prosjecni gubitak, defaultna implementacija koja zove donju funkciju
-  float calculate_avg_loss(Network &network, Matrix &input, Matrix &expected);
+  float calculate_avg_loss(Network &network, std::shared_ptr<Matrix> input, std::shared_ptr<Matrix> expected);
   // input: dvije matrice tipa NxC, gdje je N veličina "minibatcha", a C broj klasa
   // output: vektor veličine Nx1 koji ima gubitak za svaki ulaz
-  virtual Matrix calculate_loss(Network &network, Matrix &input, Matrix &expected) = 0;
+  virtual std::shared_ptr<Matrix> calculate_loss(Network &network, std::shared_ptr<Matrix> input, std::shared_ptr<Matrix> expected) = 0;
   // input: dvije matrice tipa NxC, gdje je N veličina "minibatcha", a C broj klasa
   // output: matrica veličine NxC, koja ima izracunate gradijente za svaku izlaz
-  virtual Matrix calculate_gradient(Network &network, Matrix &input, Matrix &expected) = 0;
+  virtual std::shared_ptr<Matrix> calculate_gradient(Network &network, std::shared_ptr<Matrix> input, std::shared_ptr<Matrix> expected) = 0;
 };
