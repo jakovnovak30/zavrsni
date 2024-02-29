@@ -1,13 +1,16 @@
-#include "expression.hpp"
+#include <cstdlib>
 #include <fstream>
+#include <string>
+
 #include <graphviz/cgraph.h>
 #include <graphviz/gvcext.h>
-#include <string>
 #include <graphviz/gvc.h>
+
+#include "expression.hpp"
 
 namespace autograd {
   template <typename T>
-  void visualize(const Expression<T> &expr, const std::string &filePath) {
+  void visualize(const Expression<T> &expr, const std::string &filePath, bool preview = false) {
     std::fstream file;
     file.exceptions(std::fstream::badbit | std::fstream::failbit);
     GVC_t *context = gvContext();
@@ -19,6 +22,10 @@ namespace autograd {
     expr.addSubgraph(output_graph, out_node);
 
     gvLayout(context, output_graph, "dot");
-    gvRenderFilename(context, output_graph, "png", "./output.png");
+    gvRenderFilename(context, output_graph, "png", filePath.c_str());
+
+    if(preview) {
+      system(("xdg-open " + filePath + " 2> /dev/null").c_str());
+    }
   }
 }
