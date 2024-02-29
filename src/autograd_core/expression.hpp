@@ -1,5 +1,6 @@
 #include <cmath>
-#include <iostream>
+#include <graphviz/cgraph.h>
+#include <string>
 
 namespace autograd {
   template <typename T>
@@ -21,6 +22,8 @@ namespace autograd {
 
     virtual void eval() = 0;
     virtual void derive(T seed) = 0;
+    virtual void addSubgraph(Agraph_t *graph, Agnode_t *prev) const = 0;
+
     void derive() {
       this->derive(1);
     }
@@ -61,13 +64,22 @@ namespace autograd {
   template <typename T>
   struct Variable : public Expression<T> {
     T partial = 0;
-    Variable(T value) {
+    std::string name;
+
+    Variable(T value, const std::string &name) {
       this->value = value;
+      this->name = name;
     }
 
     void eval() { }
     void derive(T seed) {
       this->partial += seed;
+    }
+
+    void addSubgraph(Agraph_t *graph, Agnode_t *caller) const {
+      Agnode_t *curr = agnode(graph, (char *) name.c_str(), 1);
+      if(caller != nullptr)
+        agedge(graph, curr, caller, nullptr, 1);
     }
   };
 
@@ -103,6 +115,13 @@ namespace autograd {
       this->left.derive(seed);
       this->right.derive(seed);
     }
+    void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+      Agnode_t *curr = agnode(graph, (char *) "add", 1);
+      agedge(graph, curr, prev, nullptr, 1);
+
+      this->left.addSubgraph(graph, curr);
+      this->right.addSubgraph(graph, curr);
+    }
   };
 
   template <typename T>
@@ -117,6 +136,13 @@ namespace autograd {
     void derive(T seed) {
       this->left.derive(seed);
       this->right.derive(-seed);
+    }
+    void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+      Agnode_t *curr = agnode(graph, (char *) "sub", 1);
+      agedge(graph, curr, prev, nullptr, 1);
+
+      this->left.addSubgraph(graph, curr);
+      this->right.addSubgraph(graph, curr);
     }
   };
 
@@ -133,6 +159,13 @@ namespace autograd {
       this->left.derive(seed * this->right.value);
       this->right.derive(seed * this->left.value);
     }
+    void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+      Agnode_t *curr = agnode(graph, (char *) "mult", 1);
+      agedge(graph, curr, prev, nullptr, 1);
+
+      this->left.addSubgraph(graph, curr);
+      this->right.addSubgraph(graph, curr);
+    }
   };
 
   template <typename T>
@@ -147,6 +180,13 @@ namespace autograd {
     void derive(T seed) {
       this->left.derive(seed / this->right.value);
       this->right.derive(seed * (-this->left.value / this->right.value*this->right.value));
+    }
+    void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+      Agnode_t *curr = agnode(graph, (char *) "div", 1);
+      agedge(graph, curr, prev, nullptr, 1);
+
+      this->left.addSubgraph(graph, curr);
+      this->right.addSubgraph(graph, curr);
     }
   };
 
@@ -177,42 +217,11 @@ namespace autograd {
     void derive(T seed) {
       this->prev.derive(this->value * seed);
     }
+    void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+      Agnode_t *curr = agnode(graph, (char *) "div", 1);
+      agedge(graph, curr, prev, nullptr, 1);
+
+      this->prev.addSubgraph(graph, prev);
+    }
   };
-}
-
-int main() {
-  autograd::Variable x = autograd::Variable<float>(1);
-  autograd::Variable y = autograd::Variable<float>(2);
-  autograd::Variable z = autograd::Variable<float>(5);
-
-  auto expr = autograd::Exp(-((x + y) * (x + y) * x - z*autograd::Variable<float>(2)));
-  // x * (x + y)^2
-  expr.eval();
-
-  // derivacija po x je: 2*(x + y) + (x + y)^2 = 2*3 + 9 = 15
-  // derivacija po y je: x*2*(x + y) = 2*3 = 6
-  expr.autograd::Expression<float>::derive();
-
-  std::cout << expr.value << std::endl;
-  std::cout << "po x: " << x.partial << std::endl << "po y: " << y.partial << std::endl;
-  std::cout << "po z: " << z.partial << std::endl;
-
-  autograd::Variable k = autograd::Variable<float>(2);
-  auto test2 = autograd::Exp(k) * k;
-
-  test2.eval();
-  test2.autograd::Expression<float>::derive();
-
-  std::cout << "test2: " << test2.value << std::endl;
-  std::cout << "derivacija " << k.partial << std::endl;
-
-  auto x2 = autograd::Variable<float>(5);
-  auto y2 = autograd::Variable<float>(3);
-
-  auto test3 = autograd::Variable<float>(1) / (x2 + y2);
-
-  test3.eval(); test3.autograd::Expression<float>::derive();
-  std::cout << "test3: " << test3.value << std::endl;
-  std::cout << "derivacija po x: " << x2.partial << std::endl;
-  std::cout << "derivacija po y: " << y2.partial << std::endl;
 }

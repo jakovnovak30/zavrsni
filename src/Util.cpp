@@ -1,5 +1,11 @@
 #include "Util.h"
+#include <CL/cl.h>
+#include <cstring>
 #include <stdexcept>
+
+cl_context globalContext;
+cl_device_id globalDevice;
+cl_command_queue globalQueue;
 
 void checkError(int value) {
   switch (value) {
@@ -76,4 +82,64 @@ void checkError(int value) {
     case -1005: throw std::runtime_error("CL_D3D10_RESOURCE_NOT_ACQUIRED_KHR");
     default: throw std::runtime_error("Unknown OpenCL error");
   }
+}
+
+void buildIfNeeded(cl_program *program, cl_kernel *kernel, const char *kernel_name,
+                   const char **srcStr, const size_t *srcLen) {
+  int _err;
+  if(*program == nullptr) {
+    *program = clCreateProgramWithSource(globalContext, 1, srcStr, srcLen, &_err);
+    checkError(_err);
+    clBuildProgram(*program, 1, &globalDevice, nullptr, nullptr, nullptr);
+  }
+  if(*kernel == nullptr) {
+    *kernel = clCreateKernel(*program, kernel_name, &_err);
+    checkError(_err);
+  }
+}
+
+void initCL_nvidia() {
+  cl_device_id devices[2];   
+  cl_platform_id platforms[2];
+  cl_uint num_devices;
+  cl_uint num_platforms;
+  checkError(clGetPlatformIDs(2, platforms, &num_platforms));
+
+  for(int i=0;i < num_platforms;i++) {
+    checkError(clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_ALL, 1,
+            devices, &num_devices));
+    char buffer[1024];
+
+    for(int j=0;j < num_devices;j++) {
+      checkError(clGetDeviceInfo(devices[j], CL_DEVICE_VENDOR, sizeof(buffer), buffer, NULL));
+      printf("Pronaden uredaj: %s\n", buffer);
+      // nasli smo dobar uredaj
+      if(!strcmp("NVIDIA Corporation", buffer)) {
+        checkError(clGetDeviceInfo(devices[j], CL_DEVICE_NAME, sizeof(buffer), buffer, NULL));
+        printf("Koristim gpu: %s\n", buffer);
+        globalDevice = devices[j];
+      }
+    }
+  }
+  
+  cl_int _err;
+  globalContext = clCreateContext(NULL, 1, &globalDevice, nullptr, NULL, &_err);
+  checkError(_err);
+
+  initCL(globalDevice, globalContext);
+}
+
+void initCL(cl_device_id device, cl_context context) {
+  globalDevice = device;
+  globalContext = context;
+
+  int _err;
+  globalQueue = clCreateCommandQueueWithProperties(context, device, nullptr, &_err);
+  checkError(_err);
+}
+
+void freeCL() {
+  checkError(clReleaseCommandQueue(globalQueue));
+  checkError(clReleaseDevice(globalDevice));
+  checkError(clReleaseContext(globalContext));
 }

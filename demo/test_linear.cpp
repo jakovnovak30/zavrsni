@@ -118,8 +118,8 @@ int main() {
   checkError(_err);
 
   const size_t br_klasa = 2;
-  const size_t N = 100;
-  Network mreza(context, device_id, { new Linear(context, 2, 10), new Sigmoid(), new Linear(context, 10, br_klasa), new Sigmoid() });
+  const size_t N = 200;
+  Network mreza(context, device_id, { new Linear(context, 2, 100), new Sigmoid(), new Linear(context, 100, br_klasa), new Sigmoid() });
   std::pair<std::shared_ptr<Matrix>, size_t *> uzorci = get_samples(br_klasa, N);
 
   std::shared_ptr<ILossFunc> loss_func = std::make_shared<CrossEntropyLoss>();
@@ -157,7 +157,7 @@ int main() {
         std::cout << "očekivani razred: " << uzorci.second[i] << std::endl;
       }
     }
-    mreza.backward(izlaz, expected, loss_func, std::make_shared<SGD>(0.5f));
+    mreza.backward(izlaz, expected, loss_func, std::make_shared<SGD>(0.3f));
     
     if(epoch % 10 == 0) {
       float avg_loss = loss_func->calculate_avg_loss(mreza, izlaz, expected);
