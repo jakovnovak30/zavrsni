@@ -10,7 +10,7 @@ int main() {
 
   autograd::visualize(expr, "out", true);
 
-  expr.eval();
+  expr.eval(); expr.derive(1);
   std::cout << "evaluation: " << expr.value << std::endl;
   std::cout << "delta(expr) / delta(x): " << x.partial << std::endl;
 }

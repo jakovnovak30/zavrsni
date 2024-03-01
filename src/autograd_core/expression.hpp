@@ -83,6 +83,8 @@ namespace autograd {
     }
   };
 
+  static long id_counter = 0;
+
   template <typename T>
   struct BinaryOperator : public Expression<T> {
     Expression<T> &left, &right;
@@ -102,7 +104,6 @@ namespace autograd {
     UnaryOperator(Expression<T> &prev) : prev(prev) { }
   };
 
-  static int counter_add = 0;
   template <typename T>
   struct Add : public BinaryOperator<T> {
     Add(Expression<T> &&left, Expression<T> &&right) : BinaryOperator<T>(left, right) { }
@@ -117,7 +118,8 @@ namespace autograd {
       this->right.derive(seed);
     }
     void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
-      Agnode_t *curr = agnode(graph, (char *) ("add" + std::to_string(counter_add++)).c_str(), 1);
+      Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+      agset(curr, (char *) "label", "add");
       agedge(graph, curr, prev, nullptr, 1);
 
       this->left.addSubgraph(graph, curr);
@@ -125,7 +127,6 @@ namespace autograd {
     }
   };
 
-  static int counter_sub = 0;
   template <typename T>
   struct Sub : public BinaryOperator<T> {
     Sub(Expression<T> &&left, Expression<T> &&right) : BinaryOperator<T>(left, right) { }
@@ -140,7 +141,8 @@ namespace autograd {
       this->right.derive(-seed);
     }
     void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
-      Agnode_t *curr = agnode(graph, (char *) ("sub" + std::to_string(counter_sub++)).c_str(), 1);
+      Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+      agset(curr, (char *) "label", "subtract");
       agedge(graph, curr, prev, nullptr, 1);
 
       this->left.addSubgraph(graph, curr);
@@ -148,7 +150,6 @@ namespace autograd {
     }
   };
 
-  static int counter_mul = 0;
   template <typename T>
   struct Mult : public BinaryOperator<T> {
     Mult(Expression<T> &&left, Expression<T> &&right) : BinaryOperator<T>(left, right) { }
@@ -163,7 +164,8 @@ namespace autograd {
       this->right.derive(seed * this->left.value);
     }
     void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
-      Agnode_t *curr = agnode(graph, (char *) ("mult" + std::to_string(counter_mul++)).c_str(), 1);
+      Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+      agset(curr, (char *) "label", "multiply");
       agedge(graph, curr, prev, nullptr, 1);
 
       this->left.addSubgraph(graph, curr);
@@ -171,7 +173,6 @@ namespace autograd {
     }
   };
 
-  static int counter_div = 0;
   template <typename T>
   struct Div : public BinaryOperator<T> {
     Div(Expression<T> &&left, Expression<T> &&right) : BinaryOperator<T>(left, right) { }
@@ -186,7 +187,8 @@ namespace autograd {
       this->right.derive(seed * (-this->left.value / this->right.value*this->right.value));
     }
     void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
-      Agnode_t *curr = agnode(graph, (char *) ("div" + std::to_string(counter_div)).c_str(), 1);
+      Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+      agset(curr, (char *) "label", "divide");
       agedge(graph, curr, prev, nullptr, 1);
 
       this->left.addSubgraph(graph, curr);
@@ -194,7 +196,6 @@ namespace autograd {
     }
   };
 
-  static int counter_neg = 0;
   template <typename T>
   struct Neg : public UnaryOperator<T> {
     Neg(Expression<T> &&prev) : UnaryOperator<T>(prev) { }
@@ -209,14 +210,14 @@ namespace autograd {
       this->prev.derive(-seed);
     }
     void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
-      Agnode_t *curr = agnode(graph, (char *) ("neg" + std::to_string(counter_neg++)).c_str(), 1);
+      Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+      agset(curr, (char *) "label", "negate");
       agedge(graph, curr, prev, nullptr, 1);
 
       this->prev.addSubgraph(graph, curr);
     }
   };
 
-  static int counter_exp = 0;
   template <typename T>
   struct Exp : public UnaryOperator<T> {
     Exp(Expression<T> &&prev) : UnaryOperator<T>(prev) { }
@@ -230,7 +231,8 @@ namespace autograd {
       this->prev.derive(this->value * seed);
     }
     void addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
-      Agnode_t *curr = agnode(graph, (char *) ("exp" + std::to_string(counter_exp++)).c_str(), 1);
+      Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+      agset(curr, (char *) "label", "exp");
       agedge(graph, curr, prev, nullptr, 1);
 
       this->prev.addSubgraph(graph, curr);

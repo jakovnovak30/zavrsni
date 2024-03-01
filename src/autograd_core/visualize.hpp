@@ -27,5 +27,9 @@ namespace autograd {
     if(preview) {
       system(("xdg-open " + filePath + " 2> /dev/null").c_str());
     }
+
+    agfree(output_graph, nullptr);
+    gvFreeLayout(context, output_graph);
+    gvFreeContext(context);
   }
 }
