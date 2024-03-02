@@ -112,11 +112,9 @@ void initCL_nvidia() {
 
     for(int j=0;j < num_devices;j++) {
       checkError(clGetDeviceInfo(devices[j], CL_DEVICE_VENDOR, sizeof(buffer), buffer, NULL));
-      printf("Pronaden uredaj: %s\n", buffer);
       // nasli smo dobar uredaj
       if(!strcmp("NVIDIA Corporation", buffer)) {
         checkError(clGetDeviceInfo(devices[j], CL_DEVICE_NAME, sizeof(buffer), buffer, NULL));
-        printf("Koristim gpu: %s\n", buffer);
         globalDevice = devices[j];
       }
     }

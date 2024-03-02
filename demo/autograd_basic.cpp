@@ -1,43 +1,49 @@
 #include "../src/autograd_core/expression.hpp"
+#include "../src/autograd_core/basic_operations.hpp"
+#include "../src/autograd_core/visualize.hpp"
+#include "../src/autograd_core/Matrix.h"
 #include <iostream>
+#include <memory>
 #include "../src/Util.h"
-#include "../src/autograd_core/Tensor.h"
 
 int main() {
-  autograd::Variable x = autograd::Variable<float>(1);
-  autograd::Variable y = autograd::Variable<float>(2);
-  autograd::Variable z = autograd::Variable<float>(5);
+  using namespace autograd;
+  std::shared_ptr<Expression<float>> x = std::make_shared<Variable<float>>(1, "x");
+  std::shared_ptr<Expression<float>> y = std::make_shared<Variable<float>>(2, "y");
+  std::shared_ptr<Expression<float>> z = std::make_shared<Variable<float>>(5, "z");
 
-  auto expr = autograd::Exp(-((x + y) * (x + y) * x - z*autograd::Variable<float>(2)));
-  // x * (x + y)^2
-  expr.eval();
+  auto expr = std::dynamic_pointer_cast<Expression<float>>(
+    std::make_shared<Exp<float>>(-(std::dynamic_pointer_cast<Expression<float>>(std::make_shared<Exp<float>>(x + y)) * x - z))) + z;
 
-  // derivacija po x je: 2*(x + y) + (x + y)^2 = 2*3 + 9 = 15
-  // derivacija po y je: x*2*(x + y) = 2*3 = 6
-  expr.autograd::Expression<float>::derive();
+  auto expr_gradient = expr->grad();
+  std::cout << expr->getValue() << std::endl;
+  std::cout << "po x: " << expr_gradient["x"]->getValue() << std::endl;
+  std::cout << "po y: " << expr_gradient["y"]->getValue() << std::endl;
+  std::cout << "po z: " << expr_gradient["z"]->getValue() << std::endl;
 
-  std::cout << expr.value << std::endl;
-  std::cout << "po x: " << x.partial << std::endl << "po y: " << y.partial << std::endl;
-  std::cout << "po z: " << z.partial << std::endl;
+  std::shared_ptr<Expression<float>> k = std::make_shared<Variable<float>>(2, "k");
+  auto test2 = std::dynamic_pointer_cast<Expression<float>>(std::make_shared<Exp<float>>(k)) * k;
 
-  autograd::Variable k = autograd::Variable<float>(2);
-  auto test2 = autograd::Exp(k) * k;
-
-  test2.eval();
-  test2.autograd::Expression<float>::derive();
-
-  std::cout << "test2: " << test2.value << std::endl;
-  std::cout << "derivacija " << k.partial << std::endl;
+  std::cout << "test2: " << test2->getValue() << std::endl;
+  std::cout << "derivacija " << test2->grad()["k"]->getValue() << std::endl;
 
   initCL_nvidia();
-  Tensor ten1 = {
+  Matrix mat1 = {
                   { 5.f, 4.f, 3.f },
                   { 3.f, 2.f, 1.f}
                 };
-  Tensor ten2 = {
+  Matrix mat2 = {
                     { 1.f, 2.f, 3.f },
                     { 3.f, 2.f, 1.f }
                   };
 
-  std::cout << (ten1 * ten2).toString() << std::endl;
+  std::cout << (mat1).toString() << std::endl;
+
+  // Variable<Matrix> vektor1 = Variable<Matrix>({{ 1, 2, 3 }}, "x");
+  // Variable<Matrix> vektor2 = Variable<Matrix>({{ 3, 2, 1 }}, "y");
+
+  // auto vec_expr = vektor1 * vektor2 + vektor1;
+  //
+  // std::cout << vec_expr.getValue().toString() << std::endl;
+  // visualize(vec_expr, "/tmp/vec_test.png");
 }

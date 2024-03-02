@@ -1,5 +1,4 @@
 #include <cstdlib>
-#include <fstream>
 #include <string>
 
 #include <graphviz/cgraph.h>
@@ -11,8 +10,6 @@
 namespace autograd {
   template <typename T>
   void visualize(const Expression<T> &expr, const std::string &filePath, bool preview = false) {
-    std::fstream file;
-    file.exceptions(std::fstream::badbit | std::fstream::failbit);
     GVC_t *context = gvContext();
 
     char *graph_name = (char *) "Graf test";
