@@ -1,10 +1,9 @@
 #include "../src/autograd_core/expression.hpp"
 #include "../src/autograd_core/basic_operations.hpp"
 #include "../src/autograd_core/visualize.hpp"
-#include "../src/autograd_core/Matrix.h"
+#include "../src/autograd_core/autograd_util.hpp"
 #include <iostream>
 #include <memory>
-#include "../src/Util.h"
 
 int main() {
   using namespace autograd;
@@ -26,24 +25,4 @@ int main() {
 
   std::cout << "test2: " << test2->getValue() << std::endl;
   std::cout << "derivacija " << test2->grad()["k"]->getValue() << std::endl;
-
-  initCL_nvidia();
-  Matrix mat1 = {
-                  { 5.f, 4.f, 3.f },
-                  { 3.f, 2.f, 1.f}
-                };
-  Matrix mat2 = {
-                    { 1.f, 2.f, 3.f },
-                    { 3.f, 2.f, 1.f }
-                  };
-
-  std::cout << (mat1).toString() << std::endl;
-
-  // Variable<Matrix> vektor1 = Variable<Matrix>({{ 1, 2, 3 }}, "x");
-  // Variable<Matrix> vektor2 = Variable<Matrix>({{ 3, 2, 1 }}, "y");
-
-  // auto vec_expr = vektor1 * vektor2 + vektor1;
-  //
-  // std::cout << vec_expr.getValue().toString() << std::endl;
-  // visualize(vec_expr, "/tmp/vec_test.png");
 }

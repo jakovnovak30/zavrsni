@@ -52,7 +52,7 @@ namespace autograd {
   struct Variable : Expression<T> {
     std::string name;
 
-    Variable(T value, const std::string &name, bool requires_grad = true) {
+    Variable(const T &value, const std::string &name, bool requires_grad = true) {
       this->value = value;
       this->evaluated = true;
       this->name = name;
@@ -82,7 +82,7 @@ namespace autograd {
   struct BinaryOperator : Expression<T> {
     std::shared_ptr<Expression<T>> left, right;
 
-    BinaryOperator(std::shared_ptr<Expression<T>> left, std::shared_ptr<Expression<T>> right) : left(left), right(right) {
+    BinaryOperator(std::shared_ptr<Expression<T>> left, std::shared_ptr<Expression<T>> right) : left{ left }, right{ right } {
       this->requires_grad = left->requires_grad || right->requires_grad;
     }
   };
@@ -91,7 +91,7 @@ namespace autograd {
   struct UnaryOperator : Expression<T> {
     std::shared_ptr<Expression<T>> prev;
 
-    UnaryOperator(std::shared_ptr<Expression<T>> prev) : prev(prev) {
+    UnaryOperator(std::shared_ptr<Expression<T>> prev) : prev{ prev } {
       this->requires_grad = prev->requires_grad;
     }
   };
