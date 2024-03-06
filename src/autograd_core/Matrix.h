@@ -25,7 +25,6 @@ private:
       return this->data;
     }
   };
-  std::shared_ptr<opencl_data> data;
   size_t N, M;
 
 public:
@@ -42,4 +41,9 @@ public:
 
   // samo za matrice manje od 100x100!
   std::string toString();
+
+  // geteri
+  const size_t getN();
+  const size_t getM();
+  std::shared_ptr<opencl_data> data;
 };

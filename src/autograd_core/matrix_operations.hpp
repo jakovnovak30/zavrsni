@@ -7,6 +7,8 @@
 #include <cstring>
 #include <memory>
 
+// TOOD: prejdi na clBLAS???
+// implementacija na najbezbolniji nacin
 namespace autograd {
   static const char *codeLinear[] = {
                                     #include "../kernels/Linear.cl"

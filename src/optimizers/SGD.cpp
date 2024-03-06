@@ -1,6 +1,5 @@
 #include "SGD.h"
 #include "../Util.h"
-#include "../Network.h"
 #include <CL/cl.h>
 #include <cstring>
 #include <stdexcept>
@@ -20,29 +19,29 @@ static const char *code[] =
                         };
 static size_t lengths[] = { strlen(code[0]) };
 
-void SGD::optimize(Network &network, std::shared_ptr<Matrix> parameters, std::shared_ptr<Matrix> gradients) {
-  if(parameters->N != gradients->N || parameters->M != gradients->M)
+void SGD::optimize(Matrix &parameters, Matrix &gradients) {
+  if(parameters.getN() != gradients.getN() || parameters.getM() != gradients.getM())
     throw std::logic_error("Krive dimenzije matrica parametara i gradijenata!");
 
   int _err;
   if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
+    this->program = clCreateProgramWithSource(globalContext, 1, code, lengths, &_err);
     checkError(_err);
-    cl_device_id device = getDevice(network);
-    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
+    checkError(clBuildProgram(this->program, 1, &globalDevice, nullptr, nullptr, nullptr));
   }
   if(this->optimize_kernel == nullptr) {
     this->optimize_kernel = clCreateKernel(this->program, "optimizationStep", &_err);
     checkError(_err);
   }
 
-  checkError(clSetKernelArg(this->optimize_kernel, 0, sizeof(float *), &parameters->data));
-  checkError(clSetKernelArg(this->optimize_kernel, 1, sizeof(float *), &gradients->data));
+  checkError(clSetKernelArg(this->optimize_kernel, 0, sizeof(float *), &parameters.data));
+  checkError(clSetKernelArg(this->optimize_kernel, 1, sizeof(float *), &gradients.data));
   checkError(clSetKernelArg(this->optimize_kernel, 2, sizeof(const float), &this->learning_rate));
-  checkError(clSetKernelArg(this->optimize_kernel, 3, sizeof(const int), &parameters->M));
+  const size_t M = parameters.getM();
+  checkError(clSetKernelArg(this->optimize_kernel, 3, sizeof(const int), &M));
 
-  const size_t global_work_size[] = { parameters->N, parameters->M };
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->optimize_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+  const size_t global_work_size[] = { parameters.getN(), parameters.getM() };
+  checkError(clEnqueueNDRangeKernel(globalQueue, this->optimize_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return;
 }

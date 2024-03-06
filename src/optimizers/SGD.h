@@ -13,5 +13,5 @@ class SGD : public IOptimizer {
     SGD(float learning_rate);
     ~SGD();
     
-  void optimize(Network &network, std::shared_ptr<Matrix> layer_parameters, std::shared_ptr<Matrix> layer_gradients) override final;
+  void optimize(Matrix &layer_parameters, Matrix &layer_gradients) override final;
 };

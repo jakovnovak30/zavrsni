@@ -85,3 +85,7 @@ std::shared_ptr<Matrix> ReLU::backward(Network &network, std::shared_ptr<Matrix>
 
   return std::make_shared<Matrix>(output_buffer, output_grad->N, output_grad->M);
 }
+
+void ReLU::clear_grad() {
+
+}

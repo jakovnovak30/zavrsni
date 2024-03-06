@@ -1,7 +1,9 @@
 #include "../Network.h"
 #include <CL/cl.h>
 
-class Linear : public Network::ILayer {
+// TODO: prilagodi impl. datoteku !!!
+// P.S. koja je pravilna nadklasa za ovo??
+class Linear : public autograd::Expression<Matrix> {
   private:
     std::shared_ptr<Matrix> parameters;
     std::shared_ptr<Matrix> biases;
@@ -15,10 +17,10 @@ class Linear : public Network::ILayer {
     cl_kernel bias_grad_kernel, weight_grad_kernel, input_grad_kernel;
     
   public:
-    Linear(cl_context context, size_t in_features, size_t out_features);
-    Linear(cl_context context, size_t in_features, size_t out_features, bool bias);
+    Linear(size_t in_features, size_t out_features);
+    Linear(size_t in_features, size_t out_features, bool bias);
     ~Linear();
     
-    std::shared_ptr<Matrix> forward(Network &network, std::shared_ptr<Matrix> input_matrix) override final;
-    std::shared_ptr<Matrix> backward(Network &network, std::shared_ptr<Matrix> output_grad, std::weak_ptr<IOptimizer> optim) override final;
+    virtual void eval() override final;
+    virtual void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override final;
 };

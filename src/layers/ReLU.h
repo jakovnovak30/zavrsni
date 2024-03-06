@@ -1,7 +1,8 @@
 #include "../Network.h"
 #include <CL/cl.h>
 
-class ReLU : public Network::ILayer {
+// TODO: implementacija
+class ReLU : public autograd::UnaryOperator<Matrix> {
   private:
     cl_program program;
     cl_kernel forward_kernel, backward_kernel;
@@ -11,6 +12,6 @@ class ReLU : public Network::ILayer {
     ReLU();
     ~ReLU();
     
-    std::shared_ptr<Matrix> forward(Network &network, std::shared_ptr<Matrix> input_matrix) override final;
-    std::shared_ptr<Matrix> backward(Network &network, std::shared_ptr<Matrix> output_grad, std::weak_ptr<IOptimizer> optim) override final;
+    virtual void eval() override final;
+    virtual void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override final;
 };

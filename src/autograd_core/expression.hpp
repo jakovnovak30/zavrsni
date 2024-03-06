@@ -29,7 +29,7 @@ namespace autograd {
     virtual void _derive(std::shared_ptr<Expression<T>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<T>>> &out_map) = 0;
 
   public:
-    T getValue() {
+    T &getValue() {
       if(evaluated)
         return this->value;
       

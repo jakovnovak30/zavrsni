@@ -50,6 +50,14 @@ Matrix::Matrix(std::initializer_list<std::initializer_list<float>> mat) : data(s
   delete[] buffer;
 }
 
+// getteri
+const size_t Matrix::getN() {
+  return this->N;
+}
+const size_t Matrix::getM() {
+  return this->M;
+}
+
 std::string Matrix::toString() {
   if(this->N > 100 || this->M > 100) {
     throw std::invalid_argument("matrix is too big to display!");
