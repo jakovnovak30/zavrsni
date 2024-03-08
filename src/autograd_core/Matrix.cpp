@@ -32,7 +32,7 @@ Matrix::Matrix(std::initializer_list<std::initializer_list<float>> mat) : data(s
   const size_t width = mat.begin()->size();
   for(auto it = mat.begin();it != mat.end();it++) {
     if(width != it->size()) {
-      throw std::invalid_argument("matrix is invalid");
+      throw std::invalid_argument("the given matrix is invalid!");
     }
   }
   
