@@ -26,17 +26,9 @@ static const size_t lengths[] = { strlen(code[0]) };
 
 void Sigmoid::eval() {
   Matrix input_matrix = this->prev->getValue();
-  int _err;
-  if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(globalContext, 1, code, lengths, &_err);
-    checkError(_err);
-    checkError(clBuildProgram(this->program, 1, &globalDevice, nullptr, nullptr, nullptr));
-  }
-  if(this->forward_kernel == nullptr) {
-    this->forward_kernel = clCreateKernel(this->program, "sigmoidForward", &_err);
-    checkError(_err);
-  }
+  buildIfNeeded(&program, &forward_kernel, "sigmoidForward", code, lengths);
 
+  int _err;
   cl_mem output_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, input_matrix.getM() * input_matrix.getN() * sizeof(float), nullptr, &_err);
   checkError(_err);
 
@@ -53,14 +45,15 @@ void Sigmoid::eval() {
   return;
 }
 
+using namespace autograd;
 // f(x) * (1 - f(x)) je derivacija
 void Sigmoid::_derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) {
   auto f_x = this->shared_from_this();
-  this->prev->derive(std::make_shared<autograd::Sub<Matrix>>(f_x, std::make_shared<autograd::Mult<Matrix>>(f_x, f_x)), out_map);
+  this->prev->derive(std::make_shared<Mult<Matrix>>(std::make_shared<Sub<Matrix>>(f_x, std::make_shared<Mult<Matrix>>(f_x, f_x)), seed), out_map);
 }
 
 void Sigmoid::addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
-  Agnode_t *curr = agnode(graph, (char *) (std::string("sigmoid") + std::to_string(autograd::id_counter++)).c_str(), 1);
+  Agnode_t *curr = agnode(graph, (char *) (std::string("sigmoid") + std::to_string(id_counter++)).c_str(), 1);
   agset(curr, (char *) "label", "sigmoid");
   agedge(graph, curr, prev, nullptr, 1);
 

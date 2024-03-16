@@ -1,19 +1,15 @@
 #include "ReLU.h"
 #include "../Util.h"
+#include "../autograd_core/basic_operations.hpp"
 #include <CL/cl.h>
 #include <cstring>
 
-#ifdef DEBUG
-#include <iostream>
-#endif
-
-ReLU::ReLU() : program{ nullptr }, forward_kernel{ nullptr }, backward_kernel{ nullptr }, last_output{ nullptr } { }
+ReLU::ReLU(std::shared_ptr<Expression<Matrix>> prev) : 
+  autograd::UnaryOperator<Matrix>(prev), program{ nullptr }, forward_kernel{ nullptr } { }
 
 ReLU::~ReLU() {
   if(this->forward_kernel)
     checkError(clReleaseKernel(this->forward_kernel));
-  if(this->backward_kernel)
-    checkError(clReleaseKernel(this->backward_kernel));
   if(this->program != nullptr)
     checkError(clReleaseProgram(this->program));
 }
@@ -24,68 +20,37 @@ static const char *code[] =
                   };
 static const size_t lengths[] = { strlen(code[0]) };
 
-std::shared_ptr<Matrix> ReLU::forward(Network &network, std::shared_ptr<Matrix> input_matrix) {
+void ReLU::eval() {
+  buildIfNeeded(&program, &forward_kernel, "reluForward", code, lengths);
+
+  Matrix input_matrix = this->prev->getValue();
   int _err;
-
-  if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
-    checkError(_err);
-    cl_device_id device = getDevice(network);
-    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
-  }
-  if(this->forward_kernel == nullptr) {
-    this->forward_kernel = clCreateKernel(this->program, "reluForward", &_err);
-    checkError(_err);
-  }
-
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, input_matrix->N * input_matrix->M * sizeof(float), nullptr, &_err);
+  cl_mem output_buffer = clCreateBuffer(globalContext, CL_MEM_READ_ONLY, input_matrix.getN() * input_matrix.getM() * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix->data));
+  checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix.data->data));
   checkError(clSetKernelArg(this->forward_kernel, 1, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(const int), &input_matrix->M));
+  const int M = input_matrix.getM();
+  checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(const int), &M));
 
-  const size_t global_work_size[] = { input_matrix->N, input_matrix->M };
+  const size_t global_work_size[] = { input_matrix.getN(), input_matrix.getM() };
   checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+  checkError(clEnqueueNDRangeKernel(globalQueue, this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
   
-  this->last_output = std::make_shared<Matrix>(output_buffer, input_matrix->N, input_matrix->M);
-  return this->last_output;
+  this->value = Matrix(output_buffer, input_matrix.getN(), input_matrix.getM());
+  return;
 }
 
-std::shared_ptr<Matrix> ReLU::backward(Network &network, std::shared_ptr<Matrix> output_grad, std::weak_ptr<IOptimizer> optim) {
-  int _err;
+void ReLU::_derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) {
+  using namespace autograd;
 
-  #ifdef DEBUG
-  std::cout << "[DEBUG]: radim backprop na ReLU sloju!" << std::endl;
-  #endif
-
-  if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
-    checkError(_err);
-    cl_device_id device = getDevice(network);
-    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
-  }
-  if(this->backward_kernel == nullptr) {
-    this->backward_kernel = clCreateKernel(this->program, "reluBackward", &_err);
-    checkError(_err);
-  }
-
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, output_grad->N * output_grad->M * sizeof(float), nullptr, &_err);
-  checkError(_err);
-
-  checkError(clSetKernelArg(this->backward_kernel, 0, sizeof(float *), &output_grad->data));
-  checkError(clSetKernelArg(this->backward_kernel, 1, sizeof(float *), &this->last_output->data));
-  checkError(clSetKernelArg(this->backward_kernel, 2, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->backward_kernel, 3, sizeof(const int), &output_grad->M));
-
-  const size_t global_work_size[] = { output_grad->N, output_grad->M };
-  checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->backward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
-
-  return std::make_shared<Matrix>(output_buffer, output_grad->N, output_grad->M);
+  this->prev->derive(std::make_shared<Mult<Matrix>>(std::make_shared<Div<Matrix>>(this->shared_from_this(), this->shared_from_this()), seed), out_map);
 }
 
-void ReLU::clear_grad() {
+void ReLU::addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+  Agnode_t *curr = agnode(graph, (char *) (std::string("ReLU") + std::to_string(autograd::id_counter++)).c_str(), 1);
+  agset(curr, (char *) "label", "ReLU");
+  agedge(graph, curr, prev, nullptr, 1);
 
+  this->prev->addSubgraph(graph, curr);
 }

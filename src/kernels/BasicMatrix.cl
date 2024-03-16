@@ -28,7 +28,7 @@ STRINGIFY(
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 
-    out[ty * M + tx] = mat1[ty * M + tx] - mat2[ty * M + tx];
+    out[ty * M + tx] = mat1[ty * M + tx] / (mat2[ty * M + tx] + 1e-12);
   }
 
   // __kernel void matrixExp(__global const float *mat, __global const float *out, const int M) {
