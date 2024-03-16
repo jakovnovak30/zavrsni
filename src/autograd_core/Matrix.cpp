@@ -10,6 +10,7 @@ static cl_program basicOpsProgram = nullptr;
 static cl_kernel addKernel = nullptr;
 static cl_kernel subKernel = nullptr;
 static cl_kernel mulKernel = nullptr;
+static cl_kernel negateKernel = nullptr;
 static const char *srcCode[] =
   {
       #include "../kernels/BasicMatrix.cl"
@@ -101,10 +102,8 @@ Matrix Matrix::operator+(const Matrix &other) const {
   checkError(clSetKernelArg(addKernel, 3, sizeof(const int), &this->M));
 
   const size_t global_work_size[] = { this->N, this->M };
-  cl_event test_event = clCreateUserEvent(globalContext, &_err);
   checkError(_err);
-  checkError(clEnqueueNDRangeKernel(globalQueue, addKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, &test_event));
-  checkError(clWaitForEvents(1, &test_event));
+  checkError(clEnqueueNDRangeKernel(globalQueue, addKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return Matrix(out_buffer, this->N, this->M);
 }
@@ -122,7 +121,24 @@ Matrix Matrix::operator-(const Matrix &other) const {
   clSetKernelArg(addKernel, 3, sizeof(const int), &this->M);
 
   const size_t global_work_size[] = { this->N, this->M };
-  clEnqueueNDRangeKernel(globalQueue, subKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr);
+  checkError(clEnqueueNDRangeKernel(globalQueue, subKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+
+  return Matrix(out_buffer, this->N, this->M);
+}
+
+Matrix Matrix::operator-() const {
+  int _err;
+  cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, this->N * this->M * sizeof(float), nullptr, &_err);
+  checkError(_err);
+
+  buildIfNeeded(&basicOpsProgram, &negateKernel, "matrixNegate", srcCode, srcLen);
+
+  clSetKernelArg(addKernel, 0, sizeof(float *), &this->data->data);
+  clSetKernelArg(addKernel, 1, sizeof(float *), &out_buffer);
+  clSetKernelArg(addKernel, 2, sizeof(const int), &this->M);
+
+  const size_t global_work_size[] = { this->N, this->M };
+  checkError(clEnqueueNDRangeKernel(globalQueue, negateKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return Matrix(out_buffer, this->N, this->M);
 }
@@ -140,7 +156,7 @@ Matrix Matrix::operator*(const Matrix &other) const {
   clSetKernelArg(mulKernel, 3, sizeof(const int), &this->M);
 
   const size_t global_work_size[] = { this->N, this->M };
-  clEnqueueNDRangeKernel(globalQueue, mulKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr);
+  checkError(clEnqueueNDRangeKernel(globalQueue, mulKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return Matrix(out_buffer, this->N, this->M);
 }

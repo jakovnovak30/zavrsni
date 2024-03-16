@@ -36,6 +36,7 @@ public:
   void operator+=(const Matrix &other);
   Matrix operator+(const Matrix &other) const;
   Matrix operator-(const Matrix &other) const;
+  Matrix operator-() const;
   Matrix operator*(const Matrix &other) const;
   Matrix operator/(const Matrix &other) const;
 

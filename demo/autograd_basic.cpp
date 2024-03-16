@@ -7,9 +7,9 @@
 
 int main() {
   using namespace autograd;
-  std::shared_ptr<Expression<float>> x = std::make_shared<Variable<float>>(1, "x");
-  std::shared_ptr<Expression<float>> y = std::make_shared<Variable<float>>(2, "y");
-  std::shared_ptr<Expression<float>> z = std::make_shared<Variable<float>>(5, "z");
+  auto x = createVariable(1.f, "x");
+  auto y = createVariable(2.f, "y");
+  auto z = createVariable(5.f, "z");
 
   auto expr = std::dynamic_pointer_cast<Expression<float>>(
     std::make_shared<Exp<float>>(-(std::dynamic_pointer_cast<Expression<float>>(std::make_shared<Exp<float>>(x + y)) * x - z))) + z;

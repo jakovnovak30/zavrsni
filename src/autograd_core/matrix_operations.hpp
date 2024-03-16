@@ -52,7 +52,7 @@ namespace autograd {
 
       if(this->transposeLeft) {
         Agnode_t *curr_left = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
-        agset(curr, (char *) "label", "transpose");
+        agset(curr_left, (char *) "label", "transpose");
         agedge(graph, curr_left, curr, nullptr, 1);
         this->left->addSubgraph(graph, curr_left);
       }
@@ -62,9 +62,9 @@ namespace autograd {
       
       if(this->transposeRight) {
         Agnode_t *curr_right = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
-        agset(curr, (char *) "label", "transpose");
+        agset(curr_right, (char *) "label", "transpose");
         agedge(graph, curr_right, curr, nullptr, 1);
-        this->left->addSubgraph(graph, curr_right);
+        this->right->addSubgraph(graph, curr_right);
       }
       else {
         this->right->addSubgraph(graph, curr);
@@ -79,7 +79,7 @@ namespace autograd {
       this->left->getValue(); this->right->getValue();
       // TODO: opencl jezgra (vjerojatno iz Linear fajla...)
     }
-    // TODO: implementacija derivacije...
+    // TODO: implementacija derivacije... (vjerojatno normalno kak zbrajanje + neki SumRows ili SumColumns (Contract?) čvor)
     void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override {
       this->left->derive(nullptr, out_map);
       this->right->derive(nullptr, out_map);

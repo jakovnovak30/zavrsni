@@ -2,6 +2,7 @@
 #include "../src/autograd_core/basic_operations.hpp"
 #include "../src/autograd_core/autograd_util.hpp"
 #include <memory>
+#include <iostream>
 
 int main() {
   using namespace autograd;
@@ -16,6 +17,7 @@ int main() {
   // visualize(*po_x_pa_y, "out", true);
 
   auto expr2 = mathFunc<float>(Exp(x)) * x + expr;
-  visualize(*expr2, "out", true);
+  visualize(*expr2->grad()["y"], "out", true);
+  std::cout << expr2->grad()["y"]->getValue() << std::endl;
   // visualize(*expr2->grad()["x"]->grad()["y"], "out", true);
 }

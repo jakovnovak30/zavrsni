@@ -1,23 +1,19 @@
 #include "Sigmoid.h"
 #include "../Util.h"
+#include "../autograd_core/basic_operations.hpp"
+#include "../autograd_core/expression.hpp"
 #include <CL/cl.h>
 #include <cstring>
-#include <stdexcept>
+#include <graphviz/cgraph.h>
 
-#ifdef DEBUG
-#include <iostream>
-#endif
+using autograd::UnaryOperator;
 
-Sigmoid::Sigmoid() : program{ nullptr }, forward_kernel{ nullptr }, backward_kernel{ nullptr }, last_output{ nullptr } { }
+Sigmoid::Sigmoid(std::shared_ptr<Expression<Matrix>> prev)
+    : UnaryOperator<Matrix>(prev), program{nullptr}, forward_kernel{nullptr} {}
 
 Sigmoid::~Sigmoid() {
-  #ifdef DEBUG
-  std::cout << "[DEBUG]: pozvan destruktor za Sigmoid!" << std::endl;
-  #endif
   if(this->forward_kernel != nullptr)
     checkError(clReleaseKernel(this->forward_kernel));
-  if(this->backward_kernel != nullptr)
-    checkError(clReleaseKernel(this->backward_kernel));
   if(this->program != nullptr)
     checkError(clReleaseProgram(this->program));
 }
@@ -28,65 +24,45 @@ static const char *code[] =
             };
 static const size_t lengths[] = { strlen(code[0]) };
 
-std::shared_ptr<Matrix> Sigmoid::forward(Network &network, std::shared_ptr<Matrix> input_matrix) {
+void Sigmoid::eval() {
+  Matrix input_matrix = this->prev->getValue();
   int _err;
   if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
+    this->program = clCreateProgramWithSource(globalContext, 1, code, lengths, &_err);
     checkError(_err);
-    cl_device_id device = getDevice(network);
-    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
+    checkError(clBuildProgram(this->program, 1, &globalDevice, nullptr, nullptr, nullptr));
   }
   if(this->forward_kernel == nullptr) {
     this->forward_kernel = clCreateKernel(this->program, "sigmoidForward", &_err);
     checkError(_err);
   }
 
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, input_matrix->N * input_matrix->M * sizeof(float), nullptr, &_err);
+  cl_mem output_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, input_matrix.getM() * input_matrix.getN() * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix->data));
+  checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_matrix.data->data));
   checkError(clSetKernelArg(this->forward_kernel, 1, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(const int), &input_matrix->M));
+  const size_t M = input_matrix.getM();
+  checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(const int), &M));
 
-  const size_t global_work_size[] = { input_matrix->N, input_matrix->M };
+  const size_t global_work_size[] = { input_matrix.getN(), input_matrix.getM() };
   checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+  checkError(clEnqueueNDRangeKernel(globalQueue, this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
-  this->last_output = std::make_shared<Matrix>(output_buffer, input_matrix->N, input_matrix->M);
-  return this->last_output;
+  this->value = Matrix(output_buffer, input_matrix.getN(), input_matrix.getM());
+  return;
 }
 
-std::shared_ptr<Matrix> Sigmoid::backward(Network &network, std::shared_ptr<Matrix> output_grad, std::weak_ptr<IOptimizer> optim) {
-  if(output_grad->N != this->last_output->N || output_grad->M != this->last_output->M)
-    throw std::logic_error("Dimenzije matrica ne odgovaraju!");
+// f(x) * (1 - f(x)) je derivacija
+void Sigmoid::_derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) {
+  auto f_x = this->shared_from_this();
+  this->prev->derive(std::make_shared<autograd::Sub<Matrix>>(f_x, std::make_shared<autograd::Mult<Matrix>>(f_x, f_x)), out_map);
+}
 
-  #ifdef DEBUG
-  std::cout << "[DEBUG]: radim backprop u Sigmoid sloju!" << std::endl;
-  #endif
+void Sigmoid::addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+  Agnode_t *curr = agnode(graph, (char *) (std::string("sigmoid") + std::to_string(autograd::id_counter++)).c_str(), 1);
+  agset(curr, (char *) "label", "sigmoid");
+  agedge(graph, curr, prev, nullptr, 1);
 
-  int _err;
-  if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
-    checkError(_err);
-    cl_device_id device = getDevice(network);
-    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
-  }
-  if(this->backward_kernel == nullptr) {
-    this->backward_kernel = clCreateKernel(this->program, "sigmoidBackward", &_err);
-    checkError(_err);
-  }
-
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, output_grad->N * output_grad->M * sizeof(float), nullptr, &_err);
-  checkError(_err);
-
-  checkError(clSetKernelArg(this->backward_kernel, 0, sizeof(float *), &output_grad->data));
-  checkError(clSetKernelArg(this->backward_kernel, 1, sizeof(float *), &this->last_output->data));
-  checkError(clSetKernelArg(this->backward_kernel, 2, sizeof(float *), &output_buffer));
-  checkError(clSetKernelArg(this->backward_kernel, 3, sizeof(const int), &output_grad->M));
-
-  const size_t global_work_size[] = { output_grad->N, output_grad->M };
-  checkError(_err);
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->backward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
-
-  return std::make_shared<Matrix>(output_buffer, output_grad->N, output_grad->M);
+  this->prev->addSubgraph(graph, curr);
 }
