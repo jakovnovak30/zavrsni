@@ -4,6 +4,7 @@
 
 
 \usepackage{blindtext}
+\usepackage{amssymb}
 
 
 %--- PODACI O RADU / THESIS INFORMATION ----------------------------------------
@@ -67,18 +68,24 @@
 \label{pog:uvod}
 
 \section{Motivacija}
-Neki od radova koje ćemo citirati su \cite{6248073,6247753,ghiglia_pritt_phase_unwrapping,hartley2003multiple,4250461,123DCatch}.
-Trebaju nam samo radi testiranja kako izgleda referenciranje rada s konferencije, rada iz časopisa, knjige i Internetske stranice.
-\blindtext
+Većina klasičnih postupaka u dubokom učenju se svode na optimizaciju izlaza neuralne mreže s obzirom na neku funkciju gubitka. Kod takvih postupaka je ključan izračun gradijenta te funkcije kako bi se podesile značajke mreže:
+\begin{equation}
+  \nabla (f \circ L) (ulaz)
+\end{equation}
+Postoje različiti pristupi u korištenju računala za rješavanje tog problema. Neki od glavnih su: simboličko diferenciranje, numeričke metode i automatska diferencijacija. Glavni nedostatci prvih spomenutih pristupa su prevelika složenost dobivenih izraza (citation needed) i nepreciznost brojeva s pomičnim zarezom (citation needed). Ovaj rad je fokusiran na proučavanju metoda automatske diferencijacije te implementacije jednostavnog demonstracijskog okvira u programskom jeziku C++ uz pomoć biblioteke OpenCL za matrične operacije.
 
 \section{Metode automatske diferencijacije}
-\blindtext
-\begin{figure}[htb]
+Glavna ideja automatske diferencijacije jest da dobivenu matematičku funkciju možemo prikazati kao aciklički digraf kojemu su čvorovi varijable, konstante ili međurezultati: $G = (V, E). V = Var \cup F$, gdje je $Var$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.38\linewidth]{../../pics/demo1.png} 
-  \caption{Moja prva slika}
+  \includegraphics[width=0.7\linewidth]{../../pics/demo1.png}
+  \caption{Primjer grafa funkcije: $f(x, y, z) = x * y + x - \exp(-x*z)$}
   \label{slk:prvaslika}
 \end{figure}
+\\
+Općenito, za neku funkciju: $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m$ vrijedi da će njezin graf imati $n$ čvorova varijabli, odnosno $n$ izvora te $m$ izlaznih čvorova, tj. $m$ ponora. Dodatno možemo pojednostaviti njezin graf ako funkciju zamislimo kao $f\colon \mathbb{V}^n \rightarrow \mathbb{V}^m$ te zatim predstavimo sve varijable kao vektore. Ta ideja će nam uvelike pojednostaviti samu implementaciju autograd programa jer će apstrahirati prijelaz s univarijatnih na multivarijatne funkcije.
+\\
+TODO: nastavi o različitim metodama autograda i reprezentacijama objekata...
 
 \section{OpenCL i C++}
 Referenciramo se na sliku \ref{slk:prvaslika} u sredini rečenice, zatim prije zareza \ref{slk:prvaslika}, te zatim na kraju rečenice \ref{slk:prvaslika}.
