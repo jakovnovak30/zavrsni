@@ -59,7 +59,7 @@ const size_t Matrix::getM() {
   return this->M;
 }
 
-std::string Matrix::toString() {
+std::string Matrix::toString() const {
   if(this->N > 100 || this->M > 100) {
     throw std::invalid_argument("matrix is too big to display!");
   }

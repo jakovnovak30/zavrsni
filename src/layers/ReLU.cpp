@@ -44,7 +44,7 @@ void ReLU::eval() {
 void ReLU::_derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) {
   using namespace autograd;
 
-  this->prev->derive(std::make_shared<Mult<Matrix>>(std::make_shared<Div<Matrix>>(this->shared_from_this(), this->shared_from_this()), seed), out_map);
+  this->prev->derive(std::make_shared<ReLU>(seed), out_map);
 }
 
 void ReLU::addSubgraph(Agraph_t *graph, Agnode_t *prev) const {

@@ -1,4 +1,5 @@
-#include "../Network.h"
+#include "../autograd_core/expression.hpp"
+#include "../autograd_core/Matrix.h"
 #include <CL/cl.h>
 #include <memory>
 

@@ -7,21 +7,20 @@
 #include <CL/cl.h>
 #include <list>
 
-class Network {
-  friend class ILossFunc;
-  friend class IOptimizer;
-
+// slično kao pytorchev Module
+class Module {
   public:
     // defaultni konstruktor
-    Network() = default;
+    Module() = default;
     // defaultni virt. destruktor
-    virtual ~Network() = default;
+    virtual ~Module() = default;
     
     // na ulaz ide matrica oblika NxM gdje M mora biti jednak ulaznim parametrima prvog sloja
+    // gradi se graf izraza kojeg optimizator može optimirati kasnije
     virtual std::shared_ptr<autograd::Expression<Matrix>> forward(std::shared_ptr<autograd::Variable<Matrix>> ulaz) = 0;
 
     // predaje se izraz kojemu treba optimirati varijable, tj. parametre (u vecini slucajeva rezultat poziva "forward" te neke fje gubitka)
-    void backward(std::shared_ptr<autograd::Expression<Matrix>> expr,  std::weak_ptr<IOptimizer> optim);
+    static void backward(std::shared_ptr<autograd::Expression<Matrix>> expr,  std::weak_ptr<IOptimizer> optim);
 
     // obrisi gradijente svakog sloja
     void clear_grad();

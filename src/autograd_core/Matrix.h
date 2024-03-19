@@ -41,7 +41,7 @@ public:
   Matrix operator/(const Matrix &other) const;
 
   // samo za matrice manje od 100x100!
-  std::string toString();
+  std::string toString() const;
 
   // geteri
   const size_t getN();

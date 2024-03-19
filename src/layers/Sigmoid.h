@@ -1,4 +1,5 @@
-#include "../Network.h"
+#include "../autograd_core/expression.hpp"
+#include "../autograd_core/Matrix.h"
 #include <memory>
 
 class Sigmoid : public autograd::UnaryOperator<Matrix>, public std::enable_shared_from_this<autograd::Expression<Matrix>> {
