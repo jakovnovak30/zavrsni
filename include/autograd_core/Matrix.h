@@ -1,13 +1,10 @@
 #pragma once
 
 #include <CL/cl.h>
-#include <array>
-#include <cmath>
 #include <initializer_list>
 #include <memory>
-#include <utility>
 
-#include "../Util.h"
+#include "Util.h"
 
 class Matrix {
 private:
@@ -46,7 +43,7 @@ public:
   std::string toString() const;
 
   // geteri
-  const size_t getN();
-  const size_t getM();
+  size_t getN();
+  size_t getM();
   std::shared_ptr<opencl_data> data;
 };

@@ -1,7 +1,8 @@
-#include "Sigmoid.h"
-#include "../Util.h"
-#include "../autograd_core/basic_operations.hpp"
-#include "../autograd_core/expression.hpp"
+#include "layers/Sigmoid.h"
+#include "Util.h"
+#include "autograd_core/basic_operations.hpp"
+#include "autograd_core/expression.hpp"
+
 #include <CL/cl.h>
 #include <cstring>
 #include <graphviz/cgraph.h>
@@ -45,14 +46,15 @@ void Sigmoid::eval() {
   return;
 }
 
-using namespace autograd;
 // f(x) * (1 - f(x)) je derivacija
 void Sigmoid::_derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) {
+  using namespace autograd;
   auto f_x = this->shared_from_this();
   this->prev->derive(std::make_shared<Mult<Matrix>>(std::make_shared<Sub<Matrix>>(f_x, std::make_shared<Mult<Matrix>>(f_x, f_x)), seed), out_map);
 }
 
 void Sigmoid::addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+  using namespace autograd;
   Agnode_t *curr = agnode(graph, (char *) (std::string("sigmoid") + std::to_string(id_counter++)).c_str(), 1);
   agset(curr, (char *) "label", "sigmoid");
   agedge(graph, curr, prev, nullptr, 1);

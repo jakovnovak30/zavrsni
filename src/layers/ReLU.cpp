@@ -1,6 +1,6 @@
-#include "ReLU.h"
-#include "../Util.h"
-#include "../autograd_core/basic_operations.hpp"
+#include "layers/ReLU.h"
+#include "Util.h"
+
 #include <CL/cl.h>
 #include <cstring>
 

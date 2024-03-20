@@ -1,12 +1,9 @@
 CC = g++
 CFLAGS_OPENCL_VERSION = -DCL_TARGET_OPENCL_VERSION=300 -DCL_HPP_TARGET_OPENCL_VERSION=300
-CFLAGS = -DDEBUG -fPIC -Wall -Wextra
+CFLAGS = -DDEBUG -fPIC -Wall -Wextra -Iinclude
 
 DEMO_DIR = ./demo
-DEMO_CFLAGS = -lOpenCL -L./lib -lDeepCpp 
-
-# _DEPS = Network.h ILossFunction.h IOptimizer.h Util.h
-# DEPS = $(patsubst %, src/%, $(_DEPS))
+DEMO_CFLAGS = -lOpenCL -L./lib -lDeepCpp -Iinclude
 
 CPP_FILES = $(wildcard src/*.cpp src/**/*.cpp)
 OBJ = $(patsubst src/%.cpp, $(ODIR)/%.o, $(CPP_FILES))

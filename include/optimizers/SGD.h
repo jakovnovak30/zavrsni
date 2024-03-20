@@ -1,5 +1,4 @@
-#include "../IOptimizer.h"
-#include "../Network.h"
+#include "IOptimizer.h"
 #include <CL/cl.h>
 
 class SGD : public IOptimizer {

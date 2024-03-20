@@ -1,5 +1,6 @@
-#include "Matrix.h"
-#include "../Util.h"
+#include "autograd_core/Matrix.h"
+#include "Util.h"
+
 #include <CL/cl.h>
 #include <cstring>
 #include <iostream>
@@ -23,7 +24,7 @@ static const char *scalarSrcCode[] =
   };
 static const size_t scalarSrcLen[] = { strlen(scalarSrcCode[0]) };
 
-Matrix::Matrix(cl_mem data, size_t N, size_t M) : data(std::make_shared<opencl_data>(data)), N(N), M(M) { }
+Matrix::Matrix(cl_mem data, size_t N, size_t M) : N(N), M(M), data(std::make_shared<opencl_data>(data)) { }
 
 // skalar u kontekstu linearne algebre -> matrica 1x1 radi jednostavnosti
 Matrix::Matrix(const float x) : Matrix({{ x }}) { }
@@ -58,10 +59,10 @@ Matrix::Matrix(std::initializer_list<std::initializer_list<float>> mat) : data(s
 }
 
 // getteri
-const size_t Matrix::getN() {
+size_t Matrix::getN() {
   return this->N;
 }
-const size_t Matrix::getM() {
+size_t Matrix::getM() {
   return this->M;
 }
 

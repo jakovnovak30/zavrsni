@@ -9,9 +9,18 @@
 
 namespace autograd {
   template <typename T>
-  struct Variable;
+  struct BinaryOperator;
   template <typename T>
-  struct Add;
+  struct UnaryOperator;
+  template <typename T>
+  struct Expression;
+  static long id_counter = 0;
+};
+#include "autograd_core/basic_operations.hpp"
+
+namespace autograd {
+  template <typename T>
+  struct Variable;
 
   template <typename T>
   struct Expression {
@@ -74,7 +83,7 @@ namespace autograd {
     void eval() override { }
     void _derive(std::shared_ptr<Expression<T>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<T>>> &out_map) override {
       if(out_map.find(this->name) != out_map.end()) {
-        out_map[this->name] = std::make_shared<Add<T>>(out_map[this->name], seed);
+        out_map[this->name] = std::static_pointer_cast<Expression<T>>(std::make_shared<Add<T>>(out_map[this->name], seed));
       }
       else {
        out_map[this->name] = seed;
@@ -94,8 +103,6 @@ namespace autograd {
         return std::nullopt;
     }
   };
-
-  static long id_counter = 0;
 
   template <typename T>
   struct BinaryOperator : Expression<T> {

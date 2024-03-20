@@ -1,0 +1,21 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-DCL_TARGET_OPENCL_VERSION=300",
+      "-DCL_HPP_TARGET_OPENCL_VERSION=300",
+      "-DDEBUG",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-o",
+      "obj/Module.o",
+      "src/Module.cpp"
+    ],
+    "directory": "/home/jakov/faks/zavrsni",
+    "file": "/home/jakov/faks/zavrsni/src/Module.cpp",
+    "output": "/home/jakov/faks/zavrsni/obj/Module.o"
+  }
+]

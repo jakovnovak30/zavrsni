@@ -1,5 +1,6 @@
-#include "SGD.h"
-#include "../Util.h"
+#include "optimizers/SGD.h"
+#include "Util.h"
+
 #include <CL/cl.h>
 #include <cstring>
 #include <stdexcept>

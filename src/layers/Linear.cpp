@@ -1,6 +1,6 @@
-#include "Linear.h"
-#include "../autograd_core/matrix_operations.hpp"
-#include "../Util.h"
+#include "layers/Linear.h"
+#include "autograd_core/matrix_operations.hpp"
+#include "Util.h"
 
 #include <CL/cl.h>
 #include <cmath>
