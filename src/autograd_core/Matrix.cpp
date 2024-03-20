@@ -5,22 +5,28 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+#include <unordered_map>
 
 static cl_program basicOpsProgram = nullptr;
-static cl_kernel addKernel = nullptr;
-static cl_kernel subKernel = nullptr;
-static cl_kernel mulKernel = nullptr;
-static cl_kernel negateKernel = nullptr;
+static std::unordered_map<std::string, cl_kernel> basicKernels = std::unordered_map<std::string, cl_kernel>();
 static const char *srcCode[] =
   {
       #include "../kernels/BasicMatrix.cl"
   };
 static const size_t srcLen[] = { strlen(srcCode[0]) };
 
+static cl_program scalarOpsProgram = nullptr;
+static std::unordered_map<std::string, cl_kernel> scalarKernels = std::unordered_map<std::string, cl_kernel>();
+static const char *scalarSrcCode[] =
+  {
+      #include "../kernels/BasicScalarMatrix.cl"
+  };
+static const size_t scalarSrcLen[] = { strlen(scalarSrcCode[0]) };
+
 Matrix::Matrix(cl_mem data, size_t N, size_t M) : data(std::make_shared<opencl_data>(data)), N(N), M(M) { }
 
-// TODO: dodaj podrsku za skalarne operacije!
-Matrix::Matrix(const float x) : Matrix({{ x, x }, { x, x }}) { }
+// skalar u kontekstu linearne algebre -> matrica 1x1 radi jednostavnosti
+Matrix::Matrix(const float x) : Matrix({{ x }}) { }
 
 Matrix::Matrix() : data(nullptr) {
   this->N = 0;
@@ -89,12 +95,40 @@ std::string Matrix::toString() const {
   return ss.str();
 }
 
+inline cl_kernel Matrix::loadKernel(const Matrix &other, const std::string &name) const {
+  std::unordered_map<std::string, cl_kernel> *kernels;
+  if(other.M == this->M && other.N == this->N) {
+    kernels = &basicKernels;
+    if(kernels->find(name) == kernels->end()) {
+      cl_kernel new_kernel;
+      buildIfNeeded(&basicOpsProgram, &new_kernel, name.c_str(), srcCode, srcLen);
+      (*kernels)[name] = new_kernel;
+    }
+  }
+  else if(other.N == 1 && other.M == 1) {
+    kernels = &scalarKernels;
+    if(kernels->find(name) == kernels->end()) {
+      cl_kernel new_kernel;
+      buildIfNeeded(&scalarOpsProgram, &new_kernel, name.c_str(), scalarSrcCode, scalarSrcLen);
+      (*kernels)[name] = new_kernel;
+    }
+  }
+  else if(this->N == 1 && this->M == 1) {
+    // TODO: skalarano u drugom smjeru...
+  }
+  else {
+    throw std::logic_error("invalid matrix dimensions!");
+  }
+
+  return (*kernels)[name];
+}
+
 Matrix Matrix::operator+(const Matrix &other) const {
   int _err;
   cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, this->N * this->M * sizeof(float), nullptr, &_err);
   checkError(_err);
-
-  buildIfNeeded(&basicOpsProgram, &addKernel, "matrixAdd", srcCode, srcLen);
+  
+  cl_kernel addKernel = this->loadKernel(other, "add");
 
   checkError(clSetKernelArg(addKernel, 0, sizeof(float *), &this->data->data));
   checkError(clSetKernelArg(addKernel, 1, sizeof(float *), &other.data->data));
@@ -113,12 +147,12 @@ Matrix Matrix::operator-(const Matrix &other) const {
   cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, this->N * this->M * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  buildIfNeeded(&basicOpsProgram, &subKernel, "matrixSub", srcCode, srcLen);
+  cl_kernel subKernel = this->loadKernel(other, "sub");
 
-  clSetKernelArg(addKernel, 0, sizeof(float *), &this->data->data);
-  clSetKernelArg(addKernel, 1, sizeof(float *), &other.data->data);
-  clSetKernelArg(addKernel, 2, sizeof(float *), &out_buffer);
-  clSetKernelArg(addKernel, 3, sizeof(const int), &this->M);
+  clSetKernelArg(subKernel, 0, sizeof(float *), &this->data->data);
+  clSetKernelArg(subKernel, 1, sizeof(float *), &other.data->data);
+  clSetKernelArg(subKernel, 2, sizeof(float *), &out_buffer);
+  clSetKernelArg(subKernel, 3, sizeof(const int), &this->M);
 
   const size_t global_work_size[] = { this->N, this->M };
   checkError(clEnqueueNDRangeKernel(globalQueue, subKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
@@ -131,11 +165,12 @@ Matrix Matrix::operator-() const {
   cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, this->N * this->M * sizeof(float), nullptr, &_err);
   checkError(_err);
 
+  static cl_kernel negateKernel;
   buildIfNeeded(&basicOpsProgram, &negateKernel, "matrixNegate", srcCode, srcLen);
 
-  clSetKernelArg(addKernel, 0, sizeof(float *), &this->data->data);
-  clSetKernelArg(addKernel, 1, sizeof(float *), &out_buffer);
-  clSetKernelArg(addKernel, 2, sizeof(const int), &this->M);
+  clSetKernelArg(negateKernel, 0, sizeof(float *), &this->data->data);
+  clSetKernelArg(negateKernel, 1, sizeof(float *), &out_buffer);
+  clSetKernelArg(negateKernel, 2, sizeof(const int), &this->M);
 
   const size_t global_work_size[] = { this->N, this->M };
   checkError(clEnqueueNDRangeKernel(globalQueue, negateKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
@@ -148,7 +183,7 @@ Matrix Matrix::operator*(const Matrix &other) const {
   cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, this->N * this->M * sizeof(float), nullptr, &_err);
   checkError(_err);
 
-  buildIfNeeded(&basicOpsProgram, &mulKernel, "matrixMulScalar", srcCode, srcLen);
+  cl_kernel mulKernel = this->loadKernel(other, "mul");
 
   clSetKernelArg(mulKernel, 0, sizeof(float *), &this->data->data);
   clSetKernelArg(mulKernel, 1, sizeof(float *), &other.data->data);
@@ -162,5 +197,16 @@ Matrix Matrix::operator*(const Matrix &other) const {
 }
 
 Matrix Matrix::operator/(const Matrix &other) const {
-  return {{ 1.f }};
+  int _err;
+  cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, this->N * this->M * sizeof(float), nullptr, &_err);
+  checkError(_err);
+
+  cl_kernel divKernel = this->loadKernel(other, "div");
+
+  clSetKernelArg(divKernel, 0, sizeof(float *), &this->data->data);
+  clSetKernelArg(divKernel, 1, sizeof(float *), &other.data->data);
+  clSetKernelArg(divKernel, 2, sizeof(float *), &out_buffer);
+  clSetKernelArg(divKernel, 3, sizeof(const int), &this->M);
+
+  return Matrix(out_buffer, this->N, this->M);
 }

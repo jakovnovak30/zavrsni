@@ -1,5 +1,5 @@
 #include "Linear.h"
-#include "../Network.h"
+#include "../autograd_core/matrix_operations.hpp"
 #include "../Util.h"
 
 #include <CL/cl.h>
@@ -8,7 +8,6 @@
 #include <cstring>
 #include <ctime>
 #include <memory>
-#include <stdexcept>
 
 #ifdef DEBUG
 #include <iostream>
@@ -26,204 +25,43 @@ inline float gen_uniform(float k) {
   return LO + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX/(HI-LO)));
 }
 
-Linear::Linear(cl_context context, const size_t in_features, const size_t out_features) : Linear(context, in_features, out_features, true) { }
+static size_t bias_counter = 0;
+static size_t weight_counter = 0;
 
 // initialize values from U(-sqrt(k), +sqrt(k)), where k = 1 / in_features
-Linear::Linear(cl_context context, const size_t in_features, const size_t out_features, bool bias) : in_features{ in_features }, out_features{ out_features }
+Linear::Linear(const size_t in_features, const size_t out_features, bool bias) : in_features{ in_features }, out_features{ out_features }
 {
   int _err;
   float *host_ptr = new float[in_features*out_features];
   for(size_t i=0;i < in_features*out_features;i++) {
     host_ptr[i] = gen_uniform(1.0f / in_features);
   }
-  cl_mem parameters_cl = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, in_features * out_features * sizeof(float), host_ptr, &_err);
+  cl_mem parameters_cl = clCreateBuffer(globalContext, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, in_features * out_features * sizeof(float), host_ptr, &_err);
   checkError(_err);
   delete[] host_ptr;
-  this->parameters = std::make_shared<Matrix>(parameters_cl, out_features, in_features);
+  this->parameters = std::make_shared<autograd::Variable<Matrix>>(Matrix(parameters_cl, out_features, in_features), "weights" + std::to_string(weight_counter++), true);
 
   if(bias) {
     float *host_ptr = new float[out_features];
     for(size_t i=0;i < out_features;i++)
       host_ptr[i] = gen_uniform(1.0f / in_features);
-    cl_mem biases_cl = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, out_features * sizeof(float), host_ptr, &_err);
+    cl_mem biases_cl = clCreateBuffer(globalContext, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, out_features * sizeof(float), host_ptr, &_err);
     checkError(_err);
     delete[] host_ptr;
 
-    this->biases = std::make_shared<Matrix>(biases_cl, 1, out_features);
+    this->biases = std::make_shared<autograd::Variable<Matrix>>(Matrix(biases_cl, 1, out_features), "bias" + std::to_string(bias_counter++), true);
   }
   else {
     this->biases = nullptr;
   }
-
-  // za sad nemamo izracunate gradijente
-  this->weight_grad = nullptr;
-  this->bias_grad = nullptr;
-  this->last_input = nullptr;
-
-  // kompajlira se u trenutku poziva
-  this->program = nullptr;
-  this->forward_kernel = nullptr;
-  this->bias_grad_kernel = nullptr;
-  this->weight_grad_kernel = nullptr;
-  this->input_grad_kernel = nullptr;
-  this->bias_kernel = nullptr;
 }
 
-Linear::~Linear() {
-  #ifdef DEBUG
-  std::cout << "[DEBUG]: Pozvan destruktor za Linear!" << std::endl;
-  #endif
-
-  if(this->forward_kernel != nullptr)
-    checkError(clReleaseKernel(this->forward_kernel));
-  if(this->bias_grad_kernel)
-    checkError(clReleaseKernel(this->bias_grad_kernel));
-  if(this->weight_grad_kernel != nullptr)
-    checkError(clReleaseKernel(this->weight_grad_kernel));
-  if(this->input_grad_kernel != nullptr)
-    checkError(clReleaseKernel(this->input_grad_kernel));
-  if(this->bias_kernel != nullptr)
-    checkError(clReleaseKernel(this->bias_kernel));
-  if(this->program != nullptr)
-    checkError(clReleaseProgram(this->program));
-}
-
-static const char *code[] = 
-            {
-              #include "../kernels/Linear.cl"
-            };
-static const size_t lengths[] = { strlen(code[0]) };
-
-std::shared_ptr<Matrix> Linear::forward(Network &network, std::shared_ptr<Matrix> input_matrix) {
-  // provjeri dal je valjan ulazni oblik
-  if(input_matrix->M != this->in_features) {
-    throw std::logic_error("Ne valja oblik ulaza u potpuno povezani sloj!");
-  }
-  // zapamti zadnji ulaz (za backprop)
-  this->last_input = input_matrix;
-
-  int _err;
-  if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
-    checkError(_err);
-    cl_device_id device = getDevice(network);
-    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
-  }
-  if(this->forward_kernel == nullptr) {
-    this->forward_kernel = clCreateKernel(this->program, "matrixMultiplyTransposed", &_err);
-    checkError(_err);
-  }
-
-  cl_mem input_buffer = input_matrix->data;
-  checkError(clSetKernelArg(this->forward_kernel, 0, sizeof(float *), &input_buffer));
-  checkError(clSetKernelArg(this->forward_kernel, 1, sizeof(float *), &this->parameters->data));
-  // izlaz je oblika NxOut
-  cl_mem output_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, input_matrix->N * out_features * sizeof(float), nullptr, &_err);
-  checkError(_err);
-  checkError(clSetKernelArg(this->forward_kernel, 2, sizeof(float *), &output_buffer));
-
-  checkError(clSetKernelArg(this->forward_kernel, 3, sizeof(const int), &input_matrix->N));
-  checkError(clSetKernelArg(this->forward_kernel, 4, sizeof(const int), &this->in_features));
-  checkError(clSetKernelArg(this->forward_kernel, 5, sizeof(const int), &this->out_features));
-
-  checkError(_err);
-  size_t global_work_size[] = { input_matrix->N, this->out_features };
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->forward_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+std::shared_ptr<autograd::Expression<Matrix>> Linear::forward(std::shared_ptr<autograd::Expression<Matrix>> ulaz) {
+  std::shared_ptr<autograd::Expression<Matrix>> expr = std::make_shared<autograd::MatrixMultply>(ulaz, this->parameters);
 
   if(this->biases != nullptr) {
-    if(this->bias_kernel == nullptr) {
-      this->bias_kernel = clCreateKernel(this->program, "addBias", &_err);
-      checkError(_err);
-    }
-
-    checkError(clSetKernelArg(this->bias_kernel, 0, sizeof(float *), &output_buffer));
-    checkError(clSetKernelArg(this->bias_kernel, 1, sizeof(float *), &this->biases->data));
-    checkError(clSetKernelArg(this->bias_kernel, 2, sizeof(const int), &this->out_features));
-    size_t global_work_size[] = { input_matrix->N, this->out_features };
-    checkError(clEnqueueNDRangeKernel(getQueue(network), this->bias_kernel, 2, nullptr, &global_work_size[0], nullptr, 0, nullptr, nullptr));
+    expr = std::make_shared<autograd::MatrixVectorAdd>(expr, this->biases);
   }
 
-  return std::make_shared<Matrix>(output_buffer, input_matrix->N, this->out_features);
-}
-
-std::shared_ptr<Matrix> Linear::backward(Network &network, std::shared_ptr<Matrix> output_grad, std::weak_ptr<IOptimizer> optim) {
-  if(output_grad->N != this->last_input->N || output_grad->M != this->out_features)
-    throw std::logic_error("Dimenzije matrice ne odgovaraju!");
-  if(this->last_input == nullptr)
-    throw std::logic_error("Preskočili ste forward metodu!");
-
-  #ifdef DEBUG
-  std::cout << "[DEBUG]: radim backprop u Linear sloju!" << std::endl;
-  #endif
-
-  int _err;
-  if(this->program == nullptr) {
-    this->program = clCreateProgramWithSource(getContext(network), 1, code, lengths, &_err);
-    checkError(_err);
-    cl_device_id device = getDevice(network);
-    checkError(clBuildProgram(this->program, 1, &device, nullptr, nullptr, nullptr));
-  }
-
-  if(this->input_grad_kernel == nullptr) {
-    this->input_grad_kernel = clCreateKernel(this->program, "inputGrad", &_err);
-    checkError(_err);
-  }
-  if(this->weight_grad_kernel == nullptr) {
-    this->weight_grad_kernel = clCreateKernel(this->program, "avgWeightGrad", &_err);
-    checkError(_err);
-  }
-  if(this->bias_grad_kernel == nullptr && this->biases != nullptr) {
-    this->bias_grad_kernel = clCreateKernel(this->program, "avgBiasGrad", &_err);
-    checkError(_err);
-  }
-
-  if(this->weight_grad == nullptr) {
-    cl_mem weight_grad_cl = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, this->in_features * this->out_features * sizeof(float), nullptr, &_err);
-    checkError(_err);
-    this->weight_grad = std::make_shared<Matrix>(weight_grad_cl, this->out_features, this->in_features);
-  }
-  if(this->bias_grad == nullptr) {
-    cl_mem bias_grad_cl = clCreateBuffer(getContext(network), CL_MEM_READ_WRITE, this->out_features * sizeof(float), nullptr, &_err);
-    checkError(_err);
-    this->bias_grad = std::make_shared<Matrix>(bias_grad_cl, 1, this->out_features);
-  }
-
-  cl_mem input_grad_buffer = clCreateBuffer(getContext(network), CL_MEM_READ_ONLY, output_grad->N * this->in_features * sizeof(float), nullptr, &_err);
-  checkError(_err);
-
-  checkError(clSetKernelArg(this->input_grad_kernel, 0, sizeof(float *), &output_grad->data));
-  checkError(clSetKernelArg(this->input_grad_kernel, 1, sizeof(float *), &this->last_input->data));
-  checkError(clSetKernelArg(this->input_grad_kernel, 2, sizeof(float *), &input_grad_buffer));
-  checkError(clSetKernelArg(this->input_grad_kernel, 3, sizeof(const int), &this->in_features));
-  checkError(clSetKernelArg(this->input_grad_kernel, 4, sizeof(const int), &this->out_features));
-
-  checkError(clSetKernelArg(this->weight_grad_kernel, 0, sizeof(float *), &output_grad->data));
-  checkError(clSetKernelArg(this->weight_grad_kernel, 1, sizeof(float *), &this->weight_grad->data));
-  checkError(clSetKernelArg(this->weight_grad_kernel, 2, sizeof(float *), &this->last_input->data));
-  checkError(clSetKernelArg(this->weight_grad_kernel, 3, sizeof(const int), &this->in_features));
-  checkError(clSetKernelArg(this->weight_grad_kernel, 4, sizeof(const int), &this->out_features));
-  checkError(clSetKernelArg(this->weight_grad_kernel, 5, sizeof(const int), &output_grad->N));
-  
-  const size_t input_work_size[] = { output_grad->N, this->in_features };
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->input_grad_kernel, 2, nullptr, input_work_size, nullptr, 0, nullptr, nullptr));
-
-  const size_t weight_work_size[] = { this->in_features, this->out_features };
-  checkError(clEnqueueNDRangeKernel(getQueue(network), this->weight_grad_kernel, 2, nullptr, weight_work_size, nullptr, 0, nullptr, nullptr));
-
-  if(this->biases != nullptr) {
-    checkError(clSetKernelArg(this->bias_grad_kernel, 0, sizeof(float *), &output_grad->data));
-    checkError(clSetKernelArg(this->bias_grad_kernel, 1, sizeof(float *), &this->bias_grad->data));
-    checkError(clSetKernelArg(this->bias_grad_kernel, 2, sizeof(const int), &output_grad->N));
-    checkError(clSetKernelArg(this->bias_grad_kernel, 3, sizeof(const int), &this->out_features));
-
-    const size_t bias_work_size[] = { this->out_features };
-    checkError(clEnqueueNDRangeKernel(getQueue(network), this->bias_grad_kernel, 1, nullptr, bias_work_size, nullptr, 0, nullptr, nullptr));
-  }
-
-  // pozovi optimizatora!
-  optim.lock()->optimize(network, this->parameters, this->weight_grad);
-  if(this->biases != nullptr)
-    optim.lock()->optimize(network, this->biases, this->bias_grad);
-
-  return std::make_shared<Matrix>(input_grad_buffer, output_grad->N, this->in_features);
+  return expr;
 }

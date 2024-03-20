@@ -2,7 +2,7 @@
 
 STRINGIFY(
   // matrice NxM
-  __kernel void matrixAdd(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
+  __kernel void add(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 
@@ -10,21 +10,21 @@ STRINGIFY(
   }
 
   // matrice NxM
-  __kernel void matrixSub(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
+  __kernel void sub(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 
     out[ty * M + tx] = mat1[ty * M + tx] - mat2[ty * M + tx];
   }
 
-  __kernel void matrixMulScalar(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
+  __kernel void mul(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 
     out[ty * M + tx] = mat1[ty * M + tx] * mat2[ty * M + tx];
   }
 
-  __kernel void matrixDiv(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
+  __kernel void div(__global const float *mat1, __global const float *mat2, __global float *out, const int M) {
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 

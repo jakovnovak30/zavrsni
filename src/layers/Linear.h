@@ -1,26 +1,14 @@
-#include "../Network.h"
+#include "../Module.h"
 #include <CL/cl.h>
 
-// TODO: prilagodi impl. datoteku !!!
-// P.S. koja je pravilna nadklasa za ovo??
-class Linear : public autograd::Expression<Matrix> {
+class Linear : public Module {
   private:
-    std::shared_ptr<Matrix> parameters;
-    std::shared_ptr<Matrix> biases;
+    std::shared_ptr<autograd::Variable<Matrix>> parameters;
+    std::shared_ptr<autograd::Variable<Matrix>> biases;
     const size_t in_features, out_features;
-
-    std::shared_ptr<Matrix> last_input;
-    std::shared_ptr<Matrix> weight_grad, bias_grad;
-    
-    cl_program program;
-    cl_kernel forward_kernel, bias_kernel;
-    cl_kernel bias_grad_kernel, weight_grad_kernel, input_grad_kernel;
     
   public:
-    Linear(size_t in_features, size_t out_features);
-    Linear(size_t in_features, size_t out_features, bool bias);
-    ~Linear();
+    Linear(size_t in_features, size_t out_features, bool bias = false);
     
-    virtual void eval() override final;
-    virtual void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override final;
+    virtual std::shared_ptr<autograd::Expression<Matrix>> forward(std::shared_ptr<autograd::Expression<Matrix>> ulaz) override final;
 };

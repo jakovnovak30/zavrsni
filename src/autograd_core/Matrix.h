@@ -26,6 +26,8 @@ private:
     }
   };
   size_t N, M;
+  // utility function...
+  inline cl_kernel loadKernel(const Matrix &other, const std::string &name) const;
 
 public:
   Matrix(cl_mem data, size_t N, size_t M);
