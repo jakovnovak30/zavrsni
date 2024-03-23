@@ -1,5 +1,5 @@
-#include "../autograd_core/expression.hpp"
-#include "../autograd_core/Matrix.h"
+#include "autograd_core/expression.hpp"
+#include "autograd_core/Matrix.h"
 #include <CL/cl.h>
 
 // TODO: prilagodi implementaciju!

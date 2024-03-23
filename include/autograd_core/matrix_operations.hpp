@@ -1,6 +1,6 @@
 #include "Matrix.h"
 #include "expression.hpp"
-#include "../Util.h"
+#include "Util.h"
 
 #include <CL/cl.h>
 #include <clblast.h>
@@ -9,8 +9,16 @@
 #include <cstring>
 #include <graphviz/cgraph.h>
 #include <memory>
+#include <stdexcept>
 
 namespace autograd {
+  static cl_program program = nullptr;
+  static const char *srcCode[] =
+    {
+        #include "../src/kernels/MatrixOperations.cl"
+    };
+  static const size_t srcLen[] = { strlen(srcCode[0]) };
+
   struct MatrixMultply : BinaryOperator<Matrix> {
     bool transposeLeft, transposeRight;
 
@@ -72,17 +80,89 @@ namespace autograd {
     }
   };
 
+  struct VectorSumReduction : UnaryOperator<Matrix> {
+    int axis;
+    VectorSumReduction(std::shared_ptr<Expression<Matrix>> prev, int axis = 0) : UnaryOperator<Matrix>(prev), axis(axis) { }
+
+    void eval() override {
+      static cl_kernel vectorSumRows = nullptr;
+      static cl_kernel vectorSumCols = nullptr;
+
+      int _err;
+      cl_mem output_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE,
+                                            sizeof(float) * (axis == 0 ? prev->getValue().getN() : prev->getValue().getM()),
+                                            nullptr, &_err);
+      checkError(_err);
+      
+      if(this->axis == 0) {
+        buildIfNeeded(&program, &vectorSumRows, "vectorSumReduceRows", srcCode, srcLen);
+
+        checkError(clSetKernelArg(vectorSumRows, 0, sizeof(float *), &this->prev->getValue().data->data));
+        checkError(clSetKernelArg(vectorSumRows, 1, sizeof(float *), &output_buffer));
+        int M = this->prev->getValue().getM();
+        checkError(clSetKernelArg(vectorSumRows, 2, sizeof(const int), &M));
+
+        size_t global_work_size[] = { this->prev->getValue().getN() };
+        checkError(clEnqueueNDRangeKernel(globalQueue, vectorSumRows, 1, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+      }
+      else {
+        buildIfNeeded(&program, &vectorSumCols, "vectorSumReduceColumns", srcCode, srcLen);
+        int N = this->prev->getValue().getN(), M = this->prev->getValue().getM();
+        
+        checkError(clSetKernelArg(vectorSumCols, 0, sizeof(float *), &this->prev->getValue().data->data));
+        checkError(clSetKernelArg(vectorSumCols, 1, sizeof(float *), &output_buffer));
+        checkError(clSetKernelArg(vectorSumCols, 2, sizeof(const int), &N));
+        checkError(clSetKernelArg(vectorSumCols, 3, sizeof(const int), &M));
+
+        size_t global_work_size[] = { this->prev->getValue().getM() };
+        checkError(clEnqueueNDRangeKernel(globalQueue, vectorSumCols, 1, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+      }
+
+      this->value = Matrix(output_buffer, axis == 0 ? prev->getValue().getN() : prev->getValue().getM(), 1);
+    }
+    void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override {
+      this->prev->derive(std::make_shared<VectorSumReduction>(seed, axis), out_map);
+    }
+
+    void addSubgraph(Agraph_t *graph, Agnode_t *prev) const override {
+      Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+      agset(curr, (char *) "label",
+            (std::string("vectorSumReduction") + (axis == 0 ? " on x axis" : "on y axis")).c_str());
+      agedge(graph, curr, prev, nullptr, 1);
+      this->prev->addSubgraph(graph, curr);
+    }
+  };
+
   struct MatrixVectorAdd : BinaryOperator<Matrix> {
     MatrixVectorAdd(std::shared_ptr<Expression<Matrix>> left, std::shared_ptr<Expression<Matrix>> right) : BinaryOperator(left, right) { }
     
     void eval() override {
+      static cl_kernel matrixVectorAdd = nullptr;  
+
       this->left->getValue(); this->right->getValue();
-      // TODO: opencl jezgra (vjerojatno iz Linear fajla...)
+      if(this->left->getValue().getM() != this->right->getValue().getN() || this->right->getValue().getM() != 1)
+        throw std::logic_error("Invalid matrix/vector dimensions!");
+
+      buildIfNeeded(&program, &matrixVectorAdd, "matrixVectorAdd", srcCode, srcLen);
+      
+      size_t M = this->left->getValue().getM(), N = this->right->getValue().getN();
+      int _err;
+      cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, N * M * sizeof(float), nullptr, &_err);
+      checkError(_err);
+
+      checkError(clSetKernelArg(matrixVectorAdd, 0, sizeof(float *), &this->left->getValue().data->data));
+      checkError(clSetKernelArg(matrixVectorAdd, 1, sizeof(float *), &this->right->getValue().data->data));
+      checkError(clSetKernelArg(matrixVectorAdd, 2, sizeof(float *), &out_buffer));
+      checkError(clSetKernelArg(matrixVectorAdd, 3, sizeof(const int), &M));
+
+      size_t global_work_size[] = {N, M };
+      checkError(clEnqueueNDRangeKernel(globalQueue, matrixVectorAdd, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+
+      this->value = Matrix(out_buffer, N, M);
     }
-    // TODO: implementacija derivacije... (vjerojatno normalno kak zbrajanje + neki SumRows ili SumColumns (Contract?) čvor)
     void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override {
-      this->left->derive(nullptr, out_map);
-      this->right->derive(nullptr, out_map);
+      this->left->derive(seed, out_map); // za matricu samo prosijedi seed od prije
+      this->right->derive(std::make_shared<VectorSumReduction>(seed, 1), out_map); // za vektor zbroji elemente po stupcima
     }
     
     void addSubgraph(Agraph_t *graph, Agnode_t *prev) const override {

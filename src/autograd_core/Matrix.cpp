@@ -116,6 +116,7 @@ inline cl_kernel Matrix::loadKernel(const Matrix &other, const std::string &name
   }
   else if(this->N == 1 && this->M == 1) {
     // TODO: skalarano u drugom smjeru...
+    throw std::logic_error("Not implemented yet!");
   }
   else {
     throw std::logic_error("invalid matrix dimensions!");

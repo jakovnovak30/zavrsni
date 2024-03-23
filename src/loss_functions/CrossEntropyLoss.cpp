@@ -47,9 +47,6 @@ void CrossEntropyLoss::eval() {
 }
 
 // TODO: slozi ovo
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
 void _derive(std::shared_ptr<autograd::Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<autograd::Expression<Matrix>>> &out_map) {
   return;
 }
-#pragma GCC diagnostic pop
