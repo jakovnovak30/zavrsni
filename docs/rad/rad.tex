@@ -6,7 +6,28 @@
 
 \usepackage{blindtext}
 \usepackage{amssymb}
+\usepackage{listings}
+\usepackage{color}
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 %--- PODACI O RADU / THESIS INFORMATION ----------------------------------------
 
@@ -23,7 +44,7 @@
 \author{Jakov Novak}
 
 % Mentor 
-\mentor{Prof.\ dr.\ sc.\ Sliniša Šegvić}
+\mentor{Prof.\ dr.\ sc.\ Siniša Šegvić}
 
 % Datum rada na engleskom jeziku / Date in English
 \date{June, 2024}
@@ -71,12 +92,12 @@
 \section{Motivacija}
 Većina klasičnih postupaka u dubokom učenju se svode na optimizaciju izlaza neuralne mreže s obzirom na neku funkciju gubitka. Kod takvih postupaka je ključan izračun gradijenta te funkcije kako bi se podesile značajke mreže:
 \begin{equation}
-  \nabla (f \circ L) (ulaz)
+  \nabla (f \circ L) (\mathrm{ulaz})
 \end{equation}
 Postoje različiti pristupi u korištenju računala za rješavanje tog problema. Neki od glavnih su: simboličko diferenciranje, numeričke metode i automatska diferencijacija. Glavni nedostatci prvih spomenutih pristupa su prevelika složenost dobivenih izraza (citation needed) i nepreciznost brojeva s pomičnim zarezom (citation needed). Ovaj rad je fokusiran na proučavanju metoda automatske diferencijacije te implementacije jednostavnog demonstracijskog okvira u programskom jeziku C++ uz pomoć biblioteke OpenCL za matrične operacije.
 
 \section{Metode automatske diferencijacije}
-Glavna ideja automatske diferencijacije jest da dobivenu matematičku funkciju možemo prikazati kao aciklički digraf kojemu su čvorovi varijable, konstante ili međurezultati: $G = (V, E). V = Var \cup F$, gdje je $Var$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
+Glavna ideja automatske diferencijacije jest da dobivenu matematičku funkciju možemo prikazati kao aciklički digraf kojemu su čvorovi varijable, konstante ili međurezultati: $G = (V, E). V = \mathrm{Var} \cup F$, gdje je $\mathrm{Var}$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\linewidth]{../../pics/demo1.png}
@@ -102,7 +123,8 @@ Ovdje postoje dva pristupa: prvi, takozvani \textit{forward mode accumulation}, 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\linewidth]{"./slike/forward_graph.png"}
-  \caption{slika preuzeta s: http://wuciawe.github.io/math/2017/02/08/notes-on-differentiation.html}
+  \caption{Unaprijedni, \textit{forward mode accumulation} pristup}
+  \cite{wuciawe_github}
   \label{slk:forward_graph}
 \end{figure}
 Vrijednost $f_{i-1}$ je u početku jednaka 1, a kasnije se propagira kroz slojeve grafa \ref{slk:forward_graph} kao vrijednost koju u literaturi često nazivaju \textit{seed value} (citation needed). Ovaj pristup je pogodan ukoliko je broj ulaza daleko manji od broja izlaza, odnosno vrijedi $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m. n << m$. Složenost ovog koda ovisi o strukturi grafa, no vidljivo je da prolazak kroz graf ponavljamo $n$ puta te je stoga poželjno da je $n$ mnogo manji od $m$. Ovaj pristup nije idealan za strojno učenje pošto je često ulazna domena mnogo veća od izlazne u toj primjeni.
@@ -115,7 +137,8 @@ Drugi pristup problemu automatske diferencijacije jest takozvani \textit{reverse
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\linewidth]{"./slike/reverse_graph.png"}
-  \caption{slika preuzeta s: https://srijithr.gitlab.io/post/autodiff/}
+  \caption{Unazadni, \textit{reverse mode accumulation} pristup}
+  \cite{srijithr_gitlab}
   \label{slk:reverse_graf}
 \end{figure}
 U ovom pristupu se \textit{seed}-vrijednost šalje unazad kroz graf jednadžbe od ponora prema izvorima \ref{slk:reverse_graf}. Iz toga slijedi da će za neku funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m. m << n$ algoritam biti najefikasniji zato što će se $m$ puta pozvati funkcija prolaska kroz graf. Poseban slučaj ovog pristupa problemu automatske diferencijacije jest temeljni princip koji se koristi za unazadnu propagaciju (\textit{eng. backpropagation}) u strojnom učenju (\textbf{citation needed}).
@@ -125,10 +148,54 @@ Zanimljivo je da su oba algoritma optimalna samo za jednu određenu domenu primj
 \textbf{pseudokod za oba pristupa?}
 
 \section{Dualni brojevi}
-\textbf{TODO:} napiši nekaj o dualnim brojevima
-\textbf{pseudokod za ovaj pristup?}
+Dualni brojevi su još jedan potenncijalni pristup za lako rješavanje prve derivacije jednadžbe. Iako nećemo koristiti ovaj pristup u implementaciji unazadne (\textit{backward mode}) diferencijacije, valjalo bi ga spomenuti kao jednog od najintuitivnijih pristupa za rješavanje \textit{autodiffa} kod unaprijedne (\textit{forward mode}) diferencijacije. O čemu se radi?
 \\
-\blindtext
+Zamislimo da bilo koji realni broj možemo zapisati kao dualni broj $x$(\textbf{citation needed}):
+\begin{equation}
+  \begin{split}
+  x = a + b \varepsilon \\
+  \varepsilon ^ 2 = 0, \varepsilon \ne 0 \\
+  a, b \in \mathbb{R} \\
+  \end{split}
+  \label{eq:dualni}
+\end{equation}
+U formuli \ref{eq:dualni} broj $a$ predstavlja realni broj, početnu vrijednost neke varijable ili izraza, dok $b$ predstavlja diferencijal kojeg propagiramo od varijabli do rezultata određene funkcije. Ovakav pristup je memorijski jednostavniji jer ne zahtjeva slaganje složenih grafova, već računamo s sve kao i s "normalnim" brojevima. To vrijedi zato što se svaka analitička funkcija lako može proširiti u domenu dualnih brojeva preko svojeg Taylorovog reda (\textbf{citation needed}):
+\begin{equation}
+  f(a + b \varepsilon) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a) b^n \varepsilon^n}{n!} = f(a) + b f'(a) \varepsilon
+\end{equation}
+Jednostavna implementacija ove ideje za funkcije zbrajanja i množenja izleda ovako u programskom jeziku \textit{Python}:
+
+\textbf{TODO: dodaj referencu na vikipediju tu!}
+\lstset{language=python}
+\begin{lstlisting}[caption={Primjer korištenja dualnih brojeva za unaprijednu metodu \textit{autodiffa} \cite{wiki:autodiff}}]
+class Dual:
+    def __init__(self, realPart, infinitesimalPart=0):
+        self.realPart = realPart
+        self.infinitesimalPart = infinitesimalPart
+
+    def __add__(self, other):
+        return Dual(
+            self.realPart + other.realPart,
+            self.infinitesimalPart + other.infinitesimalPart
+        )
+
+    def __mul__(self, other):
+        return Dual(
+            self.realPart * other.realPart,
+            other.realPart * self.infinitesimalPart + self.realPart * other.infinitesimalPart
+        )
+
+# Primjer: Gradijent funkcije: z = x * (x + y) + y * y at (x, y) = (2, 3)
+def f(x, y):
+    return x * (x + y) + y * y
+x = Dual(2)
+y = Dual(3)
+epsilon = Dual(0, 1)
+a = f(x + epsilon, y)
+b = f(x, y + epsilon)
+print("parcijalno z po x =", a.infinitesimalPart)  # Output: 7
+print("parcijalno z po y =", b.infinitesimalPart)  # Output: 8
+\end{lstlisting}
 
 \section{Pristupi implementaciji grafa}
 \textbf{TODO:} opiši IR vs Operator overloading...
@@ -157,6 +224,10 @@ Zanimljivo je da su oba algoritma optimalna samo za jednu određenu domenu primj
 \textbf{TODO:} opiši kak si povezal opencl i autograd core implementaciju
 \blindtext
 
+\section{TensorRT}
+\textbf{TODO:} složi povezivanje s \textit{TensorRT} frameworkom...
+\blindtext
+
 \section{Demonstracijski programi}
 \textbf{TODO:} izdvoji najbitnije demonstracijske programe koje si napisal
 \blindtext
@@ -175,7 +246,7 @@ Zanimljivo je da su oba algoritma optimalna samo za jednu određenu domenu primj
 
 \section{Budući rad}
 \textbf{TODO:} opiši kaj si mogel još dodati u smislu featurea
-cite test
+\cite{123DCatch}
 \blindtext
 
 
