@@ -89,15 +89,17 @@
 \chapter{Uvod}
 \label{pog:uvod}
 
-\section{Motivacija}
 Većina klasičnih postupaka u dubokom učenju se svode na optimizaciju izlaza neuralne mreže s obzirom na neku funkciju gubitka. Kod takvih postupaka je ključan izračun gradijenta te funkcije kako bi se podesile značajke mreže:
 \begin{equation}
   \nabla (f \circ L) (\mathrm{ulaz})
 \end{equation}
-Postoje različiti pristupi u korištenju računala za rješavanje tog problema. Neki od glavnih su: simboličko diferenciranje, numeričke metode i automatska diferencijacija. Glavni nedostatci prvih spomenutih pristupa su prevelika složenost dobivenih izraza (citation needed) i nepreciznost brojeva s pomičnim zarezom (citation needed). Ovaj rad je fokusiran na proučavanju metoda automatske diferencijacije te implementacije jednostavnog demonstracijskog okvira u programskom jeziku C++ uz pomoć biblioteke OpenCL za matrične operacije.
+Postoje različiti pristupi u korištenju računala za rješavanje tog problema. Neki od glavnih su: simboličko diferenciranje, numeričke metode i automatsko diferenciranje. Glavni nedostatci prvih spomenutih pristupa su prevelika složenost dobivenih izraza (citation needed) i nepreciznost brojeva s pomičnim zarezom (citation needed). Ovaj rad je fokusiran na proučavanju metoda automatskog diferenciranja te implementacije jednostavnog demonstracijskog okvira u programskom jeziku C++ uz pomoć biblioteke OpenCL za matrične operacije.
 
-\section{Metode automatske diferencijacije}
-Glavna ideja automatske diferencijacije jest da dobivenu matematičku funkciju možemo prikazati kao aciklički digraf kojemu su čvorovi varijable, konstante ili međurezultati: $G = (V, E). V = \mathrm{Var} \cup F$, gdje je $\mathrm{Var}$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
+\chapter{Korišteni algoritmi i matematički aparat}
+\label{pog:teorijski_dio}
+
+\section{Metode automatskog diferenciranja}
+Glavna ideja automatskog diferenciranja jest da dobivenu matematičku funkciju možemo prikazati kao aciklički digraf kojemu su čvorovi varijable, konstante ili međurezultati: $G = (V, E). V = \mathrm{Var} \cup F$, gdje je $\mathrm{Var}$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\linewidth]{../../pics/demo1.png}
@@ -115,6 +117,24 @@ Sa slike \ref{slk:graf_funkcije1} možemo već naslutiti koja je glavna ideja al
       \frac{\partial f_{n-1}}{\partial f_n} \frac{\partial f_n}{\partial x}
 \end{equation}
 \\
+Čvorove u grafu možemo na slijedeći način predstaviti u objektnoj paradigmi (programski jezik \textit{Python}) \cite{wiki:autodiff}:
+\lstset{language=python}
+\begin{lstlisting}
+class ValueAndPartial:
+    def __init__(self, value, partial):
+        self.value = value
+        self.partial = partial
+
+    def toList(self):
+        return [self.value, self.partial]
+
+class Expression:
+    def __add__(self, other):
+        return Plus(self, other)
+
+    def __mul__(self, other):
+        return Multiply(self, other)
+\end{lstlisting}
 \subsection{Forward mode}
 Ovdje postoje dva pristupa: prvi, takozvani \textit{forward mode accumulation}, jest da počnemo od čvorova ulaza prema čvorovima izlaza, po formuli:
 \begin{equation}
@@ -129,8 +149,37 @@ Ovdje postoje dva pristupa: prvi, takozvani \textit{forward mode accumulation}, 
 \end{figure}
 Vrijednost $f_{i-1}$ je u početku jednaka 1, a kasnije se propagira kroz slojeve grafa \ref{slk:forward_graph} kao vrijednost koju u literaturi često nazivaju \textit{seed value} (citation needed). Ovaj pristup je pogodan ukoliko je broj ulaza daleko manji od broja izlaza, odnosno vrijedi $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m. n << m$. Složenost ovog koda ovisi o strukturi grafa, no vidljivo je da prolazak kroz graf ponavljamo $n$ puta te je stoga poželjno da je $n$ mnogo manji od $m$. Ovaj pristup nije idealan za strojno učenje pošto je često ulazna domena mnogo veća od izlazne u toj primjeni.
 \\
+\begin{lstlisting}[caption={Primjer implementacije unaprijedne metode u programskom jeziku \textit{Python} \cite{wiki:autodiff}}]
+class Variable(Expression):
+    def __init__(self, value):
+        self.value = value
+
+    def evaluateAndDerive(self, variable):
+        partial = 1 if self == variable else 0
+        return ValueAndPartial(self.value, partial)
+
+class Plus(Expression):
+    def __init__(self, expressionA, expressionB):
+        self.expressionA = expressionA
+        self.expressionB = expressionB
+
+    def evaluateAndDerive(self, variable):
+        valueA, partialA = self.expressionA.evaluateAndDerive(variable).toList()
+        valueB, partialB = self.expressionB.evaluateAndDerive(variable).toList()
+        return ValueAndPartial(valueA + valueB, partialA + partialB)
+
+class Multiply(Expression):
+    def __init__(self, expressionA, expressionB):
+        self.expressionA = expressionA
+        self.expressionB = expressionB
+
+    def evaluateAndDerive(self, variable):
+        valueA, partialA = self.expressionA.evaluateAndDerive(variable).toList()
+        valueB, partialB = self.expressionB.evaluateAndDerive(variable).toList()
+        return ValueAndPartial(valueA * valueB, valueB * partialA + valueA * partialB)
+\end{lstlisting}
 \subsection{Reverse mode}
-Drugi pristup problemu automatske diferencijacije jest takozvani \textit{reverse mode accumulation}, tj. prolazak grafa unazad:
+Drugi pristup problemu automatskog diferenciranja jest takozvani \textit{reverse mode accumulation}, tj. prolazak grafa unazad:
 \begin{equation}
   \frac{\partial (f_i \circ f_{i+1})}{\partial x} = \frac{\partial f_{i+1}}{\partial f_i} \frac{\partial f_i}{\partial x}
 \end{equation}
@@ -141,16 +190,56 @@ Drugi pristup problemu automatske diferencijacije jest takozvani \textit{reverse
   \cite{srijithr_gitlab}
   \label{slk:reverse_graf}
 \end{figure}
-U ovom pristupu se \textit{seed}-vrijednost šalje unazad kroz graf jednadžbe od ponora prema izvorima \ref{slk:reverse_graf}. Iz toga slijedi da će za neku funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m. m << n$ algoritam biti najefikasniji zato što će se $m$ puta pozvati funkcija prolaska kroz graf. Poseban slučaj ovog pristupa problemu automatske diferencijacije jest temeljni princip koji se koristi za unazadnu propagaciju (\textit{eng. backpropagation}) u strojnom učenju (\textbf{citation needed}).
+U ovom pristupu se \textit{seed}-vrijednost šalje unazad kroz graf jednadžbe od ponora prema izvorima \ref{slk:reverse_graf}. Iz toga slijedi da će za neku funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m. m << n$ algoritam biti najefikasniji zato što će se $m$ puta pozvati funkcija prolaska kroz graf. Poseban slučaj ovog pristupa problemu automatskog diferenciranja jest temeljni princip koji se koristi za unazadnu propagaciju (\textit{eng. backpropagation}) u strojnom učenju (\textbf{citation needed}).
 \\
-Zanimljivo je da su oba algoritma optimalna samo za jednu određenu domenu primjene. To je zato što je problem izračuna Jakobijana za proizvoljnu funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m$ s minimalnim brojem računskih operacija problem koji je NP-potpun. Problem je poznat i kao \textit{optimal Jacobian problem}.
-\textbf{citation needed za ovo zadnje}
-\textbf{pseudokod za oba pristupa?}
+Zanimljivo je da su oba algoritma optimalna samo za jednu određenu domenu primjene. To je zato što je problem izračuna Jakobijana za proizvoljnu funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m$ s minimalnim brojem računskih operacija problem koji je NP-potpun. Problem je poznat i kao \textit{optimal Jacobian problem} \cite{naumann:optimaljacobian}.
+\begin{lstlisting}[caption={Primjer implementacije unazadne metode u programskom jeziku \textit{Python} \cite{wiki:autodiff}}]
+class Variable(Expression):
+    def __init__(self, value):
+        self.value = value
+        self.partial = 0
+
+    def evaluate(self):
+        pass
+
+    def derive(self, seed):
+        self.partial += seed
+
+class Plus(Expression):
+    def __init__(self, expressionA, expressionB):
+        self.expressionA = expressionA
+        self.expressionB = expressionB
+        self.value = None
+
+    def evaluate(self):
+        self.expressionA.evaluate()
+        self.expressionB.evaluate()
+        self.value = self.expressionA.value + self.expressionB.value
+
+    def derive(self, seed):
+        self.expressionA.derive(seed)
+        self.expressionB.derive(seed)
+
+class Multiply(Expression):
+    def __init__(self, expressionA, expressionB):
+        self.expressionA = expressionA
+        self.expressionB = expressionB
+        self.value = None
+
+    def evaluate(self):
+        self.expressionA.evaluate()
+        self.expressionB.evaluate()
+        self.value = self.expressionA.value * self.expressionB.value
+
+    def derive(self, seed):
+        self.expressionA.derive(self.expressionB.value * seed)
+        self.expressionB.derive(self.expressionA.value * seed)
+\end{lstlisting}
 
 \section{Dualni brojevi}
-Dualni brojevi su još jedan potenncijalni pristup za lako rješavanje prve derivacije jednadžbe. Iako nećemo koristiti ovaj pristup u implementaciji unazadne (\textit{backward mode}) diferencijacije, valjalo bi ga spomenuti kao jednog od najintuitivnijih pristupa za rješavanje \textit{autodiffa} kod unaprijedne (\textit{forward mode}) diferencijacije. O čemu se radi?
+Dualni brojevi su još jedan potenncijalni pristup za lako rješavanje prve derivacije jednadžbe. Iako nećemo koristiti ovaj pristup u implementaciji unazadnog (\textit{backward mode}) diferenciranja, valjalo bi ga spomenuti kao jednog od najintuitivnijih pristupa za rješavanje \textit{autodiffa} kod unaprijednog (\textit{forward mode}) diferenciranja. O čemu se radi?
 \\
-Zamislimo da bilo koji realni broj možemo zapisati kao dualni broj $x$(\textbf{citation needed}):
+Zamislimo da bilo koji realni broj možemo zapisati kao dualni broj $x$ \cite{hoffmann2016hitchhiker}:
 \begin{equation}
   \begin{split}
   x = a + b \varepsilon \\
@@ -159,13 +248,12 @@ Zamislimo da bilo koji realni broj možemo zapisati kao dualni broj $x$(\textbf{
   \end{split}
   \label{eq:dualni}
 \end{equation}
-U formuli \ref{eq:dualni} broj $a$ predstavlja realni broj, početnu vrijednost neke varijable ili izraza, dok $b$ predstavlja diferencijal kojeg propagiramo od varijabli do rezultata određene funkcije. Ovakav pristup je memorijski jednostavniji jer ne zahtjeva slaganje složenih grafova, već računamo s sve kao i s "normalnim" brojevima. To vrijedi zato što se svaka analitička funkcija lako može proširiti u domenu dualnih brojeva preko svojeg Taylorovog reda (\textbf{citation needed}):
+U formuli \ref{eq:dualni} broj $a$ predstavlja realni broj, početnu vrijednost neke varijable ili izraza, dok $b$ predstavlja diferencijal kojeg propagiramo od varijabli do rezultata određene funkcije. Ovakav pristup je memorijski jednostavniji jer ne zahtjeva slaganje složenih grafova, već računamo s sve kao i s "normalnim" brojevima. To vrijedi zato što se svaka analitička funkcija lako može proširiti u domenu dualnih brojeva preko svojeg Taylorovog reda \cite{hoffmann2016hitchhiker}:
 \begin{equation}
   f(a + b \varepsilon) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a) b^n \varepsilon^n}{n!} = f(a) + b f'(a) \varepsilon
 \end{equation}
 Jednostavna implementacija ove ideje za funkcije zbrajanja i množenja izleda ovako u programskom jeziku \textit{Python}:
 
-\textbf{TODO: dodaj referencu na vikipediju tu!}
 \lstset{language=python}
 \begin{lstlisting}[caption={Primjer korištenja dualnih brojeva za unaprijednu metodu \textit{autodiffa} \cite{wiki:autodiff}}]
 class Dual:
@@ -199,8 +287,12 @@ print("parcijalno z po y =", b.infinitesimalPart)  # Output: 8
 
 \section{Pristupi implementaciji grafa}
 \textbf{TODO:} opiši IR vs Operator overloading...
-\\
+\subsection{Operator overloading}
 \blindtext
+\\
+\subsection{Intermiediate representation}
+\blindtext
+\\
 
 \section{OpenCL i C++}
 \textbf{TODO:} napiši nekaj tu...
