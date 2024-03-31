@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief implementacija osnovnih računskih operacija za klasu Matrix
+ * @author Jakov Novak
+ */
+
 #include "autograd_core/Matrix.h"
 #include "Util.h"
 

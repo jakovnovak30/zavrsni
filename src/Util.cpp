@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief
+ * @author Jakov Novak
+ */
+
 #include "Util.h"
 #include <CL/cl.h>
 #include <cstring>

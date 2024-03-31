@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija sučelja IOptimizer
+ * @author Jakov Novak
+ */
+
 #pragma once
 
 #include "autograd_core/Matrix.h"

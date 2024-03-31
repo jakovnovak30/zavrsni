@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija funkcije ReLU
+ * @author Jakov Novak
+ */
+
 #include "../autograd_core/expression.hpp"
 #include "../autograd_core/Matrix.h"
 #include <CL/cl.h>

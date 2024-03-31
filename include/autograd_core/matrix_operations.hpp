@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija i implementacija autograd operacija koje su specifične za klasu Matrix
+ * @author Jakov Novak
+ */
+
 #include "Matrix.h"
 #include "expression.hpp"
 #include "Util.h"

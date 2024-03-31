@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief implementacije potpuno povezanih slojeva
+ * @author Jakov Novak
+ */
+
 #include "layers/Linear.h"
 #include "autograd_core/matrix_operations.hpp"
 #include "Util.h"

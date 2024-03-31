@@ -2,7 +2,7 @@
 #include "autograd_core/Matrix.h"
 #include <CL/cl.h>
 
-// TODO: prilagodi implementaciju!
+// TODO: prilagodi implementaciju + SoftMax implementacija!
 class CrossEntropyLoss : public autograd::BinaryOperator<Matrix> {
   private:
     cl_program program;

@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija funkcionalnosti za razred Matrix
+ * @author Jakov Novak
+ */
+
 #pragma once
 
 #include <CL/cl.h>

@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression<T>
+ * @author Jakov Novak
+ */
+
 #pragma once
 
 #include "expression.hpp"

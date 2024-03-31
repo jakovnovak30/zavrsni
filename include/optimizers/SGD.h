@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija SGD optimizatora
+ * @author Jakov Novak
+ */
+
 #include "IOptimizer.h"
 #include <CL/cl.h>
 

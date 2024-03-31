@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija i implementacija generičkih funkcija klase autograd::Expression<T> te njezinih neposrednih nasljednika
+ * @author Jakov Novak
+ */
+
 #pragma once
 
 #include <graphviz/cgraph.h>

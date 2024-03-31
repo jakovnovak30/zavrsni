@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija apstraktne klase Module
+ * @author Jakov Novak
+ */
+
 #pragma once
 
 #include "autograd_core/expression.hpp"

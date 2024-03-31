@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief implementacije Sigmoid funkcije
+ * @author Jakov Novak
+ */
+
 #include "layers/Sigmoid.h"
 #include "Util.h"
 #include "autograd_core/basic_operations.hpp"

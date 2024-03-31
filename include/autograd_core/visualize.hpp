@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija i implementacija funkcije autograd::visualize
+ * @author Jakov Novak
+ */
+
 #include <cstdlib>
 #include <string>
 

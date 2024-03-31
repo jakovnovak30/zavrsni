@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija dodatnih korisnih funkcija vezanih uz autograd_core klase
+ * @author Jakov Novak
+ */
+
 #include "expression.hpp"
 #include <memory>
 

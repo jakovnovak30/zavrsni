@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief SGD implementacija
+ * @author Jakov Novak
+ */
+
 #include "optimizers/SGD.h"
 #include "Util.h"
 

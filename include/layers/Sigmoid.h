@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija funkcije Sigmoid
+ * @author Jakov Novak
+ */
+
 #include "../autograd_core/expression.hpp"
 #include "../autograd_core/Matrix.h"
 #include <memory>

@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief definicija modula Linear
+ * @author Jakov Novak
+ */
+
 #include "../Module.h"
 #include <CL/cl.h>
 

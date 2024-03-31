@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief implementacija CrossEntropyLoss funkcije
+ * @author Jakov Novak
+ */
+
 #include "loss_functions/CrossEntropyLoss.h"
 #include "Util.h"
 #include "autograd_core/expression.hpp"

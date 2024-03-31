@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief implementacije generičke kompozicije funkcija Module
+ * @author Jakov Novak
+ */
+
 #include "Module.h"
 #include "IOptimizer.h"
 #include "autograd_core/Matrix.h"

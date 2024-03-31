@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief imeplementacije funkcije ReLU
+ * @author Jakov Novak
+ */
+
 #include "layers/ReLU.h"
 #include "Util.h"
 
