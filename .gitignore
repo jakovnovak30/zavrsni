@@ -1,4 +1,13 @@
 obj/*
 lib/*.so
 demo/*.out
-./*.pdf
+docs/html/*
+docs/latex/*
+docs/rad/*.aux
+docs/rad/*.bbl
+docs/rad/*.blg
+docs/rad/*.dvi
+docs/rad/*.log
+docs/rad/*.out
+docs/rad/*.toc
+*.pdf
