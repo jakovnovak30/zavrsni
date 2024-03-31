@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{listings}
 \usepackage{color}
+\usepackage[normalem]{ulem}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -73,7 +74,7 @@
 
 \begin{zahvale}
   % Ovdje upišite zahvale / Write in the acknowledgment
-  \textbf{TODO:} napisati zahvalu za obitelj, prijatelje i profesore
+  TODO: napisati zahvalu za obitelj, prijatelje i profesore
 \end{zahvale}
 
 
@@ -287,10 +288,14 @@ print("parcijalno z po y =", b.infinitesimalPart)  # Output: 8
 
 \section{Pristupi implementaciji grafa}
 \textbf{TODO:} opiši IR vs Operator overloading...
-\subsection{Operator overloading}
+\subsection{Nadjačavanje operatora}
+
+Jedan način implementacije automatskog diferenciranja jest nadjačavanje operatora...
 \blindtext
 \\
-\subsection{Intermiediate representation}
+\subsection{Međukod}
+
+Drugi, efikasniji način jest korištenje posebnog jezika za međukod kojeg prevoditelj (eng. \textit{compiler}) može lako umetnuti u kod te ga optimirati...
 \blindtext
 \\
 
