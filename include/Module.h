@@ -11,23 +11,36 @@
 #include "IOptimizer.h"
 
 #include <CL/cl.h>
-#include <list>
 
-// slično kao pytorchev Module
+/**
+ * @class Module
+ * @brief skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forward
+ * @author Jakov Novak
+ */
 class Module {
   public:
-    // defaultni konstruktor
+    /**
+     * @brief defaultni konstruktor
+     */
     Module() = default;
-    // defaultni virt. destruktor
+    /**
+     * @brief defaultni virtualni konstruktor
+     */
     virtual ~Module() = default;
     
-    // na ulaz ide matrica oblika NxM gdje M mora biti jednak ulaznim parametrima prvog sloja
-    // gradi se graf izraza kojeg optimizator može optimirati kasnije
+    /**
+     * @brief metoda gradi graf funkcije na temelju ulaza koji se može kasnije iskoristiti za optimiranje parametara modula
+     *
+     * @param ulaz izraz kojeg dovodimo na ulaz modula
+     * @throws std::logic_error ukoliko dimenzije ulazne matrice nisu u skladu s definiranim dimenzijama modula
+     */
     virtual std::shared_ptr<autograd::Expression<Matrix>> forward(std::shared_ptr<autograd::Expression<Matrix>> ulaz) = 0;
 
-    // predaje se izraz kojemu treba optimirati varijable, tj. parametre (u vecini slucajeva rezultat poziva "forward" te neke fje gubitka)
+    /**
+     * @brief metoda koja na temelju izraza i optimizatora optimira parametre modula, u vecini slucajeva je kompozicija this->forward() i neke funkcije gubitka
+     *
+     * @param expr izraz na temelju kojeg racunamo gradijente parametara
+     * @param optim optimizator koji ažurira parametre modula
+     */
     static void backward(std::shared_ptr<autograd::Expression<Matrix>> expr,  std::weak_ptr<IOptimizer> optim);
-
-    // obrisi gradijente svakog sloja
-    void clear_grad();
 };
