@@ -1,0 +1,9 @@
+<map id="/github/workspace/include/Module.h" name="/github/workspace/include/Module.h">
+<area shape="rect" id="Node000001" title="definicija apstraktne klase Module" alt="" coords="97,5,270,46"/>
+<area shape="rect" id="Node000002" href="$Linear_8h.html" title="definicija modula Linear" alt="" coords="5,94,178,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,59,114,96,110,92,150,55"/>
+<area shape="rect" id="Node000004" href="$Module_8cpp.html" title="implementacije generičke kompozicije funkcija Module" alt="" coords="202,94,352,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="218,55,258,92,254,96,214,59"/>
+<area shape="rect" id="Node000003" href="$Linear_8cpp.html" title="implementacije potpuno povezanih slojeva" alt="" coords="17,183,166,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,150,94,182,89,182,89,150"/>
+</map>

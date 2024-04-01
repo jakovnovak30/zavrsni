@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "std::enable_shared_from_this", null, [
+      [ "autograd::Variable< Matrix >", "structautograd_1_1Variable.html", null ],
       [ "ReLU", "classReLU.html", null ],
       [ "Sigmoid", "classSigmoid.html", null ],
       [ "autograd::Exp< T >", "structautograd_1_1Exp.html", null ],
@@ -17,6 +18,7 @@ var hierarchy =
         [ "Sigmoid", "classSigmoid.html", null ],
         [ "autograd::VectorSumReduction", "structautograd_1_1VectorSumReduction.html", null ]
       ] ],
+      [ "autograd::Variable< Matrix >", "structautograd_1_1Variable.html", null ],
       [ "autograd::BinaryOperator< T >", "structautograd_1_1BinaryOperator.html", [
         [ "autograd::Add< T >", "structautograd_1_1Add.html", null ],
         [ "autograd::Div< T >", "structautograd_1_1Div.html", null ],

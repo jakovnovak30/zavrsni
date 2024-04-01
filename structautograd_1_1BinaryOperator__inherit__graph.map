@@ -1,0 +1,13 @@
+<map id="autograd::BinaryOperator&lt; T &gt;" name="autograd::BinaryOperator&lt; T &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="189,299,375,404"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Add.html" title=" " alt="" coords="5,452,127,577"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,415,141,454,128,464,125,460,138,450,192,410"/>
+<area shape="rect" id="Node000004" href="$structautograd_1_1Div.html" title=" " alt="" coords="151,452,269,577"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="255,419,240,454,235,451,250,417"/>
+<area shape="rect" id="Node000005" href="$structautograd_1_1Mult.html" title=" " alt="" coords="293,452,417,577"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="314,417,330,451,325,454,309,419"/>
+<area shape="rect" id="Node000006" href="$structautograd_1_1Sub.html" title=" " alt="" coords="441,452,563,577"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="376,410,432,450,443,459,440,463,428,454,373,414"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1Expression.html" title=" " alt="" coords="201,5,363,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,266,285,299,279,299,279,266"/>
+</map>

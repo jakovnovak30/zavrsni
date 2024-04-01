@@ -1,0 +1,21 @@
+<map id="/github/workspace/include/autograd_core/expression.hpp" name="/github/workspace/include/autograd_core/expression.hpp">
+<area shape="rect" id="Node000001" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="277,5,475,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,102,128,127"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,49,125,99,124,94,305,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="344,183,411,208"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="281,49,237,64,203,83,191,94,185,106,186,119,193,133,220,159,255,176,293,186,328,191,327,196,292,192,253,181,217,164,188,136,180,120,180,105,187,91,199,79,235,59,279,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="203,102,269,127"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="345,49,269,96,266,91,343,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="293,102,371,127"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="368,48,347,89,342,87,363,45"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="395,102,448,127"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="388,45,410,87,406,89,384,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="471,102,582,127"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="411,44,494,91,491,96,409,49"/>
+<area shape="rect" id="Node000008" href="$basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="605,94,744,135"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="437,44,591,89,590,94,436,49"/>
+<area shape="poly" id="edge8_Node000008_Node000001" title=" " alt="" coords="614,96,465,53,467,48,615,91"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="605,137,427,184,426,179,604,131"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="646,183,703,208"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="677,135,677,167,672,167,672,135"/>
+</map>

@@ -1,0 +1,24 @@
+<map id="/github/workspace/include/autograd_core/autograd_util.hpp" name="/github/workspace/include/autograd_core/autograd_util.hpp">
+<area shape="rect" id="Node000001" title="definicija dodatnih korisnih funkcija vezanih uz autograd_core klase" alt="" coords="88,5,261,61"/>
+<area shape="rect" id="Node000002" href="$expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="302,109,409,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,59,318,100,316,104,230,64"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="414,271,481,297"/>
+<area shape="poly" id="edge12_Node000001_Node000004" title=" " alt="" coords="126,64,77,97,33,137,17,158,9,180,10,201,22,222,47,240,86,254,135,265,189,272,303,280,398,281,398,286,303,285,189,277,134,270,84,259,45,244,18,225,5,202,4,179,13,156,29,133,74,92,123,59"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="485,190,608,216"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="386,133,504,181,502,186,384,138"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="376,133,401,154,425,181,440,219,448,255,443,257,435,221,420,184,398,157,373,137"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="32,190,98,216"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="302,136,212,157,111,185,107,187,106,181,110,180,211,152,301,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="122,190,200,216"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="327,138,206,187,204,182,325,133"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="224,190,277,216"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="341,137,280,183,277,179,338,133"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="301,190,411,216"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="358,135,358,174,353,174,353,135"/>
+<area shape="rect" id="Node000009" href="$basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="632,183,770,223"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="401,133,608,180,617,182,616,187,607,185,400,138"/>
+<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="631,185,424,139,425,134,632,180"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="639,226,497,270,496,265,637,221"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="672,271,730,297"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="704,224,704,256,698,256,698,224"/>
+</map>

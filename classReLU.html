@@ -19,6 +19,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,13 +102,43 @@ $(function(){initNavTree('classReLU.html',''); initResizable(); });
 <div class="dynheader">
 Dijagram klasa za ReLU</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classReLU.png" usemap="#ReLU_map" alt=""/>
-  <map id="ReLU_map" name="ReLU_map">
-<area href="structautograd_1_1UnaryOperator.html" alt="autograd::UnaryOperator&lt; Matrix &gt;" shape="rect" coords="0,56,377,80"/>
-<area href="structautograd_1_1Expression.html" alt="autograd::Expression&lt; T &gt;" shape="rect" coords="0,0,377,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="classReLU__inherit__graph.png" border="0" usemap="#aReLU_inherit__map" alt="Inheritance graph"/></div>
+<map name="aReLU_inherit__map" id="aReLU_inherit__map">
+<area shape="rect" title=" " alt="" coords="120,447,228,592"/>
+<area shape="rect" href="structautograd_1_1UnaryOperator.html" title=" " alt="" coords="9,299,163,399"/>
+<area shape="poly" title=" " alt="" coords="121,411,139,446,134,448,116,413"/>
+<area shape="rect" href="structautograd_1_1Expression.html" title=" " alt="" coords="5,5,167,251"/>
+<area shape="poly" title=" " alt="" coords="89,265,89,299,83,299,83,265"/>
+<area shape="rect" title=" " alt="" coords="187,301,337,396"/>
+<area shape="poly" title=" " alt="" coords="233,411,214,448,209,446,229,408"/>
+</map>
+</div>
+<div class="dynheader">
+Kolaboracijski dijagram za ReLU:</div>
+<div class="dyncontent">
+<div class="center"><img src="classReLU__coll__graph.png" border="0" usemap="#aReLU_coll__map" alt="Collaboration graph"/></div>
+<map name="aReLU_coll__map" id="aReLU_coll__map">
+<area shape="rect" title=" " alt="" coords="211,1446,319,1591"/>
+<area shape="rect" href="structautograd_1_1UnaryOperator.html" title=" " alt="" coords="100,1296,253,1396"/>
+<area shape="poly" title=" " alt="" coords="211,1408,230,1445,225,1447,207,1411"/>
+<area shape="rect" href="structautograd_1_1Expression.html" title=" " alt="" coords="5,1008,167,1233"/>
+<area shape="poly" title=" " alt="" coords="139,1246,160,1296,155,1298,134,1248"/>
+<area shape="rect" title=" " alt="" coords="75,792,97,858"/>
+<area shape="poly" title=" " alt="" coords="89,857,89,991,83,991,83,857"/>
+<area shape="rect" title=" " alt="" coords="191,1081,349,1161"/>
+<area shape="poly" title=" " alt="" coords="256,1161,206,1282,201,1280,251,1159"/>
+<area shape="rect" href="structautograd_1_1Expression.html" title=" " alt="" coords="204,705,336,945"/>
+<area shape="poly" title=" " alt="" coords="273,945,273,1064,267,1064,267,945"/>
+<area shape="rect" href="classMatrix.html" title=" " alt="" coords="223,337,317,642"/>
+<area shape="poly" title=" " alt="" coords="273,642,273,688,267,688,267,642"/>
+<area shape="rect" title=" " alt="" coords="197,194,343,274"/>
+<area shape="poly" title=" " alt="" coords="273,273,273,320,267,320,267,273"/>
+<area shape="rect" title=" " alt="" coords="206,5,334,131"/>
+<area shape="poly" title=" " alt="" coords="273,130,273,177,267,177,267,130"/>
+<area shape="rect" title=" " alt="" coords="278,1299,427,1394"/>
+<area shape="poly" title=" " alt="" coords="324,1408,304,1448,299,1445,320,1406"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public članovi</h2></td></tr>
@@ -129,19 +160,19 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_derive</b> (
 <tr class="separator:ad37d55d92b02965a9dd53306918ff53d inherit pub_methods_structautograd_1_1UnaryOperator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structautograd_1_1Expression"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structautograd_1_1Expression')"><img src="closed.png" alt="-"/>&#160;Public članovi naslijeđeni od <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td></tr>
 <tr class="memitem:aacef3449ddd2843c1f490106aba05453 inherit pub_methods_structautograd_1_1Expression" id="r_aacef3449ddd2843c1f490106aba05453"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>derive</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">T</a> &gt; &gt; <a class="el" href="structautograd_1_1BinaryOperator.html">seed</a>, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">T</a> &gt; &gt; &gt; &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">out_map</a>)</td></tr>
+<a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>derive</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; <a class="el" href="structautograd_1_1BinaryOperator.html">seed</a>, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt; &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">out_map</a>)</td></tr>
 <tr class="separator:aacef3449ddd2843c1f490106aba05453 inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae40767f5fbb8a46288c413dd213ee095 inherit pub_methods_structautograd_1_1Expression" id="r_ae40767f5fbb8a46288c413dd213ee095"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="structautograd_1_1BinaryOperator.html">virtual</a> <a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_derive</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">T</a> &gt; &gt; <a class="el" href="structautograd_1_1BinaryOperator.html">seed</a>, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">T</a> &gt; &gt; &gt; &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">out_map</a>)=0</td></tr>
+<a class="el" href="structautograd_1_1BinaryOperator.html">virtual</a> <a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_derive</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; <a class="el" href="structautograd_1_1BinaryOperator.html">seed</a>, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt; &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">out_map</a>)=0</td></tr>
 <tr class="separator:ae40767f5fbb8a46288c413dd213ee095 inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a409fbe58ab7f8973d02db5f96e95eace inherit pub_methods_structautograd_1_1Expression" id="r_a409fbe58ab7f8973d02db5f96e95eace"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="structautograd_1_1BinaryOperator.html">T</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getValue</b> ()</td></tr>
+T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getValue</b> ()</td></tr>
 <tr class="separator:a409fbe58ab7f8973d02db5f96e95eace inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ce2473662bc700e583253b8da2cae8f inherit pub_methods_structautograd_1_1Expression" id="r_a4ce2473662bc700e583253b8da2cae8f"><td class="memItemLeft" align="right" valign="top">
-std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">T</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>grad</b> ()</td></tr>
+std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>grad</b> ()</td></tr>
 <tr class="separator:a4ce2473662bc700e583253b8da2cae8f inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3800da34d1a7e345522c06cd1846df93 inherit pub_methods_structautograd_1_1Expression" id="r_a3800da34d1a7e345522c06cd1846df93"><td class="memItemLeft" align="right" valign="top">
-std::shared_ptr&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1Variable.html">Variable</a>&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">T</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name)</td></tr>
+std::shared_ptr&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1Variable.html">Variable</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name)</td></tr>
 <tr class="separator:a3800da34d1a7e345522c06cd1846df93 inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -152,7 +183,7 @@ std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expre
 <tr class="separator:a0312901d90931a885f904e8ed41b1bc3 inherit pub_attribs_structautograd_1_1UnaryOperator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_structautograd_1_1Expression"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structautograd_1_1Expression')"><img src="closed.png" alt="-"/>&#160;Public atributi naslijeđeni od <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td></tr>
 <tr class="memitem:a2c73e4891c17c68dde64eb239df6dd59 inherit pub_attribs_structautograd_1_1Expression" id="r_a2c73e4891c17c68dde64eb239df6dd59"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="structautograd_1_1BinaryOperator.html">T</a>&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
 <tr class="separator:a2c73e4891c17c68dde64eb239df6dd59 inherit pub_attribs_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae04b48d9f119d0c56723b9e9db500a89 inherit pub_attribs_structautograd_1_1Expression" id="r_ae04b48d9f119d0c56723b9e9db500a89"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="structautograd_1_1BinaryOperator.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>evaluated</b> = <a class="el" href="structautograd_1_1BinaryOperator.html">false</a></td></tr>
