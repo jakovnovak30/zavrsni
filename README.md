@@ -14,5 +14,8 @@ Osim tih opcija, moguće je optimirati funkcije preko SGD optimizatora te defini
 
 ![graf funkcije: x*y + x - exp(-x*y)](./pics/demo1.png)
 
+### Dokumentacija
+Dokumentacija se nalazi na [ovoj](https://jakovnovak30.github.io/zavrsni/index.html) poveznici.
+
 ### Budući rad
 Dodat ću još nekoliko vrsta optimizatora, funkcija gubitka te eventalno opciju za učitavanje slika kako bi napravio demonstracijski klasifikator.
