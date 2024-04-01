@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CppDiff: Opis datoteke /github/workspace/src/Util.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CppDiff<span id="projectnumber">&#160;v0.1</span>
+   </div>
+   <div id="projectbrief">demonstracijski okvir za diferencijabilno programiranje</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generirao Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Traži');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('Util_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Učitavam...</div>
+<div class="SRStatus" id="Searching">Tražim...</div>
+<div class="SRStatus" id="NoMatches">Nema traženih podataka</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funkcije</a> &#124;
+<a href="#var-members">Varijable</a>  </div>
+  <div class="headertitle"><div class="title">Opis datoteke Util.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="Util_8h_source.html">Util.h</a>&quot;</code><br />
+<code>#include &lt;CL/cl.h&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funkcije</h2></td></tr>
+<tr class="memitem:a0b20f7cf32ea44d98f1dad0373d187cf" id="r_a0b20f7cf32ea44d98f1dad0373d187cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b20f7cf32ea44d98f1dad0373d187cf">checkError</a> (int value)</td></tr>
+<tr class="memdesc:a0b20f7cf32ea44d98f1dad0373d187cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja na temelju OpenCL koda baca iznimke ili ne vraća ništa  <br /></td></tr>
+<tr class="separator:a0b20f7cf32ea44d98f1dad0373d187cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18f87623831b0e00401bca38038d9de5" id="r_a18f87623831b0e00401bca38038d9de5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18f87623831b0e00401bca38038d9de5">buildIfNeeded</a> (cl_program *program, cl_kernel *kernel, const char *kernel_name, const char **srcStr, const size_t *srcLen)</td></tr>
+<tr class="memdesc:a18f87623831b0e00401bca38038d9de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja na temelju pokazivača na program i jezgru te dodatnih parametara prevodi određeni OpenCL kod te ga sprema u parametre  <br /></td></tr>
+<tr class="separator:a18f87623831b0e00401bca38038d9de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab23fcd751c121656f10adc0ca97a71bf" id="r_ab23fcd751c121656f10adc0ca97a71bf"><td class="memItemLeft" align="right" valign="top"><a id="ab23fcd751c121656f10adc0ca97a71bf" name="ab23fcd751c121656f10adc0ca97a71bf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>initCL_nvidia</b> ()</td></tr>
+<tr class="memdesc:ab23fcd751c121656f10adc0ca97a71bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja traži grafičku karticu tvrtke NVIDIA te zatim delegira postavljanje konteksta funkciji initCL <br /></td></tr>
+<tr class="separator:ab23fcd751c121656f10adc0ca97a71bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab646974da58021ec0d2bf4a123697b40" id="r_ab646974da58021ec0d2bf4a123697b40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab646974da58021ec0d2bf4a123697b40">initCL</a> (cl_device_id device, cl_context context)</td></tr>
+<tr class="memdesc:ab646974da58021ec0d2bf4a123697b40"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koda na temelju uređaja i konteksta postavlja globalne konstante  <br /></td></tr>
+<tr class="separator:ab646974da58021ec0d2bf4a123697b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f692354ff002a07c8a23cc65f88ca7f" id="r_a7f692354ff002a07c8a23cc65f88ca7f"><td class="memItemLeft" align="right" valign="top"><a id="a7f692354ff002a07c8a23cc65f88ca7f" name="a7f692354ff002a07c8a23cc65f88ca7f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>freeCL</b> ()</td></tr>
+<tr class="memdesc:a7f692354ff002a07c8a23cc65f88ca7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja oslobađa sve OpenCL resurse zajedno s kontekstom i uređajem <br /></td></tr>
+<tr class="separator:a7f692354ff002a07c8a23cc65f88ca7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Varijable</h2></td></tr>
+<tr class="memitem:ab62df1e75bbaf76fd1088a2cfb20355b" id="r_ab62df1e75bbaf76fd1088a2cfb20355b"><td class="memItemLeft" align="right" valign="top"><a id="ab62df1e75bbaf76fd1088a2cfb20355b" name="ab62df1e75bbaf76fd1088a2cfb20355b"></a>
+cl_context&#160;</td><td class="memItemRight" valign="bottom"><b>globalContext</b></td></tr>
+<tr class="memdesc:ab62df1e75bbaf76fd1088a2cfb20355b"><td class="mdescLeft">&#160;</td><td class="mdescRight">globalni OpenCL kontekst koje se inicijalizira prilikom pokretanja initCL funkcije <br /></td></tr>
+<tr class="separator:ab62df1e75bbaf76fd1088a2cfb20355b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9257996229987ee2649a86dfb1d6c410" id="r_a9257996229987ee2649a86dfb1d6c410"><td class="memItemLeft" align="right" valign="top"><a id="a9257996229987ee2649a86dfb1d6c410" name="a9257996229987ee2649a86dfb1d6c410"></a>
+cl_device_id&#160;</td><td class="memItemRight" valign="bottom"><b>globalDevice</b></td></tr>
+<tr class="memdesc:a9257996229987ee2649a86dfb1d6c410"><td class="mdescLeft">&#160;</td><td class="mdescRight">globalni uređaj koje se inicijalizira prilikom pokretanja initCL funkcije <br /></td></tr>
+<tr class="separator:a9257996229987ee2649a86dfb1d6c410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff6084cf5ab8f1095f7effa692e00ec2" id="r_aff6084cf5ab8f1095f7effa692e00ec2"><td class="memItemLeft" align="right" valign="top"><a id="aff6084cf5ab8f1095f7effa692e00ec2" name="aff6084cf5ab8f1095f7effa692e00ec2"></a>
+cl_command_queue&#160;</td><td class="memItemRight" valign="bottom"><b>globalQueue</b></td></tr>
+<tr class="memdesc:aff6084cf5ab8f1095f7effa692e00ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">globalni OpenCL komandni red koji se inicijalizira prilikom pokretanja initCL funkcije <br /></td></tr>
+<tr class="separator:aff6084cf5ab8f1095f7effa692e00ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><dl class="section author"><dt>Autor</dt><dd>Jakov Novak </dd></dl>
+</div><h2 class="groupheader">Dokumentacije funkcija</h2>
+<a id="a18f87623831b0e00401bca38038d9de5" name="a18f87623831b0e00401bca38038d9de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f87623831b0e00401bca38038d9de5">&#9670;&#160;</a></span>buildIfNeeded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void buildIfNeeded </td>
+          <td>(</td>
+          <td class="paramtype">cl_program *</td>          <td class="paramname"><span class="paramname"><em>program</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cl_kernel *</td>          <td class="paramname"><span class="paramname"><em>kernel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>kernel_name</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char **</td>          <td class="paramname"><span class="paramname"><em>srcStr</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t *</td>          <td class="paramname"><span class="paramname"><em>srcLen</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>funkcija koja na temelju pokazivača na program i jezgru te dodatnih parametara prevodi određeni OpenCL kod te ga sprema u parametre </p>
+<p>Ideja funkcije je da se program i kernel inicijaliziraju na NULL te da se za vrijeme izvođenje provjeri jesu li oni NULL i onda se prevode na temelju zadanog izvornog koda ili funkcija ništa ne radi. Na taj način se štede resursi prilikom konstrukcije nekih objekata jer postoji mogućnost da se njihove jezgre nikad neće koristiti.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">program</td><td>pokazivač na program čija vrijednost može biti NULL (treba ga prevesti) ili nešto drugo (prevođen je) </td></tr>
+    <tr><td class="paramname">kernel</td><td>pokazivač na jezgru čija vrijednost može biti NULL (treba ju postaviti) ili nešto drugo (funkcija ne radi ništa) </td></tr>
+    <tr><td class="paramname">kernel_name</td><td>string koji određuje ime jezgre unutar OpenCL izvornog koda </td></tr>
+    <tr><td class="paramname">srcStr</td><td>OpenCL izvorni kod </td></tr>
+    <tr><td class="paramname">srcLen</td><td>duljina OpenCL izvornog koda </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0b20f7cf32ea44d98f1dad0373d187cf" name="a0b20f7cf32ea44d98f1dad0373d187cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b20f7cf32ea44d98f1dad0373d187cf">&#9670;&#160;</a></span>checkError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void checkError </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>funkcija koja na temelju OpenCL koda baca iznimke ili ne vraća ništa </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Iznimke</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>baca se u slučaju da je value != 0 te se ispisuje razlog pogreške OpenCL-a </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab646974da58021ec0d2bf4a123697b40" name="ab646974da58021ec0d2bf4a123697b40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab646974da58021ec0d2bf4a123697b40">&#9670;&#160;</a></span>initCL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initCL </td>
+          <td>(</td>
+          <td class="paramtype">cl_device_id</td>          <td class="paramname"><span class="paramname"><em>device</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cl_context</td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>funkcija koda na temelju uređaja i konteksta postavlja globalne konstante </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">device</td><td>uređaj za kojeg želimo postaviti da je globalan </td></tr>
+    <tr><td class="paramname">context</td><td>kontekst koje će biti globalan </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="Util_8cpp.html">Util.cpp</a></li>
+    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
