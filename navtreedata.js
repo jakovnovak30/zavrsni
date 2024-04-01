@@ -29,7 +29,11 @@ var NAVTREE =
     [ "Klase", "annotated.html", [
       [ "Sve klase", "annotated.html", "annotated_dup" ],
       [ "Skupno kazalo ", "classes.html", null ],
-      [ "Stablo klasa", "hierarchy.html", "hierarchy" ]
+      [ "Stablo klasa", "hierarchy.html", "hierarchy" ],
+      [ "Svi članovi klasa", "functions.html", [
+        [ "Sve", "functions.html", null ],
+        [ "Funkcije", "functions_func.html", null ]
+      ] ]
     ] ],
     [ "Datoteke", "files.html", [
       [ "Popis datoteka", "files.html", "files_dup" ],

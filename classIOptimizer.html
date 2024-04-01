@@ -99,12 +99,17 @@ $(function(){initNavTree('classIOptimizer.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Opis klase IOptimizer<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>apstraktna klasa koja definira sučelje za optimizatore  
+ <a href="#details">Opširnije...</a></p>
+
+<p><code>#include &lt;<a class="el" href="IOptimizer_8h_source.html">IOptimizer.h</a>&gt;</code></p>
 <div class="dynheader">
 Dijagram klasa za IOptimizer</div>
 <div class="dyncontent">
 <div class="center"><img src="classIOptimizer__inherit__graph.png" border="0" usemap="#aIOptimizer_inherit__map" alt="Inheritance graph"/></div>
 <map name="aIOptimizer_inherit__map" id="aIOptimizer_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,5,85,91"/>
+<area shape="rect" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,85,91"/>
 <area shape="rect" href="classSGD.html" title=" " alt="" coords="5,139,85,244"/>
 <area shape="poly" title=" " alt="" coords="48,106,48,139,43,139,43,106"/>
 </map>
@@ -114,19 +119,70 @@ Kolaboracijski dijagram za IOptimizer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIOptimizer__coll__graph.png" border="0" usemap="#aIOptimizer_coll__map" alt="Collaboration graph"/></div>
 <map name="aIOptimizer_coll__map" id="aIOptimizer_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,85,91"/>
+<area shape="rect" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,85,91"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public članovi</h2></td></tr>
-<tr class="memitem:a7c308b231b1b6da7511ddc9bfe901430" id="r_a7c308b231b1b6da7511ddc9bfe901430"><td class="memItemLeft" align="right" valign="top"><a id="a7c308b231b1b6da7511ddc9bfe901430" name="a7c308b231b1b6da7511ddc9bfe901430"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>optimize</b> (<a class="el" href="classMatrix.html">Matrix</a> &amp;layer_parameters, <a class="el" href="classMatrix.html">Matrix</a> &amp;layer_gradients)=0</td></tr>
+<tr class="memitem:a7c308b231b1b6da7511ddc9bfe901430" id="r_a7c308b231b1b6da7511ddc9bfe901430"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c308b231b1b6da7511ddc9bfe901430">optimize</a> (<a class="el" href="classMatrix.html">Matrix</a> &amp;layer_parameters, <a class="el" href="classMatrix.html">Matrix</a> &amp;layer_gradients)=0</td></tr>
+<tr class="memdesc:a7c308b231b1b6da7511ddc9bfe901430"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija na temelju izračunatih parametara vrši korak optimizacije za zadanu varijablu  <br /></td></tr>
 <tr class="separator:a7c308b231b1b6da7511ddc9bfe901430"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e357f1aacfa8819a1d5403d79e346ba" id="r_a2e357f1aacfa8819a1d5403d79e346ba"><td class="memItemLeft" align="right" valign="top"><a id="a2e357f1aacfa8819a1d5403d79e346ba" name="a2e357f1aacfa8819a1d5403d79e346ba"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>step</b> ()=0</td></tr>
+<tr class="memdesc:a2e357f1aacfa8819a1d5403d79e346ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">opcionalna funkcija kojoj naglasimo nekim optimizatorima da je gotova jedna iteracija radi azuriranja internog stanja <br /></td></tr>
 <tr class="separator:a2e357f1aacfa8819a1d5403d79e346ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><p>apstraktna klasa koja definira sučelje za optimizatore </p>
+<dl class="section author"><dt>Autor</dt><dd>Jakov Novak </dd></dl>
+</div><h2 class="groupheader">Dokumentacija funkcija</h2>
+<a id="a7c308b231b1b6da7511ddc9bfe901430" name="a7c308b231b1b6da7511ddc9bfe901430"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c308b231b1b6da7511ddc9bfe901430">&#9670;&#160;</a></span>optimize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void IOptimizer::optimize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMatrix.html">Matrix</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>layer_parameters</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMatrix.html">Matrix</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>layer_gradients</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>funkcija na temelju izračunatih parametara vrši korak optimizacije za zadanu varijablu </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layer_parameters</td><td>matrica koja pokazuje na memoriju gdje su spremljeni parametri </td></tr>
+    <tr><td class="paramname">layer_gradients</td><td>matrica koja sadrži informacije o gradijentima </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Iznimke</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error</td><td>ukoliko su dimenzije matrica različite </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implementirano u <a class="el" href="classSGD.html#aa4e35184c65a2759cea568278abe4db3">SGD</a>.</p>
+
+</div>
+</div>
 <hr/>Dokumentacija klase je napravljena iz datoteka: <ul>
 <li>/github/workspace/include/<a class="el" href="IOptimizer_8h_source.html">IOptimizer.h</a></li>
 </ul>

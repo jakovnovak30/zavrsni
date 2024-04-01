@@ -16,12 +16,12 @@ var annotated_dup =
       [ "VectorSumReduction", "structautograd_1_1VectorSumReduction.html", null ]
     ] ],
     [ "CrossEntropyLoss", "classCrossEntropyLoss.html", null ],
-    [ "IOptimizer", "classIOptimizer.html", null ],
-    [ "Linear", "classLinear.html", null ],
+    [ "IOptimizer", "classIOptimizer.html", "classIOptimizer" ],
+    [ "Linear", "classLinear.html", "classLinear" ],
     [ "Matrix", "classMatrix.html", null ],
-    [ "Module", "classModule.html", null ],
+    [ "Module", "classModule.html", "classModule" ],
     [ "Random2DGaussian", "classRandom2DGaussian.html", null ],
     [ "ReLU", "classReLU.html", null ],
-    [ "SGD", "classSGD.html", null ],
+    [ "SGD", "classSGD.html", "classSGD" ],
     [ "Sigmoid", "classSigmoid.html", null ]
 ];

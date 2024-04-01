@@ -27,7 +27,10 @@ var menudata={children:[
 {text:"Klase",url:"annotated.html",children:[
 {text:"Sve klase",url:"annotated.html"},
 {text:"Skupno kazalo ",url:"classes.html"},
-{text:"Stablo klasa",url:"inherits.html"}]},
+{text:"Stablo klasa",url:"inherits.html"},
+{text:"Svi članovi klasa",url:"functions.html",children:[
+{text:"Sve",url:"functions.html"},
+{text:"Funkcije",url:"functions_func.html"}]}]},
 {text:"Datoteke",url:"files.html",children:[
 {text:"Popis datoteka",url:"files.html"},
 {text:"članovi klasa u datoteci",url:"globals.html",children:[

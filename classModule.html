@@ -100,14 +100,19 @@ $(function(){initNavTree('classModule.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Opis klase Module<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forward  
+ <a href="#details">Opširnije...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Module_8h_source.html">Module.h</a>&gt;</code></p>
 <div class="dynheader">
 Dijagram klasa za Module</div>
 <div class="dyncontent">
 <div class="center"><img src="classModule__inherit__graph.png" border="0" usemap="#aModule_inherit__map" alt="Inheritance graph"/></div>
 <map name="aModule_inherit__map" id="aModule_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,5,97,151"/>
-<area shape="rect" href="classLinear.html" title=" " alt="" coords="14,199,89,284"/>
-<area shape="poly" title=" " alt="" coords="54,166,54,199,49,199,49,166"/>
+<area shape="rect" title="skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forw..." alt="" coords="5,5,93,131"/>
+<area shape="rect" href="classLinear.html" title=" " alt="" coords="12,179,87,264"/>
+<area shape="poly" title=" " alt="" coords="52,146,52,179,47,179,47,146"/>
 </map>
 </div>
 <div class="dynheader">
@@ -115,25 +120,113 @@ Kolaboracijski dijagram za Module:</div>
 <div class="dyncontent">
 <div class="center"><img src="classModule__coll__graph.png" border="0" usemap="#aModule_coll__map" alt="Collaboration graph"/></div>
 <map name="aModule_coll__map" id="aModule_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,97,151"/>
+<area shape="rect" title="skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forw..." alt="" coords="5,5,93,131"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public članovi</h2></td></tr>
-<tr class="memitem:a5554809f9d526dc08925f201ff21dd07" id="r_a5554809f9d526dc08925f201ff21dd07"><td class="memItemLeft" align="right" valign="top"><a id="a5554809f9d526dc08925f201ff21dd07" name="a5554809f9d526dc08925f201ff21dd07"></a>
-virtual std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>forward</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; ulaz)=0</td></tr>
+<tr class="memitem:ac0b59ad515f7ddd34618dc5141a0aab0" id="r_ac0b59ad515f7ddd34618dc5141a0aab0"><td class="memItemLeft" align="right" valign="top"><a id="ac0b59ad515f7ddd34618dc5141a0aab0" name="ac0b59ad515f7ddd34618dc5141a0aab0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Module</b> ()=default</td></tr>
+<tr class="memdesc:ac0b59ad515f7ddd34618dc5141a0aab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">defaultni konstruktor <br /></td></tr>
+<tr class="separator:ac0b59ad515f7ddd34618dc5141a0aab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a48538d35a2da7fcc32d9f509034723" id="r_a4a48538d35a2da7fcc32d9f509034723"><td class="memItemLeft" align="right" valign="top"><a id="a4a48538d35a2da7fcc32d9f509034723" name="a4a48538d35a2da7fcc32d9f509034723"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Module</b> ()=default</td></tr>
+<tr class="memdesc:a4a48538d35a2da7fcc32d9f509034723"><td class="mdescLeft">&#160;</td><td class="mdescRight">defaultni virtualni konstruktor <br /></td></tr>
+<tr class="separator:a4a48538d35a2da7fcc32d9f509034723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5554809f9d526dc08925f201ff21dd07" id="r_a5554809f9d526dc08925f201ff21dd07"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5554809f9d526dc08925f201ff21dd07">forward</a> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; ulaz)=0</td></tr>
+<tr class="memdesc:a5554809f9d526dc08925f201ff21dd07"><td class="mdescLeft">&#160;</td><td class="mdescRight">metoda gradi graf funkcije na temelju ulaza koji se može kasnije iskoristiti za optimiranje parametara modula  <br /></td></tr>
 <tr class="separator:a5554809f9d526dc08925f201ff21dd07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c01a21d894966681c5c6209a0d87c53" id="r_a6c01a21d894966681c5c6209a0d87c53"><td class="memItemLeft" align="right" valign="top"><a id="a6c01a21d894966681c5c6209a0d87c53" name="a6c01a21d894966681c5c6209a0d87c53"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear_grad</b> ()</td></tr>
-<tr class="separator:a6c01a21d894966681c5c6209a0d87c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static public članovi</h2></td></tr>
-<tr class="memitem:a3552d69cccb2deb0796c6504a1d9fbdd" id="r_a3552d69cccb2deb0796c6504a1d9fbdd"><td class="memItemLeft" align="right" valign="top"><a id="a3552d69cccb2deb0796c6504a1d9fbdd" name="a3552d69cccb2deb0796c6504a1d9fbdd"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>backward</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; expr, std::weak_ptr&lt; <a class="el" href="classIOptimizer.html">IOptimizer</a> &gt; optim)</td></tr>
+<tr class="memitem:a3552d69cccb2deb0796c6504a1d9fbdd" id="r_a3552d69cccb2deb0796c6504a1d9fbdd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3552d69cccb2deb0796c6504a1d9fbdd">backward</a> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; expr, std::weak_ptr&lt; <a class="el" href="classIOptimizer.html">IOptimizer</a> &gt; optim)</td></tr>
+<tr class="memdesc:a3552d69cccb2deb0796c6504a1d9fbdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">metoda koja na temelju izraza i optimizatora optimira parametre modula, u vecini slucajeva je kompozicija this-&gt;<a class="el" href="#a5554809f9d526dc08925f201ff21dd07" title="metoda gradi graf funkcije na temelju ulaza koji se može kasnije iskoristiti za optimiranje parametar...">forward()</a> i neke funkcije gubitka  <br /></td></tr>
 <tr class="separator:a3552d69cccb2deb0796c6504a1d9fbdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><p>skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forward </p>
+<dl class="section author"><dt>Autor</dt><dd>Jakov Novak </dd></dl>
+</div><h2 class="groupheader">Dokumentacija funkcija</h2>
+<a id="a3552d69cccb2deb0796c6504a1d9fbdd" name="a3552d69cccb2deb0796c6504a1d9fbdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3552d69cccb2deb0796c6504a1d9fbdd">&#9670;&#160;</a></span>backward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Module::backward </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>expr</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::weak_ptr&lt; <a class="el" href="classIOptimizer.html">IOptimizer</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>optim</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>metoda koja na temelju izraza i optimizatora optimira parametre modula, u vecini slucajeva je kompozicija this-&gt;<a class="el" href="#a5554809f9d526dc08925f201ff21dd07" title="metoda gradi graf funkcije na temelju ulaza koji se može kasnije iskoristiti za optimiranje parametar...">forward()</a> i neke funkcije gubitka </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expr</td><td>izraz na temelju kojeg racunamo gradijente parametara </td></tr>
+    <tr><td class="paramname">optim</td><td>optimizator koji ažurira parametre modula </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5554809f9d526dc08925f201ff21dd07" name="a5554809f9d526dc08925f201ff21dd07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5554809f9d526dc08925f201ff21dd07">&#9670;&#160;</a></span>forward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; Module::forward </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>ulaz</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>metoda gradi graf funkcije na temelju ulaza koji se može kasnije iskoristiti za optimiranje parametara modula </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ulaz</td><td>izraz kojeg dovodimo na ulaz modula </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Iznimke</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error</td><td>ukoliko dimenzije ulazne matrice nisu u skladu s definiranim dimenzijama modula </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implementirano u <a class="el" href="classLinear.html#ae23a8a23de3f04e233810e6200925646">Linear</a>.</p>
+
+</div>
+</div>
 <hr/>Dokumentacija klase je napravljena iz datoteke: <ul>
 <li>/github/workspace/include/<a class="el" href="Module_8h_source.html">Module.h</a></li>
 <li>/github/workspace/src/<a class="el" href="Module_8cpp.html">Module.cpp</a></li>

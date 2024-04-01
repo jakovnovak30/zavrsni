@@ -6,5 +6,6 @@ var searchData=
   ['sigmoid_3',['Sigmoid',['../classSigmoid.html',1,'']]],
   ['sigmoid_2ecpp_4',['Sigmoid.cpp',['../Sigmoid_8cpp.html',1,'']]],
   ['sigmoid_2eh_5',['Sigmoid.h',['../Sigmoid_8h.html',1,'']]],
-  ['sub_6',['Sub',['../structautograd_1_1Sub.html',1,'autograd']]]
+  ['step_6',['step',['../classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba',1,'IOptimizer']]],
+  ['sub_7',['Sub',['../structautograd_1_1Sub.html',1,'autograd']]]
 ];

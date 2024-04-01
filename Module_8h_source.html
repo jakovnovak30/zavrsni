@@ -109,31 +109,25 @@ $(function(){initNavTree('Module_8h_source.html',''); initResizable(); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="IOptimizer_8h.html">IOptimizer.h</a>&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;CL/cl.h&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// slično kao pytorchev Module</span></div>
-<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classModule.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="classModule.html">Module</a> {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// defaultni konstruktor</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classModule.html">Module</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// defaultni virt. destruktor</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classModule.html">~Module</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// na ulaz ide matrica oblika NxM gdje M mora biti jednak ulaznim parametrima prvog sloja</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// gradi se graf izraza kojeg optimizator može optimirati kasnije</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">virtual</span> std::shared_ptr&lt;autograd::Expression&lt;Matrix&gt;&gt; forward(std::shared_ptr&lt;<a class="code hl_struct" href="structautograd_1_1BinaryOperator.html">autograd::Expression&lt;Matrix&gt;</a>&gt; ulaz) = 0;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// predaje se izraz kojemu treba optimirati varijable, tj. parametre (u vecini slucajeva rezultat poziva &quot;forward&quot; te neke fje gubitka)</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> backward(std::shared_ptr&lt;<a class="code hl_struct" href="structautograd_1_1BinaryOperator.html">autograd::Expression&lt;Matrix&gt;</a>&gt; expr,  std::weak_ptr&lt;IOptimizer&gt; optim);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// obrisi gradijente svakog sloja</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> clear_grad();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classModule.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classModule.html">Module</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0">   25</a></span>    <a class="code hl_function" href="classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0">Module</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classModule.html#a4a48538d35a2da7fcc32d9f509034723">   29</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classModule.html#a4a48538d35a2da7fcc32d9f509034723">~Module</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classModule.html#a5554809f9d526dc08925f201ff21dd07">   37</a></span>    <span class="keyword">virtual</span> std::shared_ptr&lt;autograd::Expression&lt;Matrix&gt;&gt; <a class="code hl_function" href="classModule.html#a5554809f9d526dc08925f201ff21dd07">forward</a>(std::shared_ptr&lt;<a class="code hl_struct" href="structautograd_1_1BinaryOperator.html">autograd::Expression&lt;Matrix&gt;</a>&gt; ulaz) = 0;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classModule.html#a3552d69cccb2deb0796c6504a1d9fbdd">backward</a>(std::shared_ptr&lt;<a class="code hl_struct" href="structautograd_1_1BinaryOperator.html">autograd::Expression&lt;Matrix&gt;</a>&gt; expr,  std::weak_ptr&lt;IOptimizer&gt; optim);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
 </div>
 <div class="ttc" id="aIOptimizer_8h_html"><div class="ttname"><a href="IOptimizer_8h.html">IOptimizer.h</a></div><div class="ttdoc">definicija sučelja IOptimizer</div></div>
 <div class="ttc" id="aMatrix_8h_html"><div class="ttname"><a href="Matrix_8h.html">Matrix.h</a></div><div class="ttdoc">definicija funkcionalnosti za razred Matrix</div></div>
-<div class="ttc" id="aclassModule_html"><div class="ttname"><a href="classModule.html">Module</a></div><div class="ttdef"><b>Definition</b> Module.h:17</div></div>
+<div class="ttc" id="aclassModule_html"><div class="ttname"><a href="classModule.html">Module</a></div><div class="ttdoc">skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forw...</div><div class="ttdef"><b>Definition</b> Module.h:20</div></div>
+<div class="ttc" id="aclassModule_html_a3552d69cccb2deb0796c6504a1d9fbdd"><div class="ttname"><a href="classModule.html#a3552d69cccb2deb0796c6504a1d9fbdd">Module::backward</a></div><div class="ttdeci">static void backward(std::shared_ptr&lt; autograd::Expression&lt; Matrix &gt; &gt; expr, std::weak_ptr&lt; IOptimizer &gt; optim)</div><div class="ttdoc">metoda koja na temelju izraza i optimizatora optimira parametre modula, u vecini slucajeva je kompozi...</div><div class="ttdef"><b>Definition</b> Module.cpp:17</div></div>
+<div class="ttc" id="aclassModule_html_a4a48538d35a2da7fcc32d9f509034723"><div class="ttname"><a href="classModule.html#a4a48538d35a2da7fcc32d9f509034723">Module::~Module</a></div><div class="ttdeci">virtual ~Module()=default</div><div class="ttdoc">defaultni virtualni konstruktor</div></div>
+<div class="ttc" id="aclassModule_html_a5554809f9d526dc08925f201ff21dd07"><div class="ttname"><a href="classModule.html#a5554809f9d526dc08925f201ff21dd07">Module::forward</a></div><div class="ttdeci">virtual std::shared_ptr&lt; autograd::Expression&lt; Matrix &gt; &gt; forward(std::shared_ptr&lt; autograd::Expression&lt; Matrix &gt; &gt; ulaz)=0</div><div class="ttdoc">metoda gradi graf funkcije na temelju ulaza koji se može kasnije iskoristiti za optimiranje parametar...</div></div>
+<div class="ttc" id="aclassModule_html_ac0b59ad515f7ddd34618dc5141a0aab0"><div class="ttname"><a href="classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0">Module::Module</a></div><div class="ttdeci">Module()=default</div><div class="ttdoc">defaultni konstruktor</div></div>
 <div class="ttc" id="aexpression_8hpp_html"><div class="ttname"><a href="expression_8hpp.html">expression.hpp</a></div><div class="ttdoc">definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih...</div></div>
 <div class="ttc" id="astructautograd_1_1BinaryOperator_html"><div class="ttname"><a href="structautograd_1_1BinaryOperator.html">autograd::BinaryOperator</a></div><div class="ttdef"><b>Definition</b> expression.hpp:114</div></div>
 </div><!-- fragment --></div><!-- contents -->

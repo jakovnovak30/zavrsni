@@ -1,18 +1,16 @@
 <map id="/github/workspace/include/layers/Linear.h" name="/github/workspace/include/layers/Linear.h">
 <area shape="rect" id="Node000001" title="definicija modula Linear" alt="" coords="5,5,178,46"/>
-<area shape="rect" id="Node000002" href="$Module_8h.html" title="definicija apstraktne klase Module" alt="" coords="201,94,284,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,44,207,84,204,89,128,49"/>
+<area shape="rect" id="Node000002" href="$Module_8h.html" title="definicija apstraktne klase Module" alt="" coords="173,94,256,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,44,184,83,181,88,120,49"/>
 <area shape="rect" id="Node000013" title=" " alt="" coords="199,404,261,429"/>
-<area shape="poly" id="edge24_Node000001_Node000013" title=" " alt="" coords="75,48,55,73,34,104,18,141,11,179,11,263,15,293,26,315,43,333,68,354,95,372,126,386,185,404,183,410,124,391,93,377,65,358,40,337,21,318,10,294,6,263,6,179,13,139,29,102,50,70,71,45"/>
+<area shape="poly" id="edge23_Node000001_Node000013" title=" " alt="" coords="75,48,55,73,34,104,18,141,11,179,11,263,15,293,26,315,43,333,68,354,95,372,126,386,185,404,183,410,124,391,93,377,65,358,40,337,21,318,10,294,6,263,6,179,13,139,29,102,50,70,71,45"/>
 <area shape="rect" id="Node000003" href="$expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="499,168,692,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="285,114,521,162,520,167,284,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,113,516,162,515,167,256,119"/>
 <area shape="rect" id="Node000012" href="$Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="97,249,249,275"/>
-<area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="239,121,187,236,182,234,234,119"/>
-<area shape="poly" id="edge22_Node000002_Node000013" title=" " alt="" coords="284,107,486,120,619,132,754,150,876,172,928,186,972,201,1006,218,1027,238,1035,260,1026,283,1004,306,974,325,936,342,892,357,790,380,676,397,559,408,447,414,277,418,277,413,447,409,558,402,675,391,789,375,891,351,934,337,971,320,1001,301,1021,281,1029,260,1023,241,1003,223,970,206,927,191,875,178,753,155,619,138,486,125,284,113"/>
+<area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="213,121,183,234,177,233,208,119"/>
+<area shape="poly" id="edge22_Node000002_Node000013" title=" " alt="" coords="256,105,427,109,540,116,661,127,779,143,885,167,931,181,970,198,1002,218,1026,240,1036,263,1029,285,1008,304,974,321,931,336,879,349,756,372,619,390,484,402,277,416,276,410,484,397,619,384,755,367,878,344,929,331,972,316,1005,299,1025,282,1030,263,1021,243,999,222,968,203,929,186,883,172,778,149,660,132,540,121,426,115,256,111"/>
 <area shape="rect" id="Node000016" href="$IOptimizer_8h.html" title="definicija sučelja IOptimizer" alt="" coords="86,168,177,193"/>
-<area shape="poly" id="edge19_Node000002_Node000016" title=" " alt="" coords="225,122,164,161,161,157,222,118"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="251,168,289,193"/>
-<area shape="poly" id="edge23_Node000002_Node000017" title=" " alt="" coords="249,119,262,152,257,154,244,121"/>
+<area shape="poly" id="edge19_Node000002_Node000016" title=" " alt="" coords="202,122,159,159,155,155,198,118"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="534,249,657,275"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="598,194,598,233,593,233,593,194"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="463,330,531,356"/>

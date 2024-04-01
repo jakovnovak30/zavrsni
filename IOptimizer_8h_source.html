@@ -107,19 +107,18 @@ $(function(){initNavTree('IOptimizer_8h_source.html',''); initResizable(); });
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="Matrix_8h.html">autograd_core/Matrix.h</a>&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;CL/cl.h&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classIOptimizer.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="classIOptimizer.html">IOptimizer</a> {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="comment">// funkcija je void zato jer direktno mijenja memoriju na kojoj &quot;žive&quot; parametri</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> optimize(<a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;layer_parameters, <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;layer_gradients) = 0;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// opcionalna funkcija kojoj naglasimo nekim optimizatorima da je gotova jedna iteracija</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">// radi azuriranja internog stanja</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> step() = 0;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classIOptimizer.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="classIOptimizer.html">IOptimizer</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classIOptimizer.html#a7c308b231b1b6da7511ddc9bfe901430">   26</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classIOptimizer.html#a7c308b231b1b6da7511ddc9bfe901430">optimize</a>(<a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;layer_parameters, <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;layer_gradients) = 0;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba">   31</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba">step</a>() = 0;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
 </div>
 <div class="ttc" id="aMatrix_8h_html"><div class="ttname"><a href="Matrix_8h.html">Matrix.h</a></div><div class="ttdoc">definicija funkcionalnosti za razred Matrix</div></div>
-<div class="ttc" id="aclassIOptimizer_html"><div class="ttname"><a href="classIOptimizer.html">IOptimizer</a></div><div class="ttdef"><b>Definition</b> IOptimizer.h:12</div></div>
+<div class="ttc" id="aclassIOptimizer_html"><div class="ttname"><a href="classIOptimizer.html">IOptimizer</a></div><div class="ttdoc">apstraktna klasa koja definira sučelje za optimizatore</div><div class="ttdef"><b>Definition</b> IOptimizer.h:17</div></div>
+<div class="ttc" id="aclassIOptimizer_html_a2e357f1aacfa8819a1d5403d79e346ba"><div class="ttname"><a href="classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba">IOptimizer::step</a></div><div class="ttdeci">virtual void step()=0</div><div class="ttdoc">opcionalna funkcija kojoj naglasimo nekim optimizatorima da je gotova jedna iteracija radi azuriranja...</div></div>
+<div class="ttc" id="aclassIOptimizer_html_a7c308b231b1b6da7511ddc9bfe901430"><div class="ttname"><a href="classIOptimizer.html#a7c308b231b1b6da7511ddc9bfe901430">IOptimizer::optimize</a></div><div class="ttdeci">virtual void optimize(Matrix &amp;layer_parameters, Matrix &amp;layer_gradients)=0</div><div class="ttdoc">funkcija na temelju izračunatih parametara vrši korak optimizacije za zadanu varijablu</div></div>
 <div class="ttc" id="aclassMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix</a></div><div class="ttdef"><b>Definition</b> Matrix.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

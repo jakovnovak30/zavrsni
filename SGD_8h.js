@@ -1,4 +1,4 @@
 var SGD_8h =
 [
-    [ "SGD", "classSGD.html", null ]
+    [ "SGD", "classSGD.html", "classSGD" ]
 ];
