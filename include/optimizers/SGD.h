@@ -7,6 +7,11 @@
 #include "IOptimizer.h"
 #include <CL/cl.h>
 
+/**
+ * @class SGD
+ * @brief implementacija stohastičkog gradijentnog spusta: \f$ Q(w) = w - \nablaQ(w) \f$
+ *
+ */
 class SGD : public IOptimizer {
   private:
     float learning_rate;
