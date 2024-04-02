@@ -1,5 +1,5 @@
 <map id="SGD" name="SGD">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,139,85,244"/>
+<area shape="rect" id="Node000001" title="implementacija stohastičkog gradijentnog spusta:" alt="" coords="5,139,85,244"/>
 <area shape="rect" id="Node000002" href="$classIOptimizer.html" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,85,91"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="48,106,48,139,43,139,43,106"/>
 </map>

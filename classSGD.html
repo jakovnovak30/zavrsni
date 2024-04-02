@@ -99,12 +99,17 @@ $(function(){initNavTree('classSGD.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Opis klase SGD</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>implementacija stohastičkog gradijentnog spusta: <img class="formulaInl" alt="$ Q(w) = w - \nablaQ(w) $" src="form_0.png"/>  
+ <a href="#details">Opširnije...</a></p>
+
+<p><code>#include &lt;<a class="el" href="SGD_8h_source.html">SGD.h</a>&gt;</code></p>
 <div class="dynheader">
 Dijagram klasa za SGD</div>
 <div class="dyncontent">
 <div class="center"><img src="classSGD__inherit__graph.png" border="0" usemap="#aSGD_inherit__map" alt="Inheritance graph"/></div>
 <map name="aSGD_inherit__map" id="aSGD_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,139,85,244"/>
+<area shape="rect" title="implementacija stohastičkog gradijentnog spusta:" alt="" coords="5,139,85,244"/>
 <area shape="rect" href="classIOptimizer.html" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,85,91"/>
 <area shape="poly" title=" " alt="" coords="48,106,48,139,43,139,43,106"/>
 </map>
@@ -114,7 +119,7 @@ Kolaboracijski dijagram za SGD:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSGD__coll__graph.png" border="0" usemap="#aSGD_coll__map" alt="Collaboration graph"/></div>
 <map name="aSGD_coll__map" id="aSGD_coll__map">
-<area shape="rect" title=" " alt="" coords="5,139,85,244"/>
+<area shape="rect" title="implementacija stohastičkog gradijentnog spusta:" alt="" coords="5,139,85,244"/>
 <area shape="rect" href="classIOptimizer.html" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,85,91"/>
 <area shape="poly" title=" " alt="" coords="48,106,48,139,43,139,43,106"/>
 </map>
@@ -134,7 +139,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>step</b> ()=0
 <tr class="memdesc:a2e357f1aacfa8819a1d5403d79e346ba inherit pub_methods_classIOptimizer"><td class="mdescLeft">&#160;</td><td class="mdescRight">opcionalna funkcija kojoj naglasimo nekim optimizatorima da je gotova jedna iteracija radi azuriranja internog stanja <br /></td></tr>
 <tr class="separator:a2e357f1aacfa8819a1d5403d79e346ba inherit pub_methods_classIOptimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Dokumentacija funkcija</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><p>implementacija stohastičkog gradijentnog spusta: <img class="formulaInl" alt="$ Q(w) = w - \nablaQ(w) $" src="form_0.png"/> </p>
+</div><h2 class="groupheader">Dokumentacija funkcija</h2>
 <a id="aa4e35184c65a2759cea568278abe4db3" name="aa4e35184c65a2759cea568278abe4db3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa4e35184c65a2759cea568278abe4db3">&#9670;&#160;</a></span>optimize()</h2>
 
