@@ -19,6 +19,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -120,7 +136,7 @@ $(function(){initNavTree('annotated.html',''); initResizable(); });
 <tr id="row_5_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classModule.html" target="_self">Module</a></td><td class="desc">Skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forward </td></tr>
 <tr id="row_6_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classRandom2DGaussian.html" target="_self">Random2DGaussian</a></td><td class="desc"></td></tr>
 <tr id="row_7_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classReLU.html" target="_self">ReLU</a></td><td class="desc"></td></tr>
-<tr id="row_8_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSGD.html" target="_self">SGD</a></td><td class="desc">Implementacija stohastičkog gradijentnog spusta: <img class="formulaInl" alt="$ Q(w) = w - \nablaQ(w) $" src="form_0.png"/> </td></tr>
+<tr id="row_8_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSGD.html" target="_self">SGD</a></td><td class="desc">Implementacija stohastičkog gradijentnog spusta: \( w \coloneq  w - \eta \nabla Q(w) \) </td></tr>
 <tr id="row_9_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSigmoid.html" target="_self">Sigmoid</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->

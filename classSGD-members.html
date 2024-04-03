@@ -19,6 +19,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -101,9 +117,10 @@ $(function(){initNavTree('classSGD.html',''); initResizable(); });
 <p>Ovo je popis svih članova<a class="el" href="classSGD.html">SGD</a>, uključujući naslijeđene članove.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classSGD.html#aa4e35184c65a2759cea568278abe4db3">optimize</a>(Matrix &amp;layer_parameters, Matrix &amp;layer_gradients) override final</td><td class="entry"><a class="el" href="classSGD.html">SGD</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>SGD</b>(float learning_rate) (definirano u <a class="el" href="classSGD.html">SGD</a>)</td><td class="entry"><a class="el" href="classSGD.html">SGD</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classSGD.html#a20541c4b59f2b2caffc9fc5162975d46">SGD</a>(float learning_rate)</td><td class="entry"><a class="el" href="classSGD.html">SGD</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba">step</a>()=0</td><td class="entry"><a class="el" href="classIOptimizer.html">IOptimizer</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~SGD</b>() (definirano u <a class="el" href="classSGD.html">SGD</a>)</td><td class="entry"><a class="el" href="classSGD.html">SGD</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classIOptimizer.html#ab3447449003e0f06dc77b8e15eac84aa">~IOptimizer</a>()=default</td><td class="entry"><a class="el" href="classIOptimizer.html">IOptimizer</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSGD.html#a1f858ebde5ee268f6c2433693a982d8a">~SGD</a>() override</td><td class="entry"><a class="el" href="classSGD.html">SGD</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

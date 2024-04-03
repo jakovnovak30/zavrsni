@@ -19,6 +19,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -143,7 +159,7 @@ Ovaj graf pokazuje koje datoteke izravno ili neizravno uključuju ovu datoteku:<
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Strukture</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSGD.html">SGD</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">implementacija stohastičkog gradijentnog spusta: <img class="formulaInl" alt="$ Q(w) = w - \nablaQ(w) $" src="form_0.png"/>  <a href="classSGD.html#details">Opširnije...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">implementacija stohastičkog gradijentnog spusta: \( w \coloneq  w - \eta \nabla Q(w) \)  <a href="classSGD.html#details">Opširnije...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>

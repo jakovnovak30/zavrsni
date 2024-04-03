@@ -19,6 +19,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -110,9 +126,9 @@ Dijagram klasa za IOptimizer</div>
 <div class="dyncontent">
 <div class="center"><img src="classIOptimizer__inherit__graph.png" border="0" usemap="#aIOptimizer_inherit__map" alt="Inheritance graph"/></div>
 <map name="aIOptimizer_inherit__map" id="aIOptimizer_inherit__map">
-<area shape="rect" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,85,91"/>
-<area shape="rect" href="classSGD.html" title="implementacija stohastičkog gradijentnog spusta:" alt="" coords="5,139,85,244"/>
-<area shape="poly" title=" " alt="" coords="48,106,48,139,43,139,43,106"/>
+<area shape="rect" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,103,111"/>
+<area shape="rect" href="classSGD.html" title="implementacija stohastičkog gradijentnog spusta:" alt="" coords="14,159,94,264"/>
+<area shape="poly" title=" " alt="" coords="57,125,57,159,51,159,51,125"/>
 </map>
 </div>
 <div class="dynheader">
@@ -120,12 +136,16 @@ Kolaboracijski dijagram za IOptimizer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIOptimizer__coll__graph.png" border="0" usemap="#aIOptimizer_coll__map" alt="Collaboration graph"/></div>
 <map name="aIOptimizer_coll__map" id="aIOptimizer_coll__map">
-<area shape="rect" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,85,91"/>
+<area shape="rect" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,103,111"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public članovi</h2></td></tr>
+<tr class="memitem:ab3447449003e0f06dc77b8e15eac84aa" id="r_ab3447449003e0f06dc77b8e15eac84aa"><td class="memItemLeft" align="right" valign="top"><a id="ab3447449003e0f06dc77b8e15eac84aa" name="ab3447449003e0f06dc77b8e15eac84aa"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~IOptimizer</b> ()=default</td></tr>
+<tr class="memdesc:ab3447449003e0f06dc77b8e15eac84aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">generički virtualni destruktor kojeg izvedene klase mogu nadjačati <br /></td></tr>
+<tr class="separator:ab3447449003e0f06dc77b8e15eac84aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c308b231b1b6da7511ddc9bfe901430" id="r_a7c308b231b1b6da7511ddc9bfe901430"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c308b231b1b6da7511ddc9bfe901430">optimize</a> (<a class="el" href="classMatrix.html">Matrix</a> &amp;layer_parameters, <a class="el" href="classMatrix.html">Matrix</a> &amp;layer_gradients)=0</td></tr>
 <tr class="memdesc:a7c308b231b1b6da7511ddc9bfe901430"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija na temelju izračunatih parametara vrši korak optimizacije za zadanu varijablu  <br /></td></tr>
 <tr class="separator:a7c308b231b1b6da7511ddc9bfe901430"><td class="memSeparator" colspan="2">&#160;</td></tr>

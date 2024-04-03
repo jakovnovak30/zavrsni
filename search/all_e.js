@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['sgd_0',['SGD',['../classSGD.html',1,'']]],
+  ['sgd_0',['SGD',['../classSGD.html',1,'SGD'],['../classSGD.html#a20541c4b59f2b2caffc9fc5162975d46',1,'SGD::SGD()']]],
   ['sgd_2ecpp_1',['SGD.cpp',['../SGD_8cpp.html',1,'']]],
   ['sgd_2eh_2',['SGD.h',['../SGD_8h.html',1,'']]],
   ['sigmoid_3',['Sigmoid',['../classSigmoid.html',1,'']]],

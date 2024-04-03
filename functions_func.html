@@ -19,6 +19,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -99,8 +115,11 @@ $(function(){initNavTree('functions_func.html',''); initResizable(); });
 <li>forward()&#160;:&#160;<a class="el" href="classLinear.html#ae23a8a23de3f04e233810e6200925646">Linear</a>, <a class="el" href="classModule.html#a5554809f9d526dc08925f201ff21dd07">Module</a></li>
 <li>Module()&#160;:&#160;<a class="el" href="classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0">Module</a></li>
 <li>optimize()&#160;:&#160;<a class="el" href="classIOptimizer.html#a7c308b231b1b6da7511ddc9bfe901430">IOptimizer</a>, <a class="el" href="classSGD.html#aa4e35184c65a2759cea568278abe4db3">SGD</a></li>
+<li>SGD()&#160;:&#160;<a class="el" href="classSGD.html#a20541c4b59f2b2caffc9fc5162975d46">SGD</a></li>
 <li>step()&#160;:&#160;<a class="el" href="classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba">IOptimizer</a></li>
+<li>~IOptimizer()&#160;:&#160;<a class="el" href="classIOptimizer.html#ab3447449003e0f06dc77b8e15eac84aa">IOptimizer</a></li>
 <li>~Module()&#160;:&#160;<a class="el" href="classModule.html#a4a48538d35a2da7fcc32d9f509034723">Module</a></li>
+<li>~SGD()&#160;:&#160;<a class="el" href="classSGD.html#a1f858ebde5ee268f6c2433693a982d8a">SGD</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -19,6 +19,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -94,8 +110,6 @@ $(function(){initNavTree('CrossEntropyLoss_8cpp.html',''); initResizable(); });
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Funkcije</a>  </div>
   <div class="headertitle"><div class="title">Opis datoteke CrossEntropyLoss.cpp</div></div>
 </div><!--header-->
 <div class="contents">
@@ -156,14 +170,7 @@ Graf include međuovisnosti za CrossEntropyLoss.cpp:</div>
 <area shape="poly" title=" " alt="" coords="1063,306,1046,346,1041,344,1058,304"/>
 </map>
 </div>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Funkcije</h2></td></tr>
-<tr class="memitem:aeeaa6e2884efc7daefbc6fd2ee650351" id="r_aeeaa6e2884efc7daefbc6fd2ee650351"><td class="memItemLeft" align="right" valign="top"><a id="aeeaa6e2884efc7daefbc6fd2ee650351" name="aeeaa6e2884efc7daefbc6fd2ee650351"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_derive</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; seed, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">autograd::Expression</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; &gt; &amp;out_map)</td></tr>
-<tr class="separator:aeeaa6e2884efc7daefbc6fd2ee650351"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+</div><a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
 <div class="textblock"><p>implementacija <a class="el" href="classCrossEntropyLoss.html">CrossEntropyLoss</a> funkcije </p>
 <dl class="section author"><dt>Autor</dt><dd>Jakov Novak </dd></dl>
 </div></div><!-- contents -->

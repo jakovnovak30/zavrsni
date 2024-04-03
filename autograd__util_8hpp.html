@@ -19,6 +19,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -138,10 +154,10 @@ Graf include međuovisnosti za autograd_util.hpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funkcije</h2></td></tr>
-<tr class="memitem:aa6e990398be6a802cd491817a2c4201b" id="r_aa6e990398be6a802cd491817a2c4201b"><td class="memTemplParams" colspan="2"><a id="aa6e990398be6a802cd491817a2c4201b" name="aa6e990398be6a802cd491817a2c4201b"></a>
+<tr class="memitem:ac605f0a3e42b6f760b3cb36491cfceac" id="r_ac605f0a3e42b6f760b3cb36491cfceac"><td class="memTemplParams" colspan="2"><a id="ac605f0a3e42b6f760b3cb36491cfceac" name="ac605f0a3e42b6f760b3cb36491cfceac"></a>
 template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> T &gt; </td></tr>
-<tr class="memitem:aa6e990398be6a802cd491817a2c4201b"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>autograd::createVariable</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> T &amp;value, <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name)</td></tr>
-<tr class="separator:aa6e990398be6a802cd491817a2c4201b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac605f0a3e42b6f760b3cb36491cfceac"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>autograd::createVariable</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> T &amp;value, <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name, <a class="el" href="structautograd_1_1BinaryOperator.html">bool</a> requires_grad=<a class="el" href="structautograd_1_1BinaryOperator.html">true</a>)</td></tr>
+<tr class="separator:ac605f0a3e42b6f760b3cb36491cfceac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5aeeae291364e524a6f02ae10ddb1296" id="r_a5aeeae291364e524a6f02ae10ddb1296"><td class="memTemplParams" colspan="2"><a id="a5aeeae291364e524a6f02ae10ddb1296" name="a5aeeae291364e524a6f02ae10ddb1296"></a>
 template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> T , <a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> <a class="el" href="structautograd_1_1BinaryOperator.html">U</a> &gt; </td></tr>
 <tr class="memitem:a5aeeae291364e524a6f02ae10ddb1296"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>autograd::mathFunc</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1BinaryOperator.html">U</a> &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">operation</a>)</td></tr>
