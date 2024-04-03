@@ -8,12 +8,31 @@
 #include "autograd_core/Matrix.h"
 #include <memory>
 
+/**
+ * @class Sigmoid
+ * @brief implementacije sigmoid funkcije: \f$ f(x) = \frac{1}{1 - e^{-x}} \f$
+ *
+ */
 class Sigmoid : public autograd::UnaryOperator<Matrix>, public std::enable_shared_from_this<autograd::Expression<Matrix>> {
   private:
+    /**
+     * @brief OpenCL program koji se koristi
+     */
     cl_program program;
+    /**
+     * @brief OpenCL jezgra koja se koristi
+     */
     cl_kernel forward_kernel;
   public:
+    /**
+     * @brief konstruktor koji prima izraz \f$ x \f$
+     *
+     * @param prev ulaz funkcije tipa autograd::Expression<Matrix>
+     */
     Sigmoid(std::shared_ptr<Expression<Matrix>> prev);
+    /**
+     * @brief destruktor koji oslobađa OpenCL resurse
+     */
     ~Sigmoid();
 
     virtual void eval() override final;

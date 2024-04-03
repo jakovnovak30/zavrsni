@@ -25,9 +25,25 @@ namespace autograd {
     };
   static const size_t srcLen[] = { strlen(srcCode[0]) };
 
+  /**
+   * @class MatrixMultply
+   * @brief klasa koja predstavlja binarni operator matričnog množenja
+   *
+   */
   struct MatrixMultply : BinaryOperator<Matrix> {
+    /**
+     * @brief zastavice za transponiranje lijeve i/ili desne strane
+     */
     bool transposeLeft, transposeRight;
 
+    /**
+     * @brief konstruktor koji prima dva izraza te (opcionalno) njihove zastavice za transponiranje
+     *
+     * @param left lijeva matrica
+     * @param right desna matrica
+     * @param transposeLeft zastavica za transponiraje lijeve matrice
+     * @param transposeRight zastavica za transponiraje desne matrice
+     */
     MatrixMultply(std::shared_ptr<Expression<Matrix>> left, std::shared_ptr<Expression<Matrix>> right,
                   bool transposeLeft = false, bool transposeRight = false)
                   : BinaryOperator(left, right), transposeLeft{ transposeLeft }, transposeRight { transposeRight } { }
@@ -86,8 +102,22 @@ namespace autograd {
     }
   };
 
+  /**
+   * @class VectorSumReduction
+   * @brief unarni operator redukcije matrice u vektora zbrajanjem po proizvoljnoj osi
+   *
+   */
   struct VectorSumReduction : UnaryOperator<Matrix> {
+    /**
+     * @brief os po kojoj želimo reducirati matricu, može biti 0 (zbraja se po x osi) ili 1 (zbraja se po y osi)
+     */
     int axis;
+    /**
+     * @brief konstruktor kojemo zadajemo izraz i os
+     *
+     * @param prev izraz koji je ulaz naše funkcije
+     * @param axis os redukcije, 0 ili 1
+     */
     VectorSumReduction(std::shared_ptr<Expression<Matrix>> prev, int axis = 0) : UnaryOperator<Matrix>(prev), axis(axis) { }
 
     void eval() override {
@@ -139,7 +169,18 @@ namespace autograd {
     }
   };
 
+  /**
+   * @class MatrixVectorAdd
+   * @brief binarni operator zbrajanja matrice s vektorom: \f$ A + \vec{b} \f$
+   *
+   */
   struct MatrixVectorAdd : BinaryOperator<Matrix> {
+    /**
+     * @brief konstruktor kojemo zadajemo izraze koje treba zbrojiti
+     *
+     * @param left matrica koju zbrajamo s vektorom, \f$ A \f$
+     * @param right vektor kojeg zbrajamo s matricom, \f$ \vec{b} \f$
+     */
     MatrixVectorAdd(std::shared_ptr<Expression<Matrix>> left, std::shared_ptr<Expression<Matrix>> right) : BinaryOperator(left, right) { }
     
     void eval() override {

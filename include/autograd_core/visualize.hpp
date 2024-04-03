@@ -14,6 +14,14 @@
 #include "expression.hpp"
 
 namespace autograd {
+  /**
+   * @brief funkcija koja na temelju autograd::Expression<T> tipa generira graf funkcije koji se sprema u png formatu
+   *
+   * @tparam T tip varijabli, u pravilu float ili Matrix
+   * @param expr izraz za koji želimo generirati graf
+   * @param filePath putanja do datoteke u kojoj spremamo rezultat
+   * @param preview zastavica kojom možemo uključiti "preview", tj. automatsko otvaranje slike nakon generiranja
+   */
   template <typename T>
   void visualize(const Expression<T> &expr, const std::string &filePath, bool preview = false) {
     GVC_t *context = gvContext();

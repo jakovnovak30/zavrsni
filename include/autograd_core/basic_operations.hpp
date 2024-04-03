@@ -14,6 +14,9 @@ namespace autograd {
   template <typename T>
   struct Neg;
 
+  /**
+   * @brief implementacija binarne operacije zbrajanja: \f$ f(x, y) = x + y \f$
+   */
   template <typename T>
   struct Add : BinaryOperator<T> {
     Add(std::shared_ptr<Expression<T>> left, std::shared_ptr<Expression<T>> right) : BinaryOperator<T>(left, right) { }
@@ -36,6 +39,9 @@ namespace autograd {
     }
   };
 
+  /**
+   * @brief implementacija binarne operacije oduzimanja: \f$ f(x, y) = x - y \f$
+   */
   template <typename T>
   struct Sub : BinaryOperator<T> {
     Sub(std::shared_ptr<Expression<T>> left, std::shared_ptr<Expression<T>> right) : BinaryOperator<T>(left, right) { }
@@ -58,6 +64,9 @@ namespace autograd {
     }
   };
 
+  /**
+   * @brief implementacija binarne operacije množenja: \f$ f(x, y) = x * y \f$
+   */
   template <typename T>
   struct Mult : BinaryOperator<T> {
     Mult(std::shared_ptr<Expression<T>> left, std::shared_ptr<Expression<T>> right) : BinaryOperator<T>(left, right) { }
@@ -80,6 +89,9 @@ namespace autograd {
     }
   };
 
+  /**
+   * @brief implementacija binarne operacije dijeljenja: \f$ f(x, y) = x / y \f$
+   */
   template <typename T>
   struct Div : BinaryOperator<T> {
     Div(std::shared_ptr<Expression<T>> left, std::shared_ptr<Expression<T>> right) : BinaryOperator<T>(left, right) { }
@@ -103,6 +115,9 @@ namespace autograd {
     }
   };
 
+  /**
+   * @brief implementacija unarne operacije negacije: \f$ f(x) = -x \f$
+   */
   template <typename T>
   struct Neg : UnaryOperator<T> {
     Neg(std::shared_ptr<Expression<T>> prev) : UnaryOperator<T>(prev) { }
@@ -124,6 +139,9 @@ namespace autograd {
     }
   };
 
+  /**
+   * @brief implementacija unarne operacije eksponenciranja: \f$ f(x) = e^x \f$
+   */
   template <typename T>
   struct Exp : public UnaryOperator<T>, public std::enable_shared_from_this<Exp<T>> {
     Exp(std::shared_ptr<Expression<T>> prev) : UnaryOperator<T>(prev) { }
