@@ -1,7 +1,8 @@
-#include "../src/autograd_core/expression.hpp"
-#include "../src/autograd_core/basic_operations.hpp"
-#include "../src/autograd_core/visualize.hpp"
-#include "../src/autograd_core/autograd_util.hpp"
+#include "autograd_core/expression.hpp"
+#include "autograd_core/basic_operations.hpp"
+#include "autograd_core/visualize.hpp"
+#include "autograd_core/autograd_util.hpp"
+
 #include <iostream>
 #include <memory>
 

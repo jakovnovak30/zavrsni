@@ -1,5 +1,6 @@
 #include "../src/Util.h"
 #include "../src/layers/Sigmoid.h"
+#include "../src/layers/ReLU.h"
 #include "../src/autograd_core/Matrix.h"
 #include "../src/autograd_core/autograd_util.hpp"
 #include "../src/autograd_core/basic_operations.hpp"
@@ -26,12 +27,15 @@ int main() {
   auto mat_y = createVariable(Matrix{{2.f, 3.f}, {3.f, 2.f}}, "y");
 
   
-  auto mat_expr = std::make_shared<Sigmoid>(mat_x);
+  auto mat_expr = std::make_shared<ReLU>(mat_x);
 
 
   // std::cout << mat_expr->grad()["y"]->getValue().toString() << std::endl;
   visualize(*mat_expr->grad()["x"], "/tmp/vec_test.png", true);
   // visualize(*mat_expr, "/tmp/vec_test.png", true);
+
+  // test
+  std::cout << "matrica x * 2 = " << (mat_x->getValue() * Matrix(2)).toString() << std::endl;
 
   freeCL();
 }
