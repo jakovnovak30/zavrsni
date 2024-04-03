@@ -26,11 +26,11 @@ window.MathJax = {
     processHtmlClass: 'tex2jax_process'
   },
   loader: {
-    load: ['[tex]/mathtools']
+    load: ['[tex]/ams','[tex]/mathtools']
   },
   tex: {
     macros: {},
-    packages: ['base','configmacros','mathtools']
+    packages: ['base','configmacros','ams','mathtools']
   }
 };
 </script>
@@ -119,7 +119,7 @@ Stablo naslijeđivanja je složeno približno po abecedi:</div><div class="direc
 <div class="levels">[razina detalja <span onclick="javascript:dynsection.toggleLevel(1);">1</span><span onclick="javascript:dynsection.toggleLevel(2);">2</span><span onclick="javascript:dynsection.toggleLevel(3);">3</span>]</div><table class="directory">
 <tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="dynsection.toggleFolder('0_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>std::enable_shared_from_this</b></td><td class="desc"></td></tr>
 <tr id="row_0_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1Variable.html" target="_self">autograd::Variable&lt; Matrix &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_0_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classReLU.html" target="_self">ReLU</a></td><td class="desc"></td></tr>
+<tr id="row_0_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classReLU.html" target="_self">ReLU</a></td><td class="desc">Klasa koja implementira funkciju "leaky ReLU" </td></tr>
 <tr id="row_0_2_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSigmoid.html" target="_self">Sigmoid</a></td><td class="desc"></td></tr>
 <tr id="row_0_3_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1Exp.html" target="_self">autograd::Exp&lt; T &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_0_4_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1Variable.html" target="_self">autograd::Variable&lt; T &gt;</a></td><td class="desc"></td></tr>
@@ -129,7 +129,7 @@ Stablo naslijeđivanja je složeno približno po abecedi:</div><div class="direc
 <tr id="row_1_0_1_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1MatrixMultply.html" target="_self">autograd::MatrixMultply</a></td><td class="desc"></td></tr>
 <tr id="row_1_0_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1MatrixVectorAdd.html" target="_self">autograd::MatrixVectorAdd</a></td><td class="desc"></td></tr>
 <tr id="row_1_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_1_1_" class="arrow" onclick="dynsection.toggleFolder('1_1_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1UnaryOperator.html" target="_self">autograd::UnaryOperator&lt; Matrix &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_1_1_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classReLU.html" target="_self">ReLU</a></td><td class="desc"></td></tr>
+<tr id="row_1_1_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classReLU.html" target="_self">ReLU</a></td><td class="desc">Klasa koja implementira funkciju "leaky ReLU" </td></tr>
 <tr id="row_1_1_1_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSigmoid.html" target="_self">Sigmoid</a></td><td class="desc"></td></tr>
 <tr id="row_1_1_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1VectorSumReduction.html" target="_self">autograd::VectorSumReduction</a></td><td class="desc"></td></tr>
 <tr id="row_1_2_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structautograd_1_1Variable.html" target="_self">autograd::Variable&lt; Matrix &gt;</a></td><td class="desc"></td></tr>
@@ -147,7 +147,7 @@ Stablo naslijeđivanja je složeno približno po abecedi:</div><div class="direc
 <tr id="row_3_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSGD.html" target="_self">SGD</a></td><td class="desc">Implementacija stohastičkog gradijentnog spusta: \( w \coloneq  w - \eta \nabla Q(w) \) </td></tr>
 <tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classMatrix.html" target="_self">Matrix</a></td><td class="desc"></td></tr>
 <tr id="row_5_" class="odd"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_5_" class="arrow" onclick="dynsection.toggleFolder('5_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classModule.html" target="_self">Module</a></td><td class="desc">Skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forward </td></tr>
-<tr id="row_5_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classLinear.html" target="_self">Linear</a></td><td class="desc"></td></tr>
+<tr id="row_5_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classLinear.html" target="_self">Linear</a></td><td class="desc">Klasa koja implementira afine transformacije, za proizvoljne dimenzije vektora: \( A \vec{x} + \vec{b} \) </td></tr>
 <tr id="row_6_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classRandom2DGaussian.html" target="_self">Random2DGaussian</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->

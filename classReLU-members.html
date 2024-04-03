@@ -26,11 +26,11 @@ window.MathJax = {
     processHtmlClass: 'tex2jax_process'
   },
   loader: {
-    load: ['[tex]/mathtools']
+    load: ['[tex]/ams','[tex]/mathtools']
   },
   tex: {
     macros: {},
-    packages: ['base','configmacros','mathtools']
+    packages: ['base','configmacros','ams','mathtools']
   }
 };
 </script>
@@ -125,10 +125,10 @@ $(function(){initNavTree('classReLU.html',''); initResizable(); });
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getValue</b>() (definirano u <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>grad</b>() (definirano u <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator[]</b>(const std::string &amp;name) (definirano u <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>ReLU</b>(std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; prev) (definirano u <a class="el" href="classReLU.html">ReLU</a>)</td><td class="entry"><a class="el" href="classReLU.html">ReLU</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classReLU.html#ad86d8e2170c797bb131dcbda51b5f9a5">ReLU</a>(std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; prev)</td><td class="entry"><a class="el" href="classReLU.html">ReLU</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>requires_grad</b> (definirano u <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>value</b> (definirano u <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~ReLU</b>() (definirano u <a class="el" href="classReLU.html">ReLU</a>)</td><td class="entry"><a class="el" href="classReLU.html">ReLU</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classReLU.html#a71791f745eb07e6e47f690463fce5516">~ReLU</a>()</td><td class="entry"><a class="el" href="classReLU.html">ReLU</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

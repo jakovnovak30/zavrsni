@@ -18,7 +18,7 @@
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="307,453,282,508,277,506,302,451"/>
 <area shape="rect" id="Node000005" href="$structautograd_1_1MatrixVectorAdd.html" title=" " alt="" coords="344,517,509,642"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="372,451,402,516,397,518,367,453"/>
-<area shape="rect" id="Node000007" href="$classReLU.html" title=" " alt="" coords="534,507,642,652"/>
+<area shape="rect" id="Node000007" href="$classReLU.html" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="534,507,642,652"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="732,440,655,509,644,520,640,516,652,505,729,436"/>
 <area shape="rect" id="Node000008" href="$classSigmoid.html" title=" " alt="" coords="666,507,774,652"/>
 <area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="779,443,752,508,747,506,774,441"/>

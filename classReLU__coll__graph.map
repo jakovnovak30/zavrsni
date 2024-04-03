@@ -1,5 +1,5 @@
 <map id="ReLU" name="ReLU">
-<area shape="rect" id="Node000001" title=" " alt="" coords="211,1446,319,1591"/>
+<area shape="rect" id="Node000001" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="211,1446,319,1591"/>
 <area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="100,1296,253,1396"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,1408,230,1445,225,1447,207,1411"/>
 <area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="5,1008,167,1233"/>

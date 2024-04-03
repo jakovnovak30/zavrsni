@@ -18,11 +18,11 @@
 <area shape="poly" id="edge40_Node000001_Node000023" title=" " alt="" coords="1032,30,1266,52,1411,69,1556,91,1560,92,1559,97,1556,97,1411,74,1266,57,1031,35"/>
 <area shape="rect" id="Node000024" title=" " alt="" coords="1657,94,1711,120"/>
 <area shape="poly" id="edge42_Node000001_Node000024" title=" " alt="" coords="1031,27,1147,33,1298,45,1468,63,1642,91,1641,96,1467,69,1297,50,1147,38,1031,32"/>
-<area shape="rect" id="Node000003" href="$Module_8h.html" title="definicija apstraktne klase Module" alt="" coords="320,175,403,201"/>
+<area shape="rect" id="Node000003" href="$Module_8h.html" title="definicija apstraktne klase Module" alt="" coords="325,175,398,201"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="400,121,377,163,373,160,395,119"/>
 <area shape="poly" id="edge24_Node000002_Node000014" title=" " alt="" coords="412,119,433,182,443,224,447,268,447,352,444,382,434,406,418,425,395,446,366,466,333,482,270,500,269,494,331,477,363,462,392,442,414,422,430,403,439,381,441,352,441,268,437,225,428,183,407,121"/>
 <area shape="rect" id="Node000004" href="$expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="602,256,795,282"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="404,197,633,250,631,255,403,202"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="399,195,632,250,631,255,397,200"/>
 <area shape="rect" id="Node000013" href="$Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="204,338,356,363"/>
 <area shape="poly" id="edge14_Node000003_Node000013" title=" " alt="" coords="329,204,292,225,275,240,262,258,257,273,258,290,268,323,263,325,253,291,252,273,258,255,271,236,289,221,327,199"/>
 <area shape="poly" id="edge23_Node000003_Node000014" title=" " alt="" coords="340,204,297,228,251,259,203,294,168,326,144,365,125,419,122,432,125,443,148,469,179,487,176,491,145,473,120,446,117,432,120,418,139,362,164,323,200,290,248,254,295,223,337,199"/>

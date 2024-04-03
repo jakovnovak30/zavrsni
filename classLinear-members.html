@@ -26,11 +26,11 @@ window.MathJax = {
     processHtmlClass: 'tex2jax_process'
   },
   loader: {
-    load: ['[tex]/mathtools']
+    load: ['[tex]/ams','[tex]/mathtools']
   },
   tex: {
     macros: {},
-    packages: ['base','configmacros','mathtools']
+    packages: ['base','configmacros','ams','mathtools']
   }
 };
 </script>
@@ -118,7 +118,7 @@ $(function(){initNavTree('classLinear.html',''); initResizable(); });
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classModule.html#a3552d69cccb2deb0796c6504a1d9fbdd">backward</a>(std::shared_ptr&lt; autograd::Expression&lt; Matrix &gt; &gt; expr, std::weak_ptr&lt; IOptimizer &gt; optim)</td><td class="entry"><a class="el" href="classModule.html">Module</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classLinear.html#ae23a8a23de3f04e233810e6200925646">forward</a>(std::shared_ptr&lt; autograd::Expression&lt; Matrix &gt; &gt; ulaz) override final</td><td class="entry"><a class="el" href="classLinear.html">Linear</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Linear</b>(size_t in_features, size_t out_features, bool bias=false) (definirano u <a class="el" href="classLinear.html">Linear</a>)</td><td class="entry"><a class="el" href="classLinear.html">Linear</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classLinear.html#aa2ee78b5a5eb3176e7002eec4ea8104b">Linear</a>(size_t in_features, size_t out_features, bool bias=false)</td><td class="entry"><a class="el" href="classLinear.html">Linear</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0">Module</a>()=default</td><td class="entry"><a class="el" href="classModule.html">Module</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classModule.html#a4a48538d35a2da7fcc32d9f509034723">~Module</a>()=default</td><td class="entry"><a class="el" href="classModule.html">Module</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->

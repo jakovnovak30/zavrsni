@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sgd_0',['SGD',['../classSGD.html#a20541c4b59f2b2caffc9fc5162975d46',1,'SGD']]],
-  ['step_1',['step',['../classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba',1,'IOptimizer']]]
+  ['optimize_0',['optimize',['../classIOptimizer.html#a7c308b231b1b6da7511ddc9bfe901430',1,'IOptimizer::optimize()'],['../classSGD.html#aa4e35184c65a2759cea568278abe4db3',1,'SGD::optimize()']]]
 ];

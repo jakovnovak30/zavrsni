@@ -26,11 +26,11 @@ window.MathJax = {
     processHtmlClass: 'tex2jax_process'
   },
   loader: {
-    load: ['[tex]/mathtools']
+    load: ['[tex]/ams','[tex]/mathtools']
   },
   tex: {
     macros: {},
-    packages: ['base','configmacros','mathtools']
+    packages: ['base','configmacros','ams','mathtools']
   }
 };
 </script>
@@ -116,10 +116,10 @@ $(function(){initNavTree('ReLU_8h.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>definicija funkcije <a class="el" href="classReLU.html">ReLU</a>  
+<p>definicija funkcije <a class="el" href="classReLU.html" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;">ReLU</a>  
 <a href="#details">Opširnije...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="expression_8hpp_source.html">../autograd_core/expression.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Matrix_8h_source.html">../autograd_core/Matrix.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="expression_8hpp_source.html">autograd_core/expression.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Matrix_8h_source.html">autograd_core/Matrix.h</a>&quot;</code><br />
 <code>#include &lt;CL/cl.h&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -128,17 +128,17 @@ Graf include međuovisnosti za ReLU.h:</div>
 <div class="center"><img src="ReLU_8h__incl.png" border="0" usemap="#a_2github_2workspace_2include_2layers_2ReLU_8h" alt=""/></div>
 <map name="a_2github_2workspace_2include_2layers_2ReLU_8h" id="a_2github_2workspace_2include_2layers_2ReLU_8h">
 <area shape="rect" title="definicija funkcije ReLU" alt="" coords="570,5,742,46"/>
-<area shape="rect" href="expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="355,94,558,120"/>
+<area shape="rect" href="expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="360,94,553,120"/>
 <area shape="poly" title=" " alt="" coords="607,49,502,90,500,85,605,44"/>
 <area shape="rect" title=" " alt="" coords="261,256,329,282"/>
-<area shape="poly" title=" " alt="" coords="570,36,427,50,260,76,181,94,111,115,56,140,35,154,20,169,11,183,8,194,10,205,15,214,39,230,73,243,162,258,246,264,246,269,161,263,72,248,36,235,12,218,5,207,3,194,6,181,16,166,32,150,53,136,109,110,180,88,260,71,426,45,570,30"/>
-<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="776,94,939,120"/>
+<area shape="poly" title=" " alt="" coords="570,36,427,50,261,76,181,94,111,115,56,140,35,154,20,169,11,183,8,194,10,205,15,214,39,230,73,243,162,258,246,264,246,269,161,263,72,248,36,235,12,218,5,207,3,194,6,181,16,166,32,150,53,136,110,110,180,88,260,71,426,45,570,30"/>
+<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="781,94,934,120"/>
 <area shape="poly" title=" " alt="" coords="708,44,814,85,812,90,706,49"/>
 <area shape="rect" title=" " alt="" coords="974,256,1037,282"/>
-<area shape="poly" title=" " alt="" coords="743,34,846,54,900,70,952,92,1008,119,1028,138,1045,167,1050,187,1047,208,1028,245,1023,243,1042,207,1045,187,1040,169,1024,141,1005,124,950,96,898,75,844,59,742,39"/>
+<area shape="poly" title=" " alt="" coords="744,35,843,55,896,71,947,92,1005,119,1027,137,1045,167,1050,187,1047,208,1028,245,1023,243,1042,207,1045,187,1041,169,1023,141,1002,123,945,96,894,76,842,60,742,40"/>
 <area shape="rect" title=" " alt="" coords="180,175,303,201"/>
 <area shape="poly" title=" " alt="" coords="424,123,290,172,288,167,422,118"/>
-<area shape="poly" title=" " alt="" coords="354,111,263,114,168,124,87,141,57,154,37,170,29,182,25,192,26,202,31,210,52,226,84,238,166,255,246,263,246,268,166,260,82,244,49,231,27,214,21,203,20,192,24,179,33,166,54,149,85,136,168,118,263,109,354,105"/>
+<area shape="poly" title=" " alt="" coords="359,110,268,114,171,123,88,141,58,154,37,170,29,182,25,192,26,202,31,210,52,226,84,238,166,255,246,263,246,268,166,260,83,244,49,231,27,214,21,203,20,192,24,179,33,166,55,149,87,136,170,118,267,109,359,105"/>
 <area shape="rect" title=" " alt="" coords="327,175,393,201"/>
 <area shape="poly" title=" " alt="" coords="443,122,389,167,385,163,440,118"/>
 <area shape="rect" title=" " alt="" coords="418,175,495,201"/>
@@ -149,7 +149,7 @@ Graf include međuovisnosti za ReLU.h:</div>
 <area shape="poly" title=" " alt="" coords="391,123,169,170,158,173,156,168,168,165,390,118"/>
 <area shape="rect" href="basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="596,168,735,208"/>
 <area shape="poly" title=" " alt="" coords="483,118,592,159,590,164,481,123"/>
-<area shape="poly" title=" " alt="" coords="620,170,508,128,510,123,622,165"/>
+<area shape="poly" title=" " alt="" coords="620,170,509,128,510,123,622,165"/>
 <area shape="poly" title=" " alt="" coords="597,208,585,211,344,261,343,256,584,206,595,203"/>
 <area shape="rect" title=" " alt="" coords="637,256,694,282"/>
 <area shape="poly" title=" " alt="" coords="668,209,668,241,663,241,663,209"/>
@@ -178,10 +178,11 @@ Ovaj graf pokazuje koje datoteke izravno ili neizravno uključuju ovu datoteku:<
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Strukture</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReLU.html">ReLU</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">klasa koja implementira funkciju "leaky ReLU"  <a href="classReLU.html#details">Opširnije...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
-<div class="textblock"><p>definicija funkcije <a class="el" href="classReLU.html">ReLU</a> </p>
+<div class="textblock"><p>definicija funkcije <a class="el" href="classReLU.html" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;">ReLU</a> </p>
 <dl class="section author"><dt>Autor</dt><dd>Jakov Novak </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

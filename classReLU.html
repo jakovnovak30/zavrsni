@@ -26,11 +26,11 @@ window.MathJax = {
     processHtmlClass: 'tex2jax_process'
   },
   loader: {
-    load: ['[tex]/mathtools']
+    load: ['[tex]/ams','[tex]/mathtools']
   },
   tex: {
     macros: {},
-    packages: ['base','configmacros','mathtools']
+    packages: ['base','configmacros','ams','mathtools']
   }
 };
 </script>
@@ -116,12 +116,17 @@ $(function(){initNavTree('classReLU.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Opis klase ReLU</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>klasa koja implementira funkciju "leaky ReLU"  
+ <a href="#details">Opširnije...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ReLU_8h_source.html">ReLU.h</a>&gt;</code></p>
 <div class="dynheader">
 Dijagram klasa za ReLU</div>
 <div class="dyncontent">
 <div class="center"><img src="classReLU__inherit__graph.png" border="0" usemap="#aReLU_inherit__map" alt="Inheritance graph"/></div>
 <map name="aReLU_inherit__map" id="aReLU_inherit__map">
-<area shape="rect" title=" " alt="" coords="120,447,228,592"/>
+<area shape="rect" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="120,447,228,592"/>
 <area shape="rect" href="structautograd_1_1UnaryOperator.html" title=" " alt="" coords="9,299,163,399"/>
 <area shape="poly" title=" " alt="" coords="121,411,139,446,134,448,116,413"/>
 <area shape="rect" href="structautograd_1_1Expression.html" title=" " alt="" coords="5,5,167,251"/>
@@ -135,7 +140,7 @@ Kolaboracijski dijagram za ReLU:</div>
 <div class="dyncontent">
 <div class="center"><img src="classReLU__coll__graph.png" border="0" usemap="#aReLU_coll__map" alt="Collaboration graph"/></div>
 <map name="aReLU_coll__map" id="aReLU_coll__map">
-<area shape="rect" title=" " alt="" coords="211,1446,319,1591"/>
+<area shape="rect" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="211,1446,319,1591"/>
 <area shape="rect" href="structautograd_1_1UnaryOperator.html" title=" " alt="" coords="100,1296,253,1396"/>
 <area shape="poly" title=" " alt="" coords="211,1408,230,1445,225,1447,207,1411"/>
 <area shape="rect" href="structautograd_1_1Expression.html" title=" " alt="" coords="5,1008,167,1233"/>
@@ -159,9 +164,13 @@ Kolaboracijski dijagram za ReLU:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public članovi</h2></td></tr>
-<tr class="memitem:ad86d8e2170c797bb131dcbda51b5f9a5" id="r_ad86d8e2170c797bb131dcbda51b5f9a5"><td class="memItemLeft" align="right" valign="top"><a id="ad86d8e2170c797bb131dcbda51b5f9a5" name="ad86d8e2170c797bb131dcbda51b5f9a5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ReLU</b> (std::shared_ptr&lt; Expression&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; prev)</td></tr>
+<tr class="memitem:ad86d8e2170c797bb131dcbda51b5f9a5" id="r_ad86d8e2170c797bb131dcbda51b5f9a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad86d8e2170c797bb131dcbda51b5f9a5">ReLU</a> (std::shared_ptr&lt; Expression&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt; prev)</td></tr>
+<tr class="memdesc:ad86d8e2170c797bb131dcbda51b5f9a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">konstruktor prima neki autograd::Expression&lt;Matrix&gt; kao ulaz funkcije  <br /></td></tr>
 <tr class="separator:ad86d8e2170c797bb131dcbda51b5f9a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71791f745eb07e6e47f690463fce5516" id="r_a71791f745eb07e6e47f690463fce5516"><td class="memItemLeft" align="right" valign="top"><a id="a71791f745eb07e6e47f690463fce5516" name="a71791f745eb07e6e47f690463fce5516"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~ReLU</b> ()</td></tr>
+<tr class="memdesc:a71791f745eb07e6e47f690463fce5516"><td class="mdescLeft">&#160;</td><td class="mdescRight">destruktor koji oslobađa OpenCL resurse <br /></td></tr>
+<tr class="separator:a71791f745eb07e6e47f690463fce5516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31205d607c2a10821c6059815a2e23e3" id="r_a31205d607c2a10821c6059815a2e23e3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31205d607c2a10821c6059815a2e23e3">eval</a> () override final</td></tr>
 <tr class="separator:a31205d607c2a10821c6059815a2e23e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51ece1b25900d3d4bda0dfea3c9b5834" id="r_a51ece1b25900d3d4bda0dfea3c9b5834"><td class="memItemLeft" align="right" valign="top"><a id="a51ece1b25900d3d4bda0dfea3c9b5834" name="a51ece1b25900d3d4bda0dfea3c9b5834"></a>
@@ -209,6 +218,41 @@ T&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
 <a class="el" href="structautograd_1_1BinaryOperator.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>requires_grad</b> = <a class="el" href="structautograd_1_1BinaryOperator.html">true</a></td></tr>
 <tr class="separator:aaad1eec81d4fb07ee7d1213c1e5c5cd5 inherit pub_attribs_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><p>klasa koja implementira funkciju "leaky ReLU" </p>
+<p>Definicija implementirane funkcije je:  \(
+ f(x) =
+ \begin{cases}
+   x, &amp; \text{ako}\ x &gt; 0\\
+   0.01x, &amp; \text{inače}
+ \end{cases}
+\) </p>
+</div><h2 class="groupheader">Dokumentacija konstruktora i destruktora </h2>
+<a id="ad86d8e2170c797bb131dcbda51b5f9a5" name="ad86d8e2170c797bb131dcbda51b5f9a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad86d8e2170c797bb131dcbda51b5f9a5">&#9670;&#160;</a></span>ReLU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ReLU::ReLU </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; Expression&lt; <a class="el" href="classMatrix.html">Matrix</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>prev</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>konstruktor prima neki autograd::Expression&lt;Matrix&gt; kao ulaz funkcije </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prev</td><td>ulaz funkcije </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Dokumentacija funkcija</h2>
 <a id="ae369394d4553f62ca73aca8c7a86a7d6" name="ae369394d4553f62ca73aca8c7a86a7d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae369394d4553f62ca73aca8c7a86a7d6">&#9670;&#160;</a></span>addSubgraph()</h2>

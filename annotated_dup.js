@@ -21,7 +21,7 @@ var annotated_dup =
     [ "Matrix", "classMatrix.html", null ],
     [ "Module", "classModule.html", "classModule" ],
     [ "Random2DGaussian", "classRandom2DGaussian.html", null ],
-    [ "ReLU", "classReLU.html", null ],
+    [ "ReLU", "classReLU.html", "classReLU" ],
     [ "SGD", "classSGD.html", "classSGD" ],
     [ "Sigmoid", "classSigmoid.html", null ]
 ];
