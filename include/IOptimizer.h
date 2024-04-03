@@ -17,6 +17,11 @@
 class IOptimizer {
   public:
     /**
+     * @brief generički virtualni destruktor kojeg izvedene klase mogu nadjačati
+     */
+    virtual ~IOptimizer() = default;
+
+    /**
      * @brief funkcija na temelju izračunatih parametara vrši korak optimizacije za zadanu varijablu
      *
      * @param layer_parameters matrica koja pokazuje na memoriju gdje su spremljeni parametri

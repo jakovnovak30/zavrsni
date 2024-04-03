@@ -9,8 +9,8 @@
 
 namespace autograd {
   template <typename T>
-  std::shared_ptr<Expression<T>> createVariable(const T &value, const std::string &name) {
-    return std::static_pointer_cast<Expression<T>>(std::make_shared<Variable<T>>(value, name));
+  std::shared_ptr<Expression<T>> createVariable(const T &value, const std::string &name, bool requires_grad = true) {
+    return std::static_pointer_cast<Expression<T>>(std::make_shared<Variable<T>>(value, name, requires_grad));
   }
 
   template <typename T, typename U>

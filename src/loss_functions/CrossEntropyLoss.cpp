@@ -53,6 +53,6 @@ void CrossEntropyLoss::eval() {
 }
 
 // TODO: slozi ovo
-void _derive(std::shared_ptr<autograd::Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<autograd::Expression<Matrix>>> &out_map) {
+void CrossEntropyLoss::_derive(std::shared_ptr<autograd::Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<autograd::Expression<Matrix>>> &out_map) {
   return;
 }
