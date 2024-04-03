@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['forward_0',['forward',['../classLinear.html#ae23a8a23de3f04e233810e6200925646',1,'Linear::forward()'],['../classModule.html#a5554809f9d526dc08925f201ff21dd07',1,'Module::forward()']]],
-  ['freecl_1',['freeCL',['../Util_8h.html#a7f692354ff002a07c8a23cc65f88ca7f',1,'freeCL():&#160;Util.cpp'],['../Util_8cpp.html#a7f692354ff002a07c8a23cc65f88ca7f',1,'freeCL():&#160;Util.cpp']]],
-  ['funkcionalnosti_2',['Trenutne funkcionalnosti',['../index.html#autotoc_md3',1,'']]]
+  ['eval_0',['eval',['../structautograd_1_1Add.html#a69458170bedb49bf438c8935bb969d5c',1,'autograd::Add::eval()'],['../structautograd_1_1Sub.html#a578092c2eae243641011181f6875a36d',1,'autograd::Sub::eval()'],['../structautograd_1_1Mult.html#a12774951089346ba43dccafb23e390f7',1,'autograd::Mult::eval()'],['../structautograd_1_1Div.html#a56a86efa74f469a725e5589c6b4e982b',1,'autograd::Div::eval()'],['../structautograd_1_1Neg.html#ab52c4d71f2d755583afe0d95b0e3a00d',1,'autograd::Neg::eval()'],['../structautograd_1_1Exp.html#a9133bab268e9aaa005dd1e313c122b5a',1,'autograd::Exp::eval()'],['../structautograd_1_1Expression.html#a0ce4f29a7486a75e0cd56acf08dd7f8f',1,'autograd::Expression::eval()'],['../structautograd_1_1Variable.html#a5dabd83aee07af501e41893678572b57',1,'autograd::Variable::eval()'],['../structautograd_1_1MatrixMultply.html#a792bddf90eb12a3899bd5934559a3a2e',1,'autograd::MatrixMultply::eval()'],['../structautograd_1_1VectorSumReduction.html#aadca248dcdd7cc6273c6268ae2c1d8ea',1,'autograd::VectorSumReduction::eval()'],['../structautograd_1_1MatrixVectorAdd.html#ab1b1832aecb7ca3e1ac8d8a0e0138ac0',1,'autograd::MatrixVectorAdd::eval()'],['../classReLU.html#a31205d607c2a10821c6059815a2e23e3',1,'ReLU::eval()'],['../classSigmoid.html#a6fbb63a88e9e0759fbc85ec1cd94bca8',1,'Sigmoid::eval()'],['../classCrossEntropyLoss.html#a1cbf9a713ea4244f82d486283b0b0b9c',1,'CrossEntropyLoss::eval()']]],
+  ['evaluated_1',['evaluated',['../structautograd_1_1Expression.html#ae04b48d9f119d0c56723b9e9db500a89',1,'autograd::Expression']]],
+  ['exp_2',['Exp',['../structautograd_1_1Exp.html',1,'autograd']]],
+  ['expression_3',['Expression',['../structautograd_1_1Expression.html',1,'autograd']]],
+  ['expression_2ehpp_4',['expression.hpp',['../expression_8hpp.html',1,'']]],
+  ['expression_3c_20matrix_20_3e_5',['Expression&lt; Matrix &gt;',['../structautograd_1_1Expression.html',1,'autograd']]]
 ];

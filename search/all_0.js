@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['add_0',['Add',['../structautograd_1_1Add.html',1,'autograd']]],
-  ['autograd_5futil_2ehpp_1',['autograd_util.hpp',['../autograd__util_8hpp.html',1,'']]]
+  ['_5fderive_0',['_derive',['../structautograd_1_1Add.html#a96fda49f870fce0e9a25012165350082',1,'autograd::Add::_derive()'],['../structautograd_1_1Sub.html#a7f94abb068cb7e0885ac758c1a7d3927',1,'autograd::Sub::_derive()'],['../structautograd_1_1Mult.html#ae06027280cd844a254a2fd19d91a8d1c',1,'autograd::Mult::_derive()'],['../structautograd_1_1Div.html#a331e0f671dab08a2571c447e5aa13fc8',1,'autograd::Div::_derive()'],['../structautograd_1_1Neg.html#a40a3162cbb0144cdfe5c4190af54deb9',1,'autograd::Neg::_derive()'],['../structautograd_1_1Exp.html#a600c648f1ad9568fc242043e76466c20',1,'autograd::Exp::_derive()'],['../structautograd_1_1Expression.html#ae40767f5fbb8a46288c413dd213ee095',1,'autograd::Expression::_derive()'],['../structautograd_1_1Variable.html#a157566830dcb95fbb99f004378a89058',1,'autograd::Variable::_derive()']]]
 ];

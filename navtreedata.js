@@ -32,7 +32,8 @@ var NAVTREE =
       [ "Stablo klasa", "hierarchy.html", "hierarchy" ],
       [ "Svi članovi klasa", "functions.html", [
         [ "Sve", "functions.html", null ],
-        [ "Funkcije", "functions_func.html", null ]
+        [ "Funkcije", "functions_func.html", null ],
+        [ "Varijable", "functions_vars.html", null ]
       ] ]
     ] ],
     [ "Datoteke", "files.html", [

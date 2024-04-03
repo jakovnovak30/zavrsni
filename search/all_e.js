@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['sgd_0',['SGD',['../classSGD.html',1,'SGD'],['../classSGD.html#a20541c4b59f2b2caffc9fc5162975d46',1,'SGD::SGD()']]],
-  ['sgd_2ecpp_1',['SGD.cpp',['../SGD_8cpp.html',1,'']]],
-  ['sgd_2eh_2',['SGD.h',['../SGD_8h.html',1,'']]],
-  ['sigmoid_3',['Sigmoid',['../classSigmoid.html',1,'']]],
-  ['sigmoid_2ecpp_4',['Sigmoid.cpp',['../Sigmoid_8cpp.html',1,'']]],
-  ['sigmoid_2eh_5',['Sigmoid.h',['../Sigmoid_8h.html',1,'']]],
-  ['step_6',['step',['../classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba',1,'IOptimizer']]],
-  ['sub_7',['Sub',['../structautograd_1_1Sub.html',1,'autograd']]]
+  ['rad_0',['Budući rad',['../index.html#autotoc_md5',1,'']]],
+  ['random2dgaussian_1',['Random2DGaussian',['../classRandom2DGaussian.html',1,'']]],
+  ['relu_2',['ReLU',['../classReLU.html',1,'ReLU'],['../classReLU.html#ad86d8e2170c797bb131dcbda51b5f9a5',1,'ReLU::ReLU()']]],
+  ['relu_2ecpp_3',['ReLU.cpp',['../ReLU_8cpp.html',1,'']]],
+  ['relu_2eh_4',['ReLU.h',['../ReLU_8h.html',1,'']]],
+  ['requires_5fgrad_5',['requires_grad',['../structautograd_1_1Expression.html#aaad1eec81d4fb07ee7d1213c1e5c5cd5',1,'autograd::Expression']]]
 ];

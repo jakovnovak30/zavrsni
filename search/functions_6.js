@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['optimize_0',['optimize',['../classIOptimizer.html#a7c308b231b1b6da7511ddc9bfe901430',1,'IOptimizer::optimize()'],['../classSGD.html#aa4e35184c65a2759cea568278abe4db3',1,'SGD::optimize()']]]
+  ['forward_0',['forward',['../classLinear.html#ae23a8a23de3f04e233810e6200925646',1,'Linear::forward()'],['../classModule.html#a5554809f9d526dc08925f201ff21dd07',1,'Module::forward()']]],
+  ['freecl_1',['freeCL',['../Util_8h.html#a7f692354ff002a07c8a23cc65f88ca7f',1,'freeCL():&#160;Util.cpp'],['../Util_8cpp.html#a7f692354ff002a07c8a23cc65f88ca7f',1,'freeCL():&#160;Util.cpp']]]
 ];

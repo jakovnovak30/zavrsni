@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linear_0',['Linear',['../classLinear.html#aa2ee78b5a5eb3176e7002eec4ea8104b',1,'Linear']]]
+  ['derive_0',['derive',['../structautograd_1_1Expression.html#aacef3449ddd2843c1f490106aba05453',1,'autograd::Expression']]]
 ];

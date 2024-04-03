@@ -1,7 +1,7 @@
 <map id="Matrix" name="Matrix">
-<area shape="rect" id="Node000001" title=" " alt="" coords="31,337,126,642"/>
+<area shape="rect" id="Node000001" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="35,337,122,622"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,194,152,274"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,273,81,320,76,320,76,273"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,274,81,320,76,320,76,274"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="15,5,143,131"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="81,130,81,177,76,177,76,130"/>
 </map>

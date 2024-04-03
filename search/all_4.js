@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['exp_0',['Exp',['../structautograd_1_1Exp.html',1,'autograd']]],
-  ['expression_1',['Expression',['../structautograd_1_1Expression.html',1,'autograd']]],
-  ['expression_2ehpp_2',['expression.hpp',['../expression_8hpp.html',1,'']]],
-  ['expression_3c_20matrix_20_3e_3',['Expression&lt; Matrix &gt;',['../structautograd_1_1Expression.html',1,'autograd']]]
+  ['data_0',['data',['../classMatrix.html#a094fd936bb6dbc68545d29a760818a7f',1,'Matrix']]],
+  ['demonstracijski_20okvir_20za_20diferencijabilno_20programiranje_1',['CppDiff - demonstracijski okvir za diferencijabilno programiranje',['../index.html',1,'']]],
+  ['derive_2',['derive',['../structautograd_1_1Expression.html#aacef3449ddd2843c1f490106aba05453',1,'autograd::Expression']]],
+  ['diferencijabilno_20programiranje_3',['CppDiff - demonstracijski okvir za diferencijabilno programiranje',['../index.html',1,'']]],
+  ['div_4',['Div',['../structautograd_1_1Div.html',1,'autograd']]],
+  ['dokumentacija_5',['Dokumentacija',['../index.html#autotoc_md4',1,'']]]
 ];

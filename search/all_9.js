@@ -1,13 +1,6 @@
 var searchData=
 [
-  ['matrix_0',['Matrix',['../classMatrix.html',1,'']]],
-  ['matrix_2ecpp_1',['Matrix.cpp',['../Matrix_8cpp.html',1,'']]],
-  ['matrix_2eh_2',['Matrix.h',['../Matrix_8h.html',1,'']]],
-  ['matrix_5foperations_2ehpp_3',['matrix_operations.hpp',['../matrix__operations_8hpp.html',1,'']]],
-  ['matrixmultply_4',['MatrixMultply',['../structautograd_1_1MatrixMultply.html',1,'autograd']]],
-  ['matrixvectoradd_5',['MatrixVectorAdd',['../structautograd_1_1MatrixVectorAdd.html',1,'autograd']]],
-  ['module_6',['Module',['../classModule.html',1,'Module'],['../classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0',1,'Module::Module()']]],
-  ['module_2ecpp_7',['Module.cpp',['../Module_8cpp.html',1,'']]],
-  ['module_2eh_8',['Module.h',['../Module_8h.html',1,'']]],
-  ['mult_9',['Mult',['../structautograd_1_1Mult.html',1,'autograd']]]
+  ['linear_0',['Linear',['../classLinear.html',1,'Linear'],['../classLinear.html#aa2ee78b5a5eb3176e7002eec4ea8104b',1,'Linear::Linear()']]],
+  ['linear_2ecpp_1',['Linear.cpp',['../Linear_8cpp.html',1,'']]],
+  ['linear_2eh_2',['Linear.h',['../Linear_8h.html',1,'']]]
 ];

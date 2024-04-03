@@ -1,6 +1,6 @@
 <map id="autograd::Variable&lt; T &gt;" name="autograd::Variable&lt; T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="184,437,329,582"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1Expression.html" title=" " alt="" coords="5,148,167,374"/>
+<area shape="rect" id="Node000001" title="klasa koja implementira jednu varijablu" alt="" coords="184,437,329,582"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,148,167,374"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,385,209,435,205,438,170,388"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="75,13,97,78"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,78,89,131,83,131,83,78"/>

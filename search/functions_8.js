@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sgd_0',['SGD',['../classSGD.html#a20541c4b59f2b2caffc9fc5162975d46',1,'SGD']]],
-  ['step_1',['step',['../classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba',1,'IOptimizer']]]
+  ['initcl_0',['initCL',['../Util_8h.html#ab646974da58021ec0d2bf4a123697b40',1,'initCL(cl_device_id device, cl_context context):&#160;Util.cpp'],['../Util_8cpp.html#ab646974da58021ec0d2bf4a123697b40',1,'initCL(cl_device_id device, cl_context context):&#160;Util.cpp']]],
+  ['initcl_5fnvidia_1',['initCL_nvidia',['../Util_8h.html#ab23fcd751c121656f10adc0ca97a71bf',1,'initCL_nvidia():&#160;Util.cpp'],['../Util_8cpp.html#ab23fcd751c121656f10adc0ca97a71bf',1,'initCL_nvidia():&#160;Util.cpp']]]
 ];

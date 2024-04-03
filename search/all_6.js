@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['globalcontext_0',['globalContext',['../Util_8h.html#ab62df1e75bbaf76fd1088a2cfb20355b',1,'globalContext:&#160;Util.cpp'],['../Util_8cpp.html#ab62df1e75bbaf76fd1088a2cfb20355b',1,'globalContext:&#160;Util.cpp']]],
-  ['globaldevice_1',['globalDevice',['../Util_8h.html#a9257996229987ee2649a86dfb1d6c410',1,'globalDevice:&#160;Util.cpp'],['../Util_8cpp.html#a9257996229987ee2649a86dfb1d6c410',1,'globalDevice:&#160;Util.cpp']]],
-  ['globalqueue_2',['globalQueue',['../Util_8h.html#aff6084cf5ab8f1095f7effa692e00ec2',1,'globalQueue:&#160;Util.cpp'],['../Util_8cpp.html#aff6084cf5ab8f1095f7effa692e00ec2',1,'globalQueue:&#160;Util.cpp']]]
+  ['forward_0',['forward',['../classLinear.html#ae23a8a23de3f04e233810e6200925646',1,'Linear::forward()'],['../classModule.html#a5554809f9d526dc08925f201ff21dd07',1,'Module::forward()']]],
+  ['freecl_1',['freeCL',['../Util_8h.html#a7f692354ff002a07c8a23cc65f88ca7f',1,'freeCL():&#160;Util.cpp'],['../Util_8cpp.html#a7f692354ff002a07c8a23cc65f88ca7f',1,'freeCL():&#160;Util.cpp']]],
+  ['funkcionalnosti_2',['Trenutne funkcionalnosti',['../index.html#autotoc_md3',1,'']]]
 ];

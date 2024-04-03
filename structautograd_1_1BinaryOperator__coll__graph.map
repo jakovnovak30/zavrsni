@@ -1,6 +1,6 @@
 <map id="autograd::BinaryOperator&lt; T &gt;" name="autograd::BinaryOperator&lt; T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="84,437,269,522"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1Expression.html" title=" " alt="" coords="5,134,167,359"/>
+<area shape="rect" id="Node000001" title="generička klasa koja implementira binarne operatore:" alt="" coords="84,437,269,522"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,134,167,359"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,372,163,436,158,438,133,374"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="166,5,187,71"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="169,64,144,119,139,117,164,62"/>

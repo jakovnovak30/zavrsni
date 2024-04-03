@@ -116,15 +116,20 @@ $(function(){initNavTree('structautograd_1_1Div.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Opis strukture autograd::Div&lt; T &gt;</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>implementacija binarne operacije dijeljenja: \( f(x, y) = x / y \)  
+ <a href="#details">Opširnije...</a></p>
+
+<p><code>#include &lt;<a class="el" href="basic__operations_8hpp_source.html">basic_operations.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Dijagram klasa za autograd::Div&lt; T &gt;</div>
 <div class="dyncontent">
 <div class="center"><img src="structautograd_1_1Div__inherit__graph.png" border="0" usemap="#aautograd_1_1Div_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aautograd_1_1Div_3_01T_01_4_inherit__map" id="aautograd_1_1Div_3_01T_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="39,452,157,577"/>
-<area shape="rect" href="structautograd_1_1BinaryOperator.html" title=" " alt="" coords="5,299,191,404"/>
+<area shape="rect" title="implementacija binarne operacije dijeljenja:" alt="" coords="39,452,157,577"/>
+<area shape="rect" href="structautograd_1_1BinaryOperator.html" title="generička klasa koja implementira binarne operatore:" alt="" coords="5,299,191,404"/>
 <area shape="poly" title=" " alt="" coords="101,419,101,452,95,452,95,419"/>
-<area shape="rect" href="structautograd_1_1Expression.html" title=" " alt="" coords="17,5,179,251"/>
+<area shape="rect" href="structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="17,5,179,251"/>
 <area shape="poly" title=" " alt="" coords="101,266,101,299,95,299,95,266"/>
 </map>
 </div>
@@ -133,10 +138,10 @@ Kolaboracijski dijagram za autograd::Div&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structautograd_1_1Div__coll__graph.png" border="0" usemap="#aautograd_1_1Div_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aautograd_1_1Div_3_01T_01_4_coll__map" id="aautograd_1_1Div_3_01T_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="118,572,235,697"/>
-<area shape="rect" href="structautograd_1_1BinaryOperator.html" title=" " alt="" coords="84,437,269,522"/>
+<area shape="rect" title="implementacija binarne operacije dijeljenja:" alt="" coords="118,572,235,697"/>
+<area shape="rect" href="structautograd_1_1BinaryOperator.html" title="generička klasa koja implementira binarne operatore:" alt="" coords="84,437,269,522"/>
 <area shape="poly" title=" " alt="" coords="179,537,179,572,174,572,174,537"/>
-<area shape="rect" href="structautograd_1_1Expression.html" title=" " alt="" coords="5,134,167,359"/>
+<area shape="rect" href="structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,134,167,359"/>
 <area shape="poly" title=" " alt="" coords="138,372,163,436,158,438,133,374"/>
 <area shape="rect" title=" " alt="" coords="166,5,187,71"/>
 <area shape="poly" title=" " alt="" coords="169,64,144,119,139,117,164,62"/>
@@ -152,29 +157,32 @@ Public članovi</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Div</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; left, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; right)</td></tr>
 <tr class="separator:ac120e6c1c6b1e0e565cad957c4b3a818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56a86efa74f469a725e5589c6b4e982b" id="r_a56a86efa74f469a725e5589c6b4e982b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56a86efa74f469a725e5589c6b4e982b">eval</a> () <a class="el" href="structautograd_1_1BinaryOperator.html">override</a></td></tr>
+<tr class="memdesc:a56a86efa74f469a725e5589c6b4e982b"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtualna metoda kojom se definira evaluiranje izraza  <br /></td></tr>
 <tr class="separator:a56a86efa74f469a725e5589c6b4e982b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a331e0f671dab08a2571c447e5aa13fc8" id="r_a331e0f671dab08a2571c447e5aa13fc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a331e0f671dab08a2571c447e5aa13fc8">_derive</a> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; <a class="el" href="structautograd_1_1BinaryOperator.html">seed</a>, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt; &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">out_map</a>) <a class="el" href="structautograd_1_1BinaryOperator.html">override</a></td></tr>
+<tr class="memdesc:a331e0f671dab08a2571c447e5aa13fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja rekurzivno gradi graf parcijalnih derivacija  <br /></td></tr>
 <tr class="separator:a331e0f671dab08a2571c447e5aa13fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a214509e5af976f64930459326e732f00" id="r_a214509e5af976f64930459326e732f00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a214509e5af976f64930459326e732f00">addSubgraph</a> (<a class="el" href="structautograd_1_1BinaryOperator.html">Agraph_t</a> *<a class="el" href="structautograd_1_1BinaryOperator.html">graph</a>, <a class="el" href="structautograd_1_1BinaryOperator.html">Agnode_t</a> *prev) <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1BinaryOperator.html">override</a></td></tr>
+<tr class="memdesc:a214509e5af976f64930459326e732f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja sluzi dodavanju trenutnog cvora u graf  <br /></td></tr>
 <tr class="separator:a214509e5af976f64930459326e732f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structautograd_1_1BinaryOperator"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structautograd_1_1BinaryOperator')"><img src="closed.png" alt="-"/>&#160;Public članovi naslijeđeni od <a class="el" href="structautograd_1_1BinaryOperator.html">autograd::BinaryOperator&lt; T &gt;</a></td></tr>
-<tr class="memitem:a08f9a41472567ae3ac08a3628930f981 inherit pub_methods_structautograd_1_1BinaryOperator" id="r_a08f9a41472567ae3ac08a3628930f981"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>BinaryOperator</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; left, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; right)</td></tr>
+<tr class="memitem:a08f9a41472567ae3ac08a3628930f981 inherit pub_methods_structautograd_1_1BinaryOperator" id="r_a08f9a41472567ae3ac08a3628930f981"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautograd_1_1BinaryOperator.html#a08f9a41472567ae3ac08a3628930f981">BinaryOperator</a> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; left, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; right)</td></tr>
+<tr class="memdesc:a08f9a41472567ae3ac08a3628930f981 inherit pub_methods_structautograd_1_1BinaryOperator"><td class="mdescLeft">&#160;</td><td class="mdescRight">konstruktor koji prima dva izraza: \( a \) i \( b \)  <br /></td></tr>
 <tr class="separator:a08f9a41472567ae3ac08a3628930f981 inherit pub_methods_structautograd_1_1BinaryOperator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9508a7dc80af4eaa34abfc526eb394e9 inherit pub_methods_structautograd_1_1BinaryOperator" id="r_a9508a7dc80af4eaa34abfc526eb394e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structautograd_1_1BinaryOperator.html">virtual</a> std::optional&lt; std::shared_ptr&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1Variable.html">Variable</a>&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautograd_1_1BinaryOperator.html#a9508a7dc80af4eaa34abfc526eb394e9">find_variable</a> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name) <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1BinaryOperator.html">override</a></td></tr>
 <tr class="separator:a9508a7dc80af4eaa34abfc526eb394e9 inherit pub_methods_structautograd_1_1BinaryOperator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structautograd_1_1Expression"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structautograd_1_1Expression')"><img src="closed.png" alt="-"/>&#160;Public članovi naslijeđeni od <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td></tr>
-<tr class="memitem:aacef3449ddd2843c1f490106aba05453 inherit pub_methods_structautograd_1_1Expression" id="r_aacef3449ddd2843c1f490106aba05453"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>derive</b> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; <a class="el" href="structautograd_1_1BinaryOperator.html">seed</a>, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt; &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">out_map</a>)</td></tr>
+<tr class="memitem:aacef3449ddd2843c1f490106aba05453 inherit pub_methods_structautograd_1_1Expression" id="r_aacef3449ddd2843c1f490106aba05453"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structautograd_1_1BinaryOperator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautograd_1_1Expression.html#aacef3449ddd2843c1f490106aba05453">derive</a> (std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; <a class="el" href="structautograd_1_1BinaryOperator.html">seed</a>, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt; &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">out_map</a>)</td></tr>
+<tr class="memdesc:aacef3449ddd2843c1f490106aba05453 inherit pub_methods_structautograd_1_1Expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">metoda koja provjerava jesmo li već odredili graf derivacije te ovisno o tome zove _derive ili vraća graf u obliku Expression&lt;T&gt;  <br /></td></tr>
 <tr class="separator:aacef3449ddd2843c1f490106aba05453 inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a409fbe58ab7f8973d02db5f96e95eace inherit pub_methods_structautograd_1_1Expression" id="r_a409fbe58ab7f8973d02db5f96e95eace"><td class="memItemLeft" align="right" valign="top">
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getValue</b> ()</td></tr>
+<tr class="memitem:a409fbe58ab7f8973d02db5f96e95eace inherit pub_methods_structautograd_1_1Expression" id="r_a409fbe58ab7f8973d02db5f96e95eace"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautograd_1_1Expression.html#a409fbe58ab7f8973d02db5f96e95eace">getValue</a> ()</td></tr>
+<tr class="memdesc:a409fbe58ab7f8973d02db5f96e95eace inherit pub_methods_structautograd_1_1Expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja vraća vrijednost trenutnog izraza  <br /></td></tr>
 <tr class="separator:a409fbe58ab7f8973d02db5f96e95eace inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce2473662bc700e583253b8da2cae8f inherit pub_methods_structautograd_1_1Expression" id="r_a4ce2473662bc700e583253b8da2cae8f"><td class="memItemLeft" align="right" valign="top">
-std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>grad</b> ()</td></tr>
+<tr class="memitem:a4ce2473662bc700e583253b8da2cae8f inherit pub_methods_structautograd_1_1Expression" id="r_a4ce2473662bc700e583253b8da2cae8f"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautograd_1_1Expression.html#a4ce2473662bc700e583253b8da2cae8f">grad</a> ()</td></tr>
+<tr class="memdesc:a4ce2473662bc700e583253b8da2cae8f inherit pub_methods_structautograd_1_1Expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja računa gradijent trenutnog izraza  <br /></td></tr>
 <tr class="separator:a4ce2473662bc700e583253b8da2cae8f inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3800da34d1a7e345522c06cd1846df93 inherit pub_methods_structautograd_1_1Expression" id="r_a3800da34d1a7e345522c06cd1846df93"><td class="memItemLeft" align="right" valign="top">
-std::shared_ptr&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1Variable.html">Variable</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name)</td></tr>
+<tr class="memitem:a3800da34d1a7e345522c06cd1846df93 inherit pub_methods_structautograd_1_1Expression" id="r_a3800da34d1a7e345522c06cd1846df93"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1Variable.html">Variable</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structautograd_1_1Expression.html#a3800da34d1a7e345522c06cd1846df93">operator[]</a> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name)</td></tr>
+<tr class="memdesc:a3800da34d1a7e345522c06cd1846df93 inherit pub_methods_structautograd_1_1Expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">operator koji traži varijable po imenu  <br /></td></tr>
 <tr class="separator:a3800da34d1a7e345522c06cd1846df93 inherit pub_methods_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -189,15 +197,21 @@ std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expre
 <tr class="inherit_header pub_attribs_structautograd_1_1Expression"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structautograd_1_1Expression')"><img src="closed.png" alt="-"/>&#160;Public atributi naslijeđeni od <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td></tr>
 <tr class="memitem:a2c73e4891c17c68dde64eb239df6dd59 inherit pub_attribs_structautograd_1_1Expression" id="r_a2c73e4891c17c68dde64eb239df6dd59"><td class="memItemLeft" align="right" valign="top">
 T&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
+<tr class="memdesc:a2c73e4891c17c68dde64eb239df6dd59 inherit pub_attribs_structautograd_1_1Expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">izračunata vrijednost izraza <br /></td></tr>
 <tr class="separator:a2c73e4891c17c68dde64eb239df6dd59 inherit pub_attribs_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae04b48d9f119d0c56723b9e9db500a89 inherit pub_attribs_structautograd_1_1Expression" id="r_ae04b48d9f119d0c56723b9e9db500a89"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="structautograd_1_1BinaryOperator.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>evaluated</b> = <a class="el" href="structautograd_1_1BinaryOperator.html">false</a></td></tr>
+<tr class="memdesc:ae04b48d9f119d0c56723b9e9db500a89 inherit pub_attribs_structautograd_1_1Expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">zastavica kojom pamtimo je li izraz već izračunat <br /></td></tr>
 <tr class="separator:ae04b48d9f119d0c56723b9e9db500a89 inherit pub_attribs_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaad1eec81d4fb07ee7d1213c1e5c5cd5 inherit pub_attribs_structautograd_1_1Expression" id="r_aaad1eec81d4fb07ee7d1213c1e5c5cd5"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="structautograd_1_1BinaryOperator.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>requires_grad</b> = <a class="el" href="structautograd_1_1BinaryOperator.html">true</a></td></tr>
+<tr class="memdesc:aaad1eec81d4fb07ee7d1213c1e5c5cd5 inherit pub_attribs_structautograd_1_1Expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">zastavica kojom pamtimo treba li računati parcijalnu derivaciju za taj (pod)izraz <br /></td></tr>
 <tr class="separator:aaad1eec81d4fb07ee7d1213c1e5c5cd5 inherit pub_attribs_structautograd_1_1Expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Dokumentacija funkcija</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> T&gt;<br />
+struct autograd::Div&lt; T &gt;</div><p>implementacija binarne operacije dijeljenja: \( f(x, y) = x / y \) </p>
+</div><h2 class="groupheader">Dokumentacija funkcija</h2>
 <a id="a331e0f671dab08a2571c447e5aa13fc8" name="a331e0f671dab08a2571c447e5aa13fc8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a331e0f671dab08a2571c447e5aa13fc8">&#9670;&#160;</a></span>_derive()</h2>
 
@@ -227,7 +241,16 @@ template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename<
 </table>
 </div><div class="memdoc">
 
-<p>Implementira <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>.</p>
+<p>funkcija koja rekurzivno gradi graf parcijalnih derivacija </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seed</td><td>vrijednost koja se propagira unazad kao parcijalna derivacija </td></tr>
+    <tr><td class="paramname">out_map</td><td>referenca na mapu parcijalnih derivacija za sve varijable s requires_grad = true </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implementira <a class="el" href="structautograd_1_1Expression.html#ae40767f5fbb8a46288c413dd213ee095">autograd::Expression&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -260,7 +283,17 @@ template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename<
 </table>
 </div><div class="memdoc">
 
-<p>Implementira <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>.</p>
+<p>funkcija koja sluzi dodavanju trenutnog cvora u graf </p>
+<dl class="section see"><dt>Vidi također</dt><dd><a class="el" href="visualize_8hpp.html" title="definicija i implementacija funkcije autograd::visualize">visualize.hpp</a></dd></dl>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">graph</td><td>pokazivac na graf </td></tr>
+    <tr><td class="paramname">prev</td><td>cvor koji se nalazi na izlazu trenutnog </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implementira <a class="el" href="structautograd_1_1Expression.html#a98f539efa7ce897d09046684deaa0d9d">autograd::Expression&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -289,7 +322,9 @@ template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename<
 </table>
 </div><div class="memdoc">
 
-<p>Implementira <a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a>.</p>
+<p>virtualna metoda kojom se definira evaluiranje izraza </p>
+
+<p>Implementira <a class="el" href="structautograd_1_1Expression.html#a0ce4f29a7486a75e0cd56acf08dd7f8f">autograd::Expression&lt; T &gt;</a>.</p>
 
 </div>
 </div>

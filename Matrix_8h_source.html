@@ -127,53 +127,54 @@ $(function(){initNavTree('Matrix_8h_source.html',''); initResizable(); });
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="Util_8h.html">Util.h</a>&quot;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classMatrix.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classMatrix.html">Matrix</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">struct </span>opencl_data {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    opencl_data(cl_mem data) : data{ data } { }</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    opencl_data(<span class="keyword">const</span> <span class="keywordtype">int</span> N, <span class="keyword">const</span> <span class="keywordtype">int</span> M) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>      <span class="keywordtype">int</span> _err;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>      this-&gt;data = clCreateBuffer(<a class="code hl_variable" href="Util_8h.html#ab62df1e75bbaf76fd1088a2cfb20355b">globalContext</a>, CL_MEM_READ_WRITE, N * M * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), <span class="keyword">nullptr</span>, &amp;_err);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>      <a class="code hl_function" href="Util_8h.html#a0b20f7cf32ea44d98f1dad0373d187cf">checkError</a>(_err);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    ~opencl_data() { <span class="keywordflow">if</span>(this-&gt;data != <span class="keyword">nullptr</span>) <a class="code hl_function" href="Util_8h.html#a0b20f7cf32ea44d98f1dad0373d187cf">checkError</a>(clReleaseMemObject(this-&gt;data)); }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    cl_mem data;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">operator</span> cl_mem () {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      <span class="keywordflow">return</span> this-&gt;data;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  };</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordtype">size_t</span> N, M;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">// utility function...</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">inline</span> cl_kernel loadKernel(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other, <span class="keyword">const</span> std::string &amp;name) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a>(cl_mem data, <span class="keywordtype">size_t</span> N, <span class="keywordtype">size_t</span> M);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a>(std::initializer_list&lt;std::initializer_list&lt;float&gt;&gt; mat);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> x); <span class="comment">// za skalare!</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a>();</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">void</span> operator+=(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator+(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator-(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator-() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator*(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator/(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="comment">// samo za matrice manje od 100x100!</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  std::string toString() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">// geteri</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">size_t</span> getN();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordtype">size_t</span> getM();</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  std::shared_ptr&lt;opencl_data&gt; data;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classMatrix.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classMatrix.html">Matrix</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">struct </span>opencl_data {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    opencl_data(cl_mem data) : data{ data } { }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    opencl_data(<span class="keyword">const</span> <span class="keywordtype">int</span> N, <span class="keyword">const</span> <span class="keywordtype">int</span> M) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      <span class="keywordtype">int</span> _err;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      this-&gt;data = clCreateBuffer(<a class="code hl_variable" href="Util_8h.html#ab62df1e75bbaf76fd1088a2cfb20355b">globalContext</a>, CL_MEM_READ_WRITE, N * M * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), <span class="keyword">nullptr</span>, &amp;_err);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <a class="code hl_function" href="Util_8h.html#a0b20f7cf32ea44d98f1dad0373d187cf">checkError</a>(_err);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    ~opencl_data() { <span class="keywordflow">if</span>(this-&gt;data != <span class="keyword">nullptr</span>) <a class="code hl_function" href="Util_8h.html#a0b20f7cf32ea44d98f1dad0373d187cf">checkError</a>(clReleaseMemObject(this-&gt;data)); }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    cl_mem data;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">operator</span> cl_mem () {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="keywordflow">return</span> this-&gt;data;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  };</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">size_t</span> N, M;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keyword">inline</span> cl_kernel loadKernel(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other, <span class="keyword">const</span> std::string &amp;name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <a class="code hl_function" href="classMatrix.html#a2dba13c45127354c9f75ef576f49269b">Matrix</a>(cl_mem <a class="code hl_variable" href="classMatrix.html#a094fd936bb6dbc68545d29a760818a7f">data</a>, <span class="keywordtype">size_t</span> N, <span class="keywordtype">size_t</span> M);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <a class="code hl_function" href="classMatrix.html#a2dba13c45127354c9f75ef576f49269b">Matrix</a>(std::initializer_list&lt;std::initializer_list&lt;float&gt;&gt; mat);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <a class="code hl_function" href="classMatrix.html#a2dba13c45127354c9f75ef576f49269b">Matrix</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> x);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <a class="code hl_function" href="classMatrix.html#a2dba13c45127354c9f75ef576f49269b">Matrix</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator+(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator-(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator-() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator*(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <a class="code hl_class" href="classMatrix.html">Matrix</a> operator/(<span class="keyword">const</span> <a class="code hl_class" href="classMatrix.html">Matrix</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  std::string <a class="code hl_function" href="classMatrix.html#ae7b85f11d14cbb6db0aaaf63367e4495">toString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classMatrix.html#ad7ec78c77398077cde507c32df69a0bd">getN</a>();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classMatrix.html#a4f8207471478ed8f8779ee7fe4efedfe">getM</a>();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classMatrix.html#a094fd936bb6dbc68545d29a760818a7f">  104</a></span>  std::shared_ptr&lt;opencl_data&gt; <a class="code hl_variable" href="classMatrix.html#a094fd936bb6dbc68545d29a760818a7f">data</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
 </div>
 <div class="ttc" id="aUtil_8h_html"><div class="ttname"><a href="Util_8h.html">Util.h</a></div><div class="ttdoc">definicija korisnih globalnih funkcija i konstanti</div></div>
 <div class="ttc" id="aUtil_8h_html_a0b20f7cf32ea44d98f1dad0373d187cf"><div class="ttname"><a href="Util_8h.html#a0b20f7cf32ea44d98f1dad0373d187cf">checkError</a></div><div class="ttdeci">void checkError(int value)</div><div class="ttdoc">funkcija koja na temelju OpenCL koda baca iznimke ili ne vraća ništa</div><div class="ttdef"><b>Definition</b> Util.cpp:16</div></div>
 <div class="ttc" id="aUtil_8h_html_ab62df1e75bbaf76fd1088a2cfb20355b"><div class="ttname"><a href="Util_8h.html#ab62df1e75bbaf76fd1088a2cfb20355b">globalContext</a></div><div class="ttdeci">cl_context globalContext</div><div class="ttdoc">globalni OpenCL kontekst koje se inicijalizira prilikom pokretanja initCL funkcije</div><div class="ttdef"><b>Definition</b> Util.cpp:12</div></div>
-<div class="ttc" id="aclassMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix</a></div><div class="ttdef"><b>Definition</b> Matrix.h:15</div></div>
+<div class="ttc" id="aclassMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix</a></div><div class="ttdoc">klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju</div><div class="ttdef"><b>Definition</b> Matrix.h:20</div></div>
+<div class="ttc" id="aclassMatrix_html_a094fd936bb6dbc68545d29a760818a7f"><div class="ttname"><a href="classMatrix.html#a094fd936bb6dbc68545d29a760818a7f">Matrix::data</a></div><div class="ttdeci">std::shared_ptr&lt; opencl_data &gt; data</div><div class="ttdoc">referenca na OpenCL podatke</div><div class="ttdef"><b>Definition</b> Matrix.h:104</div></div>
+<div class="ttc" id="aclassMatrix_html_a2dba13c45127354c9f75ef576f49269b"><div class="ttname"><a href="classMatrix.html#a2dba13c45127354c9f75ef576f49269b">Matrix::Matrix</a></div><div class="ttdeci">Matrix()</div><div class="ttdoc">prazni konstruktor koji se koristi za neinicijalizirane matrice</div><div class="ttdef"><b>Definition</b> Matrix.cpp:38</div></div>
+<div class="ttc" id="aclassMatrix_html_a4f8207471478ed8f8779ee7fe4efedfe"><div class="ttname"><a href="classMatrix.html#a4f8207471478ed8f8779ee7fe4efedfe">Matrix::getM</a></div><div class="ttdeci">size_t getM()</div><div class="ttdoc">getter za broj M</div><div class="ttdef"><b>Definition</b> Matrix.cpp:71</div></div>
+<div class="ttc" id="aclassMatrix_html_ad7ec78c77398077cde507c32df69a0bd"><div class="ttname"><a href="classMatrix.html#ad7ec78c77398077cde507c32df69a0bd">Matrix::getN</a></div><div class="ttdeci">size_t getN()</div><div class="ttdoc">getter za broj N</div><div class="ttdef"><b>Definition</b> Matrix.cpp:68</div></div>
+<div class="ttc" id="aclassMatrix_html_ae7b85f11d14cbb6db0aaaf63367e4495"><div class="ttname"><a href="classMatrix.html#ae7b85f11d14cbb6db0aaaf63367e4495">Matrix::toString</a></div><div class="ttdeci">std::string toString() const</div><div class="ttdoc">pretvori matricu u std::string</div><div class="ttdef"><b>Definition</b> Matrix.cpp:75</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

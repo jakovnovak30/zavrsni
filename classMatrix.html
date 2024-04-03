@@ -117,14 +117,19 @@ $(function(){initNavTree('classMatrix.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Opis klase Matrix</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju  
+ <a href="#details">Opširnije...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Matrix_8h_source.html">Matrix.h</a>&gt;</code></p>
 <div class="dynheader">
 Kolaboracijski dijagram za Matrix:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMatrix__coll__graph.png" border="0" usemap="#aMatrix_coll__map" alt="Collaboration graph"/></div>
 <map name="aMatrix_coll__map" id="aMatrix_coll__map">
-<area shape="rect" title=" " alt="" coords="31,337,126,642"/>
+<area shape="rect" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="35,337,122,622"/>
 <area shape="rect" title=" " alt="" coords="5,194,152,274"/>
-<area shape="poly" title=" " alt="" coords="81,273,81,320,76,320,76,273"/>
+<area shape="poly" title=" " alt="" coords="81,274,81,320,76,320,76,274"/>
 <area shape="rect" title=" " alt="" coords="15,5,143,131"/>
 <area shape="poly" title=" " alt="" coords="81,130,81,177,76,177,76,130"/>
 </map>
@@ -132,18 +137,19 @@ Kolaboracijski dijagram za Matrix:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public članovi</h2></td></tr>
-<tr class="memitem:a0e047222256f2217f39e9d8dfe1b9415" id="r_a0e047222256f2217f39e9d8dfe1b9415"><td class="memItemLeft" align="right" valign="top"><a id="a0e047222256f2217f39e9d8dfe1b9415" name="a0e047222256f2217f39e9d8dfe1b9415"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Matrix</b> (cl_mem data, size_t N, size_t M)</td></tr>
+<tr class="memitem:a0e047222256f2217f39e9d8dfe1b9415" id="r_a0e047222256f2217f39e9d8dfe1b9415"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e047222256f2217f39e9d8dfe1b9415">Matrix</a> (cl_mem <a class="el" href="#a094fd936bb6dbc68545d29a760818a7f">data</a>, size_t N, size_t M)</td></tr>
+<tr class="memdesc:a0e047222256f2217f39e9d8dfe1b9415"><td class="mdescLeft">&#160;</td><td class="mdescRight">konstruktor koji prima OpenCL memoriju i parametre N i M  <br /></td></tr>
 <tr class="separator:a0e047222256f2217f39e9d8dfe1b9415"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae50a96f84c232df0d625ebbeee95cce7" id="r_ae50a96f84c232df0d625ebbeee95cce7"><td class="memItemLeft" align="right" valign="top"><a id="ae50a96f84c232df0d625ebbeee95cce7" name="ae50a96f84c232df0d625ebbeee95cce7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Matrix</b> (std::initializer_list&lt; std::initializer_list&lt; float &gt; &gt; mat)</td></tr>
+<tr class="memitem:ae50a96f84c232df0d625ebbeee95cce7" id="r_ae50a96f84c232df0d625ebbeee95cce7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae50a96f84c232df0d625ebbeee95cce7">Matrix</a> (std::initializer_list&lt; std::initializer_list&lt; float &gt; &gt; mat)</td></tr>
+<tr class="memdesc:ae50a96f84c232df0d625ebbeee95cce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">konstruktor koji prima ugniježdenu inicijalizacijsku listu s elementima tipa float  <br /></td></tr>
 <tr class="separator:ae50a96f84c232df0d625ebbeee95cce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49cc9b0f09e493648471bb928281acfe" id="r_a49cc9b0f09e493648471bb928281acfe"><td class="memItemLeft" align="right" valign="top"><a id="a49cc9b0f09e493648471bb928281acfe" name="a49cc9b0f09e493648471bb928281acfe"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Matrix</b> (const float x)</td></tr>
+<tr class="memitem:a49cc9b0f09e493648471bb928281acfe" id="r_a49cc9b0f09e493648471bb928281acfe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49cc9b0f09e493648471bb928281acfe">Matrix</a> (const float x)</td></tr>
+<tr class="memdesc:a49cc9b0f09e493648471bb928281acfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">"workaround" za korištenje skalara u svijetu matrica, stvara 1x1 matricu  <br /></td></tr>
 <tr class="separator:a49cc9b0f09e493648471bb928281acfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a635793dc72130ea200f525ed8bbe4b04" id="r_a635793dc72130ea200f525ed8bbe4b04"><td class="memItemLeft" align="right" valign="top"><a id="a635793dc72130ea200f525ed8bbe4b04" name="a635793dc72130ea200f525ed8bbe4b04"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;other)</td></tr>
-<tr class="separator:a635793dc72130ea200f525ed8bbe4b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dba13c45127354c9f75ef576f49269b" id="r_a2dba13c45127354c9f75ef576f49269b"><td class="memItemLeft" align="right" valign="top"><a id="a2dba13c45127354c9f75ef576f49269b" name="a2dba13c45127354c9f75ef576f49269b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Matrix</b> ()</td></tr>
+<tr class="memdesc:a2dba13c45127354c9f75ef576f49269b"><td class="mdescLeft">&#160;</td><td class="mdescRight">prazni konstruktor koji se koristi za neinicijalizirane matrice <br /></td></tr>
+<tr class="separator:a2dba13c45127354c9f75ef576f49269b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc7858a535ebcebf445e91bccd75d197" id="r_afc7858a535ebcebf445e91bccd75d197"><td class="memItemLeft" align="right" valign="top"><a id="afc7858a535ebcebf445e91bccd75d197" name="afc7858a535ebcebf445e91bccd75d197"></a>
 <a class="el" href="classMatrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;other) const</td></tr>
 <tr class="separator:afc7858a535ebcebf445e91bccd75d197"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,22 +165,184 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const
 <tr class="memitem:a53e8c12c071faa4dd107e123aef2ed79" id="r_a53e8c12c071faa4dd107e123aef2ed79"><td class="memItemLeft" align="right" valign="top"><a id="a53e8c12c071faa4dd107e123aef2ed79" name="a53e8c12c071faa4dd107e123aef2ed79"></a>
 <a class="el" href="classMatrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;other) const</td></tr>
 <tr class="separator:a53e8c12c071faa4dd107e123aef2ed79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7b85f11d14cbb6db0aaaf63367e4495" id="r_ae7b85f11d14cbb6db0aaaf63367e4495"><td class="memItemLeft" align="right" valign="top"><a id="ae7b85f11d14cbb6db0aaaf63367e4495" name="ae7b85f11d14cbb6db0aaaf63367e4495"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toString</b> () const</td></tr>
+<tr class="memitem:ae7b85f11d14cbb6db0aaaf63367e4495" id="r_ae7b85f11d14cbb6db0aaaf63367e4495"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7b85f11d14cbb6db0aaaf63367e4495">toString</a> () const</td></tr>
+<tr class="memdesc:ae7b85f11d14cbb6db0aaaf63367e4495"><td class="mdescLeft">&#160;</td><td class="mdescRight">pretvori matricu u std::string  <br /></td></tr>
 <tr class="separator:ae7b85f11d14cbb6db0aaaf63367e4495"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ec78c77398077cde507c32df69a0bd" id="r_ad7ec78c77398077cde507c32df69a0bd"><td class="memItemLeft" align="right" valign="top"><a id="ad7ec78c77398077cde507c32df69a0bd" name="ad7ec78c77398077cde507c32df69a0bd"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getN</b> ()</td></tr>
+<tr class="memitem:ad7ec78c77398077cde507c32df69a0bd" id="r_ad7ec78c77398077cde507c32df69a0bd"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7ec78c77398077cde507c32df69a0bd">getN</a> ()</td></tr>
+<tr class="memdesc:ad7ec78c77398077cde507c32df69a0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter za broj N  <br /></td></tr>
 <tr class="separator:ad7ec78c77398077cde507c32df69a0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f8207471478ed8f8779ee7fe4efedfe" id="r_a4f8207471478ed8f8779ee7fe4efedfe"><td class="memItemLeft" align="right" valign="top"><a id="a4f8207471478ed8f8779ee7fe4efedfe" name="a4f8207471478ed8f8779ee7fe4efedfe"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getM</b> ()</td></tr>
+<tr class="memitem:a4f8207471478ed8f8779ee7fe4efedfe" id="r_a4f8207471478ed8f8779ee7fe4efedfe"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f8207471478ed8f8779ee7fe4efedfe">getM</a> ()</td></tr>
+<tr class="memdesc:a4f8207471478ed8f8779ee7fe4efedfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter za broj M  <br /></td></tr>
 <tr class="separator:a4f8207471478ed8f8779ee7fe4efedfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public atributi</h2></td></tr>
 <tr class="memitem:a094fd936bb6dbc68545d29a760818a7f" id="r_a094fd936bb6dbc68545d29a760818a7f"><td class="memItemLeft" align="right" valign="top"><a id="a094fd936bb6dbc68545d29a760818a7f" name="a094fd936bb6dbc68545d29a760818a7f"></a>
 std::shared_ptr&lt; opencl_data &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="memdesc:a094fd936bb6dbc68545d29a760818a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">referenca na OpenCL podatke <br /></td></tr>
 <tr class="separator:a094fd936bb6dbc68545d29a760818a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><p>klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju </p>
+</div><h2 class="groupheader">Dokumentacija konstruktora i destruktora </h2>
+<a id="a0e047222256f2217f39e9d8dfe1b9415" name="a0e047222256f2217f39e9d8dfe1b9415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e047222256f2217f39e9d8dfe1b9415">&#9670;&#160;</a></span>Matrix() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix </td>
+          <td>(</td>
+          <td class="paramtype">cl_mem</td>          <td class="paramname"><span class="paramname"><em>data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>N</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>M</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>konstruktor koji prima OpenCL memoriju i parametre N i M </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>cl_mem referenca na memoriju </td></tr>
+    <tr><td class="paramname">N</td><td>broj redaka u matrici </td></tr>
+    <tr><td class="paramname">M</td><td>broj stupaca u matrici </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae50a96f84c232df0d625ebbeee95cce7" name="ae50a96f84c232df0d625ebbeee95cce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae50a96f84c232df0d625ebbeee95cce7">&#9670;&#160;</a></span>Matrix() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix </td>
+          <td>(</td>
+          <td class="paramtype">std::initializer_list&lt; std::initializer_list&lt; float &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>mat</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>konstruktor koji prima ugniježdenu inicijalizacijsku listu s elementima tipa float </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mat</td><td>inicjalizacijska lista </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Iznimke</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>ako dimenzije liste nemaju smisla, npr. {{3, 1, 2}, {1, -1}} </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a49cc9b0f09e493648471bb928281acfe" name="a49cc9b0f09e493648471bb928281acfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49cc9b0f09e493648471bb928281acfe">&#9670;&#160;</a></span>Matrix() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix </td>
+          <td>(</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>"workaround" za korištenje skalara u svijetu matrica, stvara 1x1 matricu </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>vrijednost skalara </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacija funkcija</h2>
+<a id="a4f8207471478ed8f8779ee7fe4efedfe" name="a4f8207471478ed8f8779ee7fe4efedfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8207471478ed8f8779ee7fe4efedfe">&#9670;&#160;</a></span>getM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Matrix::getM </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getter za broj M </p>
+<dl class="section return"><dt>Povratne vrijednosti</dt><dd>vraća broj stupaca matrice </dd></dl>
+
+</div>
+</div>
+<a id="ad7ec78c77398077cde507c32df69a0bd" name="ad7ec78c77398077cde507c32df69a0bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ec78c77398077cde507c32df69a0bd">&#9670;&#160;</a></span>getN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Matrix::getN </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getter za broj N </p>
+<dl class="section return"><dt>Povratne vrijednosti</dt><dd>vraća broj redaka matrice </dd></dl>
+
+</div>
+</div>
+<a id="ae7b85f11d14cbb6db0aaaf63367e4495" name="ae7b85f11d14cbb6db0aaaf63367e4495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b85f11d14cbb6db0aaaf63367e4495">&#9670;&#160;</a></span>toString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Matrix::toString </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>pretvori matricu u std::string </p>
+<dl class="exception"><dt>Iznimke</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>ako je matrica veća od 100x100 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>Dokumentacija klase je napravljena iz datoteke: <ul>
 <li>/github/workspace/include/autograd_core/<a class="el" href="Matrix_8h_source.html">Matrix.h</a></li>
 <li>/github/workspace/src/autograd_core/<a class="el" href="Matrix_8cpp.html">Matrix.cpp</a></li>

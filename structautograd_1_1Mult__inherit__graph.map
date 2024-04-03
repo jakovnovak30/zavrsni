@@ -1,7 +1,7 @@
 <map id="autograd::Mult&lt; T &gt;" name="autograd::Mult&lt; T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="36,452,160,577"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="5,299,191,404"/>
+<area shape="rect" id="Node000001" title="implementacija binarne operacije množenja:" alt="" coords="36,452,160,577"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title="generička klasa koja implementira binarne operatore:" alt="" coords="5,299,191,404"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,419,101,452,95,452,95,419"/>
-<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="17,5,179,251"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="17,5,179,251"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,266,101,299,95,299,95,266"/>
 </map>

@@ -123,16 +123,14 @@ $(function(){initNavTree('autograd__util_8hpp_source.html',''); initResizable();
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span>autograd {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  std::shared_ptr&lt;Expression&lt;T&gt;&gt; createVariable(<span class="keyword">const</span> T &amp;value, <span class="keyword">const</span> std::string &amp;name, <span class="keywordtype">bool</span> requires_grad = <span class="keyword">true</span>) {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">return</span> std::static_pointer_cast&lt;Expression&lt;T&gt;&gt;(std::make_shared&lt;Variable&lt;T&gt;&gt;(value, name, requires_grad));</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  }</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  std::shared_ptr&lt;Expression&lt;T&gt;&gt; mathFunc(<span class="keyword">const</span> U &amp;operation) {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">return</span> std::static_pointer_cast&lt;Expression&lt;T&gt;&gt;(std::make_shared&lt;U&gt;(operation));</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  }</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="autograd__util_8hpp.html#ac605f0a3e42b6f760b3cb36491cfceac">   21</a></span>  std::shared_ptr&lt;Expression&lt;T&gt;&gt; <a class="code hl_function" href="autograd__util_8hpp.html#ac605f0a3e42b6f760b3cb36491cfceac">createVariable</a>(<span class="keyword">const</span> T &amp;value, <span class="keyword">const</span> std::string &amp;name, <span class="keywordtype">bool</span> requires_grad = <span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">return</span> std::static_pointer_cast&lt;Expression&lt;T&gt;&gt;(std::make_shared&lt;Variable&lt;T&gt;&gt;(value, name, requires_grad));</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  }</div>
+</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="ttc" id="aautograd__util_8hpp_html_ac605f0a3e42b6f760b3cb36491cfceac"><div class="ttname"><a href="autograd__util_8hpp.html#ac605f0a3e42b6f760b3cb36491cfceac">autograd::createVariable</a></div><div class="ttdeci">std::shared_ptr&lt; Expression&lt; T &gt; &gt; createVariable(const T &amp;value, const std::string &amp;name, bool requires_grad=true)</div><div class="ttdoc">pomoćna funkcija koja generira varijablu te vraća std::shared_ptr na istu varijablu</div><div class="ttdef"><b>Definition</b> autograd_util.hpp:21</div></div>
 <div class="ttc" id="aexpression_8hpp_html"><div class="ttname"><a href="expression_8hpp.html">expression.hpp</a></div><div class="ttdoc">definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih...</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

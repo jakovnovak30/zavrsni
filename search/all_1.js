@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['backward_0',['backward',['../classModule.html#a3552d69cccb2deb0796c6504a1d9fbdd',1,'Module']]],
-  ['basic_5foperations_2ehpp_1',['basic_operations.hpp',['../basic__operations_8hpp.html',1,'']]],
-  ['binaryoperator_2',['BinaryOperator',['../structautograd_1_1BinaryOperator.html',1,'autograd']]],
-  ['binaryoperator_3c_20matrix_20_3e_3',['BinaryOperator&lt; Matrix &gt;',['../structautograd_1_1BinaryOperator.html',1,'autograd']]],
-  ['budući_20rad_4',['Budući rad',['../index.html#autotoc_md5',1,'']]],
-  ['buildifneeded_5',['buildIfNeeded',['../Util_8h.html#a18f87623831b0e00401bca38038d9de5',1,'buildIfNeeded(cl_program *program, cl_kernel *kernel, const char *kernel_name, const char **srcStr, const size_t *srcLen):&#160;Util.cpp'],['../Util_8cpp.html#a18f87623831b0e00401bca38038d9de5',1,'buildIfNeeded(cl_program *program, cl_kernel *kernel, const char *kernel_name, const char **srcStr, const size_t *srcLen):&#160;Util.cpp']]]
+  ['add_0',['Add',['../structautograd_1_1Add.html',1,'autograd']]],
+  ['addsubgraph_1',['addSubgraph',['../structautograd_1_1Add.html#a7d0f878370323920f878cad5d5539625',1,'autograd::Add::addSubgraph()'],['../structautograd_1_1Sub.html#a90d4aafc0d9cfdd1922955cd5d10da4b',1,'autograd::Sub::addSubgraph()'],['../structautograd_1_1Mult.html#a984a0df8e6c959292170ac075301f908',1,'autograd::Mult::addSubgraph()'],['../structautograd_1_1Div.html#a214509e5af976f64930459326e732f00',1,'autograd::Div::addSubgraph()'],['../structautograd_1_1Neg.html#a25eb9a319dde8e59b41e742e47aedc07',1,'autograd::Neg::addSubgraph()'],['../structautograd_1_1Exp.html#a39b7e80712052af958cfc42dcbe56e92',1,'autograd::Exp::addSubgraph()'],['../structautograd_1_1Expression.html#a98f539efa7ce897d09046684deaa0d9d',1,'autograd::Expression::addSubgraph()'],['../structautograd_1_1Variable.html#a8216a2e9469a55b4f35bf13933c7f16c',1,'autograd::Variable::addSubgraph()'],['../structautograd_1_1MatrixMultply.html#a66b1dc6849f340e1df134a8477027a65',1,'autograd::MatrixMultply::addSubgraph()'],['../structautograd_1_1VectorSumReduction.html#aa82c1a4678a27e16f6f270a57e156c9b',1,'autograd::VectorSumReduction::addSubgraph()'],['../structautograd_1_1MatrixVectorAdd.html#a7d35c94c454628a6b45a3f1373fd0258',1,'autograd::MatrixVectorAdd::addSubgraph()'],['../classReLU.html#ae369394d4553f62ca73aca8c7a86a7d6',1,'ReLU::addSubgraph()'],['../classSigmoid.html#a1e2fb718f31f9d9779ba39b04c564963',1,'Sigmoid::addSubgraph()']]],
+  ['autograd_5futil_2ehpp_2',['autograd_util.hpp',['../autograd__util_8hpp.html',1,'']]],
+  ['axis_3',['axis',['../structautograd_1_1VectorSumReduction.html#a0edfd54aa2ffdc83b8aa98d3e4a822cd',1,'autograd::VectorSumReduction']]]
 ];

@@ -1,8 +1,8 @@
 <map id="autograd::Div&lt; T &gt;" name="autograd::Div&lt; T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="118,572,235,697"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="84,437,269,522"/>
+<area shape="rect" id="Node000001" title="implementacija binarne operacije dijeljenja:" alt="" coords="118,572,235,697"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title="generička klasa koja implementira binarne operatore:" alt="" coords="84,437,269,522"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,537,179,572,174,572,174,537"/>
-<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="5,134,167,359"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,134,167,359"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="138,372,163,436,158,438,133,374"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="166,5,187,71"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="169,64,144,119,139,117,164,62"/>

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['unaryoperator_0',['UnaryOperator',['../structautograd_1_1UnaryOperator.html',1,'autograd']]],
-  ['unaryoperator_3c_20matrix_20_3e_1',['UnaryOperator&lt; Matrix &gt;',['../structautograd_1_1UnaryOperator.html',1,'autograd']]],
-  ['util_2ecpp_2',['Util.cpp',['../Util_8cpp.html',1,'']]],
-  ['util_2eh_3',['Util.h',['../Util_8h.html',1,'']]]
+  ['tostring_0',['toString',['../classMatrix.html#ae7b85f11d14cbb6db0aaaf63367e4495',1,'Matrix']]],
+  ['transposeleft_1',['transposeLeft',['../structautograd_1_1MatrixMultply.html#a5b924c8dc01b9efbebb2647b7b44feca',1,'autograd::MatrixMultply']]],
+  ['trenutne_20funkcionalnosti_2',['Trenutne funkcionalnosti',['../index.html#autotoc_md3',1,'']]]
 ];

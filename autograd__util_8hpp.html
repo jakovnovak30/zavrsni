@@ -154,19 +154,61 @@ Graf include međuovisnosti za autograd_util.hpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funkcije</h2></td></tr>
-<tr class="memitem:ac605f0a3e42b6f760b3cb36491cfceac" id="r_ac605f0a3e42b6f760b3cb36491cfceac"><td class="memTemplParams" colspan="2"><a id="ac605f0a3e42b6f760b3cb36491cfceac" name="ac605f0a3e42b6f760b3cb36491cfceac"></a>
-template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> T &gt; </td></tr>
-<tr class="memitem:ac605f0a3e42b6f760b3cb36491cfceac"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>autograd::createVariable</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> T &amp;value, <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name, <a class="el" href="structautograd_1_1BinaryOperator.html">bool</a> requires_grad=<a class="el" href="structautograd_1_1BinaryOperator.html">true</a>)</td></tr>
+<tr class="memitem:ac605f0a3e42b6f760b3cb36491cfceac" id="r_ac605f0a3e42b6f760b3cb36491cfceac"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> T &gt; </td></tr>
+<tr class="memitem:ac605f0a3e42b6f760b3cb36491cfceac"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac605f0a3e42b6f760b3cb36491cfceac">autograd::createVariable</a> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> T &amp;value, <a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;name, <a class="el" href="structautograd_1_1BinaryOperator.html">bool</a> requires_grad=<a class="el" href="structautograd_1_1BinaryOperator.html">true</a>)</td></tr>
+<tr class="memdesc:ac605f0a3e42b6f760b3cb36491cfceac"><td class="mdescLeft">&#160;</td><td class="mdescRight">pomoćna funkcija koja generira varijablu te vraća std::shared_ptr na istu varijablu  <br /></td></tr>
 <tr class="separator:ac605f0a3e42b6f760b3cb36491cfceac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aeeae291364e524a6f02ae10ddb1296" id="r_a5aeeae291364e524a6f02ae10ddb1296"><td class="memTemplParams" colspan="2"><a id="a5aeeae291364e524a6f02ae10ddb1296" name="a5aeeae291364e524a6f02ae10ddb1296"></a>
-template&lt;<a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> T , <a class="el" href="structautograd_1_1BinaryOperator.html">typename</a> <a class="el" href="structautograd_1_1BinaryOperator.html">U</a> &gt; </td></tr>
-<tr class="memitem:a5aeeae291364e524a6f02ae10ddb1296"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structautograd_1_1Expression.html">Expression</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>autograd::mathFunc</b> (<a class="el" href="structautograd_1_1BinaryOperator.html">const</a> <a class="el" href="structautograd_1_1BinaryOperator.html">U</a> &amp;<a class="el" href="structautograd_1_1BinaryOperator.html">operation</a>)</td></tr>
-<tr class="separator:a5aeeae291364e524a6f02ae10ddb1296"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
 <div class="textblock"><p>definicija dodatnih korisnih funkcija vezanih uz autograd_core klase </p>
 <dl class="section author"><dt>Autor</dt><dd>Jakov Novak </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Dokumentacije funkcija</h2>
+<a id="ac605f0a3e42b6f760b3cb36491cfceac" name="ac605f0a3e42b6f760b3cb36491cfceac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac605f0a3e42b6f760b3cb36491cfceac">&#9670;&#160;</a></span>createVariable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; Expression&lt; T &gt; &gt; autograd::createVariable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structautograd_1_1BinaryOperator.html">const</a> T &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structautograd_1_1BinaryOperator.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structautograd_1_1BinaryOperator.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>requires_grad</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="structautograd_1_1BinaryOperator.html">true</a></span></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>pomoćna funkcija koja generira varijablu te vraća std::shared_ptr na istu varijablu </p>
+<dl class="tparams"><dt>Parametri predloška</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>tip varijable, najčešće float ili <a class="el" href="classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju">Matrix</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>početna vrijednost varijable </td></tr>
+    <tr><td class="paramname">name</td><td>ime varijable </td></tr>
+    <tr><td class="paramname">requires_grad</td><td>zastavica koja određuje trebamo li računati parcijalnu derivaciju po toj varijabli, standardno je true </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Povratne vrijednosti</dt><dd>std::shared_ptr&lt;Expression&lt;T&gt;&gt; koji pokazuje na upravo konstruiranu varijablu </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
