@@ -18,4 +18,4 @@ Osim tih opcija, moguće je optimirati funkcije preko SGD optimizatora te defini
 Dokumentacija se nalazi na [ovoj](https://jakovnovak30.github.io/zavrsni/index.html) poveznici.
 
 ### Budući rad
-Dodat ću još nekoliko vrsta optimizatora, funkcija gubitka te eventalno opciju za učitavanje slika kako bi napravio demonstracijski klasifikator.
+Dodat ću još nekoliko vrsta optimizatora, funkcija gubitka te eventualno opciju za učitavanje slika kako bih napravio demonstracijski klasifikator.

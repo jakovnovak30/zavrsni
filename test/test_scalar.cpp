@@ -31,3 +31,26 @@ TEST(ScalarTest, TestUnivariateDerivative) {
 
   ASSERT_EQ(expr->grad()["x"]->getValue(), 12) << "error evaluating derivative of: x^2 + 2*x + 1 for x = 5";
 }
+
+TEST(ScalarTest, TestUnvariateSecondDerivative) {
+  auto x = autograd::createVariable(7, "x");
+  auto expr = x * x * x + x * x;
+
+  ASSERT_EQ(expr->grad()["x"]->grad()["x"]->getValue(), 44) << "error evaluating second derivative of: x^3 + x^2 for x = 7";
+}
+
+TEST(ScalarTest, TestUnivariateThirdDerivative) {
+  auto x = autograd::createVariable(0.f, "x");
+  auto expr = std::static_pointer_cast<autograd::Expression<float>>(std::make_shared<autograd::Exp<float>>(x)) - x*x*x;
+
+  ASSERT_EQ(expr->grad()["x"]->grad()["x"]->grad()["x"]->getValue(), -5.f) << "error evaluting third derivative of: exp(x) - x^3 for x = 0.f";
+}
+
+TEST(ScalarTest, TestTwoVarsDerivative) {
+  auto x = autograd::createVariable(3.3f, "x");
+  auto y = autograd::createVariable(0.f, "y");
+  auto expr = std::static_pointer_cast<autograd::Expression<float>>(std::make_shared<autograd::Exp<float>>(y)) + x * x;
+
+  EXPECT_EQ(expr->grad()["x"]->getValue(), 6.6f) << "error evaluating partial (x) of expression: exp(y) + x for (x, y) = (3.3f, 0.f)";
+  EXPECT_EQ(expr->grad()["y"]->getValue(), 1.f) << "error evaluating partial (y) of expression: exp(y) + x for (x, y) = (3.3f, 0.f)";
+}

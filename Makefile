@@ -23,7 +23,7 @@ build-lib: $(OBJ)
 
 .PHONY: test
 test:
-	$(CC) ./test/test_univariate.cpp -o ./test/runtest -lgtest_main -lgtest $(DEMO_CFLAGS)
+	$(CC) ./test/test_scalar.cpp -o ./test/runtest -lgtest_main -lgtest $(DEMO_CFLAGS)
 	LD_LIBRARY_PATH=./lib ./test/runtest
 
 .PHONY: build-header
