@@ -3,7 +3,7 @@ CFLAGS_OPENCL_VERSION = -DCL_TARGET_OPENCL_VERSION=300 -DCL_HPP_TARGET_OPENCL_VE
 CFLAGS = -DDEBUG -fPIC -Wall -Wextra -Iinclude
 
 DEMO_DIR = ./demo
-DEMO_CFLAGS = -lOpenCL -L./lib -lDeepCpp -Iinclude
+DEMO_CFLAGS = -L./lib -Iinclude -lOpenCL -lclblast -lcgraph -lCppDiff
 
 CPP_FILES = $(wildcard src/*.cpp src/**/*.cpp)
 OBJ = $(patsubst src/%.cpp, $(ODIR)/%.o, $(CPP_FILES))
@@ -19,13 +19,12 @@ $(ODIR)/%.o: src/%.cpp
 	$(CC) -c -o $@ $< $(CFLAGS_OPENCL_VERSION) $(CFLAGS)
 
 build-lib: $(OBJ)
-	$(CC) $(OBJ) -shared -o $(LLIB)/libDeepCpp.so $(CFLAGS_OPENCL_VERSION) $(CFLAGS)
+	$(CC) $(OBJ) -shared -o $(LLIB)/libCppDiff.so $(CFLAGS_OPENCL_VERSION) $(CFLAGS)
 
-HEADER_FILE = include/deepCpp.h
-HEADER_FILES = $(wildcard src/*.h src/**/.h)
-
-$(HEADER_FILE): $(HEADER_FILES)
-	cat $^ > $@
+.PHONY: test
+test:
+	$(CC) ./test/test_univariate.cpp -o ./test/runtest -lgtest_main -lgtest $(DEMO_CFLAGS)
+	LD_LIBRARY_PATH=./lib ./test/runtest
 
 .PHONY: build-header
 build-header: $(HEADER_FILE)
