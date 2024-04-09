@@ -221,3 +221,42 @@ Matrix Matrix::operator/(const Matrix &other) const {
 
   return Matrix(out_buffer, this->N, this->M);
 }
+
+bool Matrix::operator==(const Matrix &other) const {
+  if(this->N != other.N || this->M != other.M)
+    return false;
+
+  static cl_kernel eq_kernel = nullptr;
+  int _err;
+  cl_mem cmp_result = clCreateBuffer(globalContext, CL_MEM_READ_WRITE, this->N * this->M * sizeof(bool), nullptr, &_err);
+  checkError(_err);
+
+  buildIfNeeded(&basicOpsProgram, &eq_kernel, "equals", srcCode, srcLen);
+
+  checkError(clSetKernelArg(eq_kernel, 0, sizeof(float *), &this->data->data));
+  checkError(clSetKernelArg(eq_kernel, 1, sizeof(float *), &other.data->data));
+  checkError(clSetKernelArg(eq_kernel, 2, sizeof(bool *), &cmp_result));
+  checkError(clSetKernelArg(eq_kernel, 3, sizeof(const int), &this->M));
+
+  const size_t global_work_size[] = { this->N, this->M };
+  checkError(clEnqueueNDRangeKernel(globalQueue, eq_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
+
+  cl_event event = clCreateUserEvent(globalContext, &_err);
+  checkError(_err);
+
+  bool *cmp_result_host = new bool[this->N * this->M];
+  checkError(clEnqueueReadBuffer(globalQueue, cmp_result, CL_TRUE, 0, this->N * this->M * sizeof(bool), cmp_result_host, 0, nullptr, &event));
+  checkError(clWaitForEvents(1, &event));
+  checkError(clReleaseEvent(event));
+
+  bool out = true;
+  for(size_t i=0;i < this->N*this->M;i++) {
+    if(!cmp_result_host[i]) {
+      out = false;
+      break;
+    }
+  }
+ 
+  delete[] cmp_result_host;
+  return out;
+}
