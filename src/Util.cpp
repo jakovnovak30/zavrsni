@@ -111,12 +111,12 @@ void initCL_nvidia() {
   cl_uint num_platforms;
   checkError(clGetPlatformIDs(2, platforms, &num_platforms));
 
-  for(int i=0;i < num_platforms;i++) {
+  for(cl_uint i=0;i < num_platforms;i++) {
     checkError(clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_ALL, 1,
             devices, &num_devices));
     char buffer[1024];
 
-    for(int j=0;j < num_devices;j++) {
+    for(cl_uint j=0;j < num_devices;j++) {
       checkError(clGetDeviceInfo(devices[j], CL_DEVICE_VENDOR, sizeof(buffer), buffer, NULL));
       // nasli smo dobar uredaj
       if(!strcmp("NVIDIA Corporation", buffer)) {

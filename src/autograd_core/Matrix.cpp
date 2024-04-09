@@ -107,7 +107,7 @@ inline cl_kernel Matrix::loadKernel(const Matrix &other, const std::string &name
   if(other.M == this->M && other.N == this->N) {
     kernels = &basicKernels;
     if(kernels->find(name) == kernels->end()) {
-      cl_kernel new_kernel;
+      cl_kernel new_kernel = nullptr;
       buildIfNeeded(&basicOpsProgram, &new_kernel, name.c_str(), srcCode, srcLen);
       (*kernels)[name] = new_kernel;
     }
@@ -115,7 +115,7 @@ inline cl_kernel Matrix::loadKernel(const Matrix &other, const std::string &name
   else if(other.N == 1 && other.M == 1) {
     kernels = &scalarKernels;
     if(kernels->find(name) == kernels->end()) {
-      cl_kernel new_kernel;
+      cl_kernel new_kernel = nullptr;
       buildIfNeeded(&scalarOpsProgram, &new_kernel, name.c_str(), scalarSrcCode, scalarSrcLen);
       (*kernels)[name] = new_kernel;
     }
@@ -157,10 +157,10 @@ Matrix Matrix::operator-(const Matrix &other) const {
 
   cl_kernel subKernel = this->loadKernel(other, "sub");
 
-  clSetKernelArg(subKernel, 0, sizeof(float *), &this->data->data);
-  clSetKernelArg(subKernel, 1, sizeof(float *), &other.data->data);
-  clSetKernelArg(subKernel, 2, sizeof(float *), &out_buffer);
-  clSetKernelArg(subKernel, 3, sizeof(const int), &this->M);
+  checkError(clSetKernelArg(subKernel, 0, sizeof(float *), &this->data->data));
+  checkError(clSetKernelArg(subKernel, 1, sizeof(float *), &other.data->data));
+  checkError(clSetKernelArg(subKernel, 2, sizeof(float *), &out_buffer));
+  checkError(clSetKernelArg(subKernel, 3, sizeof(const int), &this->M));
 
   const size_t global_work_size[] = { this->N, this->M };
   checkError(clEnqueueNDRangeKernel(globalQueue, subKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
@@ -176,9 +176,9 @@ Matrix Matrix::operator-() const {
   static cl_kernel negateKernel;
   buildIfNeeded(&basicOpsProgram, &negateKernel, "matrixNegate", srcCode, srcLen);
 
-  clSetKernelArg(negateKernel, 0, sizeof(float *), &this->data->data);
-  clSetKernelArg(negateKernel, 1, sizeof(float *), &out_buffer);
-  clSetKernelArg(negateKernel, 2, sizeof(const int), &this->M);
+  checkError(clSetKernelArg(negateKernel, 0, sizeof(float *), &this->data->data));
+  checkError(clSetKernelArg(negateKernel, 1, sizeof(float *), &out_buffer));
+  checkError(clSetKernelArg(negateKernel, 2, sizeof(const int), &this->M));
 
   const size_t global_work_size[] = { this->N, this->M };
   checkError(clEnqueueNDRangeKernel(globalQueue, negateKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
@@ -193,10 +193,10 @@ Matrix Matrix::operator*(const Matrix &other) const {
 
   cl_kernel mulKernel = this->loadKernel(other, "mul");
 
-  clSetKernelArg(mulKernel, 0, sizeof(float *), &this->data->data);
-  clSetKernelArg(mulKernel, 1, sizeof(float *), &other.data->data);
-  clSetKernelArg(mulKernel, 2, sizeof(float *), &out_buffer);
-  clSetKernelArg(mulKernel, 3, sizeof(const int), &this->M);
+  checkError(clSetKernelArg(mulKernel, 0, sizeof(float *), &this->data->data));
+  checkError(clSetKernelArg(mulKernel, 1, sizeof(float *), &other.data->data));
+  checkError(clSetKernelArg(mulKernel, 2, sizeof(float *), &out_buffer));
+  checkError(clSetKernelArg(mulKernel, 3, sizeof(const int), &this->M));
 
   const size_t global_work_size[] = { this->N, this->M };
   checkError(clEnqueueNDRangeKernel(globalQueue, mulKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
@@ -211,10 +211,13 @@ Matrix Matrix::operator/(const Matrix &other) const {
 
   cl_kernel divKernel = this->loadKernel(other, "div");
 
-  clSetKernelArg(divKernel, 0, sizeof(float *), &this->data->data);
-  clSetKernelArg(divKernel, 1, sizeof(float *), &other.data->data);
-  clSetKernelArg(divKernel, 2, sizeof(float *), &out_buffer);
-  clSetKernelArg(divKernel, 3, sizeof(const int), &this->M);
+  checkError(clSetKernelArg(divKernel, 0, sizeof(float *), &this->data->data));
+  checkError(clSetKernelArg(divKernel, 1, sizeof(float *), &other.data->data));
+  checkError(clSetKernelArg(divKernel, 2, sizeof(float *), &out_buffer));
+  checkError(clSetKernelArg(divKernel, 3, sizeof(const int), &this->M));
+
+  const size_t global_work_size[] = { this->N, this->M };
+  checkError(clEnqueueNDRangeKernel(globalQueue, divKernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
   return Matrix(out_buffer, this->N, this->M);
 }

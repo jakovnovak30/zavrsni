@@ -1,4 +1,5 @@
 obj/*
+test/obj/*.o
 lib/*.so
 demo/*
 !demo/*.cpp
