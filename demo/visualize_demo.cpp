@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief demonstracijski program u kojem se vizualizira parcijalna derivacija zadane funkcije pomoću graphviza
+ */
+
 #include "autograd_core/visualize.hpp"
 #include "autograd_core/basic_operations.hpp"
 #include "autograd_core/autograd_util.hpp"

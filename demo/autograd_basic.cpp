@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa
+ */
+
 #include "autograd_core/expression.hpp"
 #include "autograd_core/basic_operations.hpp"
 #include "autograd_core/visualize.hpp"

@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograda zajedno s matricama (koje su implementirane pomoću OpenCL-a)
+ */
+
 #include "Util.h"
 #include "layers/Sigmoid.h"
 #include "layers/ReLU.h"
