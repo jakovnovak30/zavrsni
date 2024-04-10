@@ -1,0 +1,9 @@
+<map id="/github/workspace/include/autograd_core/autograd_util.hpp" name="/github/workspace/include/autograd_core/autograd_util.hpp">
+<area shape="rect" id="Node000001" title="definicija dodatnih korisnih funkcija vezanih uz autograd_core klase" alt="" coords="189,5,361,61"/>
+<area shape="rect" id="Node000002" href="$autograd__basic_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa" alt="" coords="5,109,169,150"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,71,128,111,125,106,206,66"/>
+<area shape="rect" id="Node000003" href="$autograd__matrix_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograda zajedno s matricama (k..." alt="" coords="193,109,357,150"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="278,77,278,109,272,109,272,77"/>
+<area shape="rect" id="Node000004" href="$visualize__demo_8cpp.html" title="demonstracijski program u kojem se vizualizira parcijalna derivacija zadane funkcije pomoću graphviza" alt="" coords="381,109,545,150"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="344,66,425,106,422,111,342,71"/>
+</map>

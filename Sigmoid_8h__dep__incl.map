@@ -1,5 +1,7 @@
 <map id="/github/workspace/include/layers/Sigmoid.h" name="/github/workspace/include/layers/Sigmoid.h">
-<area shape="rect" id="Node000001" title="definicija funkcije Sigmoid" alt="" coords="5,5,178,46"/>
-<area shape="rect" id="Node000002" href="$Sigmoid_8cpp.html" title="implementacije Sigmoid funkcije" alt="" coords="17,94,166,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,62,94,94,89,94,89,62"/>
+<area shape="rect" id="Node000001" title="definicija funkcije Sigmoid" alt="" coords="90,5,263,46"/>
+<area shape="rect" id="Node000002" href="$autograd__matrix_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograda zajedno s matricama (k..." alt="" coords="5,94,169,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,59,109,95,105,92,143,55"/>
+<area shape="rect" id="Node000003" href="$Sigmoid_8cpp.html" title="implementacije Sigmoid funkcije" alt="" coords="192,94,342,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,55,248,92,245,95,206,59"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="/github/workspace/include/autograd_core/matrix_operations.hpp" name="/github/workspace/include/autograd_core/matrix_operations.hpp">
-<area shape="rect" id="Node000001" title="definicija i implementacija autograd operacija koje su specifične za klasu Matrix" alt="" coords="5,5,243,46"/>
-<area shape="rect" id="Node000002" href="$Linear_8cpp.html" title="implementacije potpuno povezanih slojeva" alt="" coords="49,94,199,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,62,127,94,121,94,121,62"/>
+<area shape="rect" id="Node000001" title="definicija i implementacija autograd operacija koje su specifične za klasu Matrix" alt="" coords="58,5,295,46"/>
+<area shape="rect" id="Node000002" href="$autograd__matrix_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograda zajedno s matricama (k..." alt="" coords="5,94,169,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,59,109,95,105,92,143,55"/>
+<area shape="rect" id="Node000003" href="$Linear_8cpp.html" title="implementacije potpuno povezanih slojeva" alt="" coords="192,94,342,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,55,248,92,245,95,206,59"/>
 </map>

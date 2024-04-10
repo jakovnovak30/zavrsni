@@ -1,0 +1,9 @@
+<map id="/github/workspace/include/autograd_core/visualize.hpp" name="/github/workspace/include/autograd_core/visualize.hpp">
+<area shape="rect" id="Node000001" title="definicija i implementacija funkcije autograd::visualize" alt="" coords="182,5,368,46"/>
+<area shape="rect" id="Node000002" href="$autograd__basic_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa" alt="" coords="5,94,169,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,55,131,96,128,91,217,50"/>
+<area shape="rect" id="Node000003" href="$autograd__matrix_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograda zajedno s matricama (k..." alt="" coords="193,94,357,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="278,62,278,94,272,94,272,62"/>
+<area shape="rect" id="Node000004" href="$visualize__demo_8cpp.html" title="demonstracijski program u kojem se vizualizira parcijalna derivacija zadane funkcije pomoću graphviza" alt="" coords="381,94,545,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="333,50,422,91,419,96,330,55"/>
+</map>

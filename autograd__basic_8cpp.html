@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CppDiff: Opis datoteke /github/workspace/demo/autograd_basic.cpp</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/ams','[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','ams','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CppDiff<span id="projectnumber">&#160;v0.1</span>
+   </div>
+   <div id="projectbrief">demonstracijski okvir za diferencijabilno programiranje</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generirao Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Traži');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('autograd__basic_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Učitavam...</div>
+<div class="SRStatus" id="Searching">Tražim...</div>
+<div class="SRStatus" id="NoMatches">Nema traženih podataka</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funkcije</a>  </div>
+  <div class="headertitle"><div class="title">Opis datoteke autograd_basic.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa  
+<a href="#details">Opširnije...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="expression_8hpp_source.html">autograd_core/expression.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="basic__operations_8hpp_source.html">autograd_core/basic_operations.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="visualize_8hpp_source.html">autograd_core/visualize.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="autograd__util_8hpp_source.html">autograd_core/autograd_util.hpp</a>&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graf include međuovisnosti za autograd_basic.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="autograd__basic_8cpp__incl.png" border="0" usemap="#a_2github_2workspace_2demo_2autograd__basic_8cpp" alt=""/></div>
+<map name="a_2github_2workspace_2demo_2autograd__basic_8cpp" id="a_2github_2workspace_2demo_2autograd__basic_8cpp">
+<area shape="rect" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa" alt="" coords="693,5,856,46"/>
+<area shape="rect" href="expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="491,183,685,208"/>
+<area shape="poly" title=" " alt="" coords="754,48,700,96,614,174,610,170,697,92,751,44"/>
+<area shape="rect" title=" " alt="" coords="789,345,856,371"/>
+<area shape="poly" title=" " alt="" coords="858,43,896,62,912,76,926,93,940,125,942,159,936,193,923,227,885,289,847,335,843,332,881,286,918,225,931,192,937,159,935,126,922,95,909,80,893,67,855,47"/>
+<area shape="rect" href="basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="657,256,796,297"/>
+<area shape="poly" title=" " alt="" coords="765,47,745,95,732,172,729,241,723,240,727,172,740,93,761,45"/>
+<area shape="rect" href="visualize_8hpp.html" title="definicija i implementacija funkcije autograd::visualize" alt="" coords="187,102,368,127"/>
+<area shape="poly" title=" " alt="" coords="693,44,363,101,362,96,692,39"/>
+<area shape="rect" href="autograd__util_8hpp.html" title="definicija dodatnih korisnih funkcija vezanih uz autograd_core klase" alt="" coords="755,94,912,135"/>
+<area shape="poly" title=" " alt="" coords="790,45,814,80,809,83,786,48"/>
+<area shape="rect" title=" " alt="" coords="987,102,1058,127"/>
+<area shape="poly" title=" " alt="" coords="832,44,969,91,974,93,972,98,967,97,830,49"/>
+<area shape="rect" title=" " alt="" coords="5,264,128,290"/>
+<area shape="poly" title=" " alt="" coords="498,212,175,259,143,264,142,259,174,254,497,206"/>
+<area shape="poly" title=" " alt="" coords="594,208,612,250,627,274,647,295,668,307,701,320,774,342,773,347,699,325,666,312,644,299,623,278,608,253,589,210"/>
+<area shape="rect" title=" " alt="" coords="415,264,481,290"/>
+<area shape="poly" title=" " alt="" coords="568,211,484,258,481,254,565,206"/>
+<area shape="rect" title=" " alt="" coords="505,264,583,290"/>
+<area shape="poly" title=" " alt="" coords="583,210,560,251,556,249,579,207"/>
+<area shape="rect" title=" " alt="" coords="187,264,240,290"/>
+<area shape="poly" title=" " alt="" coords="505,212,393,231,270,259,255,263,254,258,269,254,392,226,504,206"/>
+<area shape="rect" title=" " alt="" coords="281,264,391,290"/>
+<area shape="poly" title=" " alt="" coords="550,211,390,261,388,256,548,206"/>
+<area shape="poly" title=" " alt="" coords="604,206,672,246,670,251,601,211"/>
+<area shape="poly" title=" " alt="" coords="698,258,628,218,631,214,701,253"/>
+<area shape="poly" title=" " alt="" coords="752,295,798,333,794,337,749,299"/>
+<area shape="rect" title=" " alt="" coords="698,345,755,371"/>
+<area shape="poly" title=" " alt="" coords="729,297,729,329,724,329,724,297"/>
+<area shape="poly" title=" " alt="" coords="326,125,526,176,525,181,324,130"/>
+<area shape="poly" title=" " alt="" coords="221,130,165,151,138,166,114,185,90,216,76,250,71,248,86,214,110,181,135,161,163,146,219,125"/>
+<area shape="poly" title=" " alt="" coords="208,130,161,150,140,165,123,184,119,194,119,204,129,223,149,240,174,255,171,259,146,244,125,226,114,205,114,193,119,181,136,161,158,146,206,125"/>
+<area shape="rect" title=" " alt="" coords="133,183,192,208"/>
+<area shape="poly" title=" " alt="" coords="261,130,194,176,191,171,258,125"/>
+<area shape="rect" title=" " alt="" coords="217,183,338,208"/>
+<area shape="poly" title=" " alt="" coords="280,128,280,167,275,167,275,128"/>
+<area shape="rect" title=" " alt="" coords="362,183,467,208"/>
+<area shape="poly" title=" " alt="" coords="299,125,381,172,379,177,297,130"/>
+<area shape="poly" title=" " alt="" coords="773,138,641,180,640,175,771,133"/>
+<area shape="poly" title=" " alt="" coords="835,135,826,330,821,329,830,135"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funkcije</h2></td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><p>demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_b6c2a257bfab6380ca9b3cb94b12cb25.html">demo</a></li><li class="navelem"><a class="el" href="autograd__basic_8cpp.html">autograd_basic.cpp</a></li>
+    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
