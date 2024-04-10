@@ -3,7 +3,7 @@ CFLAGS_OPENCL_VERSION = -DCL_TARGET_OPENCL_VERSION=300 -DCL_HPP_TARGET_OPENCL_VE
 CFLAGS = -DDEBUG -fPIC -Wall -Wextra -Iinclude
 
 DEMO_DIR = ./demo
-DEMO_CFLAGS = -L./lib -Iinclude -lOpenCL -lclblast -lcgraph -lCppDiff
+DEMO_CFLAGS = -L./lib -Iinclude -lOpenCL -lclblast -lcgraph -lgvc -lCppDiff
 
 TEST_DIR = ./test
 TEST_ODIR = ./test/obj

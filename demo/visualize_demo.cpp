@@ -1,6 +1,6 @@
-#include "../src/autograd_core/visualize.hpp"
-#include "../src/autograd_core/basic_operations.hpp"
-#include "../src/autograd_core/autograd_util.hpp"
+#include "autograd_core/visualize.hpp"
+#include "autograd_core/basic_operations.hpp"
+#include "autograd_core/autograd_util.hpp"
 #include <memory>
 #include <iostream>
 
@@ -16,8 +16,8 @@ int main() {
   auto po_x_pa_y = expr->grad()["x"]->grad()["y"];
   // visualize(*po_x_pa_y, "out", true);
 
-  auto expr2 = mathFunc<float>(Exp(x)) * x + expr;
-  visualize(*expr2->grad()["y"], "out", true);
+  auto expr2 = std::dynamic_pointer_cast<Expression<float>>(std::make_shared<Exp<float>>(x)) * x + expr;
+  visualize(*expr2->grad()["y"], "/tmp/out_image.png", true);
   std::cout << expr2->grad()["y"]->getValue() << std::endl;
   // visualize(*expr2->grad()["x"]->grad()["y"], "out", true);
 }
