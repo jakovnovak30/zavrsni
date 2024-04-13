@@ -8,8 +8,8 @@
 <area shape="poly" id="edge21_Node000001_Node000015" title=" " alt="" coords="257,48,134,170,71,239,67,236,130,166,253,45"/>
 <area shape="rect" id="Node000016" title=" " alt="" coords="351,94,412,120"/>
 <area shape="poly" id="edge23_Node000001_Node000016" title=" " alt="" coords="304,44,354,82,351,86,300,49"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="435,94,560,120"/>
-<area shape="poly" id="edge24_Node000001_Node000017" title=" " alt="" coords="332,44,450,86,448,91,330,49"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="436,94,551,120"/>
+<area shape="poly" id="edge24_Node000001_Node000017" title=" " alt="" coords="331,44,447,86,445,91,329,49"/>
 <area shape="rect" id="Node000003" href="$expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="609,168,802,193"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="329,115,339,117,613,162,612,167,338,122,328,120"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="376,330,443,356"/>
