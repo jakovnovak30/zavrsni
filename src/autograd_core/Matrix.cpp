@@ -18,7 +18,7 @@ static cl_program basicOpsProgram = nullptr;
 static std::unordered_map<std::string, cl_kernel> basicKernels = std::unordered_map<std::string, cl_kernel>();
 static const char *srcCode[] =
   {
-      #include "../kernels/BasicMatrix.cl"
+      #include "kernels/BasicMatrix.cl"
   };
 static const size_t srcLen[] = { strlen(srcCode[0]) };
 
@@ -26,7 +26,7 @@ static cl_program scalarOpsProgram = nullptr;
 static std::unordered_map<std::string, cl_kernel> scalarKernels = std::unordered_map<std::string, cl_kernel>();
 static const char *scalarSrcCode[] =
   {
-      #include "../kernels/BasicScalarMatrix.cl"
+      #include "kernels/BasicScalarMatrix.cl"
   };
 static const size_t scalarSrcLen[] = { strlen(scalarSrcCode[0]) };
 

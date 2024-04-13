@@ -21,7 +21,7 @@ namespace autograd {
   static cl_program program = nullptr;
   static const char *srcCode[] =
     {
-        #include "../src/kernels/MatrixOperations.cl"
+        #include "kernels/MatrixOperations.cl"
     };
   static const size_t srcLen[] = { strlen(srcCode[0]) };
 

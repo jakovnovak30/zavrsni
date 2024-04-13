@@ -22,7 +22,7 @@ SGD::~SGD() {
 
 static const char *code[] =
                         {
-                          #include "../kernels/SGD.cl"
+                          #include "kernels/SGD.cl"
                         };
 static size_t lengths[] = { strlen(code[0]) };
 

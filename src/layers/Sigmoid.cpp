@@ -27,7 +27,7 @@ Sigmoid::~Sigmoid() {
 
 static const char *code[] = 
             {
-              #include "../kernels/Sigmoid.cl"
+              #include "kernels/Sigmoid.cl"
             };
 static const size_t lengths[] = { strlen(code[0]) };
 

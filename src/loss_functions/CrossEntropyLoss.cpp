@@ -25,7 +25,7 @@ CrossEntropyLoss::~CrossEntropyLoss() {
 
 static const char *code[] =
                         {
-                          #include "../kernels/CrossEntropyLoss.cl"
+                          #include "kernels/CrossEntropyLoss.cl"
                         };
 static const size_t lengths[] = { strlen(code[0]) };
 

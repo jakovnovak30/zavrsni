@@ -22,7 +22,7 @@ ReLU::~ReLU() {
 
 static const char *code[] = 
                   {
-                    #include "../kernels/ReLU.cl"
+                    #include "kernels/ReLU.cl"
                   };
 static const size_t lengths[] = { strlen(code[0]) };
 
