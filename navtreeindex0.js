@@ -78,6 +78,7 @@ var NAVTREEINDEX0 =
 "classReLU.html#ad86d8e2170c797bb131dcbda51b5f9a5":[1,0,7,0],
 "classReLU.html#ae369394d4553f62ca73aca8c7a86a7d6":[1,0,7,2],
 "classSGD.html":[1,0,8],
+"classSGD.html#a19f652623d30735a0c2344d8735b292a":[1,0,8,3],
 "classSGD.html#a1f858ebde5ee268f6c2433693a982d8a":[1,0,8,1],
 "classSGD.html#a20541c4b59f2b2caffc9fc5162975d46":[1,0,8,0],
 "classSGD.html#aa4e35184c65a2759cea568278abe4db3":[1,0,8,2],
