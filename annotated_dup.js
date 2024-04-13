@@ -16,6 +16,7 @@ var annotated_dup =
       [ "VectorSumReduction", "structautograd_1_1VectorSumReduction.html", "structautograd_1_1VectorSumReduction" ]
     ] ],
     [ "CrossEntropyLoss", "classCrossEntropyLoss.html", "classCrossEntropyLoss" ],
+    [ "Dataset", "classDataset.html", "classDataset" ],
     [ "IOptimizer", "classIOptimizer.html", "classIOptimizer" ],
     [ "Linear", "classLinear.html", "classLinear" ],
     [ "Matrix", "classMatrix.html", "classMatrix" ],
