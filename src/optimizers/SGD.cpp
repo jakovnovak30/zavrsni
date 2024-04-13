@@ -41,8 +41,8 @@ void SGD::optimize(Matrix &parameters, Matrix &gradients) {
     checkError(_err);
   }
 
-  checkError(clSetKernelArg(this->optimize_kernel, 0, sizeof(float *), &parameters.data));
-  checkError(clSetKernelArg(this->optimize_kernel, 1, sizeof(float *), &gradients.data));
+  checkError(clSetKernelArg(this->optimize_kernel, 0, sizeof(float *), &parameters.data->data));
+  checkError(clSetKernelArg(this->optimize_kernel, 1, sizeof(float *), &gradients.data->data));
   checkError(clSetKernelArg(this->optimize_kernel, 2, sizeof(const float), &this->learning_rate));
   const size_t M = parameters.getM();
   checkError(clSetKernelArg(this->optimize_kernel, 3, sizeof(const int), &M));
@@ -50,5 +50,9 @@ void SGD::optimize(Matrix &parameters, Matrix &gradients) {
   const size_t global_work_size[] = { parameters.getN(), parameters.getM() };
   checkError(clEnqueueNDRangeKernel(globalQueue, this->optimize_kernel, 2, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
+  return;
+}
+
+void SGD::step() {
   return;
 }

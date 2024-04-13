@@ -1,10 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "Util.h"
 #include "autograd_core/Matrix.h"
 
 TEST(MatrixTest, TestInvalidInitList) {
-  initCL_nvidia();
   ASSERT_THROW(new Matrix({{3, 1, 2}, {1, -1}}), std::invalid_argument);
 }
 

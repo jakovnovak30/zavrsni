@@ -35,7 +35,7 @@ STRINGIFY(
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 
-    if (mat1[ty * M + tx] == mat2[ty * M + tx])
+    if (fabs(mat1[ty * M + tx] - mat2[ty * M + tx]) < 0.001f)
       out[ty * M + tx] = true;
     else
       out[ty * M + tx] = false;

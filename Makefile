@@ -33,7 +33,7 @@ $(TEST_ODIR)/%.o: $(TEST_DIR)/%.cpp
 
 .PHONY: test
 test: $(TESTS)
-	$(CC) $(TESTS) -o $(TEST_DIR)/runtest $(DEMO_CFLAGS) $(TEST_CFLAGS) -lgtest_main
+	$(CC) $(TESTS) -o $(TEST_DIR)/runtest $(DEMO_CFLAGS) $(TEST_CFLAGS)
 	LD_LIBRARY_PATH=./lib ./test/runtest
 
 .PHONY: build-header

@@ -41,4 +41,6 @@ class SGD : public IOptimizer {
     virtual ~SGD() override;
     
     void optimize(Matrix &layer_parameters, Matrix &layer_gradients) override final;
+
+    void step() override final;
 };
