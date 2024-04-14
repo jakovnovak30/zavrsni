@@ -260,3 +260,7 @@ bool Matrix::operator==(const Matrix &other) const {
   delete[] cmp_result_host;
   return out;
 }
+
+bool Matrix::operator!=(const Matrix &other) const {
+  return !(*this == other);
+}

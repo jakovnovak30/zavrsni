@@ -80,6 +80,7 @@ public:
   Matrix operator/(const Matrix &other) const;
 
   bool operator==(const Matrix &other) const;
+  bool operator!=(const Matrix &other) const;
 
   /**
    * @brief pretvori matricu u std::string
