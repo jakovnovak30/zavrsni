@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
+#include <memory>
 
 #include "autograd_core/autograd_util.hpp"
+#include "autograd_core/expression.hpp"
 
 TEST(ScalarTest, TestEvalInt) {
   auto x = autograd::createVariable<int>(10, "x");
@@ -14,6 +16,24 @@ TEST(ScalarTest, TestEvalFloat) {
   auto expr = x / x * x + x;
 
   ASSERT_EQ(expr->getValue(), 5.f) << "error evaluating expression: x / x * x + x for x = 2.5f";
+}
+
+TEST(ScalarTest, TestEvalNeg) {
+  auto x = autograd::createVariable(10, "x");
+  auto expr1 = -x;
+  auto expr2 = -std::static_pointer_cast<autograd::Expression<int>>(expr1);
+
+  EXPECT_EQ(expr1->getValue(), -10) << "error evaluating expression: -x for x = 10";
+  EXPECT_EQ(expr2->getValue(), 10) << "error evaluating expression: -(-x) for x = 10";
+}
+
+TEST(ScalarTest, TestGradNeg) {
+  auto x = autograd::createVariable(10, "x");
+  auto expr1 = -x;
+  auto expr2 = -std::static_pointer_cast<autograd::Expression<int>>(expr1);
+
+  EXPECT_EQ(expr1->grad()["x"]->getValue(), -1) << "error deriving f(x) = -x for x = 10";
+  EXPECT_EQ(expr2->grad()["x"]->getValue(), 1) << "error deriving f(x) = -(-x) for x = 10";
 }
 
 TEST(ScalarTest, TestTwoVars) {

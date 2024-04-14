@@ -17,8 +17,8 @@ int main() {
   auto y = createVariable(2.f, "y");
   auto z = createVariable(5.f, "z");
 
-  auto expr = std::dynamic_pointer_cast<Expression<float>>(
-    std::make_shared<Exp<float>>(-(std::dynamic_pointer_cast<Expression<float>>(std::make_shared<Exp<float>>(x + y)) * x - z))) + z;
+  auto expr = std::static_pointer_cast<Expression<float>>(
+    std::make_shared<Exp<float>>(-(std::static_pointer_cast<Expression<float>>(std::make_shared<Exp<float>>(x + y)) * x - z))) + z;
 
   auto expr_gradient = expr->grad();
   std::cout << expr->getValue() << std::endl;
