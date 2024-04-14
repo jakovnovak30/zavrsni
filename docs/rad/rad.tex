@@ -237,6 +237,7 @@ class Multiply(Expression):
         self.expressionB.derive(self.expressionA.value * seed)
 \end{lstlisting}
 
+\pagebreak
 \section{Dualni brojevi}
 Dualni brojevi su još jedan potenncijalni pristup za lako rješavanje prve derivacije jednadžbe. Iako nećemo koristiti ovaj pristup u implementaciji unazadnog (\textit{backward mode}) diferenciranja, valjalo bi ga spomenuti kao jednog od najintuitivnijih pristupa za rješavanje \textit{autodiffa} kod unaprijednog (\textit{forward mode}) diferenciranja. O čemu se radi?
 \\
@@ -286,19 +287,58 @@ print("parcijalno z po x =", a.infinitesimalPart)  # Output: 7
 print("parcijalno z po y =", b.infinitesimalPart)  # Output: 8
 \end{lstlisting}
 
+\pagebreak
 \section{Pristupi implementaciji grafa}
-\textbf{TODO:} opiši IR vs Operator overloading...
 \subsection{Nadjačavanje operatora}
 
-Jedan način implementacije automatskog diferenciranja jest nadjačavanje operatora...
-\blindtext
-\\
-\subsection{Međukod}
-
-Drugi, efikasniji način jest korištenje posebnog jezika za međukod kojeg prevoditelj (eng. \textit{compiler}) može lako umetnuti u kod te ga optimirati...
-\blindtext
+Jedan način implementacije automatskog diferenciranja jest nadjačavanje operatora. To je način kojeg ćemo koristiti u ovom radu te koji je već bio pokazan u primjerima. Glavna ideja jest da imamo sučelje preko kojeg modeliramo izraz koji omogućava klijentu da zove metode \textit{derive()} i \textit{evaluate()}. Sve ostale operacije se realiziraju uz pomoć rekurzije, bilo unaprijedne ili unazadne, te nasljeđivanjem i implementacijom pravila ulančavanja za pojedine funkcije.
+Klijent takav sustav može na jednostavan način koristiti ako smo nadjačali operatore za osnovne računske operacije (eng.\ \textit{operator overloading}). Ukoliko je to slučaj, klijent jednostavno može konstruirati varijable te zatim proizvoljne izrazi pisati bez da je svjestan pozadinskih operacija. Na takav način funkcionira Pytorchev \textit{torch.autograd}, koji je glavni modul zaslužan za automatsko diferenciranje \cite{docs:autograd}. Na slici \ref{slk:klasni} je prikazan klasni dijagram takve implementacije.
 \\
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\linewidth]{./slike/klasni_dijagram.png}
+  \caption{Klasni dijagram implementacije automatskog diferenciranja uz nadjačavanje operatora u objektnoj paradigmi}
+  \label{slk:klasni}
+\end{figure}
+
+\subsection{Transformacija izvornog koda}
+
+Drugi, efikasniji način jest umetanje međukoda, kojeg optimirajući prevoditelj može dodatno obraditi kasnije, u naš kod, odnosno klijentov kod. Glavna ideja jest da imamo okvir koji matematičke izraze izravno prevodi u međukod za evaluaciju (zamjena za metodu \textit{evaluate()}) te međukod za derivaciju (zamjena za metodu \textit{derive()}). Ukoliko imamo takav okvir, klijent može lako preko njega prevesti matematičke izraze te njihov izračun umetnuti u svoj kod. To se opet može ostvariti preko objektnog modela. Primjer razvojnog okvira koji koristi ovakav pristup jest TensorFlow i Zygote.jl \cite{prague:diffcpp}. Zygote.jl koristi llvm međukod kako bi izravno, na temelju neke ulazne funkcije, izgenerirao naredbe u strojno neovisnom kodu niske razine koji se kasnije lako može optimirati:
+\\
+
+\begin{lstlisting}[caption={Primjer korištenja Zygote.jl za generiranje llvm međukoda za funkciju: $a^2 + a*b$ \cite{prague:diffcpp}}]
+function P1(a::Float64, b::Float64) :: Float64 
+    return a^2 + a*b 
+end
+
+@code_llvm P1(0.1, 1.0) 
+; a*a 
+%2 = fmul double %0, %0 
+; a*b 
+%3 = fmul double %0, %1 
+; a*a + a*b 
+%4 = fadd double %2, %3 
+ret double %4 
+ 
+@code_llvm gradient(P1, 0.1, 1.0) 
+; gradient = [2*a + b, a] 
+; a + a 
+ %3 = fadd double %1, %1 
+; 2*a + b 
+ %4 = fadd double %3, %2 
+ %.sroa.0.0..sroa_idx = getelementptr inbounds [2 x double], [2 x double]* 
+%0, i64 0, i64 0 
+; Res[0] = 2*a + b 
+store double %4, double* %.sroa.0.0..sroa_idx, align 8 
+ %.sroa.2.0..sroa_idx4 = getelementptr inbounds [2 x double], [2 x double]* 
+%0, i64 0, i64 1 
+; Res[1] = a  
+store double %1, double* %.sroa.2.0..sroa_idx4, align 8 
+ret void
+\end{lstlisting}
+
+\pagebreak
 \section{OpenCL i C++}
 \textbf{TODO:} napiši nekaj tu...
 \\
@@ -313,18 +353,17 @@ Drugi, efikasniji način jest korištenje posebnog jezika za međukod kojeg prev
 \textbf{TODO:} opiši jezgrenu funkcionalnost i zakaj je taksa
 \blindtext
 
+\pagebreak
 \section{Matrix calculus}
 \textbf{TODO:} opiši matrične operacije i poveži ih s matematičkom analizom
 \blindtext
 
+\pagebreak
 \section{OpenCL + autograd\_core}
 \textbf{TODO:} opiši kak si povezal opencl i autograd core implementaciju
 \blindtext
 
-\section{TensorRT}
-\textbf{TODO:} složi povezivanje s \textit{TensorRT} frameworkom...
-\blindtext
-
+\pagebreak
 \section{Demonstracijski programi}
 \textbf{TODO:} izdvoji najbitnije demonstracijske programe koje si napisal
 \blindtext
@@ -337,10 +376,12 @@ Drugi, efikasniji način jest korištenje posebnog jezika za međukod kojeg prev
 \textbf{TODO:} usporedi brzinu izvođenja demonstracijskih programa s pytorch ekvivalentima
 \blindtext
 
+\pagebreak
 \section{Moguće optimizacije}
 \textbf{TODO:} piši o mogućim optimizacijama pretraživanja grafa. recimo odsjecanje grana itd.
 \blindtext
 
+\pagebreak
 \section{Budući rad}
 \textbf{TODO:} opiši kaj si mogel još dodati u smislu featurea
 \cite{123DCatch}
@@ -392,10 +433,5 @@ Zaključno, TODO...
 
 % Sva poglavlja koja slijede će biti označena slovom i riječi privitak / All following chapters will be denoted with an appendix and a letter
 \backmatter
-
-\chapter{The Code}
-
-Ovdje ide kod... \textbf{TODO:} dodaj ga
-
 
 \end{document}
