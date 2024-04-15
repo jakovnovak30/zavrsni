@@ -340,10 +340,17 @@ ret void
 
 \pagebreak
 \section{OpenCL i C++}
-\textbf{TODO:} napiši nekaj tu...
+Do sad smo prošli kroz ideju automatskog diferenciranja, zašto i kako ga implementirati, ipak nešto nam još fali. Zadnji dio slagalice je podsustav za linearnu algebru, pošto su varijable u kontekstu strojnog učenja često vektori, odnosno matrice. Taj dio sustava ćemo u ovom radu implementirati uz pomoć OpenCL-a, zajedno s ručno napisanim jezgrama za računanje na grafičkoj kartici. Ključno pitanje je zapravo što je OpenCL i zašto ga koristimo?
 \\
-\blindtext
-
+OpenCL je standard otvorenog koda za paralelno programiranje heterogenih računalnih sustava. To konkretno znači da u okviru OpenCL-a pišemo kod u obliku takozvanih \textit{jezgri} (eng. \textit{kernel}) koji se pokreće više puta na našem akceleratoru (grafička, fpga pločica, višeprocesorski sustav, itd.) te na taj način postižemo grubozrnati paralelizam na podatkovnoj razini. Takav pristup je efikasan ukoliko imamo velik broj podataka koji se mogu međusobno neovisno obraditi. Ako to nije slučaj, gubimo vrijeme na prijenos podataka ili na međuovisnosti. Operacije s matricama su idealan obrazac upotrebe ovog okvira te ćemo ga stoga koristiti za prijenos podataka na grafičku karticu, izračun na grafičkoj te zatim prijenos na glavno računalo \ref{slk:opencl}.
+\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.85\linewidth]{./slike/opencl.jpg}
+  \caption{Grafički prikaz organizacije OpenCL sustava}
+  \cite{opencl}
+  \label{slk:opencl}
+\end{figure}
 
 %-------------------------------------------------------------------------------
 \chapter{Glavni dio}
