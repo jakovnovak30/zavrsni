@@ -384,10 +384,58 @@ Sad, kad znamo teorijsku podlogu, možemo krenuti u implementaciju \texttt{autog
 
 \pagebreak
 \section{Matrix calculus}
-\textbf{TODO:} opiši matrične operacije i poveži ih s matematičkom analizom
-\lstinputlisting[language=C++, firstline=20]{../../include/autograd_core/Matrix.h}
+\subsection{Operacije \textit{element po element}}
+Pošto su najjednostavnije, krenimo od operacija \textit{element po element}, to su operacije koje su u jednakom obliku definirane i za skalarne varijable, primjerice zbrajanje ili potenciranje. Jakobijan funkcije koja prima vektor $\vec{x}$ dimenzije $n$ i vraća vektor $\vec{y}$ dimenzije $m$ jest:
+
+\begin{equation}
+  \frac{\partial \vec{y}}{\partial \vec{x}} =
+  \begin{bmatrix}
+    \nabla f_1(\vec{x}) \\
+    \nabla f_2(\vec{x}) \\
+    \dots \\
+    \nabla f_n(\vec{x}) \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{\partial}{\partial \vec{x}} f_1(\vec{x}) \\
+    \frac{\partial}{\partial \vec{x}} f_2(\vec{x}) \\
+    \dots \\
+    \frac{\partial}{\partial \vec{x}} f_m(\vec{x}) \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{\partial}{\partial x_1} f_1(\vec{x}) & \frac{\partial}{\partial x_2} f_1(\vec{x}) & \dots & \frac{\partial}{\partial x_n} f_1(\vec{x}) \\
+    \frac{\partial}{\partial x_1} f_2(\vec{x}) & \frac{\partial}{\partial x_2} f_2(\vec{x}) & \dots & \frac{\partial}{\partial x_n} f_2(\vec{x}) \\
+    \vdots & \vdots & & \vdots \\
+    \frac{\partial}{\partial x_1} f_m(\vec{x}) & \frac{\partial}{\partial x_2} f_m(\vec{x}) & \dots & \frac{\partial}{\partial x_n} f_m(\vec{x}) \\
+  \end{bmatrix}
+\end{equation}
+\cite{matrix_calculus}
+
+Ako radimo operacije \textit{element po element}, onda će o rezultatu funkcije ovisiti samo vrijednosti na dijagonali, odnosno vrijedit će:
+\begin{equation}
+  \frac{\partial \vec{y}}{\partial \vec{x}} =
+  \begin{bmatrix}
+    \frac{\partial}{\partial x_1} f_1(\vec{x}) & 0 & \dots & 0 \\
+    0 & \frac{\partial}{\partial x_2} f_2(\vec{x}) & \dots & 0 \\
+    \vdots & \vdots & & \vdots \\
+    0 & 0 & \dots & \frac{\partial}{\partial x_n} f_n(\vec{x}) \\
+  \end{bmatrix}
+  = diag(\frac{\partial}{\partial x_1} f_1(\vec{x}), \frac{\partial}{\partial x_2} f_2(\vec{x}), \dots, \frac{\partial}{\partial x_n} f_n(\vec{x}))
+\end{equation}
+\cite{matrix_calculus}
+
+Ova jednakost će nam biti vrlo korisna zato što ćemo u rekurzivnom pozivu funkcije \textit{derive} slati vrijednost umnoška vektora s Jakobijanom kao vrijednost parametra \textit{seed}, a množenje s dijagonalnom matricom nam zapravo pojednostavi jednadžbe na način da možemo sve operacije raditi isto kao i sa skalarima. Potrebno je samo definirati osnovni razred \textit{Matrix} te nadjačati potrebne operatore i kod s prethodnog poglavlja može normalno raditi.
+
+\lstinputlisting[language=C++, firstline=20, caption={Definicija osnovnog razreda za rad s matricama}]{../../include/autograd_core/Matrix.h}
+
+\subsection{Matrično množenje}
+\textbf{TODO: } napiši ovo
+
+Ukoliko želimo da naš okvir bude koristan, potrebno je implementirati operaciju matričnog množenja, pošto je ona neophodna za rad neuralnih mreža.
+bla bla bla \textbf{dovrši ovo}
+
 \lstinputlisting[language=C++, firstline=20]{../../include/autograd_core/matrix_operations.hpp}
-\blindtext
 
 \pagebreak
 \section{Demonstracijski programi}
