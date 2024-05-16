@@ -30,6 +30,23 @@
   tabsize=3
 }
 
+% set font translations
+\lstset{inputencoding=utf8}
+\lstset{extendedchars=true}
+\lstset{
+    literate=%
+    {ć}{{\'c}}1
+    {č}{{\v{c}}}1
+    {đ}{{\dj{}}}1
+    {š}{{\v{s}}}1
+    {ž}{{\v{z}}}1
+    {Ć}{{\'C}}1
+    {Č}{{\v{C}}}1
+    {Đ}{{\DJ{}}}1
+    {Š}{{\v{S}}}1
+    {Ž}{{\v{Z}}}1
+}
+
 %--- PODACI O RADU / THESIS INFORMATION ----------------------------------------
 
 % Naslov na engleskom jeziku / Title in English
@@ -100,6 +117,7 @@ Postoje različiti pristupi u korištenju računala za rješavanje tog problema.
 \label{pog:teorijski_dio}
 
 \section{Metode automatskog diferenciranja}
+\label{pog:metode}
 Glavna ideja automatskog diferenciranja jest da dobivenu matematičku funkciju možemo prikazati kao aciklički digraf kojemu su čvorovi varijable, konstante ili međurezultati: $G = (V, E). V = \mathrm{Var} \cup F$, gdje je $\mathrm{Var}$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
 \begin{figure}[h]
   \centering
@@ -180,6 +198,7 @@ class Multiply(Expression):
         return ValueAndPartial(valueA * valueB, valueB * partialA + valueA * partialB)
 \end{lstlisting}
 \subsection{Reverse mode}
+\label{pog:reverse}
 Drugi pristup problemu automatskog diferenciranja jest takozvani \textit{reverse mode accumulation}, tj. prolazak grafa unazad:
 \begin{equation}
   \frac{\partial (f_i \circ f_{i+1})}{\partial x} = \frac{\partial f_{i+1}}{\partial f_i} \frac{\partial f_i}{\partial x}
@@ -290,6 +309,7 @@ print("parcijalno z po y =", b.infinitesimalPart)  # Output: 8
 \pagebreak
 \section{Pristupi implementaciji grafa}
 \subsection{Nadjačavanje operatora}
+\label{pog:nadjacavanje}
 
 Jedan način implementacije automatskog diferenciranja jest nadjačavanje operatora. To je način kojeg ćemo koristiti u ovom radu te koji je već bio pokazan u primjerima. Glavna ideja jest da imamo sučelje preko kojeg modeliramo izraz koji omogućava klijentu da zove metode \textit{derive()} i \textit{evaluate()}. Sve ostale operacije se realiziraju uz pomoć rekurzije, bilo unaprijedne ili unazadne, te nasljeđivanjem i implementacijom pravila ulančavanja za pojedine funkcije.
 Klijent takav sustav može na jednostavan način koristiti ako smo nadjačali operatore za osnovne računske operacije (eng.\ \textit{operator overloading}). Ukoliko je to slučaj, klijent jednostavno može konstruirati varijable te zatim proizvoljne izrazi pisati bez da je svjestan pozadinskih operacija. Na takav način funkcionira Pytorchev \textit{torch.autograd}, koji je glavni modul zaslužan za automatsko diferenciranje \cite{docs:autograd}. Na slici \ref{slk:klasni} je prikazan klasni dijagram takve implementacije.
@@ -358,22 +378,26 @@ OpenCL je standard otvorenog koda za paralelno programiranje heterogenih računa
 \label{pog:glavni_dio}
 
 \section{Autograd\_core implementacija}
-\textbf{TODO:} opiši jezgrenu funkcionalnost i zakaj je taksa
-\blindtext
+Sad, kad znamo teorijsku podlogu, možemo krenuti u implementaciju \texttt{autograd} sustava. Ovaj sustav će se temeljiti na principu unutražnog prolaska \ref{pog:reverse}. Najprije implementiramo razred \texttt{autograd::Expression} koji definira neke okvirne metode za \texttt{cacheiranje} već izračunatih vrijedosti te dodatne metode za vizualizaciju grafova funkcije \ref{pog:metode}. Nakon toga možemo implementirati osnovne funkcionalnosti naslijeđivanjem razreda te nadjačavanjem metoda \texttt{autograd::Expression::eval} te \texttt{autograd::Expression::derive}. Jedini implementacijski detalj koji je možda malo nejasan iz koda jest korištenje pametnih pokazivača. Potreba za time dolazi zato što ne računamo direktno derivaciju funkcije već gradimo novi izraz tipa \texttt{autograd::Expression} kojeg zatim evaluiramo (kako bi mogli računati derivacije višeg reda) pa je stoga potrebno dinamički alocirati / oslobađati memoriju za vrijeme izvođenja programa. Pametni pokazivači, konkretno \texttt{std::shared\_ptr<autograd::Expression>} su idealni za ovu primjenu. Ovakva implementacija zajedno s nadjačavanjem operatora \ref{pog:nadjacavanje} može bez problema računati gradijente funkcija više varijabli, ali samo kad su te varijable skalari. Za potrebe dubokog učenja trebamo proširiti tu funkcionalnost kako bi nam varijable mogle biti matrice ili vektori kojima prikazujemo težine neuralnih mreža i njihove ulaze. U idućem poglavlju ćemo se baviti tom problematikom.
+
+\lstinputlisting[language=C++, caption={Jezgrena funkcionalnost autograda}, firstline=31]{../../include/autograd_core/expression.hpp}
 
 \pagebreak
 \section{Matrix calculus}
 \textbf{TODO:} opiši matrične operacije i poveži ih s matematičkom analizom
-\blindtext
-
-\pagebreak
-\section{OpenCL + autograd\_core}
-\textbf{TODO:} opiši kak si povezal opencl i autograd core implementaciju
+\lstinputlisting[language=C++, firstline=20]{../../include/autograd_core/Matrix.h}
+\lstinputlisting[language=C++, firstline=20]{../../include/autograd_core/matrix_operations.hpp}
 \blindtext
 
 \pagebreak
 \section{Demonstracijski programi}
-\textbf{TODO:} izdvoji najbitnije demonstracijske programe koje si napisal
+\subsection{Skalarne funkcije}
+\lstinputlisting[language=C++]{../../demo/visualize_demo.cpp}
+\textbf{TODO:} ubaci rezultat vizualizacije i opiši kod malo...
+
+\subsection{Matrične funkcije}
+\lstinputlisting[language=C++]{../../demo/test_linear.cpp}
+\textbf{TODO:} opiši učenje mreže itd.
 \blindtext
 
 %-------------------------------------------------------------------------------
