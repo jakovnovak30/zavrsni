@@ -430,18 +430,81 @@ Ova jednakost će nam biti vrlo korisna zato što ćemo u rekurzivnom pozivu fun
 \lstinputlisting[language=C++, firstline=20, caption={Definicija osnovnog razreda za rad s matricama}]{../../include/autograd_core/Matrix.h}
 
 \subsection{Matrično množenje}
-\textbf{TODO: } napiši ovo
+Bitne su dvije jednakosti kod množenja vektora s matricom ($\vec{y} = \vec{x} \times W$). Prva je: $\frac{\partial \vec{y}}{\partial \vec{x}}$, a druga: $\frac{\partial \vec{y}}{\partial W}$. Za potrebe dubokog učenja trebamo izračunati i jednu i drugu unutar našeg \textit{autograda} zato što nam prva služi za propagiranje greške unazad, a druga vrijednost služi za ispravljanje greške trenutnih težina.
+\\
+Najbolje je da prvo proučimo izvod prve jednakosti:
+\begin{align*}
+  \frac{\partial \vec{y}}{\partial \vec{x}} &=
+  \frac{\partial}{\partial \vec{x}}
+  \left(
+  \begin{bmatrix}
+    x_1 & x_2 & \dots & x_n \\
+  \end{bmatrix}
+  \begin{bmatrix}
+    w_{1,1} & w_{1,2} & \dots & w_{1,m} \\
+    w_{2,1} & w_{2,2} & \dots & w_{2,m} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    w_{n,1} & w_{n,2} & \dots & w_{n,m} \\
+  \end{bmatrix}
+  \right)\\
+  &=
+  \frac{\partial}{\partial \vec{x}}
+  \left(
+  \begin{bmatrix}
+    \sum_{i=1}^{n} x_i w_{i,1} &
+    \sum_{i=1}^{n} x_i w_{i,2} &
+    \dots &
+    \sum_{i=1}^{n} x_i w_{i,m} &
+  \end{bmatrix}
+  \right)\\
+  &=
+  \begin{bmatrix}
+    w_{1,1} & w_{2,1} & \dots & w_{n,1} \\
+    w_{1,2} & w_{2,2} & \dots & w_{n,2} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    w_{1,m} & w_{2,m} & \dots & w_{n,m}
+  \end{bmatrix}
+    = W^\mathsf{T}
+\end{align*}
 
-Ukoliko želimo da naš okvir bude koristan, potrebno je implementirati operaciju matričnog množenja, pošto je ona neophodna za rad neuralnih mreža.
-bla bla bla \textbf{dovrši ovo}
+Dakle, Jakobijan je jednak transponiranoj matrici težina. To pravilo ćemo iskoristiti u našoj implementaciji matričnog množenja, odnosno derivacije lijeve strane. Ukoliko se s lijeve strane nalazi matrica, a ne vektor, pravilo i dalje vrijedi jer ćemo kao rezultat imati matricu s $N$ redaka, gdje je $N$ broj redaka prve matrice, pa možemo pretpostaviti da je to veličina trenutnog skupa ulaznih podataka (eng. \textit{minibatch}) te deriviramo sve na jednak način, jedino s više ulaznih vektora. Drugi Jakobijan glasi:
+\begin{align*}
+  \frac{\partial \vec{y}}{\partial W} &=
+  \frac{\partial}{\partial W}
+  \left(
+    \begin{bmatrix}
+      \sum_{i=1}^{n} x_i w_{i,1} &
+      \sum_{i=1}^{n} x_i w_{i,2} &
+      \dots &
+      \sum_{i=1}^{n} x_i w_{i,m} &
+    \end{bmatrix}
+  \right)
+  &=
+  \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n \\
+  \end{bmatrix}
+  = X^\mathsf{T}
+\end{align*}
 
-\lstinputlisting[language=C++, firstline=20]{../../include/autograd_core/matrix_operations.hpp}
+ Opet vrijedi da možemo samo transponirati drugu varijablu te pomnožiti je s vrijednošću koju smo dobili kao argument u rekurzivnom pozivu. Dakle, glavne formule koje ćemo koristiti u matričnom načinu rada su:
+\begin{equation}
+  \frac{\partial L}{\partial X} = \frac{\partial L}{\partial Y} W^\mathsf{T}
+\end{equation}
+ i
+\begin{equation}
+  \frac{\partial L}{\partial W} = X^\mathsf{T} \frac{\partial L}{\partial Y}
+\end{equation}
+\cite{backprop:michigan}
 
 \pagebreak
 \section{Demonstracijski programi}
 \subsection{Skalarne funkcije}
-\lstinputlisting[language=C++]{../../demo/visualize_demo.cpp}
-\textbf{TODO:} ubaci rezultat vizualizacije i opiši kod malo...
+U ovom kratkom demonstracijskom programu se definiraju varijable $x$, $y$ i $z$, nakon čega se definira funkcija $f(x, y, z) = y + x + xyz$ te se ona derivira po varijabli $x$, zatim po varijabli $y$. Rezultat te parcijalne derivacije se prikaže grafički (graf funkcije) te se može i izračunati.
+
+\lstinputlisting[language=C++, caption={Demonstracijski program za skalarne funkcije}]{../../demo/visualize_demo.cpp}
 
 \subsection{Matrične funkcije}
 \lstinputlisting[language=C++]{../../demo/test_linear.cpp}
