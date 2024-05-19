@@ -6,7 +6,7 @@
 Dataloader::Dataloader(IDataset &dataset, size_t batch_size)
   : batch_num(0), batch_size(batch_size), dataset(dataset) {}
 
-Matrix Dataloader::nextBatch() {
+std::pair<Matrix, Matrix> Dataloader::nextBatch() {
   if(batch_num * batch_size > dataset.getSize())
     throw std::logic_error("Dataset is empty!");
 
@@ -17,7 +17,8 @@ Matrix Dataloader::nextBatch() {
   checkError(_err);
 
   for(size_t i=0;i < this->batch_size;i++) {
-    std::pair<Matrix, Matrix> curr = this->dataset[(i + this->batch_num * this->batch_size) % this->dataset.getSize()];
+    int index = (i + this->batch_num * this->batch_size) % this->dataset.getSize();
+    std::pair<Matrix, Matrix> curr = this->dataset[index];
     checkError(clEnqueueCopyBuffer(globalQueue, curr.first.data->data, batch_buffer, 0, i * this->dataset.getElementSize(), this->dataset.getElementSize(), 0, nullptr, nullptr));
 
     checkError(clEnqueueCopyBuffer(globalQueue, curr.second.data->data, labels_buffer, 0, i * sizeof(float), sizeof(float), 0, nullptr, nullptr));
@@ -25,5 +26,5 @@ Matrix Dataloader::nextBatch() {
 
   this->batch_num++;
 
-  return Matrix(batch_buffer, this->batch_size, this->dataset.getElementSize() / sizeof(float));
+  return { Matrix(batch_buffer, this->batch_size, this->dataset.getElementSize() / sizeof(float)), Matrix(labels_buffer, this->batch_size, 1) };
 }

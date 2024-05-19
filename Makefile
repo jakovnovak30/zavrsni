@@ -9,7 +9,7 @@ TEST_DIR = ./test
 TEST_ODIR = ./test/obj
 TEST_CFLAGS = -lgtest
 
-CPP_FILES = $(wildcard src/*.cpp src/**/*.cpp)
+CPP_FILES = $(wildcard src/*.cpp src/**/*.cpp src/**/**/*.cpp)
 OBJ = $(patsubst src/%.cpp, $(ODIR)/%.o, $(CPP_FILES))
 
 TEST_FILES = $(wildcard test/*.cpp)

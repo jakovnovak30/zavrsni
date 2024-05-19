@@ -14,8 +14,10 @@
 class MNIST : public IDataset {
 private:
   std::ifstream data, labels;
+  size_t size;
+  bool normalize;
 public:
-  MNIST(const std::string &path, bool test = false);
+  MNIST(const std::string &path, bool normalize = true, bool test = false);
 
   virtual size_t getElementSize() override final;
 

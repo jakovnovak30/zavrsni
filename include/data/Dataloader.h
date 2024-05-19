@@ -19,5 +19,5 @@ private:
 public:
   Dataloader(IDataset &dataset, size_t batch_size);
 
-  Matrix nextBatch();
+  std::pair<Matrix, Matrix> nextBatch();
 };

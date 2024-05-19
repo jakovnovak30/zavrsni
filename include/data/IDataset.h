@@ -5,6 +5,7 @@
  * @author Jakov Novak
  */
 
+#pragma once
 #include "autograd_core/Matrix.h"
 
 /**
