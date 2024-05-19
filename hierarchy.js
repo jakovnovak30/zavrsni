@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "Dataloader", "classDataloader.html", null ],
     [ "Dataset", "classDataset.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "autograd::Variable< Matrix >", "structautograd_1_1Variable.html", null ],
@@ -33,10 +34,12 @@ var hierarchy =
       [ "autograd::Variable< T >", "structautograd_1_1Variable.html", null ]
     ] ],
     [ "autograd::Expression< Matrix >", "structautograd_1_1Expression.html", null ],
+    [ "IDataset", "classIDataset.html", [
+      [ "MNIST", "classMNIST.html", null ]
+    ] ],
     [ "IOptimizer", "classIOptimizer.html", [
       [ "SGD", "classSGD.html", null ]
     ] ],
-    [ "Dataset::iterator", "classDataset_1_1iterator.html", null ],
     [ "Matrix", "classMatrix.html", null ],
     [ "Module", "classModule.html", [
       [ "Linear", "classLinear.html", null ]

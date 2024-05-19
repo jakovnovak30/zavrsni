@@ -1,0 +1,18 @@
+<map id="/github/workspace/include/data/impl/MNIST.h" name="/github/workspace/include/data/impl/MNIST.h">
+<area shape="rect" id="Node000001" title="razred koji implementira MNIST skup podataka" alt="" coords="92,5,264,46"/>
+<area shape="rect" id="Node000002" href="$IDataset_8h.html" title="apstraktni razred koji predstavlja nekakav skup podataka" alt="" coords="68,94,177,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,48,142,83,138,79,162,45"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="202,94,267,120"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="194,45,219,79,215,83,190,48"/>
+<area shape="rect" id="Node000003" href="$Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="46,168,198,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="125,120,125,152,120,152,120,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="91,315,153,341"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="77,196,41,214,25,227,13,243,9,254,9,263,23,282,48,298,77,310,75,315,45,303,19,286,4,265,3,253,8,240,21,223,38,210,75,191"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="23,241,118,267"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="116,195,90,230,86,227,112,192"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="142,241,209,267"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="133,192,160,227,155,230,129,195"/>
+<area shape="rect" id="Node000007" href="$Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="234,241,285,267"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="147,192,224,231,222,236,144,196"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="238,270,160,310,158,305,235,265"/>
+</map>

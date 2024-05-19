@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CppDiff: Opis datoteke /github/workspace/src/data/impl/MNIST.cpp</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/ams','[tex]/mathtools']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','ams','mathtools']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CppDiff<span id="projectnumber">&#160;v0.1</span>
+   </div>
+   <div id="projectbrief">demonstracijski okvir za diferencijabilno programiranje</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generirao Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Traži');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('MNIST_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Učitavam...</div>
+<div class="SRStatus" id="Searching">Tražim...</div>
+<div class="SRStatus" id="NoMatches">Nema traženih podataka</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Opis datoteke MNIST.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>implementacija <a class="el" href="classMNIST.html" title="implementacija sučelja &quot;IDataset&quot; za poznati MNIST skup podataka: https://www.kaggle....">MNIST</a> skupa podataka  
+<a href="#details">Opširnije...</a></p>
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &quot;<a class="el" href="MNIST_8h_source.html">data/impl/MNIST.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graf include međuovisnosti za MNIST.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="MNIST_8cpp__incl.png" border="0" usemap="#a_2github_2workspace_2src_2data_2impl_2MNIST_8cpp" alt=""/></div>
+<map name="a_2github_2workspace_2src_2data_2impl_2MNIST_8cpp" id="a_2github_2workspace_2src_2data_2impl_2MNIST_8cpp">
+<area shape="rect" title="implementacija MNIST skupa podataka" alt="" coords="77,5,226,46"/>
+<area shape="rect" title=" " alt="" coords="5,94,77,120"/>
+<area shape="poly" title=" " alt="" coords="126,49,72,87,69,82,123,44"/>
+<area shape="rect" title=" " alt="" coords="128,168,194,193"/>
+<area shape="poly" title=" " alt="" coords="148,47,142,81,142,119,152,153,147,154,137,120,137,81,143,46"/>
+<area shape="rect" title=" " alt="" coords="152,94,229,120"/>
+<area shape="poly" title=" " alt="" coords="164,45,180,79,175,81,159,48"/>
+<area shape="rect" href="MNIST_8h.html" title="razred koji implementira MNIST skup podataka" alt="" coords="253,94,384,120"/>
+<area shape="poly" title=" " alt="" coords="194,44,280,85,278,89,192,49"/>
+<area shape="poly" title=" " alt="" coords="293,123,203,163,201,158,291,118"/>
+<area shape="rect" href="IDataset_8h.html" title="apstraktni razred koji predstavlja nekakav skup podataka" alt="" coords="264,168,373,193"/>
+<area shape="poly" title=" " alt="" coords="321,120,321,152,316,152,316,120"/>
+<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="242,241,395,267"/>
+<area shape="poly" title=" " alt="" coords="321,194,321,226,316,226,316,194"/>
+<area shape="rect" title=" " alt="" coords="287,389,350,414"/>
+<area shape="poly" title=" " alt="" coords="273,270,237,288,221,301,209,316,205,327,205,337,219,356,244,372,273,384,271,389,241,376,215,360,200,339,199,327,204,314,217,297,234,283,271,265"/>
+<area shape="rect" title=" " alt="" coords="219,315,314,341"/>
+<area shape="poly" title=" " alt="" coords="312,269,286,304,282,301,308,266"/>
+<area shape="rect" title=" " alt="" coords="338,315,405,341"/>
+<area shape="poly" title=" " alt="" coords="329,266,356,301,351,304,325,269"/>
+<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="430,315,481,341"/>
+<area shape="poly" title=" " alt="" coords="343,265,420,305,418,310,340,270"/>
+<area shape="poly" title=" " alt="" coords="434,344,356,383,354,379,431,339"/>
+</map>
+</div>
+</div><a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
+<div class="textblock"><p>implementacija <a class="el" href="classMNIST.html" title="implementacija sučelja &quot;IDataset&quot; za poznati MNIST skup podataka: https://www.kaggle....">MNIST</a> skupa podataka </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c1be8d27e7f84178e95f152701110b19.html">data</a></li><li class="navelem"><a class="el" href="dir_065e5f512bebcee4ce421bfb6b5f3e48.html">impl</a></li><li class="navelem"><a class="el" href="MNIST_8cpp.html">MNIST.cpp</a></li>
+    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

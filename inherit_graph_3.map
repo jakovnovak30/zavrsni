@@ -1,5 +1,5 @@
 <map id="Grafičko stablo klasa" name="Grafičko stablo klasa">
-<area shape="rect" id="Node000000" href="$classIOptimizer.html" title="apstraktna klasa koja definira sučelje za optimizatore" alt="" coords="5,5,86,31"/>
-<area shape="rect" id="Node000001" href="$classSGD.html" title="implementacija stohastičkog gradijentnog spusta:" alt="" coords="134,5,183,31"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="101,16,133,16,133,21,101,21"/>
+<area shape="rect" id="Node000000" href="$classIDataset.html" title=" " alt="" coords="5,5,76,31"/>
+<area shape="rect" id="Node000001" href="$classMNIST.html" title="implementacija sučelja &quot;IDataset&quot; za poznati MNIST skup podataka: https://www.kaggle...." alt="" coords="124,5,187,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="91,16,123,16,123,21,91,21"/>
 </map>
