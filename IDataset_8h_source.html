@@ -119,21 +119,22 @@ $(function(){initNavTree('IDataset_8h_source.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <a href="IDataset_8h.html">Dokumenacija za ovu datoteku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="Matrix_8h.html">autograd_core/Matrix.h</a>&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classIDataset.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classIDataset.html">IDataset</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_class" href="classIDataset.html">IDataset</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="classIDataset.html">~IDataset</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classIDataset.html#ae143f873a42917910ab1c5c268955bc7">   24</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="classIDataset.html#ae143f873a42917910ab1c5c268955bc7">getElementSize</a>() = 0;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classIDataset.html#a7b19ff6cf0f2e568a2fb26217c9d16e3">   30</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="classIDataset.html#a7b19ff6cf0f2e568a2fb26217c9d16e3">getSize</a>() = 0;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classIDataset.html#a92f135bafb3c23122add10cced7f9936">   37</a></span>  <span class="keyword">virtual</span> std::pair&lt;Matrix, Matrix&gt; <a class="code hl_function" href="classIDataset.html#a92f135bafb3c23122add10cced7f9936">operator[]</a>(<span class="keywordtype">size_t</span> index) = 0;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="Matrix_8h.html">autograd_core/Matrix.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classIDataset.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classIDataset.html">IDataset</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_class" href="classIDataset.html">IDataset</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="classIDataset.html">~IDataset</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classIDataset.html#ae143f873a42917910ab1c5c268955bc7">   25</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="classIDataset.html#ae143f873a42917910ab1c5c268955bc7">getElementSize</a>() = 0;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classIDataset.html#a7b19ff6cf0f2e568a2fb26217c9d16e3">   31</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="classIDataset.html#a7b19ff6cf0f2e568a2fb26217c9d16e3">getSize</a>() = 0;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classIDataset.html#a92f135bafb3c23122add10cced7f9936">   38</a></span>  <span class="keyword">virtual</span> std::pair&lt;Matrix, Matrix&gt; <a class="code hl_function" href="classIDataset.html#a92f135bafb3c23122add10cced7f9936">operator[]</a>(<span class="keywordtype">size_t</span> index) = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
 <div class="ttc" id="aMatrix_8h_html"><div class="ttname"><a href="Matrix_8h.html">Matrix.h</a></div><div class="ttdoc">definicija funkcionalnosti za razred Matrix</div></div>
-<div class="ttc" id="aclassIDataset_html"><div class="ttname"><a href="classIDataset.html">IDataset</a></div><div class="ttdef"><b>Definition</b> IDataset.h:14</div></div>
+<div class="ttc" id="aclassIDataset_html"><div class="ttname"><a href="classIDataset.html">IDataset</a></div><div class="ttdef"><b>Definition</b> IDataset.h:15</div></div>
 <div class="ttc" id="aclassIDataset_html_a7b19ff6cf0f2e568a2fb26217c9d16e3"><div class="ttname"><a href="classIDataset.html#a7b19ff6cf0f2e568a2fb26217c9d16e3">IDataset::getSize</a></div><div class="ttdeci">virtual size_t getSize()=0</div><div class="ttdoc">vraća veličinu skupa podataka (broj elemenata)</div></div>
 <div class="ttc" id="aclassIDataset_html_a92f135bafb3c23122add10cced7f9936"><div class="ttname"><a href="classIDataset.html#a92f135bafb3c23122add10cced7f9936">IDataset::operator[]</a></div><div class="ttdeci">virtual std::pair&lt; Matrix, Matrix &gt; operator[](size_t index)=0</div><div class="ttdoc">funkcija pristupa pojedinom podatku</div></div>
 <div class="ttc" id="aclassIDataset_html_ae143f873a42917910ab1c5c268955bc7"><div class="ttname"><a href="classIDataset.html#ae143f873a42917910ab1c5c268955bc7">IDataset::getElementSize</a></div><div class="ttdeci">virtual size_t getElementSize()=0</div><div class="ttdoc">vraća veličinu pojedinog elementa u skupu podataka (u bajtovima)</div></div>
