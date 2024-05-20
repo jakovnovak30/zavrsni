@@ -4,6 +4,7 @@
  * @author Jakov Novak
  */
 
+#include <cstdio>
 #include <iostream>
 #include "Matrix.h"
 #include "expression.hpp"
@@ -62,13 +63,24 @@ namespace autograd {
       this->value = Matrix(clCreateBuffer(globalContext, CL_MEM_READ_WRITE, rez_n * rez_m * sizeof(float), nullptr, &_err), rez_n, rez_m);
       checkError(_err);
 
-      clblast::Gemm(clblast::Layout::kRowMajor,
+
+    size_t lda = this->transposeLeft ? left->getValue().getN() : left->getValue().getM();
+    size_t ldb = this->transposeRight ? right->getValue().getN() : right->getValue().getM();
+    size_t ldc = this->value.getM();
+
+    clblast::StatusCode code = clblast::Gemm(clblast::Layout::kRowMajor,
                     this->transposeLeft ? clblast::Transpose::kYes : clblast::Transpose::kNo,
                     this->transposeRight ? clblast::Transpose::kYes : clblast::Transpose::kNo,
-                    this->left->getValue().getN(), this->left->getValue().getM(), this->right->getValue().getN(), 1.f,
-                    this->left->getValue().data->data, 0.f, this->left->getValue().getN(),
-                    this->right->getValue().data->data, 0.f, this->right->getValue().getN(), 1.f,
-                    this->value.data->data, 0.f, this->value.getN(), &globalQueue);
+                    this->left->getValue().getN(), this->left->getValue().getM(), this->right->getValue().getM(), 1.f,
+                    this->left->getValue().data->data, 0, lda,
+                    this->right->getValue().data->data, 0, ldb, 0.f,
+                    this->value.data->data, 0, ldc, &globalQueue);
+
+      if(code != clblast::StatusCode::kSuccess) {
+        std::cout << "MULTIPLICATION ERROR: " << StatusCodeToString(code) << std::endl;
+        printf("status code: %d", (int)code);
+        std::cout << "dimensions: " << left->getValue().getN() << ", " << left->getValue().getM() << ", " << right->getValue().getM() << std::endl;
+      }
     }
 
     void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override {

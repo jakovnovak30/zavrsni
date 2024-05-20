@@ -22,7 +22,7 @@ __kernel void Softmax(__global const float* input, __global float* output, const
 
     // izračunaj brojnike
     for(unsigned int i = 0; i < M; ++i) {
-        output[t_id *M + i] = exp(input[t_id * M + i] - max_val) / sum_exp;
+        output[t_id * M + i] = exp(input[t_id * M + i] - max_val) / sum_exp;
     }
 }
 

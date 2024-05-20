@@ -7,6 +7,7 @@
 #pragma once
 
 #include<CL/cl.h>
+#include <clblast.h>
 
 /**
  * @brief globalni OpenCL kontekst koje se inicijalizira prilikom pokretanja initCL funkcije
@@ -58,3 +59,11 @@ void initCL_nvidia();
  * @brief funkcija koja oslobađa sve OpenCL resurse zajedno s kontekstom i uređajem
  */
 void freeCL();
+
+/**
+ * @brief funkcija koja pretvara clblast statusne kodove u stringove
+ *
+ * @param status 
+ * @return 
+ */
+const char* StatusCodeToString(clblast::StatusCode status);

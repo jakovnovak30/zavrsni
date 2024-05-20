@@ -132,9 +132,6 @@ inline cl_kernel Matrix::loadKernel(const Matrix &other, const std::string &name
     throw std::logic_error("Not implemented yet!");
   }
   else {
-    std::cout << "debug-left: " << this->N << " x " << this->M << std::endl;
-    std::cout << "debug-right: " << other.N << " x " << other.M << std::endl;
-    std::cout << "right matrix: " << other.toString() << std::endl;
     throw std::logic_error("invalid matrix dimensions!");
   }
 

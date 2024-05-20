@@ -21,9 +21,11 @@ STRINGIFY(
     }
 
     float log_sum_exp = log(sum_exp) + max_val;
-    output[t_id] = 0.0f;
-    for (j = 0; j < M; ++j) {
-        output[t_id] += expected[i * M + j] * (log_sum_exp - input[i * M + j]);
+    float loss = 0.0f;
+    for (unsigned int i = 0; i < M; ++i) {
+        loss += expected[t_id * M + i] * (log_sum_exp - input[t_id * M + i]);
     }
+
+    output[t_id] = loss;
   }
 )

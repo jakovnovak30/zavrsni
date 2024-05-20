@@ -6,6 +6,9 @@ STRINGIFY(
     const size_t ty = get_global_id(0); // od 0 do N
     const size_t tx = get_global_id(1); // od 0 do M
 
-    output[ty * m + tx] = 1 / (1 + exp(-input[ty * m + tx]));
+    if(input[ty * m + tx] >= 0)
+      output[ty * m + tx] = 1 / (1 + exp(-input[ty * m + tx]));
+    else
+      output[ty * m + tx] = exp(input[ty * m + tx]) / (1 + input[ty * m + tx]);
   }
 )

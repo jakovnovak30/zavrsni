@@ -6,6 +6,7 @@
 
 #include "Util.h"
 #include <CL/cl.h>
+#include <clblast.h>
 #include <cstring>
 #include <stdexcept>
 
@@ -146,4 +147,31 @@ void freeCL() {
   checkError(clReleaseCommandQueue(globalQueue));
   checkError(clReleaseDevice(globalDevice));
   checkError(clReleaseContext(globalContext));
+}
+
+// Utility function to convert CLBlast status code to string
+const char* StatusCodeToString(clblast::StatusCode status) {
+    switch (status) {
+        case clblast::StatusCode::kSuccess: return "Success";
+        case clblast::StatusCode::kInvalidValue: return "Invalid value";
+        case clblast::StatusCode::kInvalidCommandQueue: return "Invalid command queue";
+        case clblast::StatusCode::kInvalidMemObject: return "Invalid memory object";
+        case clblast::StatusCode::kInvalidKernel: return "Invalid kernel";
+        case clblast::StatusCode::kInvalidArgIndex: return "Invalid argument index";
+        case clblast::StatusCode::kInvalidArgValue: return "Invalid argument value";
+        case clblast::StatusCode::kInvalidArgSize: return "Invalid argument size";
+        case clblast::StatusCode::kInvalidBinary: return "Invalid binary";
+        case clblast::StatusCode::kInvalidBuildOptions: return "Invalid build options";
+        case clblast::StatusCode::kInvalidProgram: return "Invalid program";
+        case clblast::StatusCode::kInvalidProgramExecutable: return "Invalid program executable";
+        case clblast::StatusCode::kInvalidKernelName: return "Invalid kernel name";
+        case clblast::StatusCode::kInvalidKernelDefinition: return "Invalid kernel definition";
+        case clblast::StatusCode::kInvalidGlobalOffset: return "Invalid global offset";
+        case clblast::StatusCode::kInvalidEventWaitList: return "Invalid event wait list";
+        case clblast::StatusCode::kInvalidEvent: return "Invalid event";
+        case clblast::StatusCode::kInvalidOperation: return "Invalid operation";
+        case clblast::StatusCode::kInvalidBufferSize: return "Invalid buffer size";
+        case clblast::StatusCode::kInvalidGlobalWorkSize: return "Invalid global work size";
+        default: return "Unknown error";
+    }
 }
