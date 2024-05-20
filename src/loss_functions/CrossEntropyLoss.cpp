@@ -1,24 +1,24 @@
 /**
  * @file
- * @brief implementacija CrossEntropyLoss funkcije
+ * @brief implementacija CrossEntropyLossWithSoftmaxWithSoftmax funkcije
  * @author Jakov Novak
  */
 
-#include "loss_functions/CrossEntropyLoss.h"
+#include "loss_functions/CrossEntropyLossWithSoftmax.h"
+#include "loss_functions/Softmax.h"
 #include "Util.h"
 #include "autograd_core/expression.hpp"
 
 #include <CL/cl.h>
 #include <cstring>
+#include <memory>
 
-CrossEntropyLoss::CrossEntropyLoss(std::shared_ptr<autograd::Expression<Matrix>> left, std::shared_ptr<autograd::Expression<Matrix>> right) :
-  BinaryOperator(left, right), program{ nullptr }, loss_kernel { nullptr }, grad_kernel { nullptr } { }
+CrossEntropyLossWithSoftmax::CrossEntropyLossWithSoftmax(std::shared_ptr<autograd::Expression<Matrix>> left, std::shared_ptr<autograd::Expression<Matrix>> right) :
+  BinaryOperator(left, right), program{ nullptr }, loss_kernel { nullptr } { }
 
-CrossEntropyLoss::~CrossEntropyLoss() {
+CrossEntropyLossWithSoftmax::~CrossEntropyLossWithSoftmax() {
   if(this->loss_kernel != nullptr)
     checkError(clReleaseKernel(this->loss_kernel));
-  if(this->grad_kernel != nullptr)
-    checkError(clReleaseKernel(this->grad_kernel));
   if(this->program != nullptr)
     checkError(clReleaseProgram(this->program));
 }
@@ -29,7 +29,7 @@ static const char *code[] =
                         };
 static const size_t lengths[] = { strlen(code[0]) };
 
-void CrossEntropyLoss::eval() {
+void CrossEntropyLossWithSoftmax::eval() {
   buildIfNeeded(&program, &loss_kernel, "CrossEntropyLoss", code,  lengths);
 
   Matrix input = this->left->getValue();
@@ -53,6 +53,17 @@ void CrossEntropyLoss::eval() {
 }
 
 // TODO: slozi ovo
-void CrossEntropyLoss::_derive(std::shared_ptr<autograd::Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<autograd::Expression<Matrix>>> &out_map) {
-  return;
+void CrossEntropyLossWithSoftmax::_derive(std::shared_ptr<autograd::Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<autograd::Expression<Matrix>>> &out_map) {
+  // Calculate the softmax of the input
+  std::shared_ptr<autograd::Expression<Matrix>> softmax = std::make_shared<Softmax>(this->left);
+
+  // Subtract the expected values from the softmax values to get the gradient of the loss
+  auto grad_input = softmax - this->right;
+
+  // Multiply by the seed if it is not nullptr
+  if (seed) {
+      grad_input = grad_input * seed;
+  }
+
+  this->left->derive(grad_input, out_map);
 }
