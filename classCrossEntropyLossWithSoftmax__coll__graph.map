@@ -1,5 +1,5 @@
-<map id="CrossEntropyLoss" name="CrossEntropyLoss">
-<area shape="rect" id="Node000001" title=" " alt="" coords="105,1481,249,1606"/>
+<map id="CrossEntropyLossWithSoftmax" name="CrossEntropyLossWithSoftmax">
+<area shape="rect" id="Node000001" title=" " alt="" coords="67,1481,286,1606"/>
 <area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="99,1331,254,1431"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,1446,179,1481,174,1481,174,1446"/>
 <area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,1028,167,1253"/>

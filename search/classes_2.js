@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['crossentropyloss_0',['CrossEntropyLoss',['../classCrossEntropyLoss.html',1,'']]]
+  ['crossentropylosswithsoftmax_0',['CrossEntropyLossWithSoftmax',['../classCrossEntropyLossWithSoftmax.html',1,'']]]
 ];

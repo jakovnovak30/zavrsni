@@ -1,51 +1,54 @@
 <map id="/github/workspace/include/autograd_core/expression.hpp" name="/github/workspace/include/autograd_core/expression.hpp">
-<area shape="rect" id="Node000001" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="669,5,866,46"/>
-<area shape="rect" id="Node000002" href="$autograd__basic_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa" alt="" coords="87,205,250,246"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="653,32,476,37,276,49,184,57,106,68,49,81,30,88,19,96,10,108,8,121,11,134,19,148,33,166,51,181,92,202,89,207,48,185,29,170,14,151,6,136,3,121,5,106,15,92,27,83,47,76,105,62,184,52,276,43,475,32,653,26"/>
+<area shape="rect" id="Node000001" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="731,5,929,46"/>
+<area shape="rect" id="Node000002" href="$autograd__basic_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograd paketa" alt="" coords="84,205,248,246"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="716,31,524,35,304,46,203,54,116,66,52,79,31,87,19,96,10,108,8,121,11,134,19,148,33,166,50,181,91,202,89,207,47,185,29,170,14,151,6,136,3,121,5,106,15,92,29,83,51,74,115,60,202,49,304,41,524,30,716,25"/>
 <area shape="rect" id="Node000003" href="$Module_8h.html" title="definicija apstraktne klase Module" alt="" coords="1399,102,1571,142"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="882,31,1116,53,1252,69,1387,91,1418,98,1417,103,1386,97,1251,75,1115,58,882,37"/>
-<area shape="rect" id="Node000007" href="$autograd__util_8hpp.html" title="definicija dodatnih korisnih funkcija vezanih uz autograd_core klase" alt="" coords="496,94,668,150"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="716,56,637,96,634,91,714,51"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="945,33,1151,55,1269,71,1387,91,1417,98,1416,103,1386,97,1269,77,1150,60,944,39"/>
+<area shape="rect" id="Node000007" href="$autograd__util_8hpp.html" title="definicija dodatnih korisnih funkcija vezanih uz autograd_core klase" alt="" coords="287,94,459,150"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="717,48,471,97,460,99,459,94,470,91,716,43"/>
 <area shape="rect" id="Node000010" href="$basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="29,102,263,142"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="654,42,470,65,263,97,226,103,225,98,262,91,469,60,653,36"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="716,40,505,63,262,97,225,103,224,98,262,91,504,57,716,34"/>
 <area shape="rect" id="Node000011" href="$Sigmoid_8cpp.html" title="implementacije Sigmoid funkcije" alt="" coords="583,205,733,246"/>
-<area shape="poly" id="edge30_Node000001_Node000011" title=" " alt="" coords="751,61,671,206,667,203,747,59"/>
+<area shape="poly" id="edge32_Node000001_Node000011" title=" " alt="" coords="782,56,757,75,733,96,712,123,693,153,668,206,663,204,689,151,707,120,729,92,753,70,779,52"/>
 <area shape="rect" id="Node000012" href="$matrix__operations_8hpp.html" title="definicija i implementacija autograd operacija koje su specifične za klasu Matrix" alt="" coords="1137,102,1374,142"/>
-<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="882,45,1125,91,1160,98,1159,103,1124,97,881,51"/>
-<area shape="rect" id="Node000013" href="$visualize_8hpp.html" title="definicija i implementacija funkcije autograd::visualize" alt="" coords="287,102,472,142"/>
-<area shape="poly" id="edge18_Node000001_Node000013" title=" " alt="" coords="669,53,484,97,456,104,455,98,483,91,668,47"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="935,47,1167,98,1165,103,933,52"/>
+<area shape="rect" id="Node000013" href="$visualize_8hpp.html" title="definicija i implementacija funkcije autograd::visualize" alt="" coords="483,102,668,142"/>
+<area shape="poly" id="edge18_Node000001_Node000013" title=" " alt="" coords="763,54,630,103,628,98,761,49"/>
 <area shape="rect" id="Node000014" href="$ReLU_8h.html" title="definicija funkcije ReLU" alt="" coords="940,102,1112,142"/>
-<area shape="poly" id="edge22_Node000001_Node000014" title=" " alt="" coords="836,49,973,98,971,103,835,54"/>
+<area shape="poly" id="edge22_Node000001_Node000014" title=" " alt="" coords="886,51,986,99,984,103,884,55"/>
 <area shape="rect" id="Node000016" href="$Sigmoid_8h.html" title="definicija funkcije Sigmoid" alt="" coords="744,102,916,142"/>
-<area shape="poly" id="edge25_Node000001_Node000016" title=" " alt="" coords="791,58,819,100,815,103,787,60"/>
-<area shape="rect" id="Node000017" href="$CrossEntropyLoss_8h_source.html" title=" " alt="" coords="1595,102,1825,142"/>
-<area shape="poly" id="edge28_Node000001_Node000017" title=" " alt="" coords="881,29,1198,50,1391,67,1584,91,1624,98,1623,104,1583,97,1391,73,1198,55,881,35"/>
-<area shape="rect" id="Node000018" href="$CrossEntropyLoss_8cpp.html" title="implementacija CrossEntropyLoss funkcije" alt="" coords="1715,198,1905,253"/>
-<area shape="poly" id="edge31_Node000001_Node000018" title=" " alt="" coords="882,27,1140,36,1448,49,1712,68,1798,79,1825,85,1838,92,1847,104,1851,117,1851,145,1842,173,1830,198,1825,196,1837,172,1846,145,1846,118,1842,106,1835,96,1823,90,1797,84,1711,73,1448,55,1140,41,881,33"/>
-<area shape="rect" id="Node000004" href="$Linear_8h.html" title="definicija modula Linear" alt="" coords="1293,205,1466,246"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1455,155,1401,207,1398,203,1452,151"/>
-<area shape="rect" id="Node000006" href="$Module_8cpp.html" title="implementacije generičke kompozicije funkcija Module" alt="" coords="1490,205,1639,246"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="1512,153,1551,203,1547,206,1507,156"/>
-<area shape="rect" id="Node000005" href="$Linear_8cpp.html" title="implementacije potpuno povezanih slojeva" alt="" coords="1242,301,1391,342"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1360,260,1332,302,1327,300,1356,257"/>
-<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="481,153,252,208,250,203,480,148"/>
+<area shape="poly" id="edge25_Node000001_Node000016" title=" " alt="" coords="833,62,833,101,827,101,827,62"/>
+<area shape="rect" id="Node000017" href="$CrossEntropyLossWithSoftmax_8h_source.html" title=" " alt="" coords="1646,94,1865,150"/>
+<area shape="poly" id="edge28_Node000001_Node000017" title=" " alt="" coords="945,30,1254,50,1441,68,1628,91,1646,94,1645,99,1627,97,1440,73,1253,56,944,35"/>
+<area shape="rect" id="Node000018" href="$CrossEntropyLoss_8cpp.html" title="implementacija CrossEntropyLossWithSoftmaxWithSoftmax funkcije" alt="" coords="1662,198,1852,253"/>
+<area shape="poly" id="edge33_Node000001_Node000018" title=" " alt="" coords="944,24,1106,28,1291,38,1382,47,1464,58,1533,73,1585,92,1602,104,1612,118,1622,132,1636,148,1671,173,1706,195,1704,199,1668,177,1632,152,1617,136,1608,121,1598,108,1582,96,1531,78,1463,64,1381,52,1291,44,1106,33,944,30"/>
+<area shape="rect" id="Node000019" href="$Softmax_8h_source.html" title=" " alt="" coords="1889,102,2062,142"/>
+<area shape="poly" id="edge30_Node000001_Node000019" title=" " alt="" coords="945,24,1125,28,1357,38,1617,58,1749,73,1877,91,1910,98,1909,103,1876,97,1748,78,1616,63,1357,43,1124,33,944,30"/>
+<area shape="rect" id="Node000004" href="$Linear_8h.html" title="definicija modula Linear" alt="" coords="1292,205,1464,246"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1455,155,1400,207,1397,203,1451,151"/>
+<area shape="rect" id="Node000006" href="$Module_8cpp.html" title="implementacije generičke kompozicije funkcija Module" alt="" coords="1489,205,1638,246"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="1511,153,1550,203,1546,206,1507,156"/>
+<area shape="rect" id="Node000005" href="$Linear_8cpp.html" title="implementacije potpuno povezanih slojeva" alt="" coords="1241,301,1390,342"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1359,260,1331,302,1326,300,1354,257"/>
+<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="305,159,207,207,205,202,303,154"/>
 <area shape="rect" id="Node000008" href="$autograd__matrix_8cpp.html" title="demonstracijski program u kojem se prikazuju osnovne funkcionalnosti autograda zajedno s matricama (k..." alt="" coords="756,205,920,246"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="666,153,789,202,787,207,664,158"/>
-<area shape="rect" id="Node000009" href="$visualize__demo_8cpp.html" title="demonstracijski program u kojem se vizualizira parcijalna derivacija zadane funkcije pomoću graphviza" alt="" coords="298,205,461,246"/>
-<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="516,159,420,207,417,202,513,154"/>
-<area shape="poly" id="edge13_Node000010_Node000001" title=" " alt="" coords="263,95,286,91,490,60,668,37,668,42,490,65,287,97,264,101"/>
-<area shape="poly" id="edge11_Node000010_Node000002" title=" " alt="" coords="156,157,167,204,162,205,151,158"/>
-<area shape="poly" id="edge12_Node000010_Node000009" title=" " alt="" coords="206,146,335,202,333,207,204,151"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="474,148,611,171,671,180,745,195,773,202,772,207,744,200,670,185,610,176,473,153"/>
+<area shape="rect" id="Node000009" href="$visualize__demo_8cpp.html" title="demonstracijski program u kojem se vizualizira parcijalna derivacija zadane funkcije pomoću graphviza" alt="" coords="291,205,454,246"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="375,165,375,205,370,205,370,165"/>
+<area shape="poly" id="edge13_Node000010_Node000001" title=" " alt="" coords="263,95,286,91,525,58,731,35,731,40,526,63,286,97,263,101"/>
+<area shape="poly" id="edge11_Node000010_Node000002" title=" " alt="" coords="155,157,165,204,160,205,150,158"/>
+<area shape="poly" id="edge12_Node000010_Node000009" title=" " alt="" coords="205,146,330,202,328,207,202,151"/>
 <area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="256,143,275,147,583,207,582,213,274,152,255,148"/>
-<area shape="poly" id="edge17_Node000012_Node000005" title=" " alt="" coords="1262,157,1270,203,1283,252,1307,300,1302,302,1278,254,1265,204,1257,158"/>
+<area shape="poly" id="edge17_Node000012_Node000005" title=" " alt="" coords="1261,157,1269,203,1282,252,1305,300,1301,302,1277,254,1264,204,1256,158"/>
 <area shape="poly" id="edge16_Node000012_Node000008" title=" " alt="" coords="1156,149,940,200,913,207,912,202,939,195,1155,144"/>
-<area shape="poly" id="edge19_Node000013_Node000002" title=" " alt="" coords="326,152,211,207,208,202,324,147"/>
-<area shape="poly" id="edge20_Node000013_Node000008" title=" " alt="" coords="469,144,484,147,615,170,745,195,773,202,771,207,744,200,614,176,483,152,468,149"/>
-<area shape="poly" id="edge21_Node000013_Node000009" title=" " alt="" coords="382,158,382,205,377,205,377,158"/>
+<area shape="poly" id="edge19_Node000013_Node000002" title=" " alt="" coords="485,149,472,152,248,207,246,202,471,147,483,144"/>
+<area shape="poly" id="edge20_Node000013_Node000008" title=" " alt="" coords="641,146,788,202,786,207,639,151"/>
+<area shape="poly" id="edge21_Node000013_Node000009" title=" " alt="" coords="524,152,413,207,411,202,521,147"/>
 <area shape="poly" id="edge23_Node000014_Node000008" title=" " alt="" coords="978,152,875,207,873,202,975,147"/>
 <area shape="rect" id="Node000015" href="$ReLU_8cpp.html" title="imeplementacije funkcije ReLU" alt="" coords="951,205,1101,246"/>
 <area shape="poly" id="edge24_Node000014_Node000015" title=" " alt="" coords="1029,158,1029,205,1023,205,1023,158"/>
 <area shape="poly" id="edge26_Node000016_Node000008" title=" " alt="" coords="835,158,839,205,834,205,830,158"/>
 <area shape="poly" id="edge27_Node000016_Node000011" title=" " alt="" coords="785,153,692,207,690,202,782,148"/>
-<area shape="poly" id="edge29_Node000017_Node000018" title=" " alt="" coords="1742,151,1785,195,1781,199,1738,155"/>
+<area shape="poly" id="edge29_Node000017_Node000018" title=" " alt="" coords="1759,165,1759,197,1754,197,1753,165"/>
+<area shape="poly" id="edge31_Node000019_Node000018" title=" " alt="" coords="1921,151,1816,200,1814,195,1919,146"/>
 </map>

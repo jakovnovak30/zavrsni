@@ -15,7 +15,7 @@ var annotated_dup =
       [ "Variable", "structautograd_1_1Variable.html", "structautograd_1_1Variable" ],
       [ "VectorSumReduction", "structautograd_1_1VectorSumReduction.html", "structautograd_1_1VectorSumReduction" ]
     ] ],
-    [ "CrossEntropyLoss", "classCrossEntropyLoss.html", "classCrossEntropyLoss" ],
+    [ "CrossEntropyLossWithSoftmax", "classCrossEntropyLossWithSoftmax.html", "classCrossEntropyLossWithSoftmax" ],
     [ "Dataloader", "classDataloader.html", null ],
     [ "Dataset", "classDataset.html", null ],
     [ "IDataset", "classIDataset.html", "classIDataset" ],
@@ -27,5 +27,6 @@ var annotated_dup =
     [ "Random2DGaussian", "classRandom2DGaussian.html", null ],
     [ "ReLU", "classReLU.html", "classReLU" ],
     [ "SGD", "classSGD.html", "classSGD" ],
-    [ "Sigmoid", "classSigmoid.html", "classSigmoid" ]
+    [ "Sigmoid", "classSigmoid.html", "classSigmoid" ],
+    [ "Softmax", "classSoftmax.html", "classSoftmax" ]
 ];

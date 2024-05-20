@@ -11,13 +11,14 @@ var hierarchy =
     ] ],
     [ "autograd::Expression< T >", "structautograd_1_1Expression.html", [
       [ "autograd::BinaryOperator< Matrix >", "structautograd_1_1BinaryOperator.html", [
-        [ "CrossEntropyLoss", "classCrossEntropyLoss.html", null ],
+        [ "CrossEntropyLossWithSoftmax", "classCrossEntropyLossWithSoftmax.html", null ],
         [ "autograd::MatrixMultply", "structautograd_1_1MatrixMultply.html", null ],
         [ "autograd::MatrixVectorAdd", "structautograd_1_1MatrixVectorAdd.html", null ]
       ] ],
       [ "autograd::UnaryOperator< Matrix >", "structautograd_1_1UnaryOperator.html", [
         [ "ReLU", "classReLU.html", null ],
         [ "Sigmoid", "classSigmoid.html", null ],
+        [ "Softmax", "classSoftmax.html", null ],
         [ "autograd::VectorSumReduction", "structautograd_1_1VectorSumReduction.html", null ]
       ] ],
       [ "autograd::Variable< Matrix >", "structautograd_1_1Variable.html", null ],
