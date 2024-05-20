@@ -1,7 +1,7 @@
 <map id="autograd::VectorSumReduction" name="autograd::VectorSumReduction">
-<area shape="rect" id="Node000001" title="unarni operator redukcije matrice u vektora zbrajanjem po proizvoljnoj osi" alt="" coords="5,447,197,572"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="25,299,178,399"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,414,104,447,99,447,99,414"/>
-<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="21,5,182,251"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,265,104,299,99,299,99,265"/>
+<area shape="rect" id="Node000001" title="unarni operator redukcije matrice u vektora zbrajanjem po proizvoljnoj osi" alt="" coords="5,461,197,587"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="25,313,178,413"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,428,104,462,99,462,99,428"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="35,5,167,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,280,104,314,99,314,99,280"/>
 </map>

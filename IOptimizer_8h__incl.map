@@ -1,15 +1,15 @@
 <map id="/github/workspace/include/IOptimizer.h" name="/github/workspace/include/IOptimizer.h">
-<area shape="rect" id="Node000001" title="definicija sučelja IOptimizer" alt="" coords="166,5,338,46"/>
-<area shape="rect" id="Node000002" href="$Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="103,94,255,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,48,202,84,198,81,232,45"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="232,241,294,267"/>
-<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="267,45,283,74,298,111,306,152,303,194,285,230,280,228,298,193,301,152,293,112,278,76,263,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,123,61,134,27,149,16,158,9,168,9,179,16,192,28,202,47,212,100,227,161,239,217,246,216,251,160,244,99,233,46,217,25,207,11,195,4,180,4,167,12,155,24,145,60,129,102,118"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="26,168,121,193"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="162,122,105,161,103,156,160,118"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="145,168,213,193"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="182,120,182,152,176,152,176,120"/>
-<area shape="rect" id="Node000006" href="$Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="237,168,289,193"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="195,118,239,155,235,159,191,122"/>
-<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="266,194,266,226,260,226,260,194"/>
+<area shape="rect" id="Node000001" title="definicija sučelja IOptimizer" alt="" coords="127,5,300,46"/>
+<area shape="rect" id="Node000002" href="$Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="64,94,216,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,48,164,84,160,81,193,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="193,241,255,267"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="229,45,244,74,259,111,268,152,264,194,246,230,241,228,259,193,262,152,254,112,240,76,224,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,123,56,135,26,151,15,160,9,170,9,180,14,192,40,209,82,224,178,244,177,249,81,229,37,214,10,195,4,181,4,169,11,157,23,147,54,130,90,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="25,168,82,193"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="127,122,81,160,78,156,124,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="107,168,174,193"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="143,120,143,152,138,152,138,120"/>
+<area shape="rect" id="Node000006" href="$Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="199,168,250,193"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="156,118,200,155,197,159,153,122"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="227,194,227,226,222,226,222,194"/>
 </map>

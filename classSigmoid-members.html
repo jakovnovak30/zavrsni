@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CppDiff: Popis članova.</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -12,9 +12,9 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -54,10 +54,15 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generirao Doxygen 1.10.0 -->
+<!-- Generirao Doxygen 1.11.0 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
@@ -65,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Traži');
+  initMenu('',true,false,'search.php','Traži',true);
   $(function() { init_search(); });
 });
 /* @license-end */
@@ -84,7 +89,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('classSigmoid.html',''); initResizable(); });
+$(function(){initNavTree('classSigmoid.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -114,28 +119,28 @@ $(function(){initNavTree('classSigmoid.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>Ovo je popis svih članova<a class="el" href="classSigmoid.html">Sigmoid</a>, uključujući naslijeđene članove.</p>
+<p>Ovo je popis svih članova <a class="el" href="classSigmoid.html">Sigmoid</a>, uključujući naslijeđene članove.</p>
 <table class="directory">
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_derive</b>(std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; seed, std::unordered_map&lt; std::string, std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; &gt; &amp;out_map) override final (definirano u <a class="el" href="classSigmoid.html">Sigmoid</a>)</td><td class="entry"><a class="el" href="classSigmoid.html">Sigmoid</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#ae40767f5fbb8a46288c413dd213ee095">UnaryOperator&lt; Matrix &gt;::_derive</a>(std::shared_ptr&lt; Expression&lt; T &gt; &gt; seed, std::unordered_map&lt; std::string, std::shared_ptr&lt; Expression&lt; T &gt; &gt; &gt; &amp;out_map)=0</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#ae40767f5fbb8a46288c413dd213ee095">autograd::UnaryOperator&lt; Matrix &gt;::_derive</a>(std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; seed, std::unordered_map&lt; std::string, std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; &gt; &amp;out_map)=0</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSigmoid.html#a1e2fb718f31f9d9779ba39b04c564963">addSubgraph</a>(Agraph_t *graph, Agnode_t *prev) const override final</td><td class="entry"><a class="el" href="classSigmoid.html">Sigmoid</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#aacef3449ddd2843c1f490106aba05453">derive</a>(std::shared_ptr&lt; Expression&lt; T &gt; &gt; seed, std::unordered_map&lt; std::string, std::shared_ptr&lt; Expression&lt; T &gt; &gt; &gt; &amp;out_map)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#aacef3449ddd2843c1f490106aba05453">derive</a>(std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; seed, std::unordered_map&lt; std::string, std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; &gt; &amp;out_map)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSigmoid.html#a6fbb63a88e9e0759fbc85ec1cd94bca8">eval</a>() override final</td><td class="entry"><a class="el" href="classSigmoid.html">Sigmoid</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#ae04b48d9f119d0c56723b9e9db500a89">evaluated</a></td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a409fbe58ab7f8973d02db5f96e95eace">getValue</a>()</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a4ce2473662bc700e583253b8da2cae8f">grad</a>()</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a3800da34d1a7e345522c06cd1846df93">operator[]</a>(const std::string &amp;name)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#aaad1eec81d4fb07ee7d1213c1e5c5cd5">requires_grad</a></td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#ae04b48d9f119d0c56723b9e9db500a89">evaluated</a></td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a409fbe58ab7f8973d02db5f96e95eace">getValue</a>()</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a4ce2473662bc700e583253b8da2cae8f">grad</a>()</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a3800da34d1a7e345522c06cd1846df93">operator[]</a>(const std::string &amp;name)</td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#aaad1eec81d4fb07ee7d1213c1e5c5cd5">requires_grad</a></td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSigmoid.html#ae9a314cfc50d740d285c7b55e5e70879">Sigmoid</a>(std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; prev)</td><td class="entry"><a class="el" href="classSigmoid.html">Sigmoid</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="structautograd_1_1UnaryOperator.html#a531c58b2f57829fac68a8ebd9edff639">UnaryOperator</a>(std::shared_ptr&lt; Expression&lt; Matrix &gt; &gt; prev)</td><td class="entry"><a class="el" href="structautograd_1_1UnaryOperator.html">autograd::UnaryOperator&lt; Matrix &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a2c73e4891c17c68dde64eb239df6dd59">value</a></td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structautograd_1_1Expression.html#a2c73e4891c17c68dde64eb239df6dd59">value</a></td><td class="entry"><a class="el" href="structautograd_1_1Expression.html">autograd::Expression&lt; Matrix &gt;</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classSigmoid.html#a88d0c24dd37b6a90ee7607b5329ab60b">~Sigmoid</a>()</td><td class="entry"><a class="el" href="classSigmoid.html">Sigmoid</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>

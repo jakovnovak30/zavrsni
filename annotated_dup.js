@@ -23,6 +23,7 @@ var annotated_dup =
     [ "Linear", "classLinear.html", "classLinear" ],
     [ "Matrix", "classMatrix.html", "classMatrix" ],
     [ "MNIST", "classMNIST.html", "classMNIST" ],
+    [ "MnistClassifier", "classMnistClassifier.html", "classMnistClassifier" ],
     [ "Module", "classModule.html", "classModule" ],
     [ "Random2DGaussian", "classRandom2DGaussian.html", null ],
     [ "ReLU", "classReLU.html", "classReLU" ],

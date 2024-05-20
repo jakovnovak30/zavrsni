@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CppDiff: Opis datoteke /github/workspace/include/autograd_core/Matrix.h</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -12,9 +12,9 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -54,10 +54,15 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generirao Doxygen 1.10.0 -->
+<!-- Generirao Doxygen 1.11.0 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
@@ -65,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Traži');
+  initMenu('',true,false,'search.php','Traži',true);
   $(function() { init_search(); });
 });
 /* @license-end */
@@ -84,7 +89,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('Matrix_8h.html',''); initResizable(); });
+$(function(){initNavTree('Matrix_8h.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -119,7 +124,7 @@ $(function(){initNavTree('Matrix_8h.html',''); initResizable(); });
 <p>definicija funkcionalnosti za razred <a class="el" href="classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju">Matrix</a>  
 <a href="#details">Opširnije...</a></p>
 <div class="textblock"><code>#include &lt;CL/cl.h&gt;</code><br />
-<code>#include &lt;initializer_list&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &quot;<a class="el" href="Util_8h_source.html">Util.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -127,16 +132,16 @@ Graf include međuovisnosti za Matrix.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="Matrix_8h__incl.png" border="0" usemap="#a_2github_2workspace_2include_2autograd__core_2Matrix_8h" alt=""/></div>
 <map name="a_2github_2workspace_2include_2autograd__core_2Matrix_8h" id="a_2github_2workspace_2include_2autograd__core_2Matrix_8h">
-<area shape="rect" title="definicija funkcionalnosti za razred Matrix" alt="" coords="36,5,209,46"/>
-<area shape="rect" title=" " alt="" coords="91,168,154,193"/>
-<area shape="poly" title=" " alt="" coords="68,49,41,63,20,79,9,98,9,108,13,118,25,134,41,147,78,165,75,170,38,151,22,138,8,121,3,109,4,97,16,76,38,58,65,44"/>
-<area shape="rect" title=" " alt="" coords="23,94,118,120"/>
-<area shape="poly" title=" " alt="" coords="112,48,89,82,85,79,107,45"/>
-<area shape="rect" title=" " alt="" coords="142,94,210,120"/>
-<area shape="poly" title=" " alt="" coords="138,45,161,80,157,83,133,48"/>
-<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="234,94,286,120"/>
-<area shape="poly" title=" " alt="" coords="158,44,227,84,225,88,155,49"/>
-<area shape="poly" title=" " alt="" coords="238,123,161,162,158,158,235,118"/>
+<area shape="rect" title="definicija funkcionalnosti za razred Matrix" alt="" coords="8,5,180,46"/>
+<area shape="rect" title=" " alt="" coords="72,168,135,193"/>
+<area shape="poly" title=" " alt="" coords="57,49,36,63,18,80,9,99,13,119,33,142,60,160,57,164,29,146,8,121,4,98,14,77,32,59,54,44"/>
+<area shape="rect" title=" " alt="" coords="23,94,80,120"/>
+<area shape="poly" title=" " alt="" coords="86,48,68,81,63,79,81,45"/>
+<area shape="rect" title=" " alt="" coords="105,94,172,120"/>
+<area shape="poly" title=" " alt="" coords="107,45,126,79,122,82,103,48"/>
+<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="197,94,248,120"/>
+<area shape="poly" title=" " alt="" coords="127,44,191,83,189,88,124,49"/>
+<area shape="poly" title=" " alt="" coords="203,122,138,162,135,157,201,118"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -215,7 +220,7 @@ Strukture</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6d4347cdb5fa8f16194ed6aec93e6122.html">autograd_core</a></li><li class="navelem"><a class="el" href="Matrix_8h.html">Matrix.h</a></li>
-    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>

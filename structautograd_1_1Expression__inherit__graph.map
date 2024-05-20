@@ -1,41 +1,21 @@
 <map id="autograd::Expression&lt; T &gt;" name="autograd::Expression&lt; T &gt;">
-<area shape="rect" id="Node000001" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="1294,5,1455,251"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="335,319,489,439"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1281,156,490,360,489,355,1279,151"/>
-<area shape="rect" id="Node000006" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="839,329,993,429"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1282,182,994,338,991,334,1280,178"/>
-<area shape="rect" id="Node000011" href="$structautograd_1_1Variable.html" title=" " alt="" coords="1230,299,1346,459"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1330,266,1318,300,1313,298,1325,264"/>
-<area shape="rect" id="Node000012" href="$structautograd_1_1BinaryOperator.html" title="generička klasa koja implementira binarne operatore:" alt="" coords="1370,326,1555,431"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1425,264,1447,325,1442,327,1420,266"/>
-<area shape="rect" id="Node000017" href="$structautograd_1_1UnaryOperator.html" title="generička klasa koja implementira unarne operatore:" alt="" coords="1694,336,1877,421"/>
-<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="1470,184,1719,334,1716,338,1467,188"/>
-<area shape="rect" id="Node000020" href="$structautograd_1_1Variable.html" title="klasa koja implementira jednu varijablu" alt="" coords="1901,306,2046,451"/>
-<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="1470,145,1562,167,1670,199,1783,242,1838,268,1891,296,1903,304,1900,309,1888,301,1836,273,1781,247,1668,204,1561,172,1469,150"/>
-<area shape="rect" id="Node000003" href="$classCrossEntropyLossWithSoftmax.html" title=" " alt="" coords="5,517,224,642"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="324,442,208,519,205,515,321,437"/>
-<area shape="rect" id="Node000004" href="$structautograd_1_1MatrixMultply.html" title="klasa koja predstavlja binarni operator matričnog množenja" alt="" coords="249,507,394,652"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="381,453,356,508,352,506,376,451"/>
-<area shape="rect" id="Node000005" href="$structautograd_1_1MatrixVectorAdd.html" title="binarni operator zbrajanja matrice s vektorom:" alt="" coords="419,517,584,642"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="447,451,476,516,471,518,442,453"/>
-<area shape="rect" id="Node000007" href="$classReLU.html" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="609,507,717,652"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="828,436,778,471,730,509,718,519,715,515,726,505,775,466,825,432"/>
-<area shape="rect" id="Node000008" href="$classSigmoid.html" title="implementacije sigmoid funkcije:" alt="" coords="741,507,849,652"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="881,442,841,508,836,505,876,440"/>
-<area shape="rect" id="Node000009" href="$classSoftmax.html" title=" " alt="" coords="873,517,959,642"/>
-<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="919,444,919,517,913,517,913,444"/>
-<area shape="rect" id="Node000010" href="$structautograd_1_1VectorSumReduction.html" title="unarni operator redukcije matrice u vektora zbrajanjem po proizvoljnoj osi" alt="" coords="984,517,1176,642"/>
-<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="968,438,1031,515,1027,519,964,442"/>
-<area shape="rect" id="Node000013" href="$structautograd_1_1Add.html" title="implementacija binarne operacije zbrajanja:" alt="" coords="1201,517,1322,642"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1402,443,1324,520,1320,516,1398,440"/>
-<area shape="rect" id="Node000014" href="$structautograd_1_1Div.html" title="implementacija binarne operacije dijeljenja:" alt="" coords="1347,517,1464,642"/>
-<area shape="poly" id="edge13_Node000012_Node000014" title=" " alt="" coords="1446,446,1426,518,1420,516,1441,445"/>
-<area shape="rect" id="Node000015" href="$structautograd_1_1Mult.html" title="implementacija binarne operacije množenja:" alt="" coords="1489,517,1613,642"/>
-<area shape="poly" id="edge14_Node000012_Node000015" title=" " alt="" coords="1494,444,1526,516,1521,518,1489,446"/>
-<area shape="rect" id="Node000016" href="$structautograd_1_1Sub.html" title="implementacija binarne operacije oduzimanja:" alt="" coords="1637,517,1758,642"/>
-<area shape="poly" id="edge15_Node000012_Node000016" title=" " alt="" coords="1545,438,1626,505,1639,516,1635,520,1622,509,1541,442"/>
-<area shape="rect" id="Node000018" href="$structautograd_1_1Exp.html" title="implementacija unarne operacije eksponenciranja:" alt="" coords="1783,517,1903,642"/>
-<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="1804,435,1827,516,1822,517,1799,436"/>
-<area shape="rect" id="Node000019" href="$structautograd_1_1Neg.html" title="implementacija unarne operacije negacije:" alt="" coords="1927,517,2049,642"/>
-<area shape="poly" id="edge18_Node000017_Node000019" title=" " alt="" coords="1840,430,1929,516,1925,520,1836,434"/>
+<area shape="rect" id="Node000001" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="567,5,728,251"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title="generička klasa koja implementira binarne operatore:" alt="" coords="263,319,448,424"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="557,208,419,321,416,317,553,203"/>
+<area shape="rect" id="Node000007" href="$structautograd_1_1UnaryOperator.html" title="generička klasa koja implementira unarne operatore:" alt="" coords="556,329,739,414"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="650,266,650,329,645,329,645,266"/>
+<area shape="rect" id="Node000010" href="$structautograd_1_1Variable.html" title="klasa koja implementira jednu varijablu" alt="" coords="763,299,908,444"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="739,243,782,297,778,300,735,246"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Add.html" title="implementacija binarne operacije zbrajanja:" alt="" coords="5,492,127,617"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,428,141,494,128,503,125,499,138,490,249,423"/>
+<area shape="rect" id="Node000004" href="$structautograd_1_1Div.html" title="implementacija binarne operacije dijeljenja:" alt="" coords="151,492,269,617"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="307,437,261,494,257,491,303,434"/>
+<area shape="rect" id="Node000005" href="$structautograd_1_1Mult.html" title="implementacija binarne operacije množenja:" alt="" coords="293,492,417,617"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="358,439,358,492,353,492,353,439"/>
+<area shape="rect" id="Node000006" href="$structautograd_1_1Sub.html" title="implementacija binarne operacije oduzimanja:" alt="" coords="441,492,563,617"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="409,434,455,491,450,494,404,437"/>
+<area shape="rect" id="Node000008" href="$structautograd_1_1Exp.html" title="implementacija unarne operacije eksponenciranja:" alt="" coords="587,492,707,617"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="650,429,650,492,645,492,645,429"/>
+<area shape="rect" id="Node000009" href="$structautograd_1_1Neg.html" title="implementacija unarne operacije negacije:" alt="" coords="731,492,854,617"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="692,424,746,491,741,494,688,427"/>
 </map>

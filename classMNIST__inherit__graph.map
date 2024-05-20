@@ -1,5 +1,5 @@
 <map id="MNIST" name="MNIST">
-<area shape="rect" id="Node000001" title="implementacija sučelja &quot;IDataset&quot; za poznati MNIST skup podataka: https://www.kaggle...." alt="" coords="5,199,127,324"/>
-<area shape="rect" id="Node000002" href="$classIDataset.html" title=" " alt="" coords="5,5,127,151"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,165,69,199,63,199,63,165"/>
+<area shape="rect" id="Node000001" title="implementacija sučelja &quot;IDataset&quot; za poznati MNIST skup podataka: https://www.kaggle...." alt="" coords="5,219,127,364"/>
+<area shape="rect" id="Node000002" href="$classIDataset.html" title=" " alt="" coords="5,5,127,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,186,69,219,63,219,63,186"/>
 </map>

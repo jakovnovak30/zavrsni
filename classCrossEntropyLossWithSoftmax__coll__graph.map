@@ -1,19 +1,16 @@
 <map id="CrossEntropyLossWithSoftmax" name="CrossEntropyLossWithSoftmax">
-<area shape="rect" id="Node000001" title=" " alt="" coords="67,1481,286,1606"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="99,1331,254,1431"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,1446,179,1481,174,1481,174,1446"/>
-<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,1028,167,1253"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,1266,161,1331,156,1333,131,1268"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="75,812,97,878"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="89,877,89,1011,83,1011,83,877"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="191,1101,349,1181"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="257,1181,204,1317,199,1315,253,1179"/>
-<area shape="rect" id="Node000006" href="$structautograd_1_1Expression.html" title=" " alt="" coords="204,725,336,965"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="273,965,273,1084,267,1084,267,965"/>
-<area shape="rect" id="Node000007" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="223,337,317,662"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="273,662,273,708,267,708,267,662"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="197,194,343,274"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="273,273,273,320,267,320,267,273"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="206,5,334,131"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="273,130,273,177,267,177,267,130"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,1335,224,1481"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="37,1186,192,1286"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,1301,117,1335,112,1335,112,1301"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="49,725,181,965"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="117,980,117,1186,112,1186,112,980"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="131,1028,290,1108"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="169,964,190,1012,185,1014,164,966"/>
+<area shape="rect" id="Node000004" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="67,337,162,662"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="117,662,117,708,112,708,112,662"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="41,194,188,274"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="117,273,117,320,112,320,112,273"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="51,5,179,131"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="117,130,117,177,112,177,112,130"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="191,1109,153,1173,149,1171,186,1106"/>
 </map>

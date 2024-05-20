@@ -6,13 +6,13 @@
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,45,133,79,129,83,104,48"/>
 <area shape="rect" id="Node000004" href="$Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="72,168,224,193"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="151,120,151,152,146,152,146,120"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="117,315,179,341"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="107,196,77,209,50,225,35,244,34,254,38,266,51,281,67,294,103,312,101,317,64,299,47,285,34,268,29,255,30,242,47,221,75,204,105,191"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="49,241,144,267"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="142,195,116,230,112,227,137,192"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="168,241,235,267"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="159,192,185,227,181,230,155,195"/>
-<area shape="rect" id="Node000008" href="$Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="260,241,311,267"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="173,192,250,231,247,236,170,196"/>
-<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="263,270,186,310,184,305,261,265"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="126,315,189,341"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="122,196,99,209,78,226,65,246,64,255,68,266,88,289,114,307,111,311,84,293,63,268,59,256,60,244,74,223,96,205,119,191"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="77,241,134,267"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="143,195,123,229,118,226,139,192"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="159,241,226,267"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="158,192,179,226,174,229,153,195"/>
+<area shape="rect" id="Node000008" href="$Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="251,241,302,267"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="171,192,242,231,240,236,169,196"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="257,270,192,309,189,304,255,265"/>
 </map>

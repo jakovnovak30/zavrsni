@@ -1,9 +1,9 @@
 <map id="ReLU" name="ReLU">
-<area shape="rect" id="Node000001" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="120,447,228,592"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="9,299,163,399"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,411,139,446,134,448,116,413"/>
-<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,5,167,251"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,265,89,299,83,299,83,265"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="187,301,337,396"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,411,214,448,209,446,229,408"/>
+<area shape="rect" id="Node000001" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="116,461,224,607"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="5,313,159,413"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,426,135,460,130,463,112,428"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="16,5,148,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,280,85,314,79,314,79,280"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="183,316,333,411"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="229,425,210,463,205,460,225,423"/>
 </map>

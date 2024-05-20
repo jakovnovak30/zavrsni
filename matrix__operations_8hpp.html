@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CppDiff: Opis datoteke /github/workspace/include/autograd_core/matrix_operations.hpp</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -12,9 +12,9 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -54,10 +54,15 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generirao Doxygen 1.10.0 -->
+<!-- Generirao Doxygen 1.11.0 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
@@ -65,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Traži');
+  initMenu('',true,false,'search.php','Traži',true);
   $(function() { init_search(); });
 });
 /* @license-end */
@@ -84,7 +89,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('matrix__operations_8hpp.html',''); initResizable(); });
+$(function(){initNavTree('matrix__operations_8hpp.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -118,7 +123,8 @@ $(function(){initNavTree('matrix__operations_8hpp.html',''); initResizable(); })
 
 <p>definicija i implementacija autograd operacija koje su specifične za klasu <a class="el" href="classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju">Matrix</a>  
 <a href="#details">Opširnije...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="Matrix_8h_source.html">Matrix.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;<a class="el" href="Matrix_8h_source.html">Matrix.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="expression_8hpp_source.html">expression.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Util_8h_source.html">Util.h</a>&quot;</code><br />
 <code>#include &lt;CL/cl.h&gt;</code><br />
@@ -134,50 +140,52 @@ Graf include međuovisnosti za matrix_operations.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="matrix__operations_8hpp__incl.png" border="0" usemap="#a_2github_2workspace_2include_2autograd__core_2matrix__operations_8hpp" alt=""/></div>
 <map name="a_2github_2workspace_2include_2autograd__core_2matrix__operations_8hpp" id="a_2github_2workspace_2include_2autograd__core_2matrix__operations_8hpp">
-<area shape="rect" title="definicija i implementacija autograd operacija koje su specifične za klasu Matrix" alt="" coords="463,5,701,46"/>
-<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="162,94,229,120"/>
-<area shape="poly" title=" " alt="" coords="486,49,244,98,243,93,485,44"/>
-<area shape="rect" title=" " alt="" coords="16,256,79,282"/>
-<area shape="poly" title=" " alt="" coords="463,30,382,35,292,47,198,67,108,97,76,110,50,123,30,140,12,169,8,187,11,207,30,243,25,245,6,208,3,187,8,167,26,137,47,118,73,105,106,91,197,61,291,42,382,30,463,25"/>
-<area shape="rect" title=" " alt="" coords="396,256,464,282"/>
-<area shape="poly" title=" " alt="" coords="521,49,477,68,432,94,391,127,359,169,353,188,359,207,375,229,395,246,392,250,371,232,354,210,348,188,354,166,387,124,429,89,475,63,519,44"/>
-<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="22,175,73,201"/>
-<area shape="poly" title=" " alt="" coords="463,30,390,36,310,47,229,67,151,96,127,111,104,129,68,165,64,161,101,125,124,106,149,92,227,62,309,42,390,30,463,25"/>
-<area shape="rect" href="expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="528,94,636,120"/>
-<area shape="poly" title=" " alt="" coords="585,46,585,78,579,78,579,46"/>
-<area shape="rect" title=" " alt="" coords="369,175,491,201"/>
-<area shape="poly" title=" " alt="" coords="565,48,519,96,453,165,449,162,515,92,561,44"/>
-<area shape="rect" title=" " alt="" coords="1030,175,1107,201"/>
-<area shape="poly" title=" " alt="" coords="602,45,644,83,670,102,699,117,745,134,784,144,855,149,928,150,970,155,1019,165,1026,167,1024,172,1017,170,969,160,928,156,855,154,784,149,743,139,697,122,668,106,641,87,598,49"/>
-<area shape="rect" title=" " alt="" coords="710,94,779,120"/>
-<area shape="poly" title=" " alt="" coords="624,44,707,84,705,89,622,49"/>
-<area shape="rect" title=" " alt="" coords="803,94,868,120"/>
-<area shape="poly" title=" " alt="" coords="646,44,789,88,787,93,645,49"/>
-<area shape="rect" title=" " alt="" coords="892,94,952,120"/>
-<area shape="poly" title=" " alt="" coords="674,44,877,91,876,96,673,49"/>
-<area shape="rect" title=" " alt="" coords="977,94,1155,120"/>
-<area shape="poly" title=" " alt="" coords="701,44,977,88,976,94,701,49"/>
-<area shape="poly" title=" " alt="" coords="185,122,137,169,69,246,65,243,133,166,181,118"/>
-<area shape="rect" title=" " alt="" coords="148,175,243,201"/>
-<area shape="poly" title=" " alt="" coords="198,120,198,159,193,159,193,120"/>
-<area shape="poly" title=" " alt="" coords="209,118,253,159,314,206,389,247,387,252,311,211,250,163,205,122"/>
-<area shape="poly" title=" " alt="" coords="174,122,85,170,82,165,172,118"/>
-<area shape="poly" title=" " alt="" coords="50,201,50,240,45,240,45,201"/>
-<area shape="poly" title=" " alt="" coords="576,122,547,162,505,210,460,249,457,245,501,206,542,159,572,118"/>
-<area shape="poly" title=" " alt="" coords="560,122,468,170,466,165,558,118"/>
-<area shape="rect" title=" " alt="" coords="729,175,795,201"/>
-<area shape="poly" title=" " alt="" coords="611,118,722,166,720,171,609,123"/>
-<area shape="poly" title=" " alt="" coords="637,114,654,117,757,129,837,135,918,144,1019,165,1026,167,1025,172,1017,170,917,149,837,140,757,134,654,122,636,120"/>
-<area shape="rect" title=" " alt="" coords="819,175,873,201"/>
-<area shape="poly" title=" " alt="" coords="637,117,718,137,808,165,811,166,809,171,806,170,717,142,636,122"/>
-<area shape="rect" title=" " alt="" coords="896,175,1007,201"/>
-<area shape="poly" title=" " alt="" coords="636,115,751,136,885,165,897,168,896,173,884,170,750,141,635,120"/>
-<area shape="rect" href="basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="566,168,705,208"/>
-<area shape="poly" title=" " alt="" coords="586,119,608,154,603,157,581,121"/>
-<area shape="poly" title=" " alt="" coords="585,211,476,253,474,248,583,206"/>
-<area shape="poly" title=" " alt="" coords="628,169,604,133,609,130,632,166"/>
-<area shape="rect" title=" " alt="" coords="607,256,664,282"/>
-<area shape="poly" title=" " alt="" coords="638,209,638,241,633,241,633,209"/>
+<area shape="rect" title="definicija i implementacija autograd operacija koje su specifične za klasu Matrix" alt="" coords="457,5,694,46"/>
+<area shape="rect" title=" " alt="" coords="5,94,77,120"/>
+<area shape="poly" title=" " alt="" coords="457,44,286,67,96,97,92,97,91,92,95,91,285,62,456,39"/>
+<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="273,94,340,120"/>
+<area shape="poly" title=" " alt="" coords="509,49,355,94,354,89,508,44"/>
+<area shape="rect" title=" " alt="" coords="146,256,208,282"/>
+<area shape="poly" title=" " alt="" coords="457,37,401,44,342,56,282,73,225,96,174,124,157,142,142,169,138,188,141,207,160,243,155,245,136,209,133,187,137,167,153,139,171,120,223,92,280,68,340,51,400,39,456,31"/>
+<area shape="rect" title=" " alt="" coords="489,256,556,282"/>
+<area shape="poly" title=" " alt="" coords="551,48,497,98,471,132,451,169,446,188,451,207,467,229,487,246,484,250,463,232,447,209,441,188,447,167,467,129,493,95,547,44"/>
+<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="151,175,203,201"/>
+<area shape="poly" title=" " alt="" coords="457,37,359,57,309,74,262,96,242,111,223,128,195,164,190,161,220,125,238,107,260,92,307,69,357,52,456,32"/>
+<area shape="rect" href="expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="567,94,675,120"/>
+<area shape="poly" title=" " alt="" coords="589,45,609,79,604,82,585,48"/>
+<area shape="rect" title=" " alt="" coords="461,175,584,201"/>
+<area shape="poly" title=" " alt="" coords="572,47,534,161,529,160,567,46"/>
+<area shape="rect" title=" " alt="" coords="1122,175,1200,201"/>
+<area shape="poly" title=" " alt="" coords="609,44,685,89,738,117,793,133,840,141,922,146,1006,148,1055,154,1111,165,1119,167,1117,172,1110,170,1054,159,1006,153,922,151,839,147,791,138,736,122,682,93,607,49"/>
+<area shape="rect" title=" " alt="" coords="749,94,818,120"/>
+<area shape="poly" title=" " alt="" coords="629,44,739,86,737,91,627,49"/>
+<area shape="rect" title=" " alt="" coords="842,94,907,120"/>
+<area shape="poly" title=" " alt="" coords="651,44,828,91,827,96,650,49"/>
+<area shape="rect" title=" " alt="" coords="931,94,991,120"/>
+<area shape="poly" title=" " alt="" coords="687,44,916,91,915,96,686,49"/>
+<area shape="rect" title=" " alt="" coords="1016,94,1194,120"/>
+<area shape="poly" title=" " alt="" coords="695,42,1009,89,1008,94,694,47"/>
+<area shape="poly" title=" " alt="" coords="299,122,198,246,194,242,295,118"/>
+<area shape="rect" title=" " alt="" coords="278,175,335,201"/>
+<area shape="poly" title=" " alt="" coords="309,120,309,159,304,159,304,120"/>
+<area shape="poly" title=" " alt="" coords="318,118,354,160,407,206,443,229,480,247,478,252,441,234,403,210,351,163,314,122"/>
+<area shape="poly" title=" " alt="" coords="288,122,211,169,208,165,285,118"/>
+<area shape="poly" title=" " alt="" coords="180,201,180,240,174,240,174,201"/>
+<area shape="poly" title=" " alt="" coords="623,121,617,162,609,186,598,210,579,232,558,249,555,245,576,228,593,207,604,185,612,161,618,120"/>
+<area shape="poly" title=" " alt="" coords="608,122,551,167,547,163,604,118"/>
+<area shape="rect" title=" " alt="" coords="821,175,888,201"/>
+<area shape="poly" title=" " alt="" coords="664,118,810,165,814,167,812,172,808,170,662,123"/>
+<area shape="poly" title=" " alt="" coords="676,114,693,117,811,129,903,134,995,143,1111,165,1119,167,1117,172,1110,170,994,148,903,139,811,134,693,122,675,120"/>
+<area shape="rect" title=" " alt="" coords="912,175,965,201"/>
+<area shape="poly" title=" " alt="" coords="675,115,798,140,900,165,903,166,901,171,899,170,797,145,674,121"/>
+<area shape="rect" title=" " alt="" coords="989,175,1099,201"/>
+<area shape="poly" title=" " alt="" coords="676,114,978,165,990,168,989,173,976,170,675,119"/>
+<area shape="rect" href="basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="659,168,797,208"/>
+<area shape="poly" title=" " alt="" coords="632,118,683,157,680,161,629,122"/>
+<area shape="poly" title=" " alt="" coords="677,211,569,253,567,248,675,206"/>
+<area shape="poly" title=" " alt="" coords="708,169,655,131,658,126,711,165"/>
+<area shape="rect" title=" " alt="" coords="699,256,756,282"/>
+<area shape="poly" title=" " alt="" coords="730,209,730,241,725,241,725,209"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -216,7 +224,7 @@ Strukture</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_6d4347cdb5fa8f16194ed6aec93e6122.html">autograd_core</a></li><li class="navelem"><a class="el" href="matrix__operations_8hpp.html">matrix_operations.hpp</a></li>
-    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>

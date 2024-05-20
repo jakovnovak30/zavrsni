@@ -1,7 +1,7 @@
 var classMatrix =
 [
     [ "Matrix", "classMatrix.html#a0e047222256f2217f39e9d8dfe1b9415", null ],
-    [ "Matrix", "classMatrix.html#ae50a96f84c232df0d625ebbeee95cce7", null ],
+    [ "Matrix", "classMatrix.html#acf2e9b81ef080c7d66c778e2e2cbf65e", null ],
     [ "Matrix", "classMatrix.html#a49cc9b0f09e493648471bb928281acfe", null ],
     [ "Matrix", "classMatrix.html#a2dba13c45127354c9f75ef576f49269b", null ],
     [ "getM", "classMatrix.html#a4f8207471478ed8f8779ee7fe4efedfe", null ],

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CppDiff: Opis datoteke /github/workspace/src/data/impl/MNIST.cpp</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -12,9 +12,9 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -54,10 +54,15 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generirao Doxygen 1.10.0 -->
+<!-- Generirao Doxygen 1.11.0 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
@@ -65,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Traži');
+  initMenu('',true,false,'search.php','Traži',true);
   $(function() { init_search(); });
 });
 /* @license-end */
@@ -84,7 +89,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('MNIST_8cpp.html',''); initResizable(); });
+$(function(){initNavTree('MNIST_8cpp.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -118,6 +123,7 @@ $(function(){initNavTree('MNIST_8cpp.html',''); initResizable(); });
 <a href="#details">Opširnije...</a></p>
 <div class="textblock"><code>#include &lt;CL/cl.h&gt;</code><br />
 <code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &quot;<a class="el" href="MNIST_8h_source.html">data/impl/MNIST.h</a>&quot;</code><br />
@@ -127,31 +133,32 @@ Graf include međuovisnosti za MNIST.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="MNIST_8cpp__incl.png" border="0" usemap="#a_2github_2workspace_2src_2data_2impl_2MNIST_8cpp" alt=""/></div>
 <map name="a_2github_2workspace_2src_2data_2impl_2MNIST_8cpp" id="a_2github_2workspace_2src_2data_2impl_2MNIST_8cpp">
-<area shape="rect" title="implementacija MNIST skupa podataka" alt="" coords="107,5,256,46"/>
-<area shape="rect" title=" " alt="" coords="130,389,193,414"/>
-<area shape="poly" title=" " alt="" coords="108,48,67,68,33,96,18,116,11,133,8,179,8,255,11,277,19,297,46,331,82,359,118,379,116,384,79,363,42,335,14,299,6,278,3,256,3,179,6,132,14,113,29,92,64,63,105,44"/>
+<area shape="rect" title="implementacija MNIST skupa podataka" alt="" coords="120,5,270,46"/>
+<area shape="rect" title=" " alt="" coords="240,389,302,414"/>
+<area shape="poly" title=" " alt="" coords="121,45,74,65,52,79,33,96,18,115,11,133,8,179,8,255,14,288,31,316,56,338,88,356,123,370,159,381,225,393,224,398,157,386,121,375,85,361,53,343,27,319,9,290,3,256,3,179,6,132,13,113,29,92,49,74,71,60,119,40"/>
 <area shape="rect" title=" " alt="" coords="43,94,107,120"/>
-<area shape="poly" title=" " alt="" coords="157,49,105,87,102,82,154,44"/>
-<area shape="rect" title=" " alt="" coords="154,168,220,193"/>
-<area shape="poly" title=" " alt="" coords="179,47,172,81,172,119,180,152,175,153,167,120,167,80,173,46"/>
-<area shape="rect" title=" " alt="" coords="182,94,259,120"/>
-<area shape="poly" title=" " alt="" coords="193,45,210,79,205,81,189,48"/>
-<area shape="rect" href="MNIST_8h.html" title="razred koji implementira MNIST skup podataka" alt="" coords="283,94,413,120"/>
-<area shape="poly" title=" " alt="" coords="224,44,310,85,308,89,222,49"/>
-<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="411,315,462,341"/>
-<area shape="poly" title=" " alt="" coords="257,35,358,58,400,73,427,92,443,117,453,144,458,173,460,202,456,257,446,301,441,300,450,256,455,202,453,174,448,146,438,119,424,96,398,78,356,63,256,40"/>
-<area shape="poly" title=" " alt="" coords="322,123,229,163,227,159,320,118"/>
-<area shape="rect" href="IDataset_8h.html" title="apstraktni razred koji predstavlja nekakav skup podataka" alt="" coords="288,168,398,193"/>
-<area shape="poly" title=" " alt="" coords="350,120,348,152,342,152,345,120"/>
-<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="261,241,414,267"/>
-<area shape="poly" title=" " alt="" coords="345,194,342,226,337,226,339,193"/>
-<area shape="poly" title=" " alt="" coords="273,270,228,288,207,301,189,317,173,344,166,374,161,372,168,342,185,313,204,296,226,283,271,265"/>
-<area shape="rect" title=" " alt="" coords="199,315,295,341"/>
-<area shape="poly" title=" " alt="" coords="324,270,275,308,272,303,320,265"/>
-<area shape="rect" title=" " alt="" coords="319,315,386,341"/>
-<area shape="poly" title=" " alt="" coords="343,267,349,299,344,300,337,268"/>
-<area shape="poly" title=" " alt="" coords="356,265,409,304,406,308,353,270"/>
-<area shape="poly" title=" " alt="" coords="411,340,398,343,208,392,207,387,397,338,409,335"/>
+<area shape="poly" title=" " alt="" coords="167,49,107,88,104,83,164,44"/>
+<area shape="rect" title=" " alt="" coords="136,315,193,341"/>
+<area shape="poly" title=" " alt="" coords="196,47,170,300,164,300,190,46"/>
+<area shape="rect" title=" " alt="" coords="201,168,266,193"/>
+<area shape="poly" title=" " alt="" coords="202,46,229,152,224,153,197,47"/>
+<area shape="rect" title=" " alt="" coords="232,94,310,120"/>
+<area shape="poly" title=" " alt="" coords="216,45,251,81,247,84,212,48"/>
+<area shape="rect" href="MNIST_8h.html" title="razred koji implementira MNIST skup podataka" alt="" coords="334,94,464,120"/>
+<area shape="poly" title=" " alt="" coords="247,44,354,85,352,90,245,49"/>
+<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="400,315,451,341"/>
+<area shape="poly" title=" " alt="" coords="270,32,331,41,392,53,445,70,465,80,478,92,493,118,499,146,498,175,492,205,470,260,445,303,440,301,465,258,486,203,492,175,493,147,488,120,474,96,462,85,443,75,391,58,330,46,270,37"/>
+<area shape="poly" title=" " alt="" coords="372,123,277,164,275,159,370,118"/>
+<area shape="rect" href="IDataset_8h.html" title="apstraktni razred koji predstavlja nekakav skup podataka" alt="" coords="308,168,418,193"/>
+<area shape="poly" title=" " alt="" coords="395,121,378,155,373,153,391,119"/>
+<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="265,241,418,267"/>
+<area shape="poly" title=" " alt="" coords="362,194,352,227,347,226,357,193"/>
+<area shape="poly" title=" " alt="" coords="333,269,315,290,299,316,287,346,279,374,274,373,282,344,294,314,311,287,328,266"/>
+<area shape="poly" title=" " alt="" coords="313,270,208,312,206,307,311,265"/>
+<area shape="rect" title=" " alt="" coords="308,315,375,341"/>
+<area shape="poly" title=" " alt="" coords="344,267,344,299,339,299,339,267"/>
+<area shape="poly" title=" " alt="" coords="358,266,402,303,398,307,354,270"/>
+<area shape="poly" title=" " alt="" coords="401,344,312,384,310,379,398,339"/>
 </map>
 </div>
 </div><a name="details" id="details"></a><h2 class="groupheader">Detaljno objašnjenje</h2>
@@ -162,7 +169,7 @@ Graf include međuovisnosti za MNIST.cpp:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c1be8d27e7f84178e95f152701110b19.html">data</a></li><li class="navelem"><a class="el" href="dir_065e5f512bebcee4ce421bfb6b5f3e48.html">impl</a></li><li class="navelem"><a class="el" href="MNIST_8cpp.html">MNIST.cpp</a></li>
-    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generirao <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>

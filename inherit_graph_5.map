@@ -1,3 +1,7 @@
 <map id="Grafičko stablo klasa" name="Grafičko stablo klasa">
-<area shape="rect" id="Node000000" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="5,5,62,31"/>
+<area shape="rect" id="Node000000" href="$classModule.html" title="skup funkcija koje se zajedno izvršavaju te mogu optimirati, potrebno je jedino nadjačati metodu forw..." alt="" coords="5,31,69,56"/>
+<area shape="rect" id="Node000001" href="$classLinear.html" title="klasa koja implementira afine transformacije, za proizvoljne dimenzije vektora:" alt="" coords="141,5,199,31"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="84,32,140,21,141,26,85,37"/>
+<area shape="rect" id="Node000002" href="$classMnistClassifier.html" title=" " alt="" coords="117,55,223,80"/>
+<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="84,49,117,55,116,61,83,55"/>
 </map>

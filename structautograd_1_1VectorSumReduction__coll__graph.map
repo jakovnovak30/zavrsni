@@ -1,19 +1,16 @@
 <map id="autograd::VectorSumReduction" name="autograd::VectorSumReduction">
-<area shape="rect" id="Node000001" title="unarni operator redukcije matrice u vektora zbrajanjem po proizvoljnoj osi" alt="" coords="81,1466,273,1591"/>
-<area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="100,1316,253,1416"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,1431,179,1466,174,1466,174,1431"/>
-<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,1028,167,1253"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="139,1266,160,1316,155,1318,134,1268"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="75,812,97,878"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="89,877,89,1011,83,1011,83,877"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="191,1101,349,1181"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="256,1181,206,1302,201,1300,251,1179"/>
-<area shape="rect" id="Node000006" href="$structautograd_1_1Expression.html" title=" " alt="" coords="204,725,336,965"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="273,965,273,1084,267,1084,267,965"/>
-<area shape="rect" id="Node000007" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="223,337,317,662"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="273,662,273,708,267,708,267,662"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="197,194,343,274"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="273,273,273,320,267,320,267,273"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="206,5,334,131"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="273,130,273,177,267,177,267,130"/>
+<area shape="rect" id="Node000001" title="unarni operator redukcije matrice u vektora zbrajanjem po proizvoljnoj osi" alt="" coords="5,1320,197,1446"/>
+<area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="25,1171,178,1271"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,1286,104,1321,99,1321,99,1286"/>
+<area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="35,725,167,965"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,980,104,1171,99,1171,99,980"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="118,1028,277,1108"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="155,964,176,1012,171,1014,151,966"/>
+<area shape="rect" id="Node000004" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="54,337,149,662"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="104,662,104,708,99,708,99,662"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="28,194,175,274"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="104,273,104,320,99,320,99,273"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="37,5,165,131"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="104,130,104,177,99,177,99,130"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="175,1109,144,1158,139,1155,171,1106"/>
 </map>
