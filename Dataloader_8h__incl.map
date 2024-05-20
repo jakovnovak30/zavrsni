@@ -6,13 +6,15 @@
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,45,133,79,129,83,104,48"/>
 <area shape="rect" id="Node000004" href="$Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="72,168,224,193"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="151,120,151,152,146,152,146,120"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="126,315,189,341"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="122,196,99,209,78,226,65,246,64,255,68,266,88,289,114,307,111,311,84,293,63,268,59,256,60,244,74,223,96,205,119,191"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="82,315,145,341"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="120,196,90,215,77,228,67,242,63,258,67,274,89,303,85,306,63,276,58,258,62,240,73,224,87,211,117,192"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="77,241,134,267"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="143,195,123,229,118,226,139,192"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="159,241,226,267"/>
 <area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="158,192,179,226,174,229,153,195"/>
 <area shape="rect" id="Node000008" href="$Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="251,241,302,267"/>
 <area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="171,192,242,231,240,236,169,196"/>
-<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="257,270,192,309,189,304,255,265"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="251,269,156,311,154,306,249,264"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="242,315,311,341"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="279,267,279,299,274,299,274,267"/>
 </map>

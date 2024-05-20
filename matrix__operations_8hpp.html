@@ -123,7 +123,8 @@ $(function(){initNavTree('matrix__operations_8hpp.html',''); initResizable(true)
 
 <p>definicija i implementacija autograd operacija koje su specifične za klasu <a class="el" href="classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju">Matrix</a>  
 <a href="#details">Opširnije...</a></p>
-<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstdio&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 <code>#include &quot;<a class="el" href="Matrix_8h_source.html">Matrix.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="expression_8hpp_source.html">expression.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Util_8h_source.html">Util.h</a>&quot;</code><br />
@@ -140,52 +141,55 @@ Graf include međuovisnosti za matrix_operations.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="matrix__operations_8hpp__incl.png" border="0" usemap="#a_2github_2workspace_2include_2autograd__core_2matrix__operations_8hpp" alt=""/></div>
 <map name="a_2github_2workspace_2include_2autograd__core_2matrix__operations_8hpp" id="a_2github_2workspace_2include_2autograd__core_2matrix__operations_8hpp">
-<area shape="rect" title="definicija i implementacija autograd operacija koje su specifične za klasu Matrix" alt="" coords="457,5,694,46"/>
-<area shape="rect" title=" " alt="" coords="5,94,77,120"/>
-<area shape="poly" title=" " alt="" coords="457,44,286,67,96,97,92,97,91,92,95,91,285,62,456,39"/>
-<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="273,94,340,120"/>
-<area shape="poly" title=" " alt="" coords="509,49,355,94,354,89,508,44"/>
-<area shape="rect" title=" " alt="" coords="146,256,208,282"/>
-<area shape="poly" title=" " alt="" coords="457,37,401,44,342,56,282,73,225,96,174,124,157,142,142,169,138,188,141,207,160,243,155,245,136,209,133,187,137,167,153,139,171,120,223,92,280,68,340,51,400,39,456,31"/>
-<area shape="rect" title=" " alt="" coords="489,256,556,282"/>
-<area shape="poly" title=" " alt="" coords="551,48,497,98,471,132,451,169,446,188,451,207,467,229,487,246,484,250,463,232,447,209,441,188,447,167,467,129,493,95,547,44"/>
-<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="151,175,203,201"/>
-<area shape="poly" title=" " alt="" coords="457,37,359,57,309,74,262,96,242,111,223,128,195,164,190,161,220,125,238,107,260,92,307,69,357,52,456,32"/>
-<area shape="rect" href="expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="567,94,675,120"/>
-<area shape="poly" title=" " alt="" coords="589,45,609,79,604,82,585,48"/>
-<area shape="rect" title=" " alt="" coords="461,175,584,201"/>
-<area shape="poly" title=" " alt="" coords="572,47,534,161,529,160,567,46"/>
-<area shape="rect" title=" " alt="" coords="1122,175,1200,201"/>
-<area shape="poly" title=" " alt="" coords="609,44,685,89,738,117,793,133,840,141,922,146,1006,148,1055,154,1111,165,1119,167,1117,172,1110,170,1054,159,1006,153,922,151,839,147,791,138,736,122,682,93,607,49"/>
-<area shape="rect" title=" " alt="" coords="749,94,818,120"/>
-<area shape="poly" title=" " alt="" coords="629,44,739,86,737,91,627,49"/>
-<area shape="rect" title=" " alt="" coords="842,94,907,120"/>
-<area shape="poly" title=" " alt="" coords="651,44,828,91,827,96,650,49"/>
-<area shape="rect" title=" " alt="" coords="931,94,991,120"/>
-<area shape="poly" title=" " alt="" coords="687,44,916,91,915,96,686,49"/>
-<area shape="rect" title=" " alt="" coords="1016,94,1194,120"/>
-<area shape="poly" title=" " alt="" coords="695,42,1009,89,1008,94,694,47"/>
-<area shape="poly" title=" " alt="" coords="299,122,198,246,194,242,295,118"/>
-<area shape="rect" title=" " alt="" coords="278,175,335,201"/>
-<area shape="poly" title=" " alt="" coords="309,120,309,159,304,159,304,120"/>
-<area shape="poly" title=" " alt="" coords="318,118,354,160,407,206,443,229,480,247,478,252,441,234,403,210,351,163,314,122"/>
-<area shape="poly" title=" " alt="" coords="288,122,211,169,208,165,285,118"/>
-<area shape="poly" title=" " alt="" coords="180,201,180,240,174,240,174,201"/>
-<area shape="poly" title=" " alt="" coords="623,121,617,162,609,186,598,210,579,232,558,249,555,245,576,228,593,207,604,185,612,161,618,120"/>
-<area shape="poly" title=" " alt="" coords="608,122,551,167,547,163,604,118"/>
-<area shape="rect" title=" " alt="" coords="821,175,888,201"/>
-<area shape="poly" title=" " alt="" coords="664,118,810,165,814,167,812,172,808,170,662,123"/>
-<area shape="poly" title=" " alt="" coords="676,114,693,117,811,129,903,134,995,143,1111,165,1119,167,1117,172,1110,170,994,148,903,139,811,134,693,122,675,120"/>
-<area shape="rect" title=" " alt="" coords="912,175,965,201"/>
-<area shape="poly" title=" " alt="" coords="675,115,798,140,900,165,903,166,901,171,899,170,797,145,674,121"/>
-<area shape="rect" title=" " alt="" coords="989,175,1099,201"/>
-<area shape="poly" title=" " alt="" coords="676,114,978,165,990,168,989,173,976,170,675,119"/>
-<area shape="rect" href="basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="659,168,797,208"/>
-<area shape="poly" title=" " alt="" coords="632,118,683,157,680,161,629,122"/>
-<area shape="poly" title=" " alt="" coords="677,211,569,253,567,248,675,206"/>
-<area shape="poly" title=" " alt="" coords="708,169,655,131,658,126,711,165"/>
-<area shape="rect" title=" " alt="" coords="699,256,756,282"/>
-<area shape="poly" title=" " alt="" coords="730,209,730,241,725,241,725,209"/>
+<area shape="rect" title="definicija i implementacija autograd operacija koje su specifične za klasu Matrix" alt="" coords="436,5,674,46"/>
+<area shape="rect" title=" " alt="" coords="5,94,62,120"/>
+<area shape="poly" title=" " alt="" coords="436,41,270,63,78,96,77,91,269,57,435,36"/>
+<area shape="rect" title=" " alt="" coords="86,94,157,120"/>
+<area shape="poly" title=" " alt="" coords="439,49,177,97,173,97,172,92,176,91,438,44"/>
+<area shape="rect" href="Matrix_8h.html" title="definicija funkcionalnosti za razred Matrix" alt="" coords="350,94,416,120"/>
+<area shape="poly" title=" " alt="" coords="513,49,424,90,422,85,511,44"/>
+<area shape="rect" title=" " alt="" coords="214,256,277,282"/>
+<area shape="poly" title=" " alt="" coords="440,49,378,68,319,96,276,126,262,143,249,169,242,206,243,241,238,242,237,205,244,167,257,140,272,122,316,92,376,63,439,44"/>
+<area shape="rect" title=" " alt="" coords="620,256,687,282"/>
+<area shape="poly" title=" " alt="" coords="556,47,555,79,557,120,566,165,582,207,599,228,620,246,617,250,595,232,578,210,561,167,552,121,550,79,550,46"/>
+<area shape="rect" href="Util_8h.html" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="283,175,334,201"/>
+<area shape="poly" title=" " alt="" coords="436,45,384,64,360,78,339,96,329,110,321,126,313,160,308,159,316,125,324,107,336,92,357,74,382,60,435,40"/>
+<area shape="rect" title=" " alt="" coords="360,256,430,282"/>
+<area shape="poly" title=" " alt="" coords="544,48,413,245,409,242,540,45"/>
+<area shape="rect" href="expression_8hpp.html" title="definicija i implementacija generičkih funkcija klase autograd::Expression&lt;T&gt; te njezinih neposrednih..." alt="" coords="733,94,841,120"/>
+<area shape="poly" title=" " alt="" coords="614,44,738,86,736,91,612,49"/>
+<area shape="rect" title=" " alt="" coords="592,175,715,201"/>
+<area shape="poly" title=" " alt="" coords="569,45,640,160,636,163,565,48"/>
+<area shape="rect" title=" " alt="" coords="1254,175,1331,201"/>
+<area shape="poly" title=" " alt="" coords="673,44,762,64,853,92,879,105,904,117,954,131,997,138,1071,144,1147,148,1191,154,1242,165,1249,167,1248,172,1241,170,1190,159,1147,153,1071,149,996,144,952,136,902,122,876,110,851,96,761,69,672,49"/>
+<area shape="rect" title=" " alt="" coords="915,94,979,120"/>
+<area shape="poly" title=" " alt="" coords="660,44,897,91,900,92,899,97,896,97,659,49"/>
+<area shape="rect" title=" " alt="" coords="1003,94,1064,120"/>
+<area shape="poly" title=" " alt="" coords="674,39,820,60,988,91,987,96,819,66,674,44"/>
+<area shape="rect" title=" " alt="" coords="1088,94,1267,120"/>
+<area shape="poly" title=" " alt="" coords="674,39,1073,90,1072,95,674,45"/>
+<area shape="poly" title=" " alt="" coords="350,120,309,139,290,153,273,169,263,186,256,205,249,241,244,240,251,203,258,184,269,166,286,148,307,134,348,115"/>
+<area shape="rect" title=" " alt="" coords="358,175,416,201"/>
+<area shape="poly" title=" " alt="" coords="386,120,388,160,383,160,381,120"/>
+<area shape="poly" title=" " alt="" coords="401,118,461,158,537,206,616,247,613,252,535,211,458,163,398,122"/>
+<area shape="poly" title=" " alt="" coords="373,122,332,166,328,162,370,118"/>
+<area shape="poly" title=" " alt="" coords="301,203,267,246,262,242,297,200"/>
+<area shape="poly" title=" " alt="" coords="323,199,372,244,369,248,320,203"/>
+<area shape="poly" title=" " alt="" coords="784,121,762,162,729,210,686,249,682,245,725,207,758,160,779,119"/>
+<area shape="poly" title=" " alt="" coords="768,122,688,169,686,165,765,118"/>
+<area shape="rect" title=" " alt="" coords="790,175,856,201"/>
+<area shape="poly" title=" " alt="" coords="795,119,814,160,809,162,790,121"/>
+<area shape="poly" title=" " alt="" coords="841,114,859,117,967,129,1052,135,1136,144,1242,165,1250,167,1248,172,1241,170,1135,149,1051,140,967,134,858,122,841,120"/>
+<area shape="rect" title=" " alt="" coords="880,175,934,201"/>
+<area shape="poly" title=" " alt="" coords="807,118,878,164,875,169,804,122"/>
+<area shape="rect" title=" " alt="" coords="957,175,1067,201"/>
+<area shape="poly" title=" " alt="" coords="822,118,964,167,962,172,821,123"/>
+<area shape="rect" href="basic__operations_8hpp.html" title="definicija i implementacija osnovnih aritmetičkih operacija koje nasljeđuju autograd::Expression&lt;T&gt;" alt="" coords="1091,168,1229,208"/>
+<area shape="poly" title=" " alt="" coords="840,118,1067,165,1077,167,1075,172,1066,170,839,123"/>
+<area shape="poly" title=" " alt="" coords="1091,209,1079,211,870,244,703,265,702,260,869,239,1078,206,1090,203"/>
+<area shape="poly" title=" " alt="" coords="1090,170,855,122,856,117,1091,165"/>
+<area shape="rect" title=" " alt="" coords="1132,256,1189,282"/>
+<area shape="poly" title=" " alt="" coords="1163,209,1163,241,1158,241,1158,209"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">

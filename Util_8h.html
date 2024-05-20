@@ -125,14 +125,17 @@ $(function(){initNavTree('Util_8h.html',''); initResizable(true); });
 <p>definicija korisnih globalnih funkcija i konstanti  
 <a href="#details">Opširnije...</a></p>
 <div class="textblock"><code>#include &lt;CL/cl.h&gt;</code><br />
+<code>#include &lt;clblast.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graf include međuovisnosti za Util.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="Util_8h__incl.png" border="0" usemap="#a_2github_2workspace_2include_2Util_8h" alt=""/></div>
 <map name="a_2github_2workspace_2include_2Util_8h" id="a_2github_2workspace_2include_2Util_8h">
 <area shape="rect" title="definicija korisnih globalnih funkcija i konstanti" alt="" coords="5,5,178,46"/>
-<area shape="rect" title=" " alt="" coords="60,94,123,120"/>
-<area shape="poly" title=" " alt="" coords="94,46,94,78,89,78,89,46"/>
+<area shape="rect" title=" " alt="" coords="16,94,79,120"/>
+<area shape="poly" title=" " alt="" coords="83,48,64,82,59,79,78,45"/>
+<area shape="rect" title=" " alt="" coords="102,94,172,120"/>
+<area shape="poly" title=" " alt="" coords="105,45,125,79,120,82,100,48"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -228,6 +231,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>initCL_nvidia</b> ()<
 void&#160;</td><td class="memItemRight" valign="bottom"><b>freeCL</b> ()</td></tr>
 <tr class="memdesc:a7f692354ff002a07c8a23cc65f88ca7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja oslobađa sve OpenCL resurse zajedno s kontekstom i uređajem <br /></td></tr>
 <tr class="separator:a7f692354ff002a07c8a23cc65f88ca7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ee3e41979253f100dc6bf973b984e2" id="r_af3ee3e41979253f100dc6bf973b984e2"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3ee3e41979253f100dc6bf973b984e2">StatusCodeToString</a> (clblast::StatusCode status)</td></tr>
+<tr class="memdesc:af3ee3e41979253f100dc6bf973b984e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">funkcija koja pretvara clblast statusne kodove u stringove  <br /></td></tr>
+<tr class="separator:af3ee3e41979253f100dc6bf973b984e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Varijable</h2></td></tr>
@@ -355,6 +361,32 @@ cl_command_queue&#160;</td><td class="memItemRight" valign="bottom"><b>globalQue
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af3ee3e41979253f100dc6bf973b984e2" name="af3ee3e41979253f100dc6bf973b984e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3ee3e41979253f100dc6bf973b984e2">&#9670;&#160;</a></span>StatusCodeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * StatusCodeToString </td>
+          <td>(</td>
+          <td class="paramtype">clblast::StatusCode</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>funkcija koja pretvara clblast statusne kodove u stringove </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">status</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Povratne vrijednosti</dt><dd></dd></dl>
 
 </div>
 </div>

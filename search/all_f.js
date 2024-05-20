@@ -7,6 +7,7 @@ var searchData=
   ['sigmoid_2ecpp_4',['Sigmoid.cpp',['../Sigmoid_8cpp.html',1,'']]],
   ['sigmoid_2eh_5',['Sigmoid.h',['../Sigmoid_8h.html',1,'']]],
   ['softmax_6',['Softmax',['../classSoftmax.html',1,'']]],
-  ['step_7',['step',['../classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba',1,'IOptimizer::step()'],['../classSGD.html#a19f652623d30735a0c2344d8735b292a',1,'SGD::step()']]],
-  ['sub_8',['Sub',['../structautograd_1_1Sub.html',1,'autograd']]]
+  ['statuscodetostring_7',['StatusCodeToString',['../Util_8h.html#af3ee3e41979253f100dc6bf973b984e2',1,'StatusCodeToString(clblast::StatusCode status):&#160;Util.cpp'],['../Util_8cpp.html#af3ee3e41979253f100dc6bf973b984e2',1,'StatusCodeToString(clblast::StatusCode status):&#160;Util.cpp']]],
+  ['step_8',['step',['../classIOptimizer.html#a2e357f1aacfa8819a1d5403d79e346ba',1,'IOptimizer::step()'],['../classSGD.html#a19f652623d30735a0c2344d8735b292a',1,'SGD::step()']]],
+  ['sub_9',['Sub',['../structautograd_1_1Sub.html',1,'autograd']]]
 ];
