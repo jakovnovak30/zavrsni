@@ -7,7 +7,7 @@
 #pragma once
 
 #include <CL/cl.h>
-#include <initializer_list>
+#include <vector>
 #include <memory>
 
 #include "Util.h"
@@ -61,7 +61,7 @@ public:
    * @param mat inicjalizacijska lista
    * @throws std::invalid_argument ako dimenzije liste nemaju smisla, npr. {{3, 1, 2}, {1, -1}}
    */
-  Matrix(std::initializer_list<std::initializer_list<float>> mat);
+  Matrix(std::vector<std::vector<float>> mat);
   /**
    * @brief "workaround" za korištenje skalara u svijetu matrica, stvara 1x1 matricu
    *

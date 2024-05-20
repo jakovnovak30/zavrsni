@@ -24,6 +24,12 @@ public:
    */
   virtual size_t getElementSize() = 0;
   /**
+   * @brief vraća dimenzije skupa oznaka
+   *
+   * @return
+   */
+  virtual size_t getLabelDims() = 0;
+  /**
    * @brief vraća veličinu skupa podataka (broj elemenata)
    *
    * @return

@@ -67,3 +67,13 @@ void CrossEntropyLossWithSoftmax::_derive(std::shared_ptr<autograd::Expression<M
 
   this->left->derive(grad_input, out_map);
 }
+
+void CrossEntropyLossWithSoftmax::addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+  static int id_counter = 1000;
+  Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+  agset(curr, (char *) "label", "CrossEntropyLossWithSoftmax");
+  agedge(graph, curr, prev, nullptr, 1);
+
+  this->left->addSubgraph(graph, curr);
+  this->right->addSubgraph(graph, curr);
+}

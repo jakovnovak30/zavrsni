@@ -21,6 +21,8 @@ public:
 
   virtual size_t getElementSize() override final;
 
+  virtual size_t getLabelDims() override final;
+
   virtual size_t getSize() override final;
 
   virtual std::pair<Matrix, Matrix> operator[](size_t index) override final;

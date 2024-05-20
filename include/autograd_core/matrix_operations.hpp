@@ -4,6 +4,7 @@
  * @author Jakov Novak
  */
 
+#include <iostream>
 #include "Matrix.h"
 #include "expression.hpp"
 #include "Util.h"
@@ -187,10 +188,11 @@ namespace autograd {
       static cl_kernel matrixVectorAdd = nullptr;  
 
       this->left->getValue(); this->right->getValue();
-      if(this->left->getValue().getM() != this->right->getValue().getN() || this->right->getValue().getM() != 1)
+      if(this->left->getValue().getM() != this->right->getValue().getM() || this->right->getValue().getN() != 1) {
         throw std::logic_error("Invalid matrix/vector dimensions!");
+    }
 
-      buildIfNeeded(&program, &matrixVectorAdd, "matrixVectorAdd", srcCode, srcLen);
+      buildIfNeeded(&program, &matrixVectorAdd, "matrixAddVector", srcCode, srcLen);
       
       size_t M = this->left->getValue().getM(), N = this->right->getValue().getN();
       int _err;

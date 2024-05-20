@@ -45,7 +45,7 @@ Linear::Linear(const size_t in_features, const size_t out_features, bool bias) :
   cl_mem parameters_cl = clCreateBuffer(globalContext, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, in_features * out_features * sizeof(float), host_ptr, &_err);
   checkError(_err);
   delete[] host_ptr;
-  this->parameters = std::make_shared<autograd::Variable<Matrix>>(Matrix(parameters_cl, out_features, in_features), "weights" + std::to_string(weight_counter++), true);
+  this->parameters = std::make_shared<autograd::Variable<Matrix>>(Matrix(parameters_cl, in_features, out_features), "weights" + std::to_string(weight_counter++), true);
 
   if(bias) {
     float *host_ptr = new float[out_features];

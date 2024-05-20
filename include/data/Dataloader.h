@@ -20,4 +20,5 @@ public:
   Dataloader(IDataset &dataset, size_t batch_size);
 
   std::pair<Matrix, Matrix> nextBatch();
+  bool hasNext() const;
 };

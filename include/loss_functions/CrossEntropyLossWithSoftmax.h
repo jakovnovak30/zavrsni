@@ -13,4 +13,5 @@ class CrossEntropyLossWithSoftmax : public autograd::BinaryOperator<Matrix> {
 
     virtual void eval() override final;
     virtual void _derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) override final;
+    virtual void addSubgraph(Agraph_t *graph, Agnode_t *prev) const override final;
 };

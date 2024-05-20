@@ -5,6 +5,7 @@
 
 #include <CL/cl.h>
 #include <cassert>
+#include <vector>
 #include <fstream>
 #include <stdexcept>
 #include "data/impl/MNIST.h"
@@ -55,6 +56,10 @@ size_t MNIST::getElementSize() {
   return 28 * 28 * sizeof(float);
 }
 
+size_t MNIST::getLabelDims() {
+  return 10;
+}
+
 size_t MNIST::getSize() {
   return this->size;
 }
@@ -72,6 +77,13 @@ std::pair<Matrix, Matrix> MNIST::operator[](size_t index) {
   unsigned char raw_label;
   this->labels.read(reinterpret_cast<char *>(&raw_label), 1);
   label = static_cast<float>(raw_label);
+  std::vector<float> lista(10);
+  for(int i=0;i < 10;i++) {
+    if(i == label)
+      lista[i] = 1;
+    else
+      lista[i] = 0;
+  }
 
   for(int i=0;i < 28*28;i++) {
     unsigned char curr_val;
@@ -87,5 +99,5 @@ std::pair<Matrix, Matrix> MNIST::operator[](size_t index) {
   cl_mem data_cl = clCreateBuffer(globalContext, CL_MEM_COPY_HOST_PTR | CL_MEM_READ_ONLY, 28*28*sizeof(float), data_buffer, &_err);
   checkError(_err);
 
-  return { Matrix(data_cl, 1, 28*28), Matrix(label) };
+  return { Matrix(data_cl, 1, 28*28), Matrix({ lista }) };
 }

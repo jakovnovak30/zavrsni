@@ -10,6 +10,7 @@
 #include <CL/cl.h>
 #include <cstring>
 #include <iostream>
+#include <vector>
 #include <sstream>
 #include <stdexcept>
 #include <unordered_map>
@@ -33,14 +34,20 @@ static const size_t scalarSrcLen[] = { strlen(scalarSrcCode[0]) };
 Matrix::Matrix(cl_mem data, size_t N, size_t M) : N(N), M(M), data(std::make_shared<opencl_data>(data)) { }
 
 // skalar u kontekstu linearne algebre -> matrica 1x1 radi jednostavnosti
-Matrix::Matrix(const float x) : Matrix({{ x }}) { }
+inline std::vector<std::vector<float>> get_vector(const float x) {
+  std::vector<float> inner = { x };
+  std::vector<std::vector<float>> outer = { inner };
+  return outer;
+}
+
+Matrix::Matrix(const float x) : Matrix(get_vector(x)) { }
 
 Matrix::Matrix() : data(nullptr) {
   this->N = 0;
   this->M = 0;
 }
 
-Matrix::Matrix(std::initializer_list<std::initializer_list<float>> mat) : data(std::make_shared<opencl_data>(mat.size(), mat.begin()->size())) {
+Matrix::Matrix(std::vector<std::vector<float>> mat) : data(std::make_shared<opencl_data>(mat.size(), mat.begin()->size())) {
   // find height / width
   const size_t height = mat.size();
   const size_t width = mat.begin()->size();
@@ -125,6 +132,9 @@ inline cl_kernel Matrix::loadKernel(const Matrix &other, const std::string &name
     throw std::logic_error("Not implemented yet!");
   }
   else {
+    std::cout << "debug-left: " << this->N << " x " << this->M << std::endl;
+    std::cout << "debug-right: " << other.N << " x " << other.M << std::endl;
+    std::cout << "right matrix: " << other.toString() << std::endl;
     throw std::logic_error("invalid matrix dimensions!");
   }
 

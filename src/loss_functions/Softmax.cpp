@@ -25,8 +25,6 @@ void Softmax::eval() {
 
   Matrix input = this->prev->getValue();
 
-  // vektor-stupac
-  assert(input.getM() == 1);
   int _err;
   cl_mem out_buffer = clCreateBuffer(globalContext, CL_MEM_READ_ONLY, input.getN() * sizeof(float), nullptr, &_err);
   checkError(_err);
@@ -39,10 +37,19 @@ void Softmax::eval() {
   const size_t global_work_size[] = { input.getN() };
   checkError(clEnqueueNDRangeKernel(globalQueue, this->eval_kernel, 1, nullptr, global_work_size, nullptr, 0, nullptr, nullptr));
 
-  this->value = Matrix(out_buffer, input.getN(), 1);
+  this->value = Matrix(out_buffer, input.getN(), input.getM());
   return;
 }
 
 void Softmax::_derive(std::shared_ptr<Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<Expression<Matrix>>> &out_map) {
   throw std::logic_error("not implemented yet!");
+}
+
+void Softmax::addSubgraph(Agraph_t *graph, Agnode_t *prev) const {
+  static int id_counter = 0;
+  Agnode_t *curr = agnode(graph, (char *) std::to_string(id_counter++).c_str(), 1);
+  agset(curr, (char *) "label", "Softmax");
+  agedge(graph, curr, prev, nullptr, 1);
+
+  this->prev->addSubgraph(graph, curr);
 }
