@@ -3,6 +3,7 @@ test/obj/*.o
 lib/*.so
 demo/*
 !demo/*.cpp
+!demo/*.py
 docs/html/*
 docs/latex/*
 docs/man/*

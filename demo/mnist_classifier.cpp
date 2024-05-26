@@ -25,15 +25,15 @@ private:
 
 public:
   MnistClassifier() {
-    this->layers[0] = std::make_unique<Linear>(28*28, 10, false);
+    this->layers[0] = std::make_unique<Linear>(28*28, 128, false);
     this->layers[1] = std::make_unique<Linear>(128, 64, false);
     this->layers[2] = std::make_unique<Linear>(64, 10, false);
   }
 
   virtual std::shared_ptr<autograd::Expression<Matrix>> forward(std::shared_ptr<autograd::Expression<Matrix>> ulaz) {
-    for(int i=0;i < 1;i++) {
+    for(int i=0;i < 3;i++) {
       ulaz = this->layers[i]->forward(ulaz);
-      // ulaz = std::make_shared<Sigmoid>(ulaz);
+      ulaz = std::make_shared<Sigmoid>(ulaz);
     }
 
     return ulaz;
@@ -43,8 +43,8 @@ public:
 int main() {
   initCL_nvidia();
 
-  std::unique_ptr<IDataset> trainset = std::make_unique<MNIST>("/home/jakov/faks/zavrsni/datasets/MNIST/", true, false);
-  std::unique_ptr<IDataset> testset = std::make_unique<MNIST>("/home/jakov/faks/zavrsni/datasets/MNIST/", true, true);
+  std::unique_ptr<IDataset> trainset = std::make_unique<MNIST>("/home/jakov/faks/zavrsni/datasets/MNIST/raw/", true, false);
+  std::unique_ptr<IDataset> testset = std::make_unique<MNIST>("/home/jakov/faks/zavrsni/datasets/MNIST/raw/", true, true);
 
   std::unique_ptr<Dataloader> train_loader = std::make_unique<Dataloader>(*trainset, 10);
   std::unique_ptr<Dataloader> test_loader = std::make_unique<Dataloader>(*trainset, 10);

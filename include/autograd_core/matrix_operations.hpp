@@ -64,22 +64,27 @@ namespace autograd {
       checkError(_err);
 
 
-    size_t lda = this->transposeLeft ? left->getValue().getN() : left->getValue().getM();
-    size_t ldb = this->transposeRight ? right->getValue().getN() : right->getValue().getM();
+    // size_t lda = this->transposeLeft ? left->getValue().getN() : left->getValue().getM();
+    // size_t ldb = this->transposeRight ? right->getValue().getN() : right->getValue().getM();
+    // size_t ldc = this->value.getM();
+
+    size_t lda = left->getValue().getM();
+    size_t ldb = right->getValue().getM();
     size_t ldc = this->value.getM();
 
     clblast::StatusCode code = clblast::Gemm(clblast::Layout::kRowMajor,
-                    this->transposeLeft ? clblast::Transpose::kYes : clblast::Transpose::kNo,
-                    this->transposeRight ? clblast::Transpose::kYes : clblast::Transpose::kNo,
-                    this->left->getValue().getN(), this->left->getValue().getM(), this->right->getValue().getM(), 1.f,
-                    this->left->getValue().data->data, 0, lda,
-                    this->right->getValue().data->data, 0, ldb, 0.f,
-                    this->value.data->data, 0, ldc, &globalQueue);
+                                            this->transposeLeft ? clblast::Transpose::kYes : clblast::Transpose::kNo,
+                                            this->transposeRight ? clblast::Transpose::kYes : clblast::Transpose::kNo,
+                                            this->left->getValue().getN(), this->left->getValue().getM(), this->right->getValue().getM(), 1.f,
+                                            this->left->getValue().data->data, 0, lda,
+                                            this->right->getValue().data->data, 0, ldb, 0.f,
+                                            this->value.data->data, 0, ldc, &globalQueue);
 
       if(code != clblast::StatusCode::kSuccess) {
-        std::cout << "MULTIPLICATION ERROR: " << StatusCodeToString(code) << std::endl;
         printf("status code: %d", (int)code);
-        std::cout << "dimensions: " << left->getValue().getN() << ", " << left->getValue().getM() << ", " << right->getValue().getM() << std::endl;
+        std::cout << "dimensions: " << lda << " " << ldb << " " << ldc << std::endl;
+
+        throw std::runtime_error("[clblast]: MATRIX MULTIPLICATION ERROR!");
       }
     }
 

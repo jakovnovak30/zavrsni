@@ -13,12 +13,12 @@
 
 MNIST::MNIST(const std::string &path, bool normalize, bool test) : normalize(normalize) {
   if(!test) {
-    this->data.open(path + "/train-images.idx3-ubyte", std::ios::binary);
-    this->labels.open(path + "/train-labels.idx1-ubyte", std::ios::binary);
+    this->data.open(path + "/train-images-idx3-ubyte", std::ios::binary);
+    this->labels.open(path + "/train-labels-idx1-ubyte", std::ios::binary);
   }
   else {
-    this->data.open(path + "/t10k-images.idx3-ubyte", std::ios::binary);
-    this->labels.open(path + "/t10k-labels.idx1-ubyte", std::ios::binary);
+    this->data.open(path + "/t10k-images-idx3-ubyte", std::ios::binary);
+    this->labels.open(path + "/t10k-labels-idx1-ubyte", std::ios::binary);
   }
 
   if(!this->data || !this->labels) {
