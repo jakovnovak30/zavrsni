@@ -15,6 +15,9 @@ var annotated_dup =
       [ "Variable", "structautograd_1_1Variable.html", "structautograd_1_1Variable" ],
       [ "VectorSumReduction", "structautograd_1_1VectorSumReduction.html", "structautograd_1_1VectorSumReduction" ]
     ] ],
+    [ "mnist_classifier", null, [
+      [ "MNISTClassifier", "classmnist__classifier_1_1MNISTClassifier.html", null ]
+    ] ],
     [ "CrossEntropyLossWithSoftmax", "classCrossEntropyLossWithSoftmax.html", "classCrossEntropyLossWithSoftmax" ],
     [ "Dataloader", "classDataloader.html", null ],
     [ "Dataset", "classDataset.html", null ],

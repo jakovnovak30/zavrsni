@@ -47,5 +47,8 @@ var hierarchy =
       [ "Linear", "classLinear.html", null ],
       [ "MnistClassifier", "classMnistClassifier.html", null ]
     ] ],
-    [ "Random2DGaussian", "classRandom2DGaussian.html", null ]
+    [ "Random2DGaussian", "classRandom2DGaussian.html", null ],
+    [ "Module", null, [
+      [ "mnist_classifier.MNISTClassifier", "classmnist__classifier_1_1MNISTClassifier.html", null ]
+    ] ]
 ];

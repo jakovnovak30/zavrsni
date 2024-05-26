@@ -9,9 +9,10 @@ var searchData=
   ['mnist_6',['MNIST',['../classMNIST.html',1,'']]],
   ['mnist_2ecpp_7',['MNIST.cpp',['../MNIST_8cpp.html',1,'']]],
   ['mnist_2eh_8',['MNIST.h',['../MNIST_8h.html',1,'']]],
-  ['mnistclassifier_9',['MnistClassifier',['../classMnistClassifier.html',1,'']]],
-  ['module_10',['Module',['../classModule.html',1,'Module'],['../classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0',1,'Module::Module()']]],
-  ['module_2ecpp_11',['Module.cpp',['../Module_8cpp.html',1,'']]],
-  ['module_2eh_12',['Module.h',['../Module_8h.html',1,'']]],
-  ['mult_13',['Mult',['../structautograd_1_1Mult.html',1,'autograd']]]
+  ['mnistclassifier_9',['MNISTClassifier',['../classmnist__classifier_1_1MNISTClassifier.html',1,'mnist_classifier']]],
+  ['mnistclassifier_10',['MnistClassifier',['../classMnistClassifier.html',1,'']]],
+  ['module_11',['Module',['../classModule.html',1,'Module'],['../classModule.html#ac0b59ad515f7ddd34618dc5141a0aab0',1,'Module::Module()']]],
+  ['module_2ecpp_12',['Module.cpp',['../Module_8cpp.html',1,'']]],
+  ['module_2eh_13',['Module.h',['../Module_8h.html',1,'']]],
+  ['mult_14',['Mult',['../structautograd_1_1Mult.html',1,'autograd']]]
 ];
