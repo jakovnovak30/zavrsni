@@ -47,10 +47,10 @@ int main() {
   std::unique_ptr<IDataset> testset = std::make_unique<MNIST>("/home/jakov/faks/zavrsni/datasets/MNIST/raw/", true, true);
 
   std::unique_ptr<Dataloader> train_loader = std::make_unique<Dataloader>(*trainset, 10);
-  std::unique_ptr<Dataloader> test_loader = std::make_unique<Dataloader>(*trainset, 10);
+  std::unique_ptr<Dataloader> test_loader = std::make_unique<Dataloader>(*testset, 10);
 
   std::unique_ptr<MnistClassifier> classifier = std::make_unique<MnistClassifier>();
-  std::shared_ptr<IOptimizer> sgd_optim = std::make_shared<SGD>(0.5f);
+  std::shared_ptr<IOptimizer> sgd_optim = std::make_shared<SGD>(0.01f);
 
   int counter = 0;
   while(train_loader->hasNext()) {
@@ -60,10 +60,8 @@ int main() {
     auto loss = std::make_shared<CrossEntropyLossWithSoftmax>(logits, autograd::createVariable(labels, "y", false));
     classifier->backward(loss, sgd_optim);
 
-    if(counter % 10000) {
-      std::cout << "batch-logits: " << logits->getValue().toString() << std::endl;
+    if(counter % 1000 == 0) {
       std::cout << "loss: " << loss->getValue().toString() << std::endl;
-      exit(0);
     }
 
     counter++;

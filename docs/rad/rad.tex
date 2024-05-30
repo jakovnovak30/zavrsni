@@ -91,7 +91,7 @@
 
 \begin{zahvale}
   % Ovdje upišite zahvale / Write in the acknowledgment
-  TODO: napisati zahvalu za obitelj, prijatelje i profesore
+  Zahvaljujem profesoru Šegviću na suradnji tijekom pisanja rada te kolegama i obitelji na podršci tijekom studija.
 \end{zahvale}
 
 
@@ -383,7 +383,7 @@ Sad, kad znamo teorijsku podlogu, možemo krenuti u implementaciju \texttt{autog
 \lstinputlisting[language=C++, caption={Jezgrena funkcionalnost autograda}, firstline=31]{../../include/autograd_core/expression.hpp}
 
 \pagebreak
-\section{Matrix calculus}
+\section{Matrični račun}
 \subsection{Operacije \textit{element po element}}
 Pošto su najjednostavnije, krenimo od operacija \textit{element po element}, to su operacije koje su u jednakom obliku definirane i za skalarne varijable, primjerice zbrajanje ili potenciranje. Jakobijan funkcije koja prima vektor $\vec{x}$ dimenzije $n$ i vraća vektor $\vec{y}$ dimenzije $m$ jest:
 
@@ -507,16 +507,16 @@ U ovom kratkom demonstracijskom programu se definiraju varijable $x$, $y$ i $z$,
 \lstinputlisting[language=C++, caption={Demonstracijski program za skalarne funkcije}]{../../demo/visualize_demo.cpp}
 
 \subsection{Jednostavni klasifikator slika iz MNIST skupa}
+\label{pog:klasifikator}
 \lstinputlisting[language=C++]{../../demo/mnist_classifier.cpp}
-\textbf{TODO:} opiši učenje mreže itd.
-\blindtext
+U ovom primjeru se zapravo vidi cijela funkcionalnost razvojnog okvira: korišteno je sučelje za učitavanje skupova podataka (\textit{IDataset} i \textit{Dataloader}) te je napravljen jednostavan razred koji nasljeđuje razred Module na način da nadjačavanjem metode \textit{forward} definira unaprijedni prolaz kroz mrežu te prepušta okviru ostatak posla za unatražni prolaz (slično kao kod definiranja mreže u Pytorchu). Vidimo da se mreža sastoji od tri potpuno povezana sloja sa sigmoidalnim aktivacijskim funkcijama. Nakon što je to sve definirano, u glavnoj petlji jednostavno učitavamo podatke te radimo jednu epohu učenja mreže sa periodičkim ispisom vektora funkcije gubitka. Korišten je optimizator SGD (stohastički gradijentni spust) sa veličinom uzorka 10 te unakrsna entropija sa softmaxom kao funkcijom gubitka.
 
 %-------------------------------------------------------------------------------
 \chapter{Rezultati i rasprava}
 \label{pog:rezultati_i_rasprava}
 
 \section{Usporedba s pytorchem}
-\textbf{TODO:} opiši sličnosti i razlike
+U ovom primjeru je napisan isti klasifikator \ref{pog:klasifikator}, jedino u Pytorchu. Vidimo iz koda da Pytorch naravno ima više funkcionalnosti, kao što su primjerice ugrađene funckije za prebacivanje u \textit{one-hot} zapis i slično. No, ako pogledamo glavne definicije klase \textit{MNISTClassifier} iz ovog i prethodnog \ref{pog:klasifikator} primjera, vidimo odakle je došla inspiracija za ovaj projekt. Pytorch je jedino malo elegantniji zato što nije napisan u strogo tipiziranom jeziku, iako je sučelje koje on koristi za automatsko diferenciranje pisano u C++-u.
 \lstinputlisting[language=python]{../../demo/mnist_classifier.py}
 
 \pagebreak
@@ -545,25 +545,21 @@ Zaključno, TODO...
 
 % Sažetak na hrvatskom
 \begin{sazetak}
-  \textbf{TODO:} Unesite sažetak na hrvatskom.
-  \blindtext
+Kako neuralne mreže postaju sve složenije i popularnije, ključno je razumjeti mehanizme koji omogućuju njihovo efikasno učenje. U ovom radu istražujemo matematičke osnove automatskog diferenciranja, što je temeljna tehnika za treniranje neuralnih mreža. Detaljno razmatramo teorijske koncepte koji stoje iza automatskog diferenciranja, uključujući derivacije i gradijente, te njihovu primjenu u optimizaciji modela strojnog učenja. Osim teorijskog pregleda, rad obuhvaća i praktičnu implementaciju jednostavnog sustava za automatsko diferenciranje. Pomoću ovog sustava demonstriramo njegovu primjenu kroz nekoliko programskih primjera. Na kraju, razvili smo klasifikator slika koristeći vlastiti sustav za automatsko diferenciranje, čime smo pokazali praktičnu korisnost i efikasnost razvijenog rješenja u stvarnim zadacima strojnog učenja.
 \end{sazetak}
 
 \begin{kljucnerijeci}
-  \textbf{TODO:} ključne riječi
-  prva ključna riječ; druga ključna riječ; treća ključna riječ
+  autodiff; c++; automatsko diferenciranje; strojno učenje; duboko učenje
 \end{kljucnerijeci}
 
 
 % Abstract in English
 \begin{abstract}
-  This is the abstract in english. \textbf{TODO:} write a proper one...
-  \blindtext
+As neural networks become increasingly complex and popular, understanding the mechanisms that enable their efficient learning is crucial. This paper explores the mathematical foundations of automatic differentiation, a fundamental technique for training neural networks. We thoroughly examine the theoretical concepts behind automatic differentiation, including derivatives and gradients, and their application in optimizing machine learning models. In addition to the theoretical overview, the paper includes a practical implementation of a simple automatic differentiation system. We demonstrate the system's application through several programming examples. Finally, we developed an image classifier using our custom automatic differentiation system, showcasing the practical utility and efficiency of the developed solution in real-world machine learning tasks.
 \end{abstract}
 
 \begin{keywords}
-  \textbf{TODO:} ključne riječi
-  the first keyword; the second keyword; the third keyword
+  autodiff; c++; automatic differentiation; machine learning; deep learning
 \end{keywords}
 
 

@@ -52,7 +52,6 @@ void CrossEntropyLossWithSoftmax::eval() {
   return;
 }
 
-// TODO: slozi ovo
 void CrossEntropyLossWithSoftmax::_derive(std::shared_ptr<autograd::Expression<Matrix>> seed, std::unordered_map<std::string, std::shared_ptr<autograd::Expression<Matrix>>> &out_map) {
   // Calculate the softmax of the input
   std::shared_ptr<autograd::Expression<Matrix>> softmax = std::make_shared<Softmax>(this->left);
@@ -62,7 +61,7 @@ void CrossEntropyLossWithSoftmax::_derive(std::shared_ptr<autograd::Expression<M
 
   // Multiply by the seed if it is not nullptr
   if (seed) {
-      grad_input = grad_input * seed;
+    grad_input = grad_input * seed;
   }
 
   this->left->derive(grad_input, out_map);

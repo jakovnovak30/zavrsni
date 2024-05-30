@@ -26,6 +26,7 @@ static const char *code[] =
                         };
 static size_t lengths[] = { strlen(code[0]) };
 
+#include <iostream>
 void SGD::optimize(Matrix &parameters, Matrix &gradients) {
   if(parameters.getN() != gradients.getN() || parameters.getM() != gradients.getM())
     throw std::logic_error("Krive dimenzije matrica parametara i gradijenata!");

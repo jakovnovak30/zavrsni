@@ -53,29 +53,28 @@ namespace autograd {
     void eval() override {
       this->left->getValue(); this->right->getValue();
 
-      size_t rez_n = this->left->getValue().getN(), rez_m = this->right->getValue().getM();
+      size_t left_n = this->left->getValue().getN(), left_m = this->left->getValue().getM();
+      size_t right_n = this->right->getValue().getN(), right_m = this->right->getValue().getM();
       if(this->transposeLeft)
-        rez_n = this->left->getValue().getM();
+        std::swap(left_n, left_m);
       if(this->transposeRight)
-        rez_m = this->right->getValue().getN();
+        std::swap(right_n, right_m);
+      // dimenzije rezultata
+      size_t rez_n = left_n, rez_m = right_m;
 
       int _err;
       this->value = Matrix(clCreateBuffer(globalContext, CL_MEM_READ_WRITE, rez_n * rez_m * sizeof(float), nullptr, &_err), rez_n, rez_m);
       checkError(_err);
 
 
-    // size_t lda = this->transposeLeft ? left->getValue().getN() : left->getValue().getM();
-    // size_t ldb = this->transposeRight ? right->getValue().getN() : right->getValue().getM();
-    // size_t ldc = this->value.getM();
-
-    size_t lda = left->getValue().getM();
-    size_t ldb = right->getValue().getM();
+    size_t lda = this->left->getValue().getM();
+    size_t ldb = this->right->getValue().getM();
     size_t ldc = this->value.getM();
 
     clblast::StatusCode code = clblast::Gemm(clblast::Layout::kRowMajor,
                                             this->transposeLeft ? clblast::Transpose::kYes : clblast::Transpose::kNo,
                                             this->transposeRight ? clblast::Transpose::kYes : clblast::Transpose::kNo,
-                                            this->left->getValue().getN(), this->left->getValue().getM(), this->right->getValue().getM(), 1.f,
+                                            left_n, right_m, left_m, 1.f,
                                             this->left->getValue().data->data, 0, lda,
                                             this->right->getValue().data->data, 0, ldb, 0.f,
                                             this->value.data->data, 0, ldc, &globalQueue);
@@ -83,6 +82,8 @@ namespace autograd {
       if(code != clblast::StatusCode::kSuccess) {
         printf("status code: %d", (int)code);
         std::cout << "dimensions: " << lda << " " << ldb << " " << ldc << std::endl;
+        std::cout << "trying to multiply: " << left->getValue().getN() << "x" << left->getValue().getM() <<
+                                                      " and " << right->getValue().getN() << "x" << right->getValue().getM() << std::endl;
 
         throw std::runtime_error("[clblast]: MATRIX MULTIPLICATION ERROR!");
       }
