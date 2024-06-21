@@ -325,8 +325,7 @@ Klijent takav sustav može na jednostavan način koristiti ako smo nadjačali op
 
 \subsection{Transformacija izvornog koda}
 
-Drugi, efikasniji način jest umetanje međukoda, kojeg optimirajući prevoditelj može dodatno obraditi kasnije, u naš kod, odnosno klijentov kod. Glavna ideja jest da imamo okvir koji matematičke izraze izravno prevodi u međukod za evaluaciju (zamjena za metodu \textit{evaluate()}) te međukod za derivaciju (zamjena za metodu \textit{derive()}). Ukoliko imamo takav okvir, klijent može lako preko njega prevesti matematičke izraze te njihov izračun umetnuti u svoj kod. To se isto može ostvariti preko objektnog modela. Primjer razvojnog okvira koji koristi ovakav pristup jest TensorFlow i Zygote.jl \cite{prague:diffcpp}. Zygote.jl koristi llvm međukod kako bi izravno, na temelju neke ulazne funkcije, izgenerirao naredbe u strojno neovisnom kodu niske razine koji se kasnije može optimirati:
-\textbf{TODO: reference}
+Drugi, efikasniji način jest umetanje međukoda, kojeg optimirajući prevoditelj može dodatno obraditi kasnije, u naš kod, odnosno klijentov kod. Glavna ideja jest da imamo okvir koji matematičke izraze izravno prevodi u međukod za evaluaciju (zamjena za metodu \textit{evaluate()}) te međukod za derivaciju (zamjena za metodu \textit{derive()}). Ukoliko imamo takav okvir, klijent može lako preko njega prevesti matematičke izraze te njihov izračun umetnuti u svoj kod. To se isto može ostvariti preko objektnog modela. Primjer razvojnog okvira koji koristi ovakav pristup jest TensorFlow \cite{tensorflow} i Zygote.jl \cite{prague:diffcpp}. Zygote.jl koristi llvm međukod kako bi izravno, na temelju neke ulazne funkcije, izgenerirao naredbe u strojno neovisnom kodu niske razine koji se kasnije može optimirati \cite{zygote}:
 \\
 
 \begin{lstlisting}[caption={Primjer korištenja Zygote.jl za generiranje llvm međukoda za funkciju: $a^2 + a*b$ \cite{prague:diffcpp}}]
@@ -380,7 +379,7 @@ OpenCL je standard otvorenog koda za paralelno programiranje heterogenih računa
 \label{pog:glavni_dio}
 
 \section{Autograd\_core implementacija}
-Sad, kad znamo teorijsku podlogu, možemo krenuti u implementaciju \texttt{autograd} sustava. Ovaj sustav će se temeljiti na principu unatražnog prolaska \ref{pog:reverse}. Najprije implementiramo razred \texttt{autograd::Expression} koji definira neke okvirne metode za \texttt{cacheiranje} već izračunatih vrijedosti te dodatne metode za vizualizaciju grafova funkcije \ref{pog:metode}. Nakon toga možemo implementirati osnovne funkcionalnosti naslijeđivanjem razreda te nadjačavanjem metoda \texttt{autograd::Expression::eval} te \texttt{autograd::Expression::derive}. Jedini implementacijski detalj koji je možda malo nejasan iz koda jest korištenje pametnih pokazivača. Potreba za time dolazi zato što ne računamo direktno derivaciju funkcije već gradimo novi izraz tipa \texttt{autograd::Expression} kojeg zatim evaluiramo (kako bi mogli računati derivacije višeg reda) pa je stoga potrebno dinamički alocirati / oslobađati memoriju za vrijeme izvođenja programa. Pametni pokazivači, konkretno \texttt{std::shared\_ptr<autograd::Expression>} su idealni za ovu primjenu. Ovakva implementacija zajedno s nadjačavanjem operatora \ref{pog:nadjacavanje} može bez problema računati gradijente funkcija više varijabli, ali samo kad su te varijable skalari. Za potrebe dubokog učenja trebamo proširiti tu funkcionalnost kako bi nam varijable mogle biti matrice ili vektori kojima prikazujemo težine neuralnih mreža i njihove ulaze. U idućem poglavlju ćemo se baviti tom problematikom.
+Sad, kad znamo teorijsku podlogu, možemo krenuti u implementaciju \texttt{autograd} sustava. Ovaj sustav će se temeljiti na principu unatražnog prolaska \ref{pog:reverse}. Najprije implementiramo razred \texttt{autograd::Expression} koji definira neke okvirne metode za \texttt{cacheiranje} već izračunatih vrijedosti te dodatne metode za vizualizaciju grafova funkcije \ref{pog:metode}. Nakon toga možemo implementirati osnovne funkcionalnosti naslijeđivanjem razreda te nadjačavanjem metoda \texttt{autograd::Expression::eval} te \texttt{autograd::Expression::derive}. Potreba za korištenjem pametnih pokazivača dolazi zato što ne računamo direktno derivaciju funkcije već gradimo novi izraz tipa \texttt{autograd::Expression} kojeg zatim evaluiramo (kako bi mogli računati derivacije višeg reda) pa je stoga potrebno dinamički alocirati i oslobađati memoriju za vrijeme izvođenja programa. Pametni pokazivači, konkretno \texttt{std::shared\_ptr<autograd::Expression>} su idealni za ovu primjenu. Ovakva implementacija zajedno s nadjačavanjem operatora objašnjenim u~\ref{pog:nadjacavanje} može bez problema računati gradijente funkcija više varijabli, ali samo kad su te varijable skalari. Za potrebe dubokog učenja trebamo proširiti tu funkcionalnost kako bi nam varijable mogle biti matrice ili vektori kojima prikazujemo težine neuralnih mreža i njihove ulaze. U idućem poglavlju ćemo se baviti tom problematikom.
 
 \lstinputlisting[language=C++, caption={Jezgrena funkcionalnost autograda}, firstline=31]{../../include/autograd_core/expression.hpp}
 
@@ -411,8 +410,8 @@ Pošto su najjednostavnije, krenimo od operacija \textit{element po element}, to
     \vdots & \vdots & & \vdots \\
     \frac{\partial}{\partial x_1} f_m(\vec{x}) & \frac{\partial}{\partial x_2} f_m(\vec{x}) & \dots & \frac{\partial}{\partial x_n} f_m(\vec{x}) \\
   \end{bmatrix}
-\end{equation}
 \cite{matrix_calculus}
+\end{equation}
 
 Ako radimo operacije \textit{element po element}, onda će o rezultatu funkcije ovisiti samo vrijednosti na dijagonali, odnosno vrijedit će:
 \begin{equation}
@@ -424,15 +423,16 @@ Ako radimo operacije \textit{element po element}, onda će o rezultatu funkcije 
     0 & 0 & \dots & \frac{\partial}{\partial x_n} f_n(\vec{x}) \\
   \end{bmatrix}
   = diag(\frac{\partial}{\partial x_1} f_1(\vec{x}), \frac{\partial}{\partial x_2} f_2(\vec{x}), \dots, \frac{\partial}{\partial x_n} f_n(\vec{x}))
-\end{equation}
 \cite{matrix_calculus}
+\end{equation}
 
 Ova jednakost će nam biti vrlo korisna zato što ćemo u rekurzivnom pozivu funkcije \textit{derive} slati vrijednost umnoška vektora s Jakobijanom kao vrijednost parametra \textit{seed}, a množenje s dijagonalnom matricom nam zapravo pojednostavi jednadžbe na način da možemo sve operacije raditi isto kao i sa skalarima. Potrebno je samo definirati osnovni razred \textit{Matrix} te nadjačati potrebne operatore i kod s prethodnog poglavlja može normalno raditi.
 
 \lstinputlisting[language=C++, firstline=20, caption={Definicija osnovnog razreda za rad s matricama}]{../../include/autograd_core/Matrix.h}
 
 \subsection{Matrično množenje}
-Bitne su dvije jednakosti kod množenja vektora s matricom ($\vec{y} = \vec{x} \times W$). Prva je: $\frac{\partial \vec{y}}{\partial \vec{x}}$, a druga: $\frac{\partial \vec{y}}{\partial W}$. Za potrebe dubokog učenja trebamo izračunati i jednu i drugu unutar našeg \textit{autograda} zato što nam prva služi za propagiranje greške unazad, a druga vrijednost služi za ispravljanje greške trenutnih težina.
+Bitne su dvije jednakosti kod množenja vektora s matricom ($\vec{y} = \vec{x} \times W$). Prva je: $\frac{\partial \vec{y}}{\partial \vec{x}}$, a druga: $\frac{\partial \vec{y}}{\partial W}$. Za potrebe dubokog učenja trebamo izračunati i jednu i drugu unutar našeg \textit{autograda}. Prva nam služi za propagiranje greške unazad, a druga vrijednost služi za ispravljanje greške trenutnih težina.
+\cite{backprop:michigan}
 \\
 Najbolje je da prvo proučimo izvod prve jednakosti:
 \begin{align*}
@@ -499,7 +499,6 @@ Dakle, Jakobijan je jednak transponiranoj matrici težina. To pravilo ćemo isko
 \begin{equation}
   \frac{\partial L}{\partial W} = X^\mathsf{T} \frac{\partial L}{\partial Y}
 \end{equation}
-\cite{backprop:michigan}
 
 \pagebreak
 \section{Demonstracijski programi}
@@ -511,19 +510,21 @@ U ovom kratkom demonstracijskom programu se definiraju varijable $x$, $y$ i $z$,
 \subsection{Jednostavni klasifikator slika iz MNIST skupa}
 \label{pog:klasifikator}
 \lstinputlisting[language=C++]{../../demo/mnist_classifier.cpp}
-U ovom primjeru se zapravo vidi cijela funkcionalnost razvojnog okvira: korišteno je sučelje za učitavanje skupova podataka (\textit{IDataset} i \textit{Dataloader}) te je napravljen jednostavan razred koji nasljeđuje razred Module na način da nadjačavanjem metode \textit{forward} definira unaprijedni prolaz kroz mrežu te prepušta okviru ostatak posla za unatražni prolaz (slično kao kod definiranja mreže u Pytorchu). Vidimo da se mreža sastoji od tri potpuno povezana sloja sa sigmoidalnim aktivacijskim funkcijama. Nakon što je to sve definirano, u glavnoj petlji jednostavno učitavamo podatke te radimo jednu epohu učenja mreže sa periodičkim ispisom vektora funkcije gubitka. Korišten je optimizator SGD (stohastički gradijentni spust) sa veličinom uzorka 10 te unakrsna entropija sa softmaxom kao funkcijom gubitka.
+U ovom primjeru se vidi cijela funkcionalnost razvojnog okvira: korišteno je sučelje za učitavanje skupova podataka (\textit{IDataset} i \textit{Dataloader}) te je napravljen jednostavan razred koji nasljeđuje razred Module na način da nadjačavanjem metode \textit{forward} definira unaprijedni prolaz kroz mrežu te prepušta okviru ostatak posla za unatražni prolaz (slično kao kod definiranja mreže u Pytorchu). Vidimo da se mreža sastoji od tri potpuno povezana sloja sa sigmoidalnim aktivacijskim funkcijama \cite{implement:sigmoid}. Nakon što je to sve definirano, u glavnoj petlji jednostavno učitavamo podatke te radimo jednu epohu učenja mreže sa periodičkim ispisom vektora funkcije gubitka. Korišten je optimizator SGD (stohastički gradijentni spust) sa veličinom uzorka 10 te unakrsna entropija sa softmaxom kao funkcijom gubitka \cite{implement:SGD}.
 
 %-------------------------------------------------------------------------------
 \chapter{Rezultati i rasprava}
 \label{pog:rezultati_i_rasprava}
 
-\section{Usporedba s pytorchem}
-U ovom primjeru je napisan isti klasifikator \ref{pog:klasifikator}, jedino u Pytorchu. Vidimo iz koda da Pytorch naravno ima više funkcionalnosti, kao što su primjerice ugrađene funckije za prebacivanje u \textit{one-hot} zapis i slično. No, ako pogledamo glavne definicije klase \textit{MNISTClassifier} iz ovog i prethodnog \ref{pog:klasifikator} primjera, vidimo odakle je došla inspiracija za ovaj projekt. Pytorch je jedino malo elegantniji zato što nije napisan u strogo tipiziranom jeziku, iako je sučelje koje on koristi za automatsko diferenciranje pisano u C++-u.
+U ovom poglavlju analiziramo programe napisane u razvijenom okviru te ih uspoređujemo s programima napisanima u okviru Pytorch. Osim toga, raspravljamo o mogućim optimizacijama koje bi dodatno unaprijedile performanse i efikasnost sustava.
+
+\section{Usporedba s Pytorchem}
+U ovom primjeru je napisan isti klasifikator \ref{pog:klasifikator}, koristeći okvir Pytorch. Pytorch ima više funkcionalnosti, kao što su primjerice ugrađene funkcije za prebacivanje u \textit{one-hot} zapis i slično. No, ako pogledamo glavne definicije klase \textit{MNISTClassifier} iz ovog i prethodnog primjera~\ref{pog:klasifikator}, vidimo odakle je došla inspiracija za ovaj projekt. Pytorch je jedino malo elegantniji zato što nije napisan u strogo tipiziranom jeziku, iako je sučelje koje on koristi za automatsko diferenciranje pisano u programskom jeziku C++. Dakle, ne moramo definirati pametne pokazivače na točno određene tipove podataka, već će interpreter dinamički odrediti s kojim objektima radi, a \textit{garbage collector} će se brinuti o alokaciji i dealokaciji memorije. Takav kod je manje efikasan, no puno čitljiviji.
 \lstinputlisting[language=python]{../../demo/mnist_classifier.py}
 
 \pagebreak
 \section{Moguće optimizacije}
-Postoje više mogućih optimizacija u odnosu na trenutno razvijeni sustav. Jedna od prvih je možda lokalizacija korištene memorije za derivaciju jednog izraza \cite{margossian2019review}. Mogli bismo napisati svoj alokator koji bi unaprijed rezervirao memoriju za derivaciju nekog izraza te koristiti taj komad memorije umjesto da imamo više uzastopnih poziva funkcije \textit{make\_shared} što dovodi do potencijalne fragmentacije gomile i usporavanja programa zbog nepotrebnih promašaja priručne memorije.
+Postoje više mogućih optimizacija u odnosu na trenutno razvijeni sustav. Jedna od prvih je lokalizacija korištene memorije za derivaciju jednog izraza \cite{margossian2019review}. Mogli bismo napisati svoj alokator koji bi unaprijed rezervirao memoriju za derivaciju nekog izraza te koristiti taj komad memorije umjesto da imamo više uzastopnih poziva funkcije \textit{make\_shared} što dovodi do potencijalne fragmentacije gomile i usporavanja programa zbog nepotrebnih promašaja priručne memorije.
 \\
 Druga potencijalna optimizacija jest dodavanje derivacija za često korištene funkcije. Ideja je slična kao kod naše implementacije funkcije sigmoide: derivacija se ne zadaje preko primitivnih operacija, već kao $f(x) * (1 - f(x))$, što u praksi jako pojednostavljuje graf te funkcije (odnosno njene derivacije) te nam omogućuje da ju izračunamo sa što manje računskih operacija.
 \\
