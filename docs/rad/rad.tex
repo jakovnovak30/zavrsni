@@ -91,7 +91,7 @@
 
 \begin{zahvale}
   % Ovdje upišite zahvale / Write in the acknowledgment
-  Zahvaljujem profesoru Šegviću na suradnji tijekom pisanja rada te kolegama i obitelji na podršci tijekom studija.
+  Zahvaljujem profesoru Šegviću na suradnji tijekom pisanja rada te\\ obitelji, prijateljima i kolegama na podršci tijekom studija.
 \end{zahvale}
 
 
@@ -118,7 +118,7 @@ Postoje različiti pristupi u korištenju računala za rješavanje tog problema.
 
 \section{Metode automatskog diferenciranja}
 \label{pog:metode}
-Glavna ideja automatskog diferenciranja jest da dobivenu matematičku funkciju možemo prikazati kao aciklički digraf kojemu su čvorovi varijable, konstante ili međurezultati: $G = (V, E). V = \mathrm{Var} \cup F$, gdje je $\mathrm{Var}$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
+Glavna ideja automatskog diferenciranja jest da dobivenu matematičku funkciju možemo prikazati kao aciklički graf $G = (V, E)$ kojemu su čvorovi varijable, konstante i međurezultati: $V = Var \cup F$, gdje je $Var$ skup varijabli, a $F$ skup primitivnih funkcija koje se lako mogu derivirati. Ulaz neke funkcije $f \in F$ je definiran kao: $\{x \in V \colon (x, f) \in E\}$
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\linewidth]{../../pics/demo1.png}
@@ -126,9 +126,9 @@ Glavna ideja automatskog diferenciranja jest da dobivenu matematičku funkciju m
   \label{slk:graf_funkcije1}
 \end{figure}
 \\
-Općenito, za neku funkciju: $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m$ vrijedi da će njezin graf imati $n$ čvorova varijabli, odnosno $n$ izvora te $m$ izlaznih čvorova, tj. $m$ ponora. Dodatno možemo pojednostaviti njezin graf ako funkciju zamislimo kao $f\colon \mathbb{V}^n \rightarrow \mathbb{V}^m$ te zatim predstavimo sve varijable kao vektore. Ta ideja će nam uvelike pojednostaviti samu implementaciju autograd programa jer će apstrahirati prijelaz s univarijatnih na multivarijatne funkcije.
+Općenito, za neku funkciju: $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m$ vrijedi da će njezin graf imati $n$ čvorova varijabli, odnosno $n$ izvora te $m$ izlaznih čvorova, tj. $m$ ponora. Dodatno možemo pojednostaviti njezin graf ako funkciju zamislimo kao $f\colon \mathbb{V}^n \rightarrow \mathbb{V}^m$ te zatim predstavimo sve varijable kao vektore. Ta ideja će nam uvelike pojednostaviti samu implementaciju autograd programa, odnosno demonstracijskog okvira za računanje gradijenata proizvoljnih funkcija, jer će apstrahirati prijelaz s univarijatnih na multivarijatne funkcije.
 \\
-Sa slike \ref{slk:graf_funkcije1} možemo već naslutiti koja je glavna ideja algoritma; Glavna ideja jest da obiđemo zadani graf te u svakom čvoru odredimo derivaciju po pravilu ulančavanja:
+Sa slike \ref{slk:graf_funkcije1} možemo već naslutiti koja je glavna ideja algoritma. Glavna ideja jest da obiđemo zadani graf te u svakom čvoru odredimo derivaciju po pravilu ulančavanja:
 \begin{equation}
   \frac{\partial (f_1 \circ (f_2 \circ \dotsb (f_{n-1} \circ f_n)))}{\partial x}
     = \frac{\partial f_1}{\partial f_2} \frac{\partial f_2}{\partial f_3}
@@ -154,8 +154,9 @@ class Expression:
     def __mul__(self, other):
         return Multiply(self, other)
 \end{lstlisting}
+Postoje dva glavna pristupa automatskom diferenciranju: \textit{forward mode accumulation} i \textit{reverse mode accumulation}. Njih ćemo objasniti u slijedećim poglavljima.
 \subsection{Forward mode}
-Ovdje postoje dva pristupa: prvi, takozvani \textit{forward mode accumulation}, jest da počnemo od čvorova ulaza prema čvorovima izlaza, po formuli:
+Prvi pristup, takozvani \textit{forward mode accumulation}, jest da počnemo od čvorova ulaza prema čvorovima izlaza, po formuli:
 \begin{equation}
   \frac{\partial (f_{i-1} \circ f_i)}{\partial x} = \frac{\partial f_{i-1}}{\partial x} \frac{\partial f_i}{\partial f_{i-1}}
 \end{equation}
@@ -166,7 +167,7 @@ Ovdje postoje dva pristupa: prvi, takozvani \textit{forward mode accumulation}, 
   \cite{wuciawe_github}
   \label{slk:forward_graph}
 \end{figure}
-Vrijednost $f_{i-1}$ je u početku jednaka 1, a kasnije se propagira kroz slojeve grafa \ref{slk:forward_graph} kao vrijednost koju u literaturi često nazivaju \textit{seed value} \cite{prague:diffcpp}. Ovaj pristup je pogodan ukoliko je broj ulaza daleko manji od broja izlaza, odnosno vrijedi $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m. n << m$. Složenost ovog koda ovisi o strukturi grafa, no vidljivo je da prolazak kroz graf ponavljamo $n$ puta te je stoga poželjno da je $n$ mnogo manji od $m$. Ovaj pristup nije idealan za strojno učenje pošto je često ulazna domena mnogo veća od izlazne u toj primjeni.
+Vrijednost $f_{i-1}$ je u početku jednaka 1, a kasnije se propagira kroz slojeve grafa \ref{slk:forward_graph} kao vrijednost koja se u literaturi često naziva \textit{seed value} \cite{prague:diffcpp}. Ovaj pristup je pogodan ukoliko je broj ulaza daleko manji od broja izlaza, odnosno vrijedi $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m \text{ td. } n << m$. Složenost ovog koda ovisi o strukturi grafa, no vidljivo je da prolazak kroz graf ponavljamo $n$ puta te je stoga poželjno da je $n$ mnogo manji od $m$. Ovaj pristup nije idealan za strojno učenje pošto je često ulazna domena mnogo veća od izlazne u toj primjeni.
 \\
 \begin{lstlisting}[caption={Primjer implementacije unaprijedne metode u programskom jeziku \textit{Python} \cite{wiki:autodiff}}]
 class Variable(Expression):
@@ -210,9 +211,9 @@ Drugi pristup problemu automatskog diferenciranja jest takozvani \textit{reverse
   \cite{srijithr_gitlab}
   \label{slk:reverse_graf}
 \end{figure}
-U ovom pristupu se \textit{seed}-vrijednost šalje unazad kroz graf jednadžbe od ponora prema izvorima \ref{slk:reverse_graf}. Iz toga slijedi da će za neku funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m. m << n$ algoritam biti najefikasniji zato što će se $m$ puta pozvati funkcija prolaska kroz graf. Poseban slučaj ovog pristupa problemu automatskog diferenciranja jest temeljni princip koji se koristi za unazadnu propagaciju (\textit{eng. backpropagation}) u strojnom učenju.
+U ovom pristupu se \textit{seed}-vrijednost šalje unazad kroz graf jednadžbe od ponora prema izvorima \ref{slk:reverse_graf} . Iz toga slijedi da će za neku funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m \text{ td. } m << n$ algoritam biti najefikasniji zato što će se $m$ puta pozvati funkcija prolaska kroz graf. Poseban slučaj ovog pristupa problemu automatskog diferenciranja jest temeljni princip koji se koristi za unazadnu propagaciju (\textit{eng. backpropagation}) u strojnom učenju.
 \\
-Zanimljivo je da su oba algoritma optimalna samo za jednu određenu domenu primjene. To je zato što je problem izračuna Jakobijana za proizvoljnu funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m$ s minimalnim brojem računskih operacija problem koji je NP-potpun. Problem je poznat i kao \textit{optimal Jacobian problem} \cite{naumann:optimaljacobian}.
+Zanimljivo je da su oba algoritma optimalna samo za jednu određenu domenu primjene. To je zato što je problem izračuna Jakobijana za proizvoljnu funkciju $f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m$ s minimalnim brojem računskih operacija NP-potpun problem, poznat kao i \textit{optimal Jacobian problem}~\cite{naumann:optimaljacobian}.
 \begin{lstlisting}[caption={Primjer implementacije unazadne metode u programskom jeziku \textit{Python} \cite{wiki:autodiff}}]
 class Variable(Expression):
     def __init__(self, value):
@@ -258,7 +259,7 @@ class Multiply(Expression):
 
 \pagebreak
 \section{Dualni brojevi}
-Dualni brojevi su još jedan potenncijalni pristup za lako rješavanje prve derivacije jednadžbe. Iako nećemo koristiti ovaj pristup u implementaciji unazadnog (\textit{backward mode}) diferenciranja, valjalo bi ga spomenuti kao jednog od najintuitivnijih pristupa za rješavanje \textit{autodiffa} kod unaprijednog (\textit{forward mode}) diferenciranja. O čemu se radi?
+Dualni brojevi su još jedan potencijalni pristup za lako rješavanje prve derivacije jednadžbe. Iako nećemo koristiti ovaj pristup u implementaciji unazadnog (\textit{backward mode}) diferenciranja, valjalo bi ga spomenuti kao jednog od najintuitivnijih pristupa za rješavanje \textit{autodiffa} kod unaprijednog (\textit{forward mode}) diferenciranja.
 \\
 Zamislimo da bilo koji realni broj možemo zapisati kao dualni broj $x$ \cite{hoffmann2016hitchhiker}:
 \begin{equation}
@@ -269,7 +270,7 @@ Zamislimo da bilo koji realni broj možemo zapisati kao dualni broj $x$ \cite{ho
   \end{split}
   \label{eq:dualni}
 \end{equation}
-U formuli \ref{eq:dualni} broj $a$ predstavlja realni broj, početnu vrijednost neke varijable ili izraza, dok $b$ predstavlja diferencijal kojeg propagiramo od varijabli do rezultata određene funkcije. Ovakav pristup je memorijski jednostavniji jer ne zahtjeva slaganje složenih grafova, već računamo s sve kao i s "normalnim" brojevima. To vrijedi zato što se svaka analitička funkcija lako može proširiti u domenu dualnih brojeva preko svojeg Taylorovog reda \cite{hoffmann2016hitchhiker}:
+U formuli \ref{eq:dualni} broj $a$ predstavlja realni broj, početnu vrijednost neke varijable ili izraza, dok $b$ predstavlja diferencijal kojeg propagiramo od varijabli do rezultata određene funkcije. Ovakav pristup je memorijski jednostavniji jer ne zahtjeva slaganje složenih grafova, već sve računamo kao i s "normalnim" brojevima. To vrijedi zato što se svaka analitička funkcija lako može proširiti u domenu dualnih brojeva preko svojeg Taylorovog reda \cite{hoffmann2016hitchhiker}:
 \begin{equation}
   f(a + b \varepsilon) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a) b^n \varepsilon^n}{n!} = f(a) + b f'(a) \varepsilon
 \end{equation}
@@ -311,7 +312,7 @@ print("parcijalno z po y =", b.infinitesimalPart)  # Output: 8
 \subsection{Nadjačavanje operatora}
 \label{pog:nadjacavanje}
 
-Jedan način implementacije automatskog diferenciranja jest nadjačavanje operatora. To je način kojeg ćemo koristiti u ovom radu te koji je već bio pokazan u primjerima. Glavna ideja jest da imamo sučelje preko kojeg modeliramo izraz koji omogućava klijentu da zove metode \textit{derive()} i \textit{evaluate()}. Sve ostale operacije se realiziraju uz pomoć rekurzije, bilo unaprijedne ili unazadne, te nasljeđivanjem i implementacijom pravila ulančavanja za pojedine funkcije.
+Jedan način implementacije automatskog diferenciranja jest nadjačavanje operatora. To je način kojeg koristimo u ovom radu te koji je već bio pokazan u primjerima. Glavna ideja jest da imamo sučelje preko kojeg modeliramo izraz koji omogućava klijentu da zove metode \textit{derive()} i \textit{evaluate()}. Sve ostale operacije se realiziraju uz pomoć rekurzije, bilo unaprijedne ili unazadne, te nasljeđivanjem i implementacijom pravila ulančavanja za pojedine funkcije.
 Klijent takav sustav može na jednostavan način koristiti ako smo nadjačali operatore za osnovne računske operacije (eng.\ \textit{operator overloading}). Ukoliko je to slučaj, klijent jednostavno može konstruirati varijable te zatim proizvoljne izrazi pisati bez da je svjestan pozadinskih operacija. Na takav način funkcionira Pytorchev \textit{torch.autograd}, koji je glavni modul zaslužan za automatsko diferenciranje \cite{docs:autograd}. Na slici \ref{slk:klasni} je prikazan klasni dijagram takve implementacije.
 \\
 
@@ -324,7 +325,8 @@ Klijent takav sustav može na jednostavan način koristiti ako smo nadjačali op
 
 \subsection{Transformacija izvornog koda}
 
-Drugi, efikasniji način jest umetanje međukoda, kojeg optimirajući prevoditelj može dodatno obraditi kasnije, u naš kod, odnosno klijentov kod. Glavna ideja jest da imamo okvir koji matematičke izraze izravno prevodi u međukod za evaluaciju (zamjena za metodu \textit{evaluate()}) te međukod za derivaciju (zamjena za metodu \textit{derive()}). Ukoliko imamo takav okvir, klijent može lako preko njega prevesti matematičke izraze te njihov izračun umetnuti u svoj kod. To se opet može ostvariti preko objektnog modela. Primjer razvojnog okvira koji koristi ovakav pristup jest TensorFlow i Zygote.jl \cite{prague:diffcpp}. Zygote.jl koristi llvm međukod kako bi izravno, na temelju neke ulazne funkcije, izgenerirao naredbe u strojno neovisnom kodu niske razine koji se kasnije lako može optimirati:
+Drugi, efikasniji način jest umetanje međukoda, kojeg optimirajući prevoditelj može dodatno obraditi kasnije, u naš kod, odnosno klijentov kod. Glavna ideja jest da imamo okvir koji matematičke izraze izravno prevodi u međukod za evaluaciju (zamjena za metodu \textit{evaluate()}) te međukod za derivaciju (zamjena za metodu \textit{derive()}). Ukoliko imamo takav okvir, klijent može lako preko njega prevesti matematičke izraze te njihov izračun umetnuti u svoj kod. To se isto može ostvariti preko objektnog modela. Primjer razvojnog okvira koji koristi ovakav pristup jest TensorFlow i Zygote.jl \cite{prague:diffcpp}. Zygote.jl koristi llvm međukod kako bi izravno, na temelju neke ulazne funkcije, izgenerirao naredbe u strojno neovisnom kodu niske razine koji se kasnije može optimirati:
+\textbf{TODO: reference}
 \\
 
 \begin{lstlisting}[caption={Primjer korištenja Zygote.jl za generiranje llvm međukoda za funkciju: $a^2 + a*b$ \cite{prague:diffcpp}}]
@@ -360,7 +362,7 @@ ret void
 
 \pagebreak
 \section{OpenCL i C++}
-Do sad smo prošli kroz ideju automatskog diferenciranja, zašto i kako ga implementirati, ipak nešto nam još fali. Zadnji dio slagalice je podsustav za linearnu algebru, pošto su varijable u kontekstu strojnog učenja često vektori, odnosno matrice. Taj dio sustava ćemo u ovom radu implementirati uz pomoć OpenCL-a, zajedno s ručno napisanim jezgrama za računanje na grafičkoj kartici. Ključno pitanje je zapravo što je OpenCL i zašto ga koristimo?
+Zadnji dio slagalice je podsustav za linearnu algebru, pošto su varijable u kontekstu strojnog učenja često vektori, odnosno matrice. Taj dio sustava ćemo u ovom radu implementirati uz pomoć OpenCL-a, zajedno s ručno napisanim jezgrama za računanje na grafičkoj kartici.
 \\
 OpenCL je standard otvorenog koda za paralelno programiranje heterogenih računalnih sustava. To konkretno znači da u okviru OpenCL-a pišemo kod u obliku takozvanih \textit{jezgri} (eng. \textit{kernel}) koji se pokreće više puta na našem akceleratoru (grafička, fpga pločica, višeprocesorski sustav, itd.) te na taj način postižemo grubozrnati paralelizam na podatkovnoj razini. Takav pristup je efikasan ukoliko imamo velik broj podataka koji se mogu međusobno neovisno obraditi. Ako to nije slučaj, gubimo vrijeme na prijenos podataka ili na međuovisnosti. Operacije s matricama su idealan obrazac upotrebe ovog okvira te ćemo ga stoga koristiti za prijenos podataka na grafičku karticu, izračun na grafičkoj te zatim prijenos na glavno računalo \ref{slk:opencl}.
 \\
@@ -378,7 +380,7 @@ OpenCL je standard otvorenog koda za paralelno programiranje heterogenih računa
 \label{pog:glavni_dio}
 
 \section{Autograd\_core implementacija}
-Sad, kad znamo teorijsku podlogu, možemo krenuti u implementaciju \texttt{autograd} sustava. Ovaj sustav će se temeljiti na principu unutražnog prolaska \ref{pog:reverse}. Najprije implementiramo razred \texttt{autograd::Expression} koji definira neke okvirne metode za \texttt{cacheiranje} već izračunatih vrijedosti te dodatne metode za vizualizaciju grafova funkcije \ref{pog:metode}. Nakon toga možemo implementirati osnovne funkcionalnosti naslijeđivanjem razreda te nadjačavanjem metoda \texttt{autograd::Expression::eval} te \texttt{autograd::Expression::derive}. Jedini implementacijski detalj koji je možda malo nejasan iz koda jest korištenje pametnih pokazivača. Potreba za time dolazi zato što ne računamo direktno derivaciju funkcije već gradimo novi izraz tipa \texttt{autograd::Expression} kojeg zatim evaluiramo (kako bi mogli računati derivacije višeg reda) pa je stoga potrebno dinamički alocirati / oslobađati memoriju za vrijeme izvođenja programa. Pametni pokazivači, konkretno \texttt{std::shared\_ptr<autograd::Expression>} su idealni za ovu primjenu. Ovakva implementacija zajedno s nadjačavanjem operatora \ref{pog:nadjacavanje} može bez problema računati gradijente funkcija više varijabli, ali samo kad su te varijable skalari. Za potrebe dubokog učenja trebamo proširiti tu funkcionalnost kako bi nam varijable mogle biti matrice ili vektori kojima prikazujemo težine neuralnih mreža i njihove ulaze. U idućem poglavlju ćemo se baviti tom problematikom.
+Sad, kad znamo teorijsku podlogu, možemo krenuti u implementaciju \texttt{autograd} sustava. Ovaj sustav će se temeljiti na principu unatražnog prolaska \ref{pog:reverse}. Najprije implementiramo razred \texttt{autograd::Expression} koji definira neke okvirne metode za \texttt{cacheiranje} već izračunatih vrijedosti te dodatne metode za vizualizaciju grafova funkcije \ref{pog:metode}. Nakon toga možemo implementirati osnovne funkcionalnosti naslijeđivanjem razreda te nadjačavanjem metoda \texttt{autograd::Expression::eval} te \texttt{autograd::Expression::derive}. Jedini implementacijski detalj koji je možda malo nejasan iz koda jest korištenje pametnih pokazivača. Potreba za time dolazi zato što ne računamo direktno derivaciju funkcije već gradimo novi izraz tipa \texttt{autograd::Expression} kojeg zatim evaluiramo (kako bi mogli računati derivacije višeg reda) pa je stoga potrebno dinamički alocirati / oslobađati memoriju za vrijeme izvođenja programa. Pametni pokazivači, konkretno \texttt{std::shared\_ptr<autograd::Expression>} su idealni za ovu primjenu. Ovakva implementacija zajedno s nadjačavanjem operatora \ref{pog:nadjacavanje} može bez problema računati gradijente funkcija više varijabli, ali samo kad su te varijable skalari. Za potrebe dubokog učenja trebamo proširiti tu funkcionalnost kako bi nam varijable mogle biti matrice ili vektori kojima prikazujemo težine neuralnih mreža i njihove ulaze. U idućem poglavlju ćemo se baviti tom problematikom.
 
 \lstinputlisting[language=C++, caption={Jezgrena funkcionalnost autograda}, firstline=31]{../../include/autograd_core/expression.hpp}
 
@@ -521,17 +523,20 @@ U ovom primjeru je napisan isti klasifikator \ref{pog:klasifikator}, jedino u Py
 
 \pagebreak
 \section{Moguće optimizacije}
-\textbf{TODO:} piši o mogućim optimizacijama pretraživanja grafa. recimo odsjecanje grana itd.
-\blindtext
-
+Postoje više mogućih optimizacija u odnosu na trenutno razvijeni sustav. Jedna od prvih je možda lokalizacija korištene memorije za derivaciju jednog izraza \cite{margossian2019review}. Mogli bismo napisati svoj alokator koji bi unaprijed rezervirao memoriju za derivaciju nekog izraza te koristiti taj komad memorije umjesto da imamo više uzastopnih poziva funkcije \textit{make\_shared} što dovodi do potencijalne fragmentacije gomile i usporavanja programa zbog nepotrebnih promašaja priručne memorije.
+\\
+Druga potencijalna optimizacija jest dodavanje derivacija za često korištene funkcije. Ideja je slična kao kod naše implementacije funkcije sigmoide: derivacija se ne zadaje preko primitivnih operacija, već kao $f(x) * (1 - f(x))$, što u praksi jako pojednostavljuje graf te funkcije (odnosno njene derivacije) te nam omogućuje da ju izračunamo sa što manje računskih operacija.
+\\
+Neke dodatne optimizacije bi bile otkrivanje "nebitnih" grana u grafu funkcije te uklanjanje istih ili otkrivanje istih grana tako da se izbjegne dvostruko računanje istih podizraza (primjer za to bi bio $f(x)$ u gornjem izrazu).
 
 %--- ZAKLJUČAK / CONCLUSION ----------------------------------------------------
 \chapter{Zaključak}
 \label{pog:zakljucak}
 
-Zaključno, TODO...
-\blindtext
-
+Postoje različiti pristupi u korištenju računala za rješavanje problema automatskog diferenciranja. Jedan od najefikasnijih i korisnicima najpristupačnijih načina je implementacija jednostavnog okvira temeljenog na unatražnom prolazu grafa (za potrebe strojnog učenja \ref{pog:reverse}) i nadjačavanju operatora \ref{pog:nadjacavanje}. Ovakav pristup omogućava korisnicima jednostavno definiranje proizvoljnih arhitektura neuralnih mreža nadjačavanjem samo jedne metode, što značajno pojednostavljuje proces razvoja \ref{pog:klasifikator}.
+\\
+Dano programsko rješenje, osim što je efikasno, nudi i visoku fleksibilnost. Lako ga je moguće proširiti dodavanjem novih klasa, čime se osigurava da se sustav može prilagoditi različitim potrebama bez potrebe za promjenama u postojećem kodu. Ovakav princip programske organizacije, gdje se posebna pažnja posvećuje modularnosti i proširivosti, ključan je za uspješnost projekata u području automatskog diferenciranja i neuralnih mreža zato što se na taj način osigurava dugoročna održivost i skalabilnost programskog rješenja, što je od izuzetne važnosti u dinamičnom svijetu tehnologije i znanosti o podacima.
+\\
 
 %--- LITERATURA / REFERENCES ---------------------------------------------------
 
