@@ -1,18 +1,18 @@
 <map id="ReLU" name="ReLU">
-<area shape="rect" id="Node000001" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="116,1320,224,1466"/>
+<area shape="rect" id="Node000001" title="klasa koja implementira funkciju &quot;leaky ReLU&quot;" alt="" coords="116,1319,224,1464"/>
 <area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title=" " alt="" coords="5,1171,159,1271"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,1283,135,1319,131,1322,112,1286"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,1283,135,1318,130,1321,112,1286"/>
 <area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="16,725,148,965"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,980,85,1171,79,1171,79,980"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="99,1028,257,1108"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="136,964,157,1012,152,1014,131,966"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="77,980,77,1108,80,1171,75,1171,71,1108,72,980"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="85,1028,244,1108"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="129,964,147,1011,142,1013,124,966"/>
 <area shape="rect" id="Node000004" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="35,337,129,662"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="85,662,85,708,79,708,79,662"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="9,194,155,274"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="85,273,85,320,79,320,79,273"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="18,5,146,131"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="85,130,85,177,79,177,79,130"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="156,1109,124,1158,120,1155,151,1106"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="146,1109,119,1158,115,1155,141,1106"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="183,1174,333,1268"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="230,1283,209,1322,204,1320,225,1280"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="229,1283,210,1320,205,1318,225,1280"/>
 </map>

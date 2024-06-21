@@ -1,16 +1,16 @@
 <map id="CrossEntropyLossWithSoftmax" name="CrossEntropyLossWithSoftmax">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,1335,224,1481"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,1334,224,1479"/>
 <area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="37,1186,192,1286"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,1301,117,1335,112,1335,112,1301"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,1301,117,1334,112,1334,112,1301"/>
 <area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="49,725,181,965"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="117,980,117,1186,112,1186,112,980"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="131,1028,290,1108"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="169,964,190,1012,185,1014,164,966"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="110,980,109,1108,114,1186,108,1187,104,1108,105,980"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="118,1028,277,1108"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="162,964,179,1011,174,1013,157,966"/>
 <area shape="rect" id="Node000004" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="67,337,162,662"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="117,662,117,708,112,708,112,662"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="41,194,188,274"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="117,273,117,320,112,320,112,273"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="51,5,179,131"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="117,130,117,177,112,177,112,130"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="191,1109,153,1173,149,1171,186,1106"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="181,1109,149,1172,144,1170,176,1106"/>
 </map>

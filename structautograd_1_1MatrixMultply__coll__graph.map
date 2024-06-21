@@ -1,16 +1,16 @@
 <map id="autograd::MatrixMultply" name="autograd::MatrixMultply">
-<area shape="rect" id="Node000001" title="klasa koja predstavlja binarni operator matričnog množenja" alt="" coords="10,1335,155,1481"/>
+<area shape="rect" id="Node000001" title="klasa koja predstavlja binarni operator matričnog množenja" alt="" coords="10,1334,155,1479"/>
 <area shape="rect" id="Node000002" href="$structautograd_1_1BinaryOperator.html" title=" " alt="" coords="5,1186,160,1286"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,1301,85,1335,80,1335,80,1301"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,1301,85,1334,80,1334,80,1301"/>
 <area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title=" " alt="" coords="17,725,149,965"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,980,85,1186,80,1186,80,980"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="99,1028,258,1108"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="137,964,158,1012,153,1014,132,966"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,980,77,1108,82,1186,76,1187,72,1108,73,980"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="86,1028,245,1108"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="130,964,147,1011,142,1013,125,966"/>
 <area shape="rect" id="Node000004" href="$classMatrix.html" title="klasa koja enkapsulira podatke o matrici koji su spremljeni na povezanom OpenCL uređaju" alt="" coords="35,337,130,662"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="85,662,85,708,80,708,80,662"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="9,194,156,274"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="85,273,85,320,80,320,80,273"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="19,5,147,131"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="85,130,85,177,80,177,80,130"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="159,1109,121,1173,117,1171,154,1106"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="149,1109,117,1172,112,1170,144,1106"/>
 </map>

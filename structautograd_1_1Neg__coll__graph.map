@@ -1,7 +1,7 @@
 <map id="autograd::Neg&lt; T &gt;" name="autograd::Neg&lt; T &gt;">
-<area shape="rect" id="Node000001" title="implementacija unarne operacije negacije:" alt="" coords="115,557,238,682"/>
+<area shape="rect" id="Node000001" title="implementacija unarne operacije negacije:" alt="" coords="115,555,238,681"/>
 <area shape="rect" id="Node000002" href="$structautograd_1_1UnaryOperator.html" title="generička klasa koja implementira unarne operatore:" alt="" coords="85,422,268,507"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,522,179,557,174,557,174,522"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,522,179,556,174,556,174,522"/>
 <area shape="rect" id="Node000003" href="$structautograd_1_1Expression.html" title="struktura koja predstavlja apstraktni matematički izraz ili varijablu. Generalno ju možemo zamisliti ..." alt="" coords="5,134,167,359"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="141,371,162,421,157,423,136,373"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="166,5,187,71"/>
